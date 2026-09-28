@@ -1,0 +1,619 @@
+/* Kit B1 · aplicación: plan, guías, práctica, tarjetas, simulacros y fallos */
+
+/* ---------- STORAGE ---------- */
+const KEY = "kitb1-v1";
+const DEFAULTS = () => ({answered:0, correct:0, mistakes:{}, days:[], done:{}, exams:{}, plan:{start:null}, drafts:{}, sprintBest:0, cardDir:"en", lastTab:"plan"});
+let store = DEFAULTS();
+try { const s = JSON.parse(localStorage.getItem(KEY)); if(s) store = Object.assign(DEFAULTS(), s); } catch(e){}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
+
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+function touchDay(){ const t = ymd(new Date()); if(!store.days.includes(t)){ store.days.push(t); store.days = store.days.slice(-400); } }
+function streak(){
+  const set = new Set(store.days), d = new Date(); let n = 0;
+  if(!set.has(ymd(d))) d.setDate(d.getDate()-1);
+  while(set.has(ymd(d))){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+function record(it, ok){
+  store.answered++;
+  if(ok){ store.correct++; delete store.mistakes[it.id]; }
+  else store.mistakes[it.id] = (store.mistakes[it.id]||0) + 1;
+  touchDay(); save(); renderStats(); renderNav();
+}
+function markDone(key){ if(!store.done[key]){ store.done[key] = true; touchDay(); save(); } }
+
+/* ---------- HELPERS ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const strip = s => String(s).replace(/<[^>]+>/g,"").replace(/\s*\([^)]*\)/g,"").trim();
+const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; };
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const fillText = (q, a) => a === "—" ? q.replace(" ___","") : q.replace("___", a);
+function filled(it){
+  const a = it.ans[0];
+  return a === "—" ? esc(it.q).replace(" ___","") : esc(it.q).replace("___", `<mark>${esc(a)}</mark>`);
+}
+function norm(s){ return s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?]/g,"").replace(/\s+/g," ").trim(); }
+function variants(s){
+  s = norm(s).replace(/won't/g,"will not").replace(/can't/g,"cannot").replace(/n't/g," not")
+    .replace(/'ve/g," have").replace(/'ll/g," will").replace(/'re/g," are").replace(/'m/g," am").replace(/'d/g," had");
+  const t = x => x.replace(/\s+/g," ").trim();
+  return s.includes("'s") ? [t(s.replace(/'s/g," is")), t(s.replace(/'s/g," has"))] : [t(s)];
+}
+const isRight = (it, v) => { const ok = it.ans.map(norm); return variants(v).some(x => ok.includes(x)); };
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+/* ---------- ICONS ---------- */
+const svg = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICON = {
+  plan: svg('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+  guias: svg('<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>'),
+  practicar: svg('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/>'),
+  tarjetas: svg('<rect x="3" y="7" width="14" height="13" rx="2"/><path d="M7 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"/>'),
+  fallos: svg('<path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/>'),
+  spk: svg('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/>'),
+  ext: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
+  check: svg('<path d="M5 12l5 5L20 7"/>'),
+  bolt: svg('<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>')
+};
+
+/* ---------- SPEECH (pronunciación con la voz del dispositivo) ---------- */
+const TTS = typeof window !== "undefined" && "speechSynthesis" in window;
+let VOICES = [];
+function loadVoices(){
+  VOICES = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+  VOICES.sort((a,b) => (/en-GB/i.test(b.lang)) - (/en-GB/i.test(a.lang)));
+}
+if(TTS){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function speak(text, {voice=0, pitch=1, rate=.92, queue=false, onend}={}){
+  if(!TTS) return;
+  if(!queue) speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-GB";
+  const v = VOICES.length ? VOICES[voice % VOICES.length] : null;
+  if(v){ u.voice = v; u.lang = v.lang; }
+  u.pitch = pitch; u.rate = rate;
+  if(onend) u.onend = onend;
+  speechSynthesis.speak(u);
+}
+const spk = (text, label="Escuchar") => TTS ? `<button class="spk" type="button" data-say="${esc(text)}" aria-label="${label}">${ICON.spk}</button>` : "";
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-say]");
+  if(b){ e.preventDefault(); e.stopPropagation(); speak(b.dataset.say); }
+}, true);
+
+/* ---------- ITEMS ---------- */
+const ITEMS = {};
+const add = it => (ITEMS[it.id] = it, it);
+const guideShort = id => (GUIDES.find(g => g.id === id) || {short:id}).short;
+const POOL = {
+  pv: PV.map((p,i)=>add({id:"pv"+i, sec:"Phrasal verbs", q:p[2], opts:p[3], ans:[p[3][0]], note:`<b>${p[0]}</b> = ${p[1]}`})),
+  tn: TN.map((t,i)=>add({id:"tn"+i, sec:"Tiempos verbales", q:t[0], hint:t[1], ans:t[2], note:t[3]})),
+  te: TE.map((t,i)=>add({id:"te"+i, sec:"Expresiones de tiempo", q:t[0], opts:t[1], ans:[t[1][0]], note:t[2]})),
+  vo: VO.map((v,i)=>add({id:"vo"+i, sec:v[0], cat:v[0], q:v[1], opts:v[2], ans:[v[2][0]], note:v[3]})),
+  pc: PC.map((t,i)=>add({id:"pc"+i, sec:"Past simple vs continuous", q:t[0], hint:t[1], ans:t[2], note:t[3]})),
+  gr: GR.map((g,i)=>add({id:`gr-${g[0]}-${i}`, sec:guideShort(g[0]), cat:g[0], q:g[1], opts:g[2], ans:[g[2][0]], note:g[3]})),
+  iv: IRR.flatMap((v,i)=>[
+    add({id:"ivp"+i, sec:"Verbos irregulares", q:`${v[0]} → past simple: ___`, ans:v[1].split(" / "), say:`${v[0]}, ${v[1].split(" / ")[0]}, ${v[2]}`, note:`<b>${v[0]}</b> – ${v[1]} – ${v[2]} (${v[3]})`}),
+    add({id:"ivn"+i, sec:"Verbos irregulares", q:`${v[0]} → participio: ___`, ans:[v[2]], say:`${v[0]}, ${v[1].split(" / ")[0]}, ${v[2]}`, note:`<b>${v[0]}</b> – ${v[1]} – ${v[2]} (${v[3]})`})
+  ]),
+  tp: TOPICS.flatMap(t => t.words.map(([en, es], i) => {
+    const others = shuffle(t.words.filter(w => w[0] !== en)).slice(0, 3).map(w => w[0]);
+    return add({id:`tp-${t.id}-${i}`, sec:t.name, cat:t.id, q:`«${es}» en inglés: ___`, opts:[en, ...others], ans:[en], say:en, note:`<b>${en}</b> = ${es}`});
+  }))
+};
+// Preposiciones sin opciones: hay que escribirla (como en un examen de clase)
+POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => g[0] === "prepositions")
+  .map(([g, i]) => add({id:`prw-${i}`, sec:"Preposiciones · escribe", q:g[1], ans:[g[2][0]], note:g[3]}));
+const OPTION_POOL =[...POOL.pv, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp];
+
+function mixPool(){
+  const wrong = Object.keys(store.mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]);
+  return [...new Set([...shuffle(wrong).slice(0, 7), ...shuffle(Object.values(ITEMS)).slice(0, 20)])];
+}
+
+/* ---------- SETS (todo lo que se puede practicar) ---------- */
+const SETS = {};
+const defSet = (id, label, sub, run) => SETS[id] = {id, label, sub, run};
+const setIdOf = raw => raw.startsWith("vo-") ? "vo-" + slug(raw.slice(3)) : raw;
+
+defSet("quick5", "Test rápido", "5 preguntas · 1–2 minutos", h => runQuiz(h, OPTION_POOL, 5, "quick5"));
+defSet("quick10", "Test de 5 minutos", "10 preguntas variadas", h => runQuiz(h, OPTION_POOL, 10, "quick10"));
+defSet("sprint", "Sprint de 60 segundos", "Todas las que puedas en un minuto", h => sprint(h));
+defSet("mix", "Repaso mixto", "Mezcla de todo, con prioridad a tus fallos", h => runQuiz(h, mixPool(), 15, "mix", true));
+EXAMS.forEach(e => defSet(e.id, e.title, e.sub, h => runExam(h, e)));
+defSet("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", h => runQuiz(h, POOL.gr.filter(x => x.cat === "prepositions"), 20, "prep-exam"));
+defSet("prep-write", "Preposiciones: escríbela tú", "15 frases sin opciones, más difícil", h => runQuiz(h, POOL.prw, 15, "prep-write"));
+defSet("tn", "Conjugar verbos", "Escribe la forma correcta · todos los tiempos", h => runQuiz(h, POOL.tn, 10, "tn"));
+defSet("pc", "Past simple vs continuous", "Escribe la forma correcta", h => runQuiz(h, POOL.pc, POOL.pc.length, "pc"));
+defSet("te", "Expresiones de tiempo", "in, on, at, for, since, ago...", h => runQuiz(h, POOL.te, 10, "te"));
+defSet("iv", "Verbos irregulares", "Escribe el pasado o el participio", h => runQuiz(h, POOL.iv, 12, "iv"));
+defSet("pv", "Phrasal verbs", `${PV.length} phrasal verbs del B1`, h => runQuiz(h, POOL.pv, 10, "pv"));
+[...new Set(VO.map(v => v[0]))].forEach(c => defSet("vo-" + slug(c), c, "Vocabulario", h => runQuiz(h, POOL.vo.filter(x => x.cat === c), 10, "vo-" + slug(c))));
+[...new Set(GR.map(g => g[0]))].forEach(c => defSet("gr-" + c, guideShort(c), "Gramática", h => runQuiz(h, POOL.gr.filter(x => x.cat === c), 10, "gr-" + c)));
+TOPICS.forEach(t => defSet("tp-" + t.id, t.name, `${t.words.length} palabras`, h => runQuiz(h, POOL.tp.filter(x => x.cat === t.id), 10, "tp-" + t.id)));
+
+/* ---------- DECKS (tarjetas) ---------- */
+const DECKS = {};
+DECKS.pv = {name:"Phrasal verbs", cards: PV.map(p => ({en:p[0], es:p[1], ex:esc(p[2]).replace("___", `<mark>${esc(p[3][0])}</mark>`), say:p[0]}))};
+DECKS.iv = {name:"Verbos irregulares", cards: IRR.map(v => ({en:v[0], es:v[3], ex:`${esc(v[0])} – <b>${esc(v[1])}</b> – <b>${esc(v[2])}</b>`, say:`${v[0]}, ${v[1].split(" / ")[0]}, ${v[2]}`}))};
+TOPICS.forEach(t => DECKS["tp-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
+
+/* ---------- QUIZ ENGINE ---------- */
+let keyHandler = null, cleanup = null;
+document.addEventListener("keydown", e => { if(keyHandler && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) keyHandler(e); });
+
+function runQuiz(host, pool, n=10, setId=null, keepOrder=false){
+  let q = (keepOrder ? pool : shuffle(pool)).slice(0, n), i = 0, score = 0, done = false, wrongs = [];
+  if(keepOrder) q = shuffle(q);
+  const again = () => runQuiz(host, setId === "mix" ? mixPool() : pool, n, setId, keepOrder);
+
+  function render(){
+    const it = q[i]; done = false;
+    const opts = it.opts ? shuffle(it.opts) : null;
+    const blank = `<span class="blank" id="blank">&nbsp;</span>` + (it.hint ? ` <span class="hint">(${esc(it.hint)})</span>` : "");
+    host.innerHTML = `<div class="quiz">
+      <div class="qmeta"><span>Pregunta ${i+1} de ${q.length}</span><span>${score} ${score===1?"acierto":"aciertos"}</span></div>
+      <div class="bar"><i style="width:${i/q.length*100}%"></i></div>
+      <p class="tag">${esc(it.sec)}</p>
+      <p class="sentence">${esc(it.q).replace("___", blank)}</p>
+      ${opts ? `<div class="opts">${opts.map((o,k)=>`<button class="opt" data-v="${esc(o)}"><kbd>${k+1}</kbd>${o === "—" ? "(nada)" : esc(o)}</button>`).join("")}</div>`
+             : `<form class="typed" id="typed"><input id="answer-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Escribe la forma correcta" aria-label="Tu respuesta"><button class="btn primary">Comprobar</button><button type="button" class="btn ghost" id="reveal">No lo sé</button></form>`}
+      <div class="feedback" id="fb" hidden></div>
+    </div>`;
+    if(opts){
+      host.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b.dataset.v, b));
+      keyHandler = e => { const k = +e.key; if(!done && k>=1 && k<=opts.length) host.querySelectorAll(".opt")[k-1].click(); };
+    } else {
+      keyHandler = null;
+      const inp = $("#answer-input");
+      if(matchMedia("(hover: hover)").matches) inp.focus({preventScroll:true});
+      $("#typed").onsubmit = e => { e.preventDefault(); if(!done && inp.value.trim()) answer(inp.value); };
+      $("#reveal").onclick = () => { if(!done) answer(""); };
+    }
+  }
+
+  function answer(v, btn){
+    const it = q[i]; done = true;
+    const ok = v !== "" && isRight(it, v);
+    if(ok) score++; else wrongs.push(it);
+    record(it, ok);
+    const b = $("#blank"); b.textContent = it.ans[0] === "—" ? "(nada)" : it.ans[0]; b.classList.add("filled");
+    if(it.opts){
+      host.querySelectorAll(".opt").forEach(o => { o.disabled = true; if(o.dataset.v === it.ans[0]) o.classList.add("ok"); });
+      if(!ok && btn) btn.classList.add("bad");
+    } else {
+      const inp = $("#answer-input"); inp.disabled = true; inp.classList.add(ok ? "ok" : "bad");
+      host.querySelectorAll("#typed button").forEach(x => x.disabled = true);
+    }
+    const fb = $("#fb");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    const others = it.ans.length > 1 ? ` <span class="n">(también vale: ${it.ans.slice(1).map(esc).join(", ")})</span>` : "";
+    const say = it.say || fillText(it.q, it.ans[0]);
+    fb.innerHTML = `<p class="verdict">${ok ? "¡Correcto!" : (v ? "No es correcto." : "Esta era la respuesta:")} ${ok ? "" : `Respuesta: <b>${esc(it.ans[0] === "—" ? "(nada)" : it.ans[0])}</b>${others}`}</p>
+      <p class="note">${it.note}</p>
+      <div class="row">${TTS ? `<button class="btn ghost small" type="button" data-say="${esc(say)}">${ICON.spk} Escuchar</button>` : ""}
+      <button class="btn primary" id="next">${i+1 < q.length ? "Siguiente →" : "Ver resultado"}</button></div>`;
+    fb.hidden = false;
+    $("#next").onclick = () => { i++; i < q.length ? render() : end(); window.scrollTo({top:0}); };
+    $("#next").focus({preventScroll:true});
+    fb.scrollIntoView({block:"nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  }
+
+  function end(){
+    keyHandler = null;
+    if(setId) markDone("q:" + setId);
+    const p = score / q.length;
+    const msg = p === 1 ? "Perfecto. Ronda sin fallos." : p >= .7 ? "Muy bien. Repasa los fallos de abajo." : p >= .4 ? "Vas bien. Repite los fallos hasta que salgan solos." : "Estos cuestan. Repítelos: así es como se fijan.";
+    host.innerHTML = `<div class="end">
+      <p class="tag">Resultado</p>
+      <p class="big">${score}/${q.length}</p>
+      <p style="margin:0">${msg}</p>
+      <div class="row">
+        <button class="btn primary" id="again">Otra ronda</button>
+        ${wrongs.length ? `<button class="btn" id="retry">Repetir ${wrongs.length} ${wrongs.length===1?"fallo":"fallos"}</button>` : ""}
+      </div>
+      ${wrongs.length ? `<ul class="review">${wrongs.map(w=>`<li><div class="q">${filled(w)}</div><div class="n">${w.note}</div></li>`).join("")}</ul>` : ""}
+    </div>`;
+    $("#again").onclick = again;
+    if(wrongs.length) $("#retry").onclick = () => runQuiz(host, wrongs, wrongs.length);
+  }
+  render();
+}
+
+/* ---------- SPRINT 60 s ---------- */
+function sprint(host){
+  let left = 60, score = 0, total = 0, timer = null, it = null, locked = false;
+  const pool = shuffle(OPTION_POOL);
+  host.innerHTML = `<div class="quiz">
+    <div class="sprint-top"><span class="clock" id="clock">60</span><span>${ICON.bolt} <b id="sc">0</b> aciertos</span></div>
+    <div class="bar"><i id="tbar" style="width:100%"></i></div>
+    <p class="tag" id="sec"></p><p class="sentence" id="sen"></p><div class="opts" id="opts"></div></div>`;
+  function next(){
+    it = pool[total % pool.length]; locked = false;
+    $("#sec").textContent = it.sec;
+    $("#sen").innerHTML = esc(it.q).replace("___", `<span class="blank">&nbsp;</span>`);
+    $("#opts").innerHTML = shuffle(it.opts).map((o,k)=>`<button class="opt" data-v="${esc(o)}"><kbd>${k+1}</kbd>${o === "—" ? "(nada)" : esc(o)}</button>`).join("");
+    $("#opts").querySelectorAll(".opt").forEach(b => b.onclick = () => pick(b));
+  }
+  function pick(b){
+    if(locked) return; locked = true; total++;
+    const ok = b.dataset.v === it.ans[0];
+    if(ok){ score++; $("#sc").textContent = score; }
+    record(it, ok);
+    b.classList.add(ok ? "ok" : "bad");
+    if(!ok) $("#opts").querySelector(`[data-v="${CSS.escape(it.ans[0])}"]`)?.classList.add("ok");
+    setTimeout(() => left > 0 && next(), ok ? 300 : 900);
+  }
+  keyHandler = e => { const k = +e.key; const bs = $("#opts")?.querySelectorAll(".opt"); if(bs && k>=1 && k<=bs.length) bs[k-1].click(); };
+  timer = setInterval(() => {
+    left--; const c = $("#clock"); if(!c) return clearInterval(timer);
+    c.textContent = left; $("#tbar").style.width = (left/60*100) + "%";
+    if(left <= 0){ clearInterval(timer); finish(); }
+  }, 1000);
+  cleanup = () => clearInterval(timer);
+  function finish(){
+    keyHandler = null; markDone("q:sprint");
+    const best = score > store.sprintBest; if(best){ store.sprintBest = score; save(); }
+    host.innerHTML = `<div class="end"><p class="tag">Tiempo</p><p class="big">${score}</p>
+      <p style="margin:0">${score} aciertos de ${total} respondidas. ${best ? "¡Nuevo récord!" : `Tu récord: ${store.sprintBest}.`}</p>
+      <div class="row"><button class="btn primary" id="again">Otra vez</button></div></div>`;
+    $("#again").onclick = () => sprint(host);
+  }
+  next();
+}
+
+/* ---------- FLASHCARDS ---------- */
+function flashcards(host, deckId){
+  const d = DECKS[deckId]; if(!d) return notFound(host);
+  markDone("c:" + deckId);
+  let cards = shuffle(d.cards), i = 0, flipped = false;
+  function render(){
+    const c = cards[i], enFirst = store.cardDir === "en";
+    const front = enFirst ? `<p class="pv">${esc(c.en)}</p>` : `<p class="pv es-front">${esc(c.es)}</p>`;
+    const back = enFirst ? `<p class="es">${esc(c.es)}</p>` : `<p class="es">${esc(c.en)}</p>`;
+    host.innerHTML = `<div class="fc">
+      <div class="fchead"><h2 class="h2">${esc(d.name)}</h2>
+        <div class="seg" role="group" aria-label="Dirección"><button aria-pressed="${enFirst}" data-dir="en">Inglés → español</button><button aria-pressed="${!enFirst}" data-dir="es">Español → inglés</button></div></div>
+      <div class="card" id="card" role="button" tabindex="0" aria-live="polite">
+        ${front}
+        ${flipped ? `${back}${c.ex ? `<p class="ex">${c.ex}</p>` : ""}` : `<small>Piensa la respuesta y toca para girar</small>`}
+        ${(enFirst || flipped) ? spk(c.say || c.en) : ""}
+      </div>
+      <div class="fcnav">
+        <button class="btn" id="prev" aria-label="Anterior">←</button>
+        <span class="count">${i+1} / ${cards.length}</span>
+        <button class="btn primary" id="nxt">Siguiente →</button>
+      </div>
+      <p class="intro">Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar y flechas para moverte. <button class="linkbtn" id="shuf">Barajar de nuevo</button></p></div>`;
+    const card = $("#card");
+    card.onclick = () => { flipped = !flipped; render(); $("#card").focus({preventScroll:true}); };
+    card.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); card.click(); } };
+    let x0 = null;
+    card.addEventListener("touchstart", e => x0 = e.touches[0].clientX, {passive:true});
+    card.addEventListener("touchend", e => { if(x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if(Math.abs(dx) > 50){ e.preventDefault(); move(dx < 0 ? 1 : -1); } });
+    $("#prev").onclick = () => move(-1);
+    $("#nxt").onclick = () => move(1);
+    $("#shuf").onclick = () => { cards = shuffle(d.cards); i = 0; flipped = false; render(); };
+    host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); flipped = false; render(); });
+  }
+  const move = s => { i = (i + s + cards.length) % cards.length; flipped = false; render(); };
+  keyHandler = e => {
+    if(e.key === " "){ e.preventDefault(); $("#card")?.click(); }
+    if(e.key === "ArrowRight") move(1);
+    if(e.key === "ArrowLeft") move(-1);
+  };
+  render();
+}
+
+/* ---------- GUIDES ---------- */
+function practiceHref(p){
+  const [k, a] = p;
+  if(k === "gu") return "#guias/" + a;
+  if(k === "gr") return "#practicar/gr-" + a;
+  if(k === "tn") return "#practicar/" + (a === "time" ? "te" : "tn");
+  return "#practicar/" + k;
+}
+function guideIndex(host){
+  host.innerHTML = `<div class="menu">
+    <p class="intro">Explicaciones visuales en español, de cero a B1. Cada guía termina con un ejercicio.</p>
+    ${GUIDE_SECTIONS.map(s => `<section><h2 class="h2">${s.title}</h2><div class="tiles">
+      ${s.ids.map(id => { const g = GUIDES.find(x => x.id === id); return g ? `<a class="tile" href="#guias/${id}"><span>${g.short}</span>${store.done["g:"+id] ? `<i class="seen" title="Vista">${ICON.check}</i>` : ""}</a>` : ""; }).join("")}
+    </div></section>`).join("")}
+    ${resourcesHTML()}
+  </div>`;
+}
+function resourcesHTML(){
+  const cats = [...new Set(RESOURCES.map(r => r.cat))];
+  return `<section id="recursos"><h2 class="h2">Recursos gratis de otras webs</h2>
+    <p class="intro">Enlaces a materiales gratuitos de sus autores. Se abren en su web original.</p>
+    ${cats.map(c => `<h3 class="h3">${c}</h3><div class="res">${RESOURCES.filter(r => r.cat === c).map(r => `
+      <a class="resrow" href="${r.url}" target="_blank" rel="noopener">
+        <span><b>${esc(r.name)}</b><small class="by">${esc(r.by)}</small><small>${esc(r.what)}</small></span>${ICON.ext}</a>`).join("")}</div>`).join("")}
+  </section>`;
+}
+function guide(host, id){
+  const g = GUIDES.find(x => x.id === id);
+  if(!g) return notFound(host);
+  markDone("g:" + id);
+  const tones = ["a","b","c"];
+  const li = (x, ex) => ex && TTS ? `<li class="say" data-say="${esc(strip(x))}">${x} ${ICON.spk}</li>` : `<li>${x}</li>`;
+  const cell = ex => (c, k) => `<div class="gcell ${tones[k]}"><p class="cname">${g.cols[k]}</p>${Array.isArray(c) ? `<ul>${c.map(x => li(x, ex)).join("")}</ul>` : c}</div>`;
+  let extra = g.extra;
+  if(extra === "IRREGULARS") extra = `<section class="gsec"><input class="filter" id="irr-filter" type="search" placeholder="Busca un verbo (en inglés o español)" aria-label="Buscar verbo"><div id="irr-table"></div></section>`;
+  host.innerHTML = `<article class="guide">
+    <div class="ghead"><div><h2>${g.title}</h2><p>${g.sub}</p></div><div class="sticky">${g.sticky}</div></div>
+    ${g.rows.map(r => `<section class="gsec"><h3>${r[0]}</h3><div class="gcols">${r[1].map(cell(r[0] === "Ejemplos")).join("")}</div></section>`).join("")}
+    ${extra}
+    ${g.practice ? `<div class="practice"><a class="btn primary" href="${practiceHref(g.practice)}">${g.practice[2]} →</a><span>Pon en práctica lo que acabas de repasar.</span></div>` : ""}
+    ${TTS ? `<p class="xmp">Toca los ejemplos marcados con ${ICON.spk} para oírlos.</p>` : ""}
+  </article>`;
+  if(g.extra === "IRREGULARS"){
+    const draw = f => { f = f.trim().toLowerCase();
+      const rows = IRR.filter(v => !f || v.some(x => x.toLowerCase().includes(f)));
+      $("#irr-table").innerHTML = rows.length ? table(["", "Infinitivo","Past simple","Participio","Significado"], rows.map(v=>[spk(`${v[0]}, ${v[1].split(" / ")[0]}, ${v[2]}`), v[0],`<b>${v[1]}</b>`,`<b>${v[2]}</b>`,v[3]])) : `<p class="empty">No está en la lista.</p>`; };
+    draw(""); $("#irr-filter").oninput = e => draw(e.target.value);
+  }
+}
+
+/* ---------- PRACTICE & CARDS MENUS ---------- */
+const doneMark = key => store.done[key] ? `<i class="seen" title="Hecho">${ICON.check}</i>` : "";
+const setRow = id => { const s = SETS[id]; return s ? `<a class="resrow" href="#practicar/${id}"><span><b>${esc(s.label)}</b><small>${esc(s.sub)}${store.exams[id] ? ` · mejor nota ${store.exams[id].best}%` : ""}</small></span>${doneMark("q:"+id) || doneMark("x:"+id)}</a>` : ""; };
+function practiceMenu(host){
+  const grIds = GUIDE_SECTIONS.flatMap(s => s.ids).filter(id => SETS["gr-"+id]).map(id => "gr-"+id);
+  host.innerHTML = `<div class="menu">
+    <section><h2 class="h2">Tengo poco tiempo</h2><div class="quick">
+      <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
+      <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint${store.sprintBest ? ` · récord ${store.sprintBest}` : ""}</span></a>
+      <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
+    </div></section>
+    <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-exam","prep-write"].map(setRow).join("")}</div>
+      <p class="xmp">Antes del test, repasa la <a href="#guias/prepositions">guía de preposiciones</a>.</p></section>
+    <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
+      <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
+    <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>
+    <section><h2 class="h2">Gramática</h2><div class="res">${grIds.map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tn","pc","te","iv"].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Vocabulario</h2><div class="res">${["pv", ...Object.keys(SETS).filter(k => k.startsWith("vo-"))].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => setRow("tp-"+t.id)).join("")}</div></section>
+  </div>`;
+}
+function cardsMenu(host){
+  const row = id => `<a class="resrow" href="#tarjetas/${id}"><span><b>${esc(DECKS[id].name)}</b><small>${DECKS[id].cards.length} tarjetas</small></span>${doneMark("c:"+id)}</a>`;
+  host.innerHTML = `<div class="menu">
+    <p class="intro">Tarjetas para memorizar. Mira la palabra, piensa la traducción y gira la tarjeta. Con ${ICON.spk} oyes la pronunciación.</p>
+    <section><h2 class="h2">Verbos</h2><div class="res">${row("pv")}${row("iv")}</div></section>
+    <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => row("tp-"+t.id)).join("")}</div></section>
+  </div>`;
+}
+
+/* ---------- EXAMS ---------- */
+function runExam(host, ex){
+  const ans = {}, t0 = Date.now(), plays = {};
+  const letters = "ABCD";
+  const gapify = html => html.replace(/\((\d)\)/g, '<span class="gap">$1</span>');
+  const choiceRow = (key, opts, labels) => `<div class="xopts" data-key="${key}">${opts.map((o,k)=>`<button type="button" class="xopt" data-v="${k}"><kbd>${labels ? labels[k] : letters[k]}</kbd>${labels ? "" : esc(o)}</button>`).join("")}</div>`;
+  const why = w => `<p class="why" hidden>${w}</p>`;
+  let html = "";
+  ex.parts.forEach((p, pi) => {
+    html += `<section class="xpart"><h3 class="h3">${p.title}</h3><p class="intro">${p.intro}</p>`;
+    if(p.type === "choice") p.items.forEach((it, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p>${it.text}${choiceRow(`${pi}-${ii}`, it.opts)}${why(it.why)}</div>`);
+    if(p.type === "text-choice"){
+      html += `<div class="xtext">${p.text}</div>`;
+      p.items.forEach((it, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p><p class="qq">${it.q}</p>${choiceRow(`${pi}-${ii}`, it.opts)}${why(it.why)}</div>`);
+    }
+    if(p.type === "gapped"){
+      html += `<div class="xtext">${gapify(p.text)}</div><ol class="sents">${p.sentences.map((s,k)=>`<li><b>${letters[k]}</b> ${s}</li>`).join("")}</ol>`;
+      p.answers.forEach((a, ii) => html += `<div class="xq inline" data-q="${pi}-${ii}"><p class="qq">Hueco ${ii+1}</p>${choiceRow(`${pi}-${ii}`, p.sentences, letters.split(""))}${why(p.why[ii])}</div>`);
+    }
+    if(p.type === "cloze"){
+      html += `<div class="xtext">${gapify(p.text)}</div>`;
+      p.items.forEach((it, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p>${choiceRow(`${pi}-${ii}`, it.opts)}${why(it.why)}</div>`);
+    }
+    if(p.type === "open"){
+      html += `<div class="xtext">${gapify(p.text)}</div>`;
+      p.answers.forEach((a, ii) => html += `<div class="xq inline" data-q="${pi}-${ii}"><label class="qq" for="open-${ex.id}-${pi}-${ii}">Hueco ${ii+1}</label><input class="xin" id="open-${ex.id}-${pi}-${ii}" data-key="${pi}-${ii}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">${why(p.why[ii])}</div>`);
+    }
+    if(p.type === "listen"){
+      if(!TTS) html += `<p class="warn">Este navegador no puede leer textos en voz alta. Abajo tienes la transcripción para leerla.</p>`;
+      p.items.forEach((it, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p><p class="qq">${it.q}</p>
+        ${TTS ? `<button type="button" class="btn small play" data-play="${pi}-${ii}">${ICON.spk} Escuchar <span>(2)</span></button>` : ""}
+        ${choiceRow(`${pi}-${ii}`, it.opts)}
+        <details class="script" ${TTS ? "" : "open"}><summary>Transcripción</summary>${it.lines.map(l => `<p><b>${l[0] === "W" ? "Woman" : "Man"}:</b> ${esc(l[1])}</p>`).join("")}</details>${why(it.why)}</div>`);
+    }
+    if(p.type === "write"){
+      const k = `${ex.id}-${pi}`;
+      html += `<div class="xtext">${p.task}</div>
+        <textarea class="wtext" id="w-${k}" data-draft="${k}" rows="10" placeholder="Escribe aquí...">${esc(store.drafts[k] || "")}</textarea>
+        <p class="wcount" id="wc-${k}"></p>
+        <div class="checks" hidden id="chk-${k}"><p class="qq">Autoevaluación: marca lo que cumples</p>${p.checks.map((c,ci)=>`<label><input type="checkbox" data-chk="${k}"> ${c}</label>`).join("")}
+          <details class="model"><summary>Ver respuesta modelo</summary>${p.model}</details>
+          <p class="xmp">Para una corrección automática gratis, pega tu texto en <a href="https://writeandimprove.com/" target="_blank" rel="noopener">Write &amp; Improve</a> (Cambridge English).</p></div>`;
+    }
+    html += `</section>`;
+  });
+  host.innerHTML = `<div class="exam">
+    <div class="xhead"><div><h2 class="h2">${ex.title}</h2><p class="intro">${ex.sub}</p></div><span class="clock small" id="xclock">0:00</span></div>
+    <div id="xresult"></div>
+    ${html}
+    <div class="row"><button class="btn primary" id="grade">Corregir examen</button></div>
+  </div>`;
+
+  const clock = setInterval(() => { const s = Math.floor((Date.now()-t0)/1000), c = $("#xclock"); if(c) c.textContent = `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; }, 1000);
+  cleanup = () => { clearInterval(clock); if(TTS) speechSynthesis.cancel(); };
+
+  host.querySelectorAll(".xopts").forEach(g => g.addEventListener("click", e => {
+    const b = e.target.closest(".xopt"); if(!b || g.dataset.locked) return;
+    g.querySelectorAll(".xopt").forEach(x => x.setAttribute("aria-pressed", x === b));
+    ans[g.dataset.key] = +b.dataset.v;
+  }));
+  host.querySelectorAll("[data-play]").forEach(b => b.onclick = () => {
+    const key = b.dataset.play; plays[key] = (plays[key] || 0);
+    if(plays[key] >= 2) return;
+    plays[key]++;
+    const [pi, ii] = key.split("-").map(Number), lines = ex.parts[pi].items[ii].lines;
+    speechSynthesis.cancel();
+    lines.forEach((l, k) => speak(l[1], {queue:true, voice: l[0] === "W" ? 0 : 1, pitch: l[0] === "W" ? 1.15 : .85, rate:.9}));
+    b.querySelector("span").textContent = `(${2 - plays[key]})`;
+    if(plays[key] >= 2) b.disabled = true;
+  });
+  host.querySelectorAll("textarea[data-draft]").forEach(t => {
+    const k = t.dataset.draft, wc = $("#wc-" + k);
+    const upd = () => { const n = (t.value.match(/[A-Za-zÀ-ÿ0-9'’-]+/g) || []).length; wc.textContent = `${n} palabras`; wc.className = "wcount " + (n >= 90 && n <= 120 ? "good" : n > 0 ? "warn" : ""); };
+    t.oninput = () => { store.drafts[k] = t.value; save(); upd(); };
+    upd();
+  });
+
+  $("#grade").onclick = () => {
+    let right = 0, total = 0;
+    ex.parts.forEach((p, pi) => {
+      const items = p.type === "gapped" ? p.answers.map(a => ({a})) : p.type === "open" ? p.answers.map(a => ({open:a})) : (p.items || []);
+      items.forEach((it, ii) => {
+        const key = `${pi}-${ii}`, box = host.querySelector(`[data-q="${key}"]`);
+        if(!box) return;
+        total++;
+        let ok;
+        if(it.open){ const v = box.querySelector("input").value; ok = it.open.some(a => norm(a) === norm(v)); box.querySelector("input").disabled = true;
+          if(!ok) box.querySelector(".why").insertAdjacentHTML("afterbegin", `Respuesta: <b>${esc(it.open.join(" / "))}</b>. `); }
+        else {
+          ok = ans[key] === it.a;
+          const g = box.querySelector(".xopts"); g.dataset.locked = 1;
+          g.querySelectorAll(".xopt").forEach(x => { if(+x.dataset.v === it.a) x.classList.add("ok"); else if(+x.dataset.v === ans[key]) x.classList.add("bad"); });
+        }
+        if(ok) right++;
+        box.classList.add(ok ? "ok" : "bad");
+        box.querySelector(".why").hidden = false;
+      });
+      if(p.type === "write") host.querySelector(`#chk-${ex.id}-${pi}`).hidden = false;
+    });
+    const score = pct(right, total), prev = store.exams[ex.id];
+    store.exams[ex.id] = {best: Math.max(score, prev?.best || 0), last: score, date: ymd(new Date())};
+    markDone("x:" + ex.id); save();
+    clearInterval(clock);
+    const verdict = score >= 85 ? "Nivel B1 muy sólido." : score >= 70 ? "Estarías aprobando (en el examen real se aprueba con unos 70 %)." : score >= 50 ? "Cerca. Repasa las explicaciones de los fallos." : "Aún queda camino. Revisa las guías de los fallos y repítelo en unos días.";
+    $("#xresult").innerHTML = `<div class="result"><p class="big">${score}%</p><p><b>${right} de ${total}</b> en Reading y Listening. ${verdict}</p><p class="xmp">Abajo tienes cada respuesta explicada. El Writing se autoevalúa con la lista y la respuesta modelo.</p><button class="btn" id="redo">Repetir simulacro</button></div>`;
+    $("#redo").onclick = () => runExam(host, ex);
+    $("#grade").disabled = true;
+    window.scrollTo({top:0, behavior:"smooth"});
+  };
+}
+
+/* ---------- PLAN ---------- */
+function weekNow(){
+  if(!store.plan.start) return 1;
+  const days = Math.floor((new Date() - new Date(store.plan.start + "T00:00:00")) / 864e5);
+  return Math.min(10, Math.max(1, Math.floor(days / 7) + 1));
+}
+function taskInfo(t, w, i){
+  const [k, a] = t;
+  if(k === "g"){ const g = GUIDES.find(x => x.id === a); return {key:"g:"+a, label:`Guía: ${g ? g.short : a}`, href:"#guias/"+a}; }
+  if(k === "q"){ const id = setIdOf(a), s = SETS[id]; return {key:"q:"+id, label:`Test: ${s ? s.label : a}`, href:"#practicar/"+id}; }
+  if(k === "c"){ const d = DECKS[a]; return {key:"c:"+a, label:`Tarjetas: ${d ? d.name : a}`, href:"#tarjetas/"+a}; }
+  if(k === "x"){ const s = SETS[a]; return {key:"x:"+a, label:`Simulacro: ${s ? s.label : a}`, href:"#practicar/"+a}; }
+  if(k === "r"){ const r = RESOURCES.find(x => x.id === a); return {key:`w${w}:${i}`, label:`${r.name} (${r.by})`, href:r.url, ext:true}; }
+  return {key:`w${w}:${i}`, label:a, href:null};
+}
+function planView(host){
+  if(!store.plan.start || store.plan.editing){
+    host.innerHTML = `<div class="menu"><section class="hero">
+      <h2 class="h2">Tu plan de 10 semanas hasta el B1</h2>
+      <p>De cero al examen B1 Preliminary en diez semanas. Cada semana tiene guías, tests, tarjetas y tareas. Lo que completes en la app se marca solo.</p>
+      <p class="xmp">Es un ritmo intenso: cuenta con unas 2 horas al día además de las clases.</p>
+      <label class="qq" for="start">¿Qué día empezaste el intensivo?</label>
+      <div class="row"><input type="date" id="start" class="filter" value="${store.plan.start || ymd(new Date())}"><button class="btn primary" id="go">Guardar</button></div>
+    </section></div>`;
+    $("#go").onclick = () => { const v = $("#start").value; if(!v) return; store.plan.start = v; delete store.plan.editing; save(); planView(host); };
+    return;
+  }
+  const cw = weekNow();
+  const all = PLAN.flatMap((w, wi) => w.tasks.map((t, i) => taskInfo(t, wi+1, i)));
+  const doneN = all.filter(t => store.done[t.key]).length;
+  const exam = new Date(store.plan.start + "T00:00:00"); exam.setDate(exam.getDate() + 70);
+  host.innerHTML = `<div class="menu">
+    <section class="summary">
+      <div><p class="tag">Semana ${cw} de 10</p><h2 class="h2">${PLAN[cw-1].title}</h2><p class="intro">${PLAN[cw-1].goal}</p></div>
+      <div class="bar big-bar"><i style="width:${pct(doneN, all.length)}%"></i></div>
+      <p class="xmp">${doneN} de ${all.length} tareas del plan · examen hacia el ${exam.toLocaleDateString("es-ES", {day:"numeric", month:"long"})}</p>
+    </section>
+    <section><div class="quick">
+      <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
+      <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint</span></a>
+      <a class="qbtn" href="#practicar/mix"><b>10 min</b><span>Repaso mixto</span></a>
+    </div></section>
+    <section class="weeks">${PLAN.map((w, wi) => {
+      const n = wi + 1, tasks = w.tasks.map((t, i) => taskInfo(t, n, i)), d = tasks.filter(t => store.done[t.key]).length;
+      return `<details class="week ${n === cw ? "now" : ""}" ${n === cw ? "open" : ""}>
+        <summary><span class="wn">${n}</span><span class="wt"><b>${w.title}</b><small>${d}/${tasks.length} hechas</small></span>${d === tasks.length ? `<i class="seen">${ICON.check}</i>` : ""}</summary>
+        <p class="intro">${w.goal}</p>
+        <ul class="tasks">${tasks.map((t, i) => `<li><input type="checkbox" id="t-${n}-${i}" data-key="${esc(t.key)}" ${store.done[t.key] ? "checked" : ""} aria-label="Hecho">
+          ${t.href ? `<a href="${t.href}" ${t.ext ? 'target="_blank" rel="noopener"' : ""}>${esc(t.label)}${t.ext ? ICON.ext : ""}</a>` : `<label for="t-${n}-${i}">${esc(t.label)}</label>`}</li>`).join("")}</ul>
+      </details>`; }).join("")}
+    </section>
+    <p class="xmp">Empezaste el ${new Date(store.plan.start + "T00:00:00").toLocaleDateString("es-ES", {day:"numeric", month:"long", year:"numeric"})}. <button class="linkbtn" id="edit">Cambiar fecha</button></p>
+  </div>`;
+  host.querySelectorAll(".tasks input").forEach(c => c.onchange = () => { if(c.checked) store.done[c.dataset.key] = true; else delete store.done[c.dataset.key]; touchDay(); save(); planView(host); });
+  $("#edit").onclick = () => { store.plan.editing = true; planView(host); };
+}
+
+/* ---------- MISTAKES ---------- */
+function mistakes(host){
+  const ids = Object.keys(store.mistakes).filter(id => ITEMS[id]).sort((a,b)=>store.mistakes[b]-store.mistakes[a]);
+  if(!ids.length){
+    host.innerHTML = `<p class="empty">No tienes fallos guardados. Cuando falles una pregunta aparecerá aquí, y sale de la lista cuando la aciertes.</p>`;
+    return;
+  }
+  host.innerHTML = `<div class="end">
+    <p class="intro">Tus fallos se guardan en este dispositivo. Cada pregunta sale de la lista cuando la aciertas.</p>
+    <div class="row">
+      <button class="btn primary" id="practise">Practicar mis fallos (${ids.length})</button>
+      <span id="clearbox"><button class="btn ghost" id="clear">Borrar la lista</button></span>
+    </div>
+    <ul class="review">${ids.map(id=>{const it=ITEMS[id];return `<li><div class="q">${filled(it)} <span class="n">· ${esc(it.sec)} · ${store.mistakes[id]}×</span></div><div class="n">${it.note}</div></li>`}).join("")}</ul>
+  </div>`;
+  $("#practise").onclick = () => runQuiz(host, ids.map(id=>ITEMS[id]), Math.min(ids.length, 15));
+  $("#clear").onclick = () => {
+    $("#clearbox").innerHTML = `<span class="confirm">¿Seguro? <button class="btn" id="yes">Sí, borrar</button><button class="btn ghost" id="no">Cancelar</button></span>`;
+    $("#yes").onclick = () => { store.mistakes = {}; save(); renderNav(); mistakes(host); };
+    $("#no").onclick = () => mistakes(host);
+  };
+}
+
+/* ---------- LAYOUT & ROUTER ---------- */
+const TABS = [["plan","Plan"],["guias","Guías"],["practicar","Practicar"],["tarjetas","Tarjetas"],["fallos","Fallos"]];
+function notFound(host){ host.innerHTML = `<p class="empty">No encuentro esta sección. <a href="#plan">Volver al plan</a></p>`; }
+function renderStats(){
+  const s = streak();
+  $("#stats").innerHTML = `<span class="chip" title="Días seguidos practicando">Racha <b>${s} ${s===1?"día":"días"}</b></span><span class="chip">Acierto <b>${pct(store.correct, store.answered)}%</b></span>`;
+}
+function renderNav(){
+  const [tab] = parseHash();
+  const n = Object.keys(store.mistakes).filter(id => ITEMS[id]).length;
+  $("#tabs").innerHTML = TABS.map(([k, l]) => `<a href="#${k}" ${tab === k ? 'aria-current="page"' : ""}>${ICON[k]}<span>${l}</span>${k === "fallos" && n ? `<span class="badge">${n}</span>` : ""}</a>`).join("");
+}
+function parseHash(){
+  const h = location.hash.slice(1), i = h.indexOf("/");
+  const tab = decodeURIComponent(i < 0 ? h : h.slice(0, i)) || "plan";
+  return [TABS.some(t => t[0] === tab) ? tab : "plan", i < 0 ? null : decodeURIComponent(h.slice(i + 1))];
+}
+function route(){
+  if(cleanup){ cleanup(); cleanup = null; }
+  keyHandler = null;
+  if(TTS) speechSynthesis.cancel();
+  const [tab, sub] = parseHash();
+  store.lastTab = tab; save();
+  renderNav(); renderStats();
+  const host = $("#panel");
+  $("#back").innerHTML = sub ? `<a class="back" href="#${tab}">← ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
+  if(tab === "plan") planView(host);
+  if(tab === "guias") sub ? guide(host, sub) : guideIndex(host);
+  if(tab === "practicar") sub ? (SETS[sub] ? SETS[sub].run(host) : notFound(host)) : practiceMenu(host);
+  if(tab === "tarjetas") sub ? flashcards(host, sub) : cardsMenu(host);
+  if(tab === "fallos") mistakes(host);
+  window.scrollTo({top:0});
+}
+window.addEventListener("hashchange", route);
+if(!location.hash) history.replaceState(null, "", "#" + (store.lastTab || "plan"));
+route();
+
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register("sw.js").catch(() => {});
