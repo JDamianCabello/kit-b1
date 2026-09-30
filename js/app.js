@@ -104,7 +104,7 @@ const POOL = {
   }))
 };
 // Preposiciones sin opciones: hay que escribirla (como en un examen de clase)
-POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => g[0] === "prepositions")
+POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => ["prepositions","prep-iot","prep-dep"].includes(g[0]) && g[2][0] !== "—")
   .map(([g, i]) => add({id:`prw-${i}`, sec:"Preposiciones · escribe", q:g[1], ans:[g[2][0]], note:g[3]}));
 const OPTION_POOL =[...POOL.pv, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp];
 
@@ -123,8 +123,15 @@ defSet("quick10", "Test de 5 minutos", "10 preguntas variadas", h => runQuiz(h, 
 defSet("sprint", "Sprint de 60 segundos", "Todas las que puedas en un minuto", h => sprint(h));
 defSet("mix", "Repaso mixto", "Mezcla de todo, con prioridad a tus fallos", h => runQuiz(h, mixPool(), 15, "mix", true));
 EXAMS.forEach(e => defSet(e.id, e.title, e.sub, h => runExam(h, e)));
-defSet("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", h => runQuiz(h, POOL.gr.filter(x => x.cat === "prepositions"), 20, "prep-exam"));
+const prepOpts = cats => POOL.gr.filter(x => cats.includes(x.cat));
+defSet("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", h => runQuiz(h, prepOpts(["prepositions"]), 20, "prep-exam"));
+defSet("prep-iot", "In, on, at: tiempo y lugar", "15 preguntas · las que más caen", h => runQuiz(h, prepOpts(["prep-iot"]), 15, "prep-iot"));
+defSet("prep-dep", "Verbo o adjetivo + preposición", "15 preguntas · afraid of, good at, depend on...", h => runQuiz(h, prepOpts(["prep-dep"]), 15, "prep-dep"));
+defSet("prep-err", "Encuentra el error", "12 errores típicos para corregir", h => runQuiz(h, prepOpts(["prep-err"]), 12, "prep-err"));
 defSet("prep-write", "Preposiciones: escríbela tú", "15 frases sin opciones, más difícil", h => runQuiz(h, POOL.prw, 15, "prep-write"));
+PREP_TEXTS.forEach(e => defSet(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, h => runExam(h, e)));
+defSet("prep-final", "Examen final de preposiciones", "25 preguntas de todo tipo, 10 de ellas para escribir", h =>
+  runQuiz(h, [...shuffle(prepOpts(["prepositions","prep-iot","prep-dep","prep-err"])).slice(0, 15), ...shuffle(POOL.prw).slice(0, 10)], 25, "prep-final", true));
 defSet("tn", "Conjugar verbos", "Escribe la forma correcta · todos los tiempos", h => runQuiz(h, POOL.tn, 10, "tn"));
 defSet("pc", "Past simple vs continuous", "Escribe la forma correcta", h => runQuiz(h, POOL.pc, POOL.pc.length, "pc"));
 defSet("te", "Expresiones de tiempo", "in, on, at, for, since, ago...", h => runQuiz(h, POOL.te, 10, "te"));
@@ -368,8 +375,8 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint${store.sprintBest ? ` · récord ${store.sprintBest}` : ""}</span></a>
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div></section>
-    <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-exam","prep-write"].map(setRow).join("")}</div>
-      <p class="xmp">Antes del test, repasa la <a href="#guias/prepositions">guía de preposiciones</a>.</p></section>
+    <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
+      <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
       <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
     <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>

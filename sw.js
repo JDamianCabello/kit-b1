@@ -1,7 +1,7 @@
 /* Kit B1 · service worker: la app funciona sin conexión.
    Archivos propios: primero la red (para recibir cambios), si no hay conexión, la copia guardada.
    Fuentes de Google: primero la copia guardada. */
-const CACHE = "kitb1-v3";
+const CACHE = "kitb1-v4";
 const SHELL = [
   "./", "index.html", "styles.css", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-180.png",
   "js/data-practice.js", "js/data-grammar.js", "js/data-vocab.js", "js/data-exams.js",
