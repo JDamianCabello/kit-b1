@@ -175,6 +175,58 @@ const IRR = [
 ];
 
 
+// Phrasal verbs 2: más verbos del B1. "inglés=español|..."
+const PV2 = "call back=devolver la llamada|calm down=calmarse|slow down=ir más despacio|sit down=sentarse|stand up=ponerse de pie|turn on=encender|turn off=apagar|go out=salir (de fiesta, de casa)|eat out=comer fuera|try on=probarse (ropa)|put away=guardar, recoger|throw away=tirar (a la basura)|get back=volver, regresar|look up to=admirar a|run into=encontrarse con (por casualidad)|take after=parecerse a (un familiar)|bring up=criar|cut down on=reducir (el consumo de)|fall out=pelearse, enfadarse|give away=regalar|go off=sonar (una alarma); estropearse|hold on=esperar un momento|make up=inventar; reconciliarse|put up with=aguantar, soportar|sort out=solucionar, organizar|stay up=quedarse despierto|come up with=idear, ocurrírsele|drop off=dejar (a alguien en un sitio)|sign up=apuntarse, inscribirse|wash up=fregar los platos"
+  .split("|").map(p => p.split("="));
+
+// Tiempos verbales para tarjetas
+const T_STRUCT = [
+ ["Present simple","sujeto + verbo (+ -s con he/she/it)"],["Present continuous","am / is / are + verbo-ing"],
+ ["Past simple","verbo-ed o forma irregular"],["Past continuous","was / were + verbo-ing"],
+ ["Present perfect","have / has + participio"],["Present perfect continuous","have / has been + verbo-ing"],
+ ["Past perfect","had + participio"],["Future with will","will + verbo"],["Going to","am / is / are going to + verbo"],
+ ["Used to","used to + verbo"],["First conditional","if + presente, will + verbo"],["Second conditional","if + pasado, would + verbo"],
+ ["Passive (present)","am / is / are + participio"],["Passive (past)","was / were + participio"]
+];
+const T_WHICH = [
+ ["I've never been to Paris.","Present perfect"],["She usually walks to school.","Present simple"],["Look! It's snowing.","Present continuous"],
+ ["We went to the beach yesterday.","Past simple"],["I was cooking when you called.","Past continuous"],["When we arrived, the film had started.","Past perfect"],
+ ["I think it will rain tomorrow.","Future with will"],["I'm going to study medicine.","Going to"],["I've been waiting for an hour.","Present perfect continuous"],
+ ["I used to play football.","Used to"],["If it rains, we'll stay at home.","First conditional"],["If I had money, I would travel.","Second conditional"],
+ ["English is spoken here.","Passive (present)"],["The bridge was built in 1900.","Passive (past)"],["Have you finished yet?","Present perfect"],
+ ["Water boils at 100 degrees.","Present simple"],["They were playing tennis at 5 pm.","Past continuous"],["She didn't see the email.","Past simple"],
+ ["I'm meeting Ana at 6 tomorrow.","Present continuous"],["He has just arrived.","Present perfect"]
+];
+const T_SIGNAL = [
+ ["yesterday","Past simple"],["two days ago","Past simple"],["last week","Past simple"],["right now","Present continuous"],["at the moment","Present continuous"],
+ ["usually","Present simple"],["every day","Present simple"],["since 2019","Present perfect"],["already","Present perfect"],["ever / never","Present perfect"],
+ ["yet","Present perfect"],["while I was...","Past continuous"],["at 8 pm yesterday","Past continuous"],["by the time","Past perfect"],
+ ["when I was a child (hábito)","Used to"],["Look! (lo estás viendo)","Going to"],["I think... / probably","Future with will"],["for two hours (hasta ahora)","Present perfect continuous"]
+];
+// [frase, respuesta, [distractores]]
+const T_CONJ = [
+ ["She ___ to school yesterday. (go)","went",["goes","has gone","was going"]],
+ ["I ___ here since 2019. (live)","have lived",["live","lived","am living"]],
+ ["Look! It ___. (rain)","is raining",["rains","rained","has rained"]],
+ ["He usually ___ at 7. (get up)","gets up",["get up","is getting up","got up"]],
+ ["While I ___, the phone rang. (cook)","was cooking",["cooked","am cooking","have cooked"]],
+ ["I ___ to London. (never / be)","have never been",["never was","never am","had never be"]],
+ ["When we arrived, the film ___. (already / start)","had already started",["already started","has already started","already starts"]],
+ ["I think it ___ sunny tomorrow. (be)","will be",["is being","was","has been"]],
+ ["Have you ever ___ sushi? (eat)","eaten",["ate","eat","eating"]],
+ ["I ___ Tom last week. (not / see)","didn't see",["haven't seen","don't see","didn't saw"]],
+ ["Water ___ at 100 degrees. (boil)","boils",["is boiling","boiled","boil"]],
+ ["I ___ him for ten years. (know)","have known",["know","am knowing","knew"]],
+ ["If it rains, we ___ at home. (stay)","will stay",["stay","would stay","stayed"]],
+ ["If I ___ more money, I would travel. (have)","had",["have","will have","would have"]],
+ ["This house ___ in 1920. (build)","was built",["built","is built","has built"]],
+ ["Right now they ___ lunch. (have)","are having",["have","had","have had"]],
+ ["He ___ coffee. (not / like)","doesn't like",["don't like","isn't liking","not likes"]],
+ ["I'm tired because I ___ all day. (work)","have been working",["work","am working","had worked"]],
+ ["When I was a child, I ___ football every day. (play)","used to play",["use to play","am used to play","was play"]],
+ ["We ___ my grandma next weekend. It's planned. (visit)","are going to visit",["visit","visited","have visited"]]
+];
+
 // Past simple vs past continuous (práctica rápida de la guía). [frase, verbo, [respuestas], explicación]
 const PC = [
  ["I ___ a film when my friends arrived.","watch",["was watching"],"Acción larga (past continuous) interrumpida por <mark>when</mark> + past simple."],

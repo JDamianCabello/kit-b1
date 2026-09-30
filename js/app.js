@@ -106,7 +106,12 @@ const POOL = {
 // Preposiciones sin opciones: hay que escribirla (como en un examen de clase)
 POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => ["prepositions","prep-iot","prep-dep"].includes(g[0]) && g[2][0] !== "—")
   .map(([g, i]) => add({id:`prw-${i}`, sec:"Preposiciones · escribe", q:g[1], ans:[g[2][0]], note:g[3]}));
-const OPTION_POOL =[...POOL.pv, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp];
+const others3 = (list, correct) => shuffle([...new Set(list)].filter(x => x !== correct)).slice(0, 3);
+POOL.pv2 = PV2.map(([en, es], i) => add({id:"pv2-"+i, sec:"Phrasal verbs 2", q:`«${es}» en inglés: ___`, opts:[en, ...others3(PV2.map(p => p[0]), en)], ans:[en], say:en, note:`<b>${en}</b> = ${es}`}));
+const tenseForm = t => (T_STRUCT.find(s => s[0] === t) || ["", ""])[1];
+POOL.tw = T_WHICH.map(([s, t], i) => add({id:"tw"+i, sec:"¿Qué tiempo es?", q:`${s} → ___`, opts:[t, ...others3(T_STRUCT.map(x => x[0]), t)], ans:[t], say:s, note:`<b>${t}</b>: ${tenseForm(t)}`}));
+POOL.tc = T_CONJ.map(([s, a, d], i) => add({id:"tc"+i, sec:"Tiempos verbales", q:s, opts:[a, ...d], ans:[a], say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a), note:`Forma correcta: <mark>${a}</mark>`}));
+const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc];
 
 function mixPool(){
   const wrong = Object.keys(store.mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]);
@@ -132,6 +137,21 @@ defSet("prep-write", "Preposiciones: escríbela tú", "15 frases sin opciones, m
 PREP_TEXTS.forEach(e => defSet(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, h => runExam(h, e)));
 defSet("prep-final", "Examen final de preposiciones", "25 preguntas de todo tipo, 10 de ellas para escribir", h =>
   runQuiz(h, [...shuffle(prepOpts(["prepositions","prep-iot","prep-dep","prep-err"])).slice(0, 15), ...shuffle(POOL.prw).slice(0, 10)], 25, "prep-final", true));
+defSet("pv2", "Phrasal verbs 2", `${PV2.length} phrasal verbs más · significados`, h => runQuiz(h, POOL.pv2, 10, "pv2"));
+defSet("tw", "¿Qué tiempo es?", "Identifica el tiempo verbal de cada frase", h => runQuiz(h, POOL.tw, 10, "tw"));
+defSet("tc", "Tiempos verbales con opciones", "Elige la forma correcta del verbo", h => runQuiz(h, POOL.tc, 10, "tc"));
+// Mini tests: 5 preguntas de un tema, para cuando hay poco tiempo
+const MINI = [
+  ["mini-all", "Todo", () => OPTION_POOL],
+  ["mini-pv", "Phrasal verbs", () => [...POOL.pv, ...POOL.pv2]],
+  ["mini-tn", "Tiempos verbales", () => [...POOL.tc, ...POOL.tw, ...POOL.te]],
+  ["mini-prep", "Preposiciones", () => prepOpts(["prepositions","prep-iot","prep-dep","prep-err"])],
+  ["mini-vo", "Vocabulario", () => [...POOL.vo, ...POOL.tp]],
+  ["mini-gr", "Gramática", () => POOL.gr.filter(x => !x.cat.startsWith("prep"))],
+  ["mini-iv", "Irregulares", () => POOL.iv]
+];
+MINI.forEach(([id, label, pool]) => defSet(id, "Mini test: " + label, "5 preguntas · 1 minuto", h => runQuiz(h, pool(), 5, id)));
+const miniChips = () => `<div class="minis">${MINI.map(([id, label]) => `<a class="mini" href="#practicar/${id}">${ICON.bolt}${label}</a>`).join("")}</div>`;
 defSet("tn", "Conjugar verbos", "Escribe la forma correcta · todos los tiempos", h => runQuiz(h, POOL.tn, 10, "tn"));
 defSet("pc", "Past simple vs continuous", "Escribe la forma correcta", h => runQuiz(h, POOL.pc, POOL.pc.length, "pc"));
 defSet("te", "Expresiones de tiempo", "in, on, at, for, since, ago...", h => runQuiz(h, POOL.te, 10, "te"));
@@ -148,6 +168,13 @@ DECKS.iv = {name:"Verbos irregulares", cards: IRR.map(v => ({en:v[0], es:v[3], e
 TOPICS.forEach(t => DECKS["tp-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
 DECKS["prep-10"] = {name:"Las 10 preposiciones", cards: PREPS.map(p => ({en:p[0], es:p[1], ex:p[3].map(esc).join(" · "), say:`${p[0]}. ${p[3].join(". ")}`}))};
 PREP_CARDS.forEach(t => DECKS["pc-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
+// Mazos de una sola dirección: la cara es la pregunta y el reverso la respuesta
+DECKS.pv2 = {name:"Phrasal verbs 2", cards: PV2.map(([en, es]) => ({en, es, say:en}))};
+DECKS["pv-fill"] = {name:"Phrasal verbs: completa la frase", oneWay:true, cards: PV.map(p => ({en:p[2], es:p[3][0], opts:p[3].slice(1), say:fillText(p[2], p[3][0]), ex:`<b>${esc(p[0])}</b> = ${esc(p[1])}`}))};
+DECKS["t-struct"] = {name:"Tiempos: cómo se forman", cards: T_STRUCT.map(([en, es]) => ({en, es, say:en}))};
+DECKS["t-which"] = {name:"Tiempos: ¿qué tiempo es?", oneWay:true, cards: T_WHICH.map(([s, t]) => ({en:s, es:t, say:s, ex:esc(tenseForm(t))}))};
+DECKS["t-signal"] = {name:"Tiempos: palabras señal", oneWay:true, cards: T_SIGNAL.map(([s, t]) => ({en:s, es:t, say:strip(s), ex:esc(tenseForm(t))}))};
+DECKS["t-conj"] = {name:"Tiempos: conjuga el verbo", oneWay:true, cards: T_CONJ.map(([s, a, d]) => ({en:s, es:a, opts:d, say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a)}))};
 
 /* ---------- QUIZ ENGINE ---------- */
 let keyHandler = null, cleanup = null;
@@ -278,42 +305,58 @@ function flashcards(host, deckId){
   const d = DECKS[deckId]; if(!d) return notFound(host);
   markDone("c:" + deckId);
   // Tres modos: girar la tarjeta, elegir entre 4 opciones o escribir la respuesta
-  let cards = shuffle(d.cards), i = 0, flipped = false, answered = null, opts = null, right = 0, seen = 0;
+  const pick = () => store.cardShort ? shuffle(d.cards).slice(0, 10) : shuffle(d.cards);
+  let cards = pick(), i = 0, flipped = false, answered = null, opts = null, right = 0, seen = 0, missed = [], finished = false;
   const mode = () => store.cardMode || "flip";
-  const enFirst = () => store.cardDir === "en";
+  const enFirst = () => d.oneWay || store.cardDir === "en";
   const ask = c => enFirst() ? c.en : c.es;
   const want = c => enFirst() ? c.es : c.en;
   const reset = () => { flipped = false; answered = null; opts = null; };
 
   function render(){
     const c = cards[i], m = mode(), en = enFirst();
-    const front = `<p class="pv ${en ? "" : "es-front"}">${esc(ask(c))}</p>`;
+    const front = `<p class="pv ${en ? "" : "es-front"} ${d.oneWay ? "long" : ""}">${esc(ask(c))}</p>`;
     const extra = `${c.ex ? `<p class="ex">${c.ex}</p>` : ""}`;
     const head = `<div class="fchead"><h2 class="h2">${esc(d.name)}</h2>
-        <div class="seg" role="group" aria-label="Dirección"><button aria-pressed="${en}" data-dir="en">Inglés → español</button><button aria-pressed="${!en}" data-dir="es">Español → inglés</button></div></div>
-      <div class="seg modes3" role="group" aria-label="Modo">${[["flip","Girar"],["choice","Elegir"],["write","Escribir"]].map(([k,l]) => `<button data-mode="${k}" aria-pressed="${m === k}">${l}</button>`).join("")}</div>`;
+        ${d.oneWay ? "" : `<div class="seg" role="group" aria-label="Dirección"><button aria-pressed="${en}" data-dir="en">Inglés → español</button><button aria-pressed="${!en}" data-dir="es">Español → inglés</button></div>`}</div>
+      <div class="fcopts">
+        <div class="seg modes3" role="group" aria-label="Modo">${[["flip","Girar"],["choice","Elegir"],["write","Escribir"]].map(([k,l]) => `<button data-mode="${k}" aria-pressed="${m === k}">${l}</button>`).join("")}</div>
+        <div class="seg" role="group" aria-label="Cantidad"><button data-short="0" aria-pressed="${!store.cardShort}">Todas</button><button data-short="1" aria-pressed="${!!store.cardShort}">Tanda de 10</button></div>
+      </div>`;
+    if(finished){
+      host.innerHTML = `<div class="fc">${head}<div class="end">
+        <p class="tag">Tanda terminada</p><p class="big">${right}/${seen}</p>
+        <p style="margin:0">${seen && right === seen ? "Perfecto, sin fallos." : missed.length ? "Repite las falladas hasta que salgan solas." : "Pasa a la siguiente tanda."}</p>
+        <div class="row"><button class="btn primary" id="again">Otra tanda</button>${missed.length ? `<button class="btn" id="retry">Repetir ${missed.length} ${missed.length === 1 ? "fallada" : "falladas"}</button>` : ""}</div>
+        ${missed.length ? `<ul class="review">${missed.map(x => `<li><div class="q">${esc(ask(x))} → <mark>${esc(want(x))}</mark></div></li>`).join("")}</ul>` : ""}
+      </div></div>`;
+      bindHead();
+      $("#again").onclick = () => restart(pick());
+      if(missed.length) $("#retry").onclick = () => restart(shuffle(missed));
+      return;
+    }
     let body;
     if(m === "flip"){
       body = `<div class="card" id="card" role="button" tabindex="0" aria-live="polite">
         ${front}
         ${flipped ? `<p class="es">${esc(want(c))}</p>${extra}` : `<small>Piensa la respuesta y toca para girar</small>`}
-        ${(en || flipped) ? spk(c.say || c.en) : ""}
+        ${((en && !d.oneWay) || flipped) ? spk(c.say || c.en) : ""}
       </div>`;
     } else {
       if(!opts){
         const others = [...new Set(d.cards.map(want))].filter(x => x !== want(c));
-        opts = shuffle([want(c), ...shuffle(others).slice(0, 3)]);
+        opts = shuffle([want(c), ...(c.opts && en ? c.opts : shuffle(others).slice(0, 3))]);
       }
       const done = !!answered;
       const reveal = done ? `<div class="feedback ${answered.ok ? "ok" : "bad"}"><p class="verdict">${answered.ok ? "¡Correcto!" : `No es correcto. Respuesta: <b>${esc(want(c))}</b>`}</p>${extra ? `<div class="note">${c.ex}</div>` : ""}</div>` : "";
       body = `<p class="count score">${right} de ${seen} bien en esta sesión</p>
-        <div class="card static" aria-live="polite">${front}${(en || done) ? spk(c.say || c.en) : ""}</div>
+        <div class="card static" aria-live="polite">${front}${((en && !d.oneWay) || done) ? spk(c.say || c.en) : ""}</div>
         ${m === "choice"
           ? `<div class="opts">${opts.map((o,k) => {
               const cls = done ? (o === want(c) ? "ok" : o === answered.val ? "bad" : "") : "";
               return `<button class="opt ${cls}" data-k="${k}" ${done ? "disabled" : ""}><kbd>${k+1}</kbd>${esc(o)}</button>`; }).join("")}</div>`
           : `<form class="typed" id="cwrite"><input id="card-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"
-              placeholder="${en ? "Escribe en español" : "Escribe en inglés"}" aria-label="Tu respuesta" value="${done ? esc(answered.val) : ""}" ${done ? `disabled class="${answered.ok ? "ok" : "bad"}"` : ""}>
+              placeholder="${d.oneWay ? "Escribe la respuesta" : en ? "Escribe en español" : "Escribe en inglés"}" aria-label="Tu respuesta" value="${done ? esc(answered.val) : ""}" ${done ? `disabled class="${answered.ok ? "ok" : "bad"}"` : ""}>
               <button class="btn primary" ${done ? "disabled" : ""}>Comprobar</button><button type="button" class="btn ghost" id="cskip" ${done ? "disabled" : ""}>No lo sé</button></form>`}
         ${reveal}`;
     }
@@ -326,11 +369,10 @@ function flashcards(host, deckId){
       <p class="intro">${m === "flip" ? "Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar y flechas para moverte." : m === "choice" ? "Elige la traducción correcta. En ordenador puedes usar las teclas 1 a 4." : "Escribe la traducción. Las tildes no cuentan y si hay varias opciones vale cualquiera."}
         <button class="linkbtn" id="shuf">Barajar de nuevo</button></p></div>`;
 
-    host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); reset(); render(); });
-    host.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { store.cardMode = b.dataset.mode; save(); reset(); render(); });
+    bindHead();
     $("#prev").onclick = () => move(-1);
     $("#nxt").onclick = () => move(1);
-    $("#shuf").onclick = () => { cards = shuffle(d.cards); i = 0; right = 0; seen = 0; reset(); render(); };
+    $("#shuf").onclick = () => restart(pick());
 
     if(m === "flip"){
       const card = $("#card");
@@ -349,12 +391,22 @@ function flashcards(host, deckId){
       }
     } else $("#nxt").focus({preventScroll:true});
   }
+  function bindHead(){
+    host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); restart(cards); });
+    host.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { store.cardMode = b.dataset.mode; save(); restart(cards); });
+    host.querySelectorAll("[data-short]").forEach(b => b.onclick = () => { store.cardShort = b.dataset.short === "1"; save(); restart(pick()); });
+  }
+  function restart(list){ cards = list; i = 0; right = 0; seen = 0; missed = []; finished = false; reset(); render(); }
   function check(val, ok){
-    answered = {val, ok}; seen++; if(ok) right++;
+    answered = {val, ok}; seen++; if(ok) right++; else missed.push(cards[i]);
     touchDay(); save(); renderStats();
     render();
   }
-  const move = s => { i = (i + s + cards.length) % cards.length; reset(); render(); };
+  // En Elegir y Escribir, al pasar de la última tarjeta se muestra el resultado de la tanda
+  const move = s => {
+    if(s > 0 && i === cards.length - 1 && mode() !== "flip" && seen){ finished = true; reset(); return render(); }
+    i = (i + s + cards.length) % cards.length; reset(); render();
+  };
   keyHandler = e => {
     const m = mode();
     if(m === "flip" && e.key === " "){ e.preventDefault(); $("#card")?.click(); }
@@ -432,15 +484,17 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
       <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint${store.sprintBest ? ` · récord ${store.sprintBest}` : ""}</span></a>
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
-    </div></section>
+    </div>
+    <h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
       <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a> y las <a href="#tarjetas/pc-prep-dep">tarjetas de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
       <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
     <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>
     <section><h2 class="h2">Gramática</h2><div class="res">${grIds.map(setRow).join("")}</div></section>
-    <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tn","pc","te","iv"].map(setRow).join("")}</div></section>
-    <section><h2 class="h2">Vocabulario</h2><div class="res">${["pv", ...Object.keys(SETS).filter(k => k.startsWith("vo-"))].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tc","tw","tn","pc","te","iv"].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${["pv","pv2"].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Vocabulario</h2><div class="res">${Object.keys(SETS).filter(k => k.startsWith("vo-")).map(setRow).join("")}</div></section>
     <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => setRow("tp-"+t.id)).join("")}</div></section>
   </div>`;
 }
@@ -448,8 +502,9 @@ function cardsMenu(host){
   const row = id => `<a class="resrow" href="#tarjetas/${id}"><span><b>${esc(DECKS[id].name)}</b><small>${DECKS[id].cards.length} tarjetas</small></span>${doneMark("c:"+id)}</a>`;
   host.innerHTML = `<div class="menu">
     <p class="intro">Tarjetas para memorizar, en tres modos: <b>Girar</b> (piensa y comprueba), <b>Elegir</b> entre 4 opciones o <b>Escribir</b> la respuesta. Con ${ICON.spk} oyes la pronunciación.</p>
+    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
+    <section><h2 class="h2">Tiempos verbales</h2><div class="res">${row("t-conj")}${row("t-which")}${row("t-signal")}${row("t-struct")}${row("iv")}</div></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${row("prep-10")}${row("pc-prep-dep")}${row("pc-prep-iot")}</div></section>
-    <section><h2 class="h2">Verbos</h2><div class="res">${row("pv")}${row("iv")}</div></section>
     <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => row("tp-"+t.id)).join("")}</div></section>
   </div>`;
 }
@@ -606,7 +661,7 @@ function planView(host){
       <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
       <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint</span></a>
       <a class="qbtn" href="#practicar/mix"><b>10 min</b><span>Repaso mixto</span></a>
-    </div></section>
+    </div><h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
     <section class="weeks">${PLAN.map((w, wi) => {
       const n = wi + 1, tasks = w.tasks.map((t, i) => taskInfo(t, n, i)), d = tasks.filter(t => store.done[t.key]).length;
       return `<details class="week ${n === cw ? "now" : ""}" ${n === cw ? "open" : ""}>
