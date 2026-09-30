@@ -43,7 +43,7 @@ const PLAN = [
    tasks:[["g","exam"],["g","be"],["q","gr-be"],["g","pronouns"],["q","gr-pronouns"],["g","articles"],["q","gr-articles"],["g","numbers"],["q","gr-numbers"],
           ["c","tp-family"],["c","tp-describe"],["t","Escribe 5 frases sobre ti: nombre, edad, de dónde eres, trabajo y familia."],["r","bbc-yt"]] },
  { title:"Presente, preguntas y lugares", goal:"Hablar de tu rutina, tu casa y tu ciudad, y hacer preguntas.",
-   tasks:[["g","ps-pc"],["g","questions"],["q","gr-questions"],["g","there"],["q","gr-there"],["g","prepositions"],["q","prep-exam"],["c","tp-routine"],["c","tp-house"],["c","tp-town"],
+   tasks:[["g","ps-pc"],["g","questions"],["q","gr-questions"],["g","there"],["q","gr-there"],["g","prepositions"],["c","prep-10"],["q","prep-exam"],["c","tp-routine"],["c","tp-house"],["c","tp-town"],
           ["t","Describe tu rutina en 8 frases con always, usually, sometimes y never."],["r","bc-a2"]] },
  { title:"Ahora vs siempre, cantidades y gustos", goal:"Diferenciar presente simple y continuo, y hablar de comida, ropa y aficiones.",
    tasks:[["q","tn"],["g","countable"],["q","gr-countable"],["g","can"],["q","gr-can"],["c","tp-food"],["c","tp-clothes"],["c","tp-sport"],

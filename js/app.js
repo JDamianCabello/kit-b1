@@ -146,6 +146,8 @@ const DECKS = {};
 DECKS.pv = {name:"Phrasal verbs", cards: PV.map(p => ({en:p[0], es:p[1], ex:esc(p[2]).replace("___", `<mark>${esc(p[3][0])}</mark>`), say:p[0]}))};
 DECKS.iv = {name:"Verbos irregulares", cards: IRR.map(v => ({en:v[0], es:v[3], ex:`${esc(v[0])} – <b>${esc(v[1])}</b> – <b>${esc(v[2])}</b>`, say:`${v[0]}, ${v[1].split(" / ")[0]}, ${v[2]}`}))};
 TOPICS.forEach(t => DECKS["tp-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
+DECKS["prep-10"] = {name:"Las 10 preposiciones", cards: PREPS.map(p => ({en:p[0], es:p[1], ex:p[3].map(esc).join(" · "), say:`${p[0]}. ${p[3].join(". ")}`}))};
+PREP_CARDS.forEach(t => DECKS["pc-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
 
 /* ---------- QUIZ ENGINE ---------- */
 let keyHandler = null, cleanup = null;
@@ -275,43 +277,99 @@ function sprint(host){
 function flashcards(host, deckId){
   const d = DECKS[deckId]; if(!d) return notFound(host);
   markDone("c:" + deckId);
-  let cards = shuffle(d.cards), i = 0, flipped = false;
+  // Tres modos: girar la tarjeta, elegir entre 4 opciones o escribir la respuesta
+  let cards = shuffle(d.cards), i = 0, flipped = false, answered = null, opts = null, right = 0, seen = 0;
+  const mode = () => store.cardMode || "flip";
+  const enFirst = () => store.cardDir === "en";
+  const ask = c => enFirst() ? c.en : c.es;
+  const want = c => enFirst() ? c.es : c.en;
+  const reset = () => { flipped = false; answered = null; opts = null; };
+
   function render(){
-    const c = cards[i], enFirst = store.cardDir === "en";
-    const front = enFirst ? `<p class="pv">${esc(c.en)}</p>` : `<p class="pv es-front">${esc(c.es)}</p>`;
-    const back = enFirst ? `<p class="es">${esc(c.es)}</p>` : `<p class="es">${esc(c.en)}</p>`;
-    host.innerHTML = `<div class="fc">
-      <div class="fchead"><h2 class="h2">${esc(d.name)}</h2>
-        <div class="seg" role="group" aria-label="Dirección"><button aria-pressed="${enFirst}" data-dir="en">Inglés → español</button><button aria-pressed="${!enFirst}" data-dir="es">Español → inglés</button></div></div>
-      <div class="card" id="card" role="button" tabindex="0" aria-live="polite">
+    const c = cards[i], m = mode(), en = enFirst();
+    const front = `<p class="pv ${en ? "" : "es-front"}">${esc(ask(c))}</p>`;
+    const extra = `${c.ex ? `<p class="ex">${c.ex}</p>` : ""}`;
+    const head = `<div class="fchead"><h2 class="h2">${esc(d.name)}</h2>
+        <div class="seg" role="group" aria-label="Dirección"><button aria-pressed="${en}" data-dir="en">Inglés → español</button><button aria-pressed="${!en}" data-dir="es">Español → inglés</button></div></div>
+      <div class="seg modes3" role="group" aria-label="Modo">${[["flip","Girar"],["choice","Elegir"],["write","Escribir"]].map(([k,l]) => `<button data-mode="${k}" aria-pressed="${m === k}">${l}</button>`).join("")}</div>`;
+    let body;
+    if(m === "flip"){
+      body = `<div class="card" id="card" role="button" tabindex="0" aria-live="polite">
         ${front}
-        ${flipped ? `${back}${c.ex ? `<p class="ex">${c.ex}</p>` : ""}` : `<small>Piensa la respuesta y toca para girar</small>`}
-        ${(enFirst || flipped) ? spk(c.say || c.en) : ""}
-      </div>
+        ${flipped ? `<p class="es">${esc(want(c))}</p>${extra}` : `<small>Piensa la respuesta y toca para girar</small>`}
+        ${(en || flipped) ? spk(c.say || c.en) : ""}
+      </div>`;
+    } else {
+      if(!opts){
+        const others = [...new Set(d.cards.map(want))].filter(x => x !== want(c));
+        opts = shuffle([want(c), ...shuffle(others).slice(0, 3)]);
+      }
+      const done = !!answered;
+      const reveal = done ? `<div class="feedback ${answered.ok ? "ok" : "bad"}"><p class="verdict">${answered.ok ? "¡Correcto!" : `No es correcto. Respuesta: <b>${esc(want(c))}</b>`}</p>${extra ? `<div class="note">${c.ex}</div>` : ""}</div>` : "";
+      body = `<p class="count score">${right} de ${seen} bien en esta sesión</p>
+        <div class="card static" aria-live="polite">${front}${(en || done) ? spk(c.say || c.en) : ""}</div>
+        ${m === "choice"
+          ? `<div class="opts">${opts.map((o,k) => {
+              const cls = done ? (o === want(c) ? "ok" : o === answered.val ? "bad" : "") : "";
+              return `<button class="opt ${cls}" data-k="${k}" ${done ? "disabled" : ""}><kbd>${k+1}</kbd>${esc(o)}</button>`; }).join("")}</div>`
+          : `<form class="typed" id="cwrite"><input id="card-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"
+              placeholder="${en ? "Escribe en español" : "Escribe en inglés"}" aria-label="Tu respuesta" value="${done ? esc(answered.val) : ""}" ${done ? `disabled class="${answered.ok ? "ok" : "bad"}"` : ""}>
+              <button class="btn primary" ${done ? "disabled" : ""}>Comprobar</button><button type="button" class="btn ghost" id="cskip" ${done ? "disabled" : ""}>No lo sé</button></form>`}
+        ${reveal}`;
+    }
+    host.innerHTML = `<div class="fc">${head}${body}
       <div class="fcnav">
         <button class="btn" id="prev" aria-label="Anterior">←</button>
         <span class="count">${i+1} / ${cards.length}</span>
         <button class="btn primary" id="nxt">Siguiente →</button>
       </div>
-      <p class="intro">Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar y flechas para moverte. <button class="linkbtn" id="shuf">Barajar de nuevo</button></p></div>`;
-    const card = $("#card");
-    card.onclick = () => { flipped = !flipped; render(); $("#card").focus({preventScroll:true}); };
-    card.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); card.click(); } };
-    let x0 = null;
-    card.addEventListener("touchstart", e => x0 = e.touches[0].clientX, {passive:true});
-    card.addEventListener("touchend", e => { if(x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if(Math.abs(dx) > 50){ e.preventDefault(); move(dx < 0 ? 1 : -1); } });
+      <p class="intro">${m === "flip" ? "Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar y flechas para moverte." : m === "choice" ? "Elige la traducción correcta. En ordenador puedes usar las teclas 1 a 4." : "Escribe la traducción. Las tildes no cuentan y si hay varias opciones vale cualquiera."}
+        <button class="linkbtn" id="shuf">Barajar de nuevo</button></p></div>`;
+
+    host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); reset(); render(); });
+    host.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { store.cardMode = b.dataset.mode; save(); reset(); render(); });
     $("#prev").onclick = () => move(-1);
     $("#nxt").onclick = () => move(1);
-    $("#shuf").onclick = () => { cards = shuffle(d.cards); i = 0; flipped = false; render(); };
-    host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); flipped = false; render(); });
+    $("#shuf").onclick = () => { cards = shuffle(d.cards); i = 0; right = 0; seen = 0; reset(); render(); };
+
+    if(m === "flip"){
+      const card = $("#card");
+      card.onclick = () => { flipped = !flipped; render(); $("#card").focus({preventScroll:true}); };
+      card.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); card.click(); } };
+      let x0 = null;
+      card.addEventListener("touchstart", e => x0 = e.touches[0].clientX, {passive:true});
+      card.addEventListener("touchend", e => { if(x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if(Math.abs(dx) > 50){ e.preventDefault(); move(dx < 0 ? 1 : -1); } });
+    } else if(!answered){
+      if(m === "choice") host.querySelectorAll(".opt").forEach(b => b.onclick = () => check(opts[+b.dataset.k], opts[+b.dataset.k] === want(c)));
+      else {
+        const inp = $("#card-input");
+        if(matchMedia("(hover: hover)").matches) inp.focus({preventScroll:true});
+        $("#cwrite").onsubmit = e => { e.preventDefault(); if(inp.value.trim()) check(inp.value, cardMatch(want(c), inp.value)); };
+        $("#cskip").onclick = () => check("", false);
+      }
+    } else $("#nxt").focus({preventScroll:true});
   }
-  const move = s => { i = (i + s + cards.length) % cards.length; flipped = false; render(); };
+  function check(val, ok){
+    answered = {val, ok}; seen++; if(ok) right++;
+    touchDay(); save(); renderStats();
+    render();
+  }
+  const move = s => { i = (i + s + cards.length) % cards.length; reset(); render(); };
   keyHandler = e => {
-    if(e.key === " "){ e.preventDefault(); $("#card")?.click(); }
+    const m = mode();
+    if(m === "flip" && e.key === " "){ e.preventDefault(); $("#card")?.click(); }
+    if(m === "choice" && !answered){ const k = +e.key, bs = host.querySelectorAll(".opt"); if(k >= 1 && k <= bs.length) bs[k-1].click(); }
     if(e.key === "ArrowRight") move(1);
     if(e.key === "ArrowLeft") move(-1);
   };
   render();
+}
+// Compara una respuesta escrita con la de la tarjeta: sin tildes, sin paréntesis y aceptando cualquiera de las opciones
+function cardMatch(target, val){
+  const clean = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\([^)]*\)/g, "")
+    .replace(/[’‘`]/g, "'").replace(/[.!?¡¿]/g, "").replace(/\s+/g, " ").trim();
+  const alts = [target, ...target.split(/,|\/|·|–/)].map(clean).filter(Boolean);
+  return alts.includes(clean(val));
 }
 
 /* ---------- GUIDES ---------- */
@@ -376,7 +434,7 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
-      <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a>.</p></section>
+      <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a> y las <a href="#tarjetas/pc-prep-dep">tarjetas de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
       <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
     <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>
@@ -389,7 +447,8 @@ function practiceMenu(host){
 function cardsMenu(host){
   const row = id => `<a class="resrow" href="#tarjetas/${id}"><span><b>${esc(DECKS[id].name)}</b><small>${DECKS[id].cards.length} tarjetas</small></span>${doneMark("c:"+id)}</a>`;
   host.innerHTML = `<div class="menu">
-    <p class="intro">Tarjetas para memorizar. Mira la palabra, piensa la traducción y gira la tarjeta. Con ${ICON.spk} oyes la pronunciación.</p>
+    <p class="intro">Tarjetas para memorizar, en tres modos: <b>Girar</b> (piensa y comprueba), <b>Elegir</b> entre 4 opciones o <b>Escribir</b> la respuesta. Con ${ICON.spk} oyes la pronunciación.</p>
+    <section><h2 class="h2">Preposiciones</h2><div class="res">${row("prep-10")}${row("pc-prep-dep")}${row("pc-prep-iot")}</div></section>
     <section><h2 class="h2">Verbos</h2><div class="res">${row("pv")}${row("iv")}</div></section>
     <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => row("tp-"+t.id)).join("")}</div></section>
   </div>`;

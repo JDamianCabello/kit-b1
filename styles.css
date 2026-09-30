@@ -236,6 +236,10 @@ li.say svg{width:15px;height:15px;vertical-align:-2px;color:var(--muted)}
 .card{position:relative;user-select:none;touch-action:pan-y}
 .card .spk{position:absolute;top:10px;right:10px}
 .card .pv.es-front{color:var(--accent)}
+.modes3{align-self:flex-start}
+.modes3 button{padding:7px 16px;font-size:14.5px}
+.card.static{cursor:default;min-height:150px}
+.score{align-self:flex-start;font-variant-numeric:tabular-nums}
 
 /* sprint */
 .sprint-top{display:flex;justify-content:space-between;align-items:center}

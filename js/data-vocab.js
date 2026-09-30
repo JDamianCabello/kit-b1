@@ -18,3 +18,10 @@ const TOPICS_RAW = [
  ["verbs","Verbos imprescindibles","borrow=pedir prestado|lend=prestar|bring=traer|carry=llevar (en brazos)|choose=elegir|decide=decidir|explain=explicar|forget=olvidar|remember=acordarse|remind=recordar (a alguien)|agree=estar de acuerdo|arrive=llegar|leave=irse, dejar|spend=gastar, pasar (tiempo)|wait for=esperar a|look for=buscar|find=encontrar|hope=esperar (desear)"]
 ];
 const TOPICS = TOPICS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
+
+// Tarjetas de preposiciones. Formato: "inglés=español|..."
+const PREP_CARDS_RAW = [
+ ["prep-dep","Verbo o adjetivo + preposición","afraid of=tener miedo de|proud of=orgulloso de|tired of=harto de|good at=bueno en|interested in=interesado en|famous for=famoso por|different from=diferente de|married to=casado con|depend on=depender de|listen to=escuchar a|wait for=esperar a|look at=mirar|look for=buscar|look after=cuidar|agree with=estar de acuerdo con|worry about=preocuparse por|talk about=hablar de|belong to=pertenecer a|angry with=enfadado con|keen on=aficionado a|responsible for=responsable de|pay for=pagar (algo)|apologise for=pedir perdón por|laugh at=reírse de|arrive in=llegar a (ciudad, país)|arrive at=llegar a (un lugar concreto)|think about=pensar en|look forward to=tener ganas de"],
+ ["prep-iot","In, on, at: expresiones","at night=por la noche|in the morning=por la mañana|on Monday=el lunes|at the weekend=el fin de semana|in July=en julio|on 5th May=el 5 de mayo|at 8 o'clock=a las 8|at Christmas=en Navidad|on Christmas Day=el día de Navidad|in summer=en verano|at home=en casa|at work=en el trabajo|in bed=en la cama|on the bus=en el autobús|in the car=en el coche|on the wall=en la pared|in the photo=en la foto|on TV=en la tele|on the first floor=en el primer piso|at the station=en la estación|in the kitchen=en la cocina|on holiday=de vacaciones|at the moment=en este momento|on time=puntual|in time=a tiempo (con margen)|at the end of=al final de"]
+];
+const PREP_CARDS = PREP_CARDS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
