@@ -298,7 +298,7 @@ GUIDES.push(
       ["2","Describir una foto durante 1 minuto","Habla sin parar: dónde, quién, qué hacen, qué llevan."],
       ["3","Decidir algo con tu compañero a partir de dibujos","Pregúntale su opinión. Cuenta la interacción."],
       ["4","Conversación sobre el tema de la parte 3","Da tu opinión y un ejemplo personal."]])}</section>`,
-   practice:null },
+   practice:["sim1","","Hacer un simulacro"] },
 
  { id:"writing", short:"Writing: plantillas", title:"Writing: email, artículo e historia",
    sub:"Estructuras y frases listas para usar en el examen.",
@@ -311,7 +311,7 @@ GUIDES.push(
    extra:`<section class="gsec"><h3>Antes de entregar</h3><div class="gcols"><div class="gcell a"><ul>
      <li>¿He contestado las 4 notas (o todo lo que pide)?</li><li>¿Tiene unas 100 palabras?</li><li>¿He usado conectores? (because, but, so, although, however)</li>
      <li>¿He variado los tiempos verbales? (pasado, presente perfecto, futuro)</li><li>¿He revisado -s en he/she, pasados irregulares y mayúsculas?</li></ul></div></div></section>`,
-   practice:["gu","linkers","Ver la guía de conectores"] },
+   practice:["w-party","","Practicar un email"] },
 
  { id:"speaking", short:"Speaking: frases", title:"Speaking: frases útiles",
    sub:"Frases para cada parte y para salir del paso cuando no sabes una palabra.",
@@ -323,7 +323,7 @@ GUIDES.push(
    extra:`<section class="gsec"><h3>Cuando no sabes una palabra</h3><div class="gcols">
      <div class="gcell a"><ul><li>I don't know the word, but it's a thing you use to...</li><li>It's a kind of...</li><li>It's similar to...</li></ul></div>
      <div class="gcell b"><ul><li>Could you repeat that, please?</li><li>Sorry, what does ... mean?</li><li>Let me think...</li></ul></div></div></section>`,
-   practice:null }
+   practice:["sp-1","","Practicar Speaking con cronómetro"] }
 );
 
 GUIDES.push({ id:"traps", short:"Errores típicos", title:"Errores típicos de hispanohablantes",

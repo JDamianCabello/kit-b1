@@ -128,6 +128,9 @@ defSet("quick10", "Test de 5 minutos", "10 preguntas variadas", h => runQuiz(h, 
 defSet("sprint", "Sprint de 60 segundos", "Todas las que puedas en un minuto", h => sprint(h));
 defSet("mix", "Repaso mixto", "Mezcla de todo, con prioridad a tus fallos", h => runQuiz(h, mixPool(), 15, "mix", true));
 EXAMS.forEach(e => defSet(e.id, e.title, e.sub, h => runExam(h, e)));
+WRITING_TASKS.forEach(w => defSet(w.id, w.title, w.sub, h => runExam(h, {id:w.id, title:w.title, sub:w.sub,
+  parts:[{type:"write", title:"Tu texto", intro:"Escribe unas 100 palabras. Cuando termines, pulsa el botón para autoevaluarte y ver la respuesta modelo.", task:w.task, checks:w.checks, model:w.model}]})));
+SPEAKING.forEach(s => defSet(s.id, s.title, s.sub, h => speakingPractice(h, s)));
 const prepOpts = cats => POOL.gr.filter(x => cats.includes(x.cat));
 defSet("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", h => runQuiz(h, prepOpts(["prepositions"]), 20, "prep-exam"));
 defSet("prep-iot", "In, on, at: tiempo y lugar", "15 preguntas · las que más caen", h => runQuiz(h, prepOpts(["prep-iot"]), 15, "prep-iot"));
@@ -497,6 +500,9 @@ function practiceMenu(host){
       <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a> y las <a href="#tarjetas/pc-prep-dep">tarjetas de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
       <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
+    <section><h2 class="h2">Speaking</h2><div class="res">${SPEAKING.map(s => setRow(s.id)).join("")}</div>
+      <p class="xmp">El móvil lee la pregunta y un cronómetro marca tu tiempo. Contesta en voz alta; si puedes, grábate con la app de notas de voz y escúchate.</p></section>
+    <section><h2 class="h2">Writing</h2><div class="res">${WRITING_TASKS.map(w => setRow(w.id)).join("")}</div></section>
     <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>
     <section><h2 class="h2">Gramática</h2><div class="res">${grIds.map(setRow).join("")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tc","tw","tn","pc","te","iv"].map(setRow).join("")}</div></section>
@@ -519,9 +525,9 @@ function cardsMenu(host){
 /* ---------- EXAMS ---------- */
 function runExam(host, ex){
   const ans = {}, t0 = Date.now(), plays = {};
-  const letters = "ABCD";
+  const letters = "ABCDEFGH";
   const gapify = html => html.replace(/\((\d)\)/g, '<span class="gap">$1</span>');
-  const choiceRow = (key, opts, labels) => `<div class="xopts" data-key="${key}">${opts.map((o,k)=>`<button type="button" class="xopt" data-v="${k}"><kbd>${labels ? labels[k] : letters[k]}</kbd>${labels ? "" : esc(o)}</button>`).join("")}</div>`;
+  const choiceRow = (key, opts, labels) => `<div class="xopts ${labels ? "compact" : ""}" data-key="${key}">${opts.map((o,k)=>`<button type="button" class="xopt" data-v="${k}"><kbd>${labels ? labels[k] : letters[k]}</kbd>${labels ? "" : esc(o)}</button>`).join("")}</div>`;
   const why = w => `<p class="why" hidden>${w}</p>`;
   let html = "";
   ex.parts.forEach((p, pi) => {
@@ -539,9 +545,21 @@ function runExam(host, ex){
       html += `<div class="xtext">${gapify(p.text)}</div>`;
       p.items.forEach((it, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p>${choiceRow(`${pi}-${ii}`, it.opts)}${why(it.why)}</div>`);
     }
-    if(p.type === "open"){
-      html += `<div class="xtext">${gapify(p.text)}</div>`;
+    // Reading Part 2: emparejar personas con textos
+    if(p.type === "match"){
+      html += `<div class="mtexts">${p.texts.map((t,k)=>`<div class="xtext mtext"><span class="mletter">${letters[k]}</span><p>${t}</p></div>`).join("")}</div>`;
+      p.answers.forEach((a, ii) => html += `<div class="xq" data-q="${pi}-${ii}"><p class="qn">${ii+1}</p><p>${p.people[ii]}</p>${choiceRow(`${pi}-${ii}`, p.texts, letters.slice(0, p.texts.length).split(""))}${why(p.why[ii])}</div>`);
+    }
+    // Listening Part 3: completar notas mientras escuchas
+    if(p.type === "notes"){
+      if(!TTS) html += `<p class="warn">Este navegador no puede leer textos en voz alta. Abajo tienes la transcripción para leerla.</p>`;
+      else html += `<button type="button" class="btn small play" data-play="${pi}-all">${ICON.spk} Escuchar <span>(2)</span></button>`;
+      html += `<div class="xtext notes">${gapify(p.text)}</div>`;
+    }
+    if(p.type === "open" || p.type === "notes"){
+      if(p.type === "open") html += `<div class="xtext">${gapify(p.text)}</div>`;
       p.answers.forEach((a, ii) => html += `<div class="xq inline" data-q="${pi}-${ii}"><label class="qq" for="open-${ex.id}-${pi}-${ii}">Hueco ${ii+1}</label><input class="xin" id="open-${ex.id}-${pi}-${ii}" data-key="${pi}-${ii}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">${why(p.why[ii])}</div>`);
+      if(p.type === "notes") html += `<details class="script" ${TTS ? "" : "open"}><summary>Transcripción</summary>${p.lines.map(l => `<p>${esc(l)}</p>`).join("")}</details>`;
     }
     if(p.type === "listen"){
       if(!TTS) html += `<p class="warn">Este navegador no puede leer textos en voz alta. Abajo tienes la transcripción para leerla.</p>`;
@@ -565,7 +583,7 @@ function runExam(host, ex){
     <div class="xhead"><div><h2 class="h2">${ex.title}</h2><p class="intro">${ex.sub}</p></div><span class="clock small" id="xclock">0:00</span></div>
     <div id="xresult"></div>
     ${html}
-    <div class="row"><button class="btn primary" id="grade">Corregir examen</button></div>
+    <div class="row"><button class="btn primary" id="grade">${ex.parts.every(p => p.type === "write") ? "He terminado: autoevaluarme" : "Corregir examen"}</button></div>
   </div>`;
 
   const clock = setInterval(() => { const s = Math.floor((Date.now()-t0)/1000), c = $("#xclock"); if(c) c.textContent = `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; }, 1000);
@@ -580,7 +598,8 @@ function runExam(host, ex){
     const key = b.dataset.play; plays[key] = (plays[key] || 0);
     if(plays[key] >= 2) return;
     plays[key]++;
-    const [pi, ii] = key.split("-").map(Number), lines = ex.parts[pi].items[ii].lines;
+    const [pi, ii] = key.split("-").map(Number), part = ex.parts[pi];
+    const lines = part.type === "notes" ? part.lines.map(t => ["W", t]) : part.items[ii].lines;
     speechSynthesis.cancel();
     lines.forEach((l, k) => speak(l[1], {queue:true, voice: l[0] === "W" ? 0 : 1, pitch: l[0] === "W" ? 1.15 : .85, rate:.9}));
     b.querySelector("span").textContent = `(${2 - plays[key]})`;
@@ -596,7 +615,8 @@ function runExam(host, ex){
   $("#grade").onclick = () => {
     let right = 0, total = 0;
     ex.parts.forEach((p, pi) => {
-      const items = p.type === "gapped" ? p.answers.map(a => ({a})) : p.type === "open" ? p.answers.map(a => ({open:a})) : (p.items || []);
+      const items = (p.type === "gapped" || p.type === "match") ? p.answers.map(a => ({a}))
+        : (p.type === "open" || p.type === "notes") ? p.answers.map(a => ({open:a})) : (p.items || []);
       items.forEach((it, ii) => {
         const key = `${pi}-${ii}`, box = host.querySelector(`[data-q="${key}"]`);
         if(!box) return;
@@ -615,16 +635,65 @@ function runExam(host, ex){
       });
       if(p.type === "write") host.querySelector(`#chk-${ex.id}-${pi}`).hidden = false;
     });
-    const score = pct(right, total), prev = store.exams[ex.id];
-    store.exams[ex.id] = {best: Math.max(score, prev?.best || 0), last: score, date: ymd(new Date())};
     markDone("x:" + ex.id); save();
     clearInterval(clock);
+    // Tarea solo de Writing: no hay nota automática, solo autoevaluación
+    if(!total){
+      $("#grade").disabled = true;
+      host.querySelector(".checks")?.scrollIntoView({block:"start", behavior:"smooth"});
+      return;
+    }
+    const score = pct(right, total), prev = store.exams[ex.id];
+    store.exams[ex.id] = {best: Math.max(score, prev?.best || 0), last: score, date: ymd(new Date())};
+    save();
     const verdict = score >= 85 ? "Nivel B1 muy sólido." : score >= 70 ? "Estarías aprobando (en el examen real se aprueba con unos 70 %)." : score >= 50 ? "Cerca. Repasa las explicaciones de los fallos." : "Aún queda camino. Revisa las guías de los fallos y repítelo en unos días.";
     $("#xresult").innerHTML = `<div class="result"><p class="big">${score}%</p><p><b>${right} de ${total}</b> en Reading y Listening. ${verdict}</p><p class="xmp">Abajo tienes cada respuesta explicada. El Writing se autoevalúa con la lista y la respuesta modelo.</p><button class="btn" id="redo">Repetir simulacro</button></div>`;
     $("#redo").onclick = () => runExam(host, ex);
     $("#grade").disabled = true;
     window.scrollTo({top:0, behavior:"smooth"});
   };
+}
+
+/* ---------- SPEAKING ---------- */
+// Una pregunta o situación cada vez, con audio y cronómetro para contestar en voz alta
+function speakingPractice(host, s){
+  markDone("q:" + s.id);
+  const items = shuffle(s.items);
+  let i = 0, timer = null;
+  const stop = () => { clearInterval(timer); timer = null; };
+  cleanup = () => { stop(); if(TTS) speechSynthesis.cancel(); };
+  function render(){
+    stop();
+    const it = items[i], english = s.id !== "sp-2";
+    host.innerHTML = `<div class="quiz speak">
+      <div class="qmeta"><span>${i+1} de ${items.length}</span><span>${s.secs} s para contestar</span></div>
+      <p class="tag">${esc(s.title)}</p>
+      ${s.id === "sp-2" ? `<p class="intro">Imagina esta foto y descríbela en inglés:</p>` : ""}
+      <p class="sentence">${esc(it.q)}</p>
+      ${it.words ? `<div class="chips">${it.words.map(w => `<span data-say="${esc(w)}">${esc(w)}</span>`).join("")}</div>` : ""}
+      <div class="row">${TTS && english ? `<button class="btn ghost small" type="button" data-say="${esc(it.q)}">${ICON.spk} Escuchar</button>` : ""}
+        <button class="btn primary" id="go">Empezar a hablar (${s.secs} s)</button></div>
+      <div class="timer" id="timer" hidden><span class="clock" id="left">${s.secs}</span><div class="bar"><i id="tbar" style="width:100%"></i></div></div>
+      <div class="feedback ok" id="done" hidden><p class="verdict">¡Tiempo!</p><p class="note">¿Has hablado sin parar? Si te has quedado en blanco, repítelo con las frases útiles de abajo.</p></div>
+      <div class="row"><button class="btn" id="prev" aria-label="Anterior">←</button><button class="btn primary" id="nxt">Siguiente →</button></div>
+      <details class="model" open><summary>Frases útiles (toca para oírlas)</summary><div class="chips">${s.phrases.map(p => `<span data-say="${esc(p)}">${esc(p)}</span>`).join("")}</div></details>
+      <p class="xmp">${s.tip}</p>
+    </div>`;
+    $("#go").onclick = () => {
+      let left = s.secs;
+      $("#timer").hidden = false; $("#done").hidden = true; $("#go").textContent = "Reiniciar";
+      stop();
+      timer = setInterval(() => {
+        left--;
+        const l = $("#left"); if(!l) return stop();
+        l.textContent = left; $("#tbar").style.width = (left / s.secs * 100) + "%";
+        if(left <= 0){ stop(); $("#done").hidden = false; touchDay(); save(); renderStats(); }
+      }, 1000);
+    };
+    $("#prev").onclick = () => { i = (i - 1 + items.length) % items.length; render(); };
+    $("#nxt").onclick = () => { i = (i + 1) % items.length; render(); window.scrollTo({top:0}); };
+  }
+  render();
 }
 
 /* ---------- PLAN ---------- */
@@ -639,6 +708,8 @@ function taskInfo(t, w, i){
   if(k === "q"){ const id = setIdOf(a), s = SETS[id]; return {key:"q:"+id, label:`Test: ${s ? s.label : a}`, href:"#practicar/"+id}; }
   if(k === "c"){ const d = DECKS[a]; return {key:"c:"+a, label:`Tarjetas: ${d ? d.name : a}`, href:"#tarjetas/"+a}; }
   if(k === "x"){ const s = SETS[a]; return {key:"x:"+a, label:`Simulacro: ${s ? s.label : a}`, href:"#practicar/"+a}; }
+  if(k === "w"){ const s = SETS[a]; return {key:"x:"+a, label:`Writing: ${s ? s.label : a}`, href:"#practicar/"+a}; }
+  if(k === "s"){ const s = SETS[a]; return {key:"q:"+a, label:s ? s.label : a, href:"#practicar/"+a}; }
   if(k === "r"){ const r = RESOURCES.find(x => x.id === a); return {key:`w${w}:${i}`, label:`${r.name} (${r.by})`, href:r.url, ext:true}; }
   return {key:`w${w}:${i}`, label:a, href:null};
 }

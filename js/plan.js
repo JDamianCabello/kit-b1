@@ -71,3 +71,10 @@ const PLAN = [
           ["t","Haz un examen oficial de muestra completo, con el tiempo real."],["t","Speaking: describe 3 fotos de tu móvil durante 1 minuto cada una."],
           ["g","exam"],["t","El día antes: descansa, prepara el DNI y comprueba la hora y el lugar del examen."]] }
 ];
+
+// Speaking, Writing y simulacros 3 y 4 repartidos por semanas
+[
+ [2, ["s","sp-1"]], [3, ["w","w-party"]], [4, ["w","w-phone"]], [4, ["s","sp-2"]], [5, ["s","sp-3"]],
+ [6, ["w","w-course"]], [6, ["s","sp-4"]], [7, ["x","sim3"]], [7, ["w","w-town"]], [8, ["w","w-box"]],
+ [9, ["x","sim4"]], [9, ["w","w-sport"]]
+].forEach(([w, t]) => PLAN[w].tasks.push(t));
