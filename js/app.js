@@ -477,6 +477,13 @@ function guide(host, id){
 /* ---------- PRACTICE & CARDS MENUS ---------- */
 const doneMark = key => store.done[key] ? `<i class="seen" title="Hecho">${ICON.check}</i>` : "";
 const setRow = id => { const s = SETS[id]; return s ? `<a class="resrow" href="#practicar/${id}"><span><b>${esc(s.label)}</b><small>${esc(s.sub)}${store.exams[id] ? ` · mejor nota ${store.exams[id].best}%` : ""}</small></span>${doneMark("q:"+id) || doneMark("x:"+id)}</a>` : ""; };
+// Temas de vocabulario agrupados; los que no estén en ningún grupo van al final
+function topicGroups(rowFn){
+  const grouped = new Set(TOPIC_GROUPS.flatMap(g => g.ids));
+  const rest = TOPICS.filter(t => !grouped.has(t.id)).map(t => t.id);
+  const groups = rest.length ? [...TOPIC_GROUPS, {title:"Otros", ids:rest}] : TOPIC_GROUPS;
+  return groups.map(g => `<h3 class="h3">${g.title}</h3><div class="res">${g.ids.filter(id => TOPICS.some(t => t.id === id)).map(rowFn).join("")}</div>`).join("");
+}
 function practiceMenu(host){
   const grIds = GUIDE_SECTIONS.flatMap(s => s.ids).filter(id => SETS["gr-"+id]).map(id => "gr-"+id);
   host.innerHTML = `<div class="menu">
@@ -495,7 +502,7 @@ function practiceMenu(host){
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tc","tw","tn","pc","te","iv"].map(setRow).join("")}</div></section>
     <section><h2 class="h2">Phrasal verbs</h2><div class="res">${["pv","pv2"].map(setRow).join("")}</div></section>
     <section><h2 class="h2">Vocabulario</h2><div class="res">${Object.keys(SETS).filter(k => k.startsWith("vo-")).map(setRow).join("")}</div></section>
-    <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => setRow("tp-"+t.id)).join("")}</div></section>
+    <section><h2 class="h2">Vocabulario por temas</h2>${topicGroups(id => setRow("tp-"+id))}</section>
   </div>`;
 }
 function cardsMenu(host){
@@ -505,7 +512,7 @@ function cardsMenu(host){
     <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${row("t-conj")}${row("t-which")}${row("t-signal")}${row("t-struct")}${row("iv")}</div></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${row("prep-10")}${row("pc-prep-dep")}${row("pc-prep-iot")}</div></section>
-    <section><h2 class="h2">Vocabulario por temas</h2><div class="res">${TOPICS.map(t => row("tp-"+t.id)).join("")}</div></section>
+    <section><h2 class="h2">Vocabulario por temas</h2><p class="intro">${TOPICS.length} temas y ${TOPICS.reduce((n, t) => n + t.words.length, 0)} palabras.</p>${topicGroups(id => row("tp-"+id))}</section>
   </div>`;
 }
 
