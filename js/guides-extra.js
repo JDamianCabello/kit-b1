@@ -385,11 +385,26 @@ GUIDES.push({ id:"prepositions", short:"Preposiciones clave", title:"Preposicion
      <div class="gcell b"><p class="cname">adjetivo + preposición</p>${chips(["good at","interested in","afraid of","proud of","tired of","different from","famous for","angry with","worried about"])}</div></div></section>`,
   practice:["prep-exam","","Hacer el examen de preposiciones"] });
 
+// Vocabulario de ropa, joyas, colores y materiales, agrupado como en la ficha de clase
+GUIDES.push({ id:"clothes", short:"Ropa, joyas, colores y materiales", title:"Ropa, joyas, colores y materiales",
+  sub:"Las palabras agrupadas en las cuatro categorías de la ficha. Algunas van en más de una: gold y silver son material y también color.",
+  sticky:"a <b>gold</b> ring<br>= material<br>a <b>gold</b> dress<br>= color",
+  cols:null, rows:[],
+  extra:`<section class="gsec"><h3>Las cuatro categorías</h3><div class="gcols">${Object.entries(CLOTHES_CATS).map(([k, name], i) => `<div class="gcell ${["a","b","c","a"][i]}">
+     <p class="cname">${name} · ${CLOTHES_CATS_ES[k]}</p>
+     <ul>${CLOTHES.filter(w => w[2].includes(k)).map(w => `<li class="say" data-say="${w[0]}"><b>${w[0]}</b> – ${w[1]}${w[2].length > 1 ? " ★" : ""}</li>`).join("")}</ul></div>`).join("")}</div>
+     <p class="xmp">★ = va en más de una categoría.</p></section>
+   <section class="gsec"><h3>Cómo se usan</h3><div class="gcols">
+     <div class="gcell a"><p class="cname">Orden de los adjetivos</p><p>color + material + prenda</p><p class="hl">a black leather jacket</p><p class="hl">a white cotton T-shirt</p></div>
+     <div class="gcell b"><p class="cname">Siempre en plural</p><p>jeans, trousers, shorts, pyjamas, tights, glasses</p><p class="hl">My jeans <b>are</b> new. <br>a pair of trousers</p></div>
+     <div class="gcell c"><p class="cname">Verbos útiles</p><p class="hl">wear = llevar puesto<br>put on = ponerse<br>take off = quitarse<br>try on = probarse<br>It suits you = te queda bien</p></div></div></section>`,
+  practice:["ropa-cat","","Clasificar palabras (como la ficha)"] });
+
 // Índice de guías agrupadas por etapa del curso
 const GUIDE_SECTIONS = [
   {title:"Empieza aquí (A1)", ids:["be","pronouns","articles","numbers","questions","there","prepositions","countable","can"]},
   {title:"Tiempos verbales (A2)", ids:["ps-pc","past-basic","irr","past-cont","future","time"]},
   {title:"Hacia el B1", ids:["past-pp","used-to","comparatives","modals","gerund","passive","relatives","conditionals","reported","too-enough"]},
-  {title:"Errores, vocabulario y conectores", ids:["traps","particles","linkers"]},
+  {title:"Errores, vocabulario y conectores", ids:["traps","clothes","particles","linkers"]},
   {title:"El examen", ids:["exam","writing","speaking"]}
 ];

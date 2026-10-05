@@ -111,7 +111,12 @@ POOL.pv2 = PV2.map(([en, es], i) => add({id:"pv2-"+i, sec:"Phrasal verbs 2", q:`
 const tenseForm = t => (T_STRUCT.find(s => s[0] === t) || ["", ""])[1];
 POOL.tw = T_WHICH.map(([s, t], i) => add({id:"tw"+i, sec:"¿Qué tiempo es?", q:`${s} → ___`, opts:[t, ...others3(T_STRUCT.map(x => x[0]), t)], ans:[t], say:s, note:`<b>${t}</b>: ${tenseForm(t)}`}));
 POOL.tc = T_CONJ.map(([s, a, d], i) => add({id:"tc"+i, sec:"Tiempos verbales", q:s, opts:[a, ...d], ans:[a], say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a), note:`Forma correcta: <mark>${a}</mark>`}));
-const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc];
+// Ropa, joyas, colores y materiales: opciones de la misma categoría para que no sea demasiado fácil
+const catNames = cs => cs.map(c => CLOTHES_CATS_ES[c]).join(" y ");
+POOL.ropa = CLOTHES.map(([en, es, cs], i) => add({id:"ropa-"+i, sec:"Ropa, joyas, colores y materiales", q:`«${es}» en inglés: ___`,
+  opts:[en, ...others3(CLOTHES.filter(w => w[2][0] === cs[0]).map(w => w[0]), en)], ans:[en], say:en, note:`<b>${en}</b> = ${es} · ${catNames(cs)}`}));
+POOL.ropaw = CLOTHES.map(([en, es, cs], i) => add({id:"ropaw-"+i, sec:"Ropa · escribe", q:`«${es}» en inglés: ___`, ans:[en], say:en, note:`<b>${en}</b> = ${es} · ${catNames(cs)}`}));
+const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc, ...POOL.ropa];
 
 function mixPool(){
   const wrong = Object.keys(store.mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]);
@@ -151,12 +156,16 @@ const MINI = [
   ["mini-pv", "Phrasal verbs", () => [...POOL.pv, ...POOL.pv2]],
   ["mini-tn", "Tiempos verbales", () => [...POOL.tc, ...POOL.tw, ...POOL.te]],
   ["mini-prep", "Preposiciones", () => prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-dep2"])],
-  ["mini-vo", "Vocabulario", () => [...POOL.vo, ...POOL.tp]],
+  ["mini-vo", "Vocabulario", () => [...POOL.vo, ...POOL.tp, ...POOL.ropa]],
+  ["mini-ropa", "Ropa y colores", () => POOL.ropa],
   ["mini-gr", "Gramática", () => POOL.gr.filter(x => !x.cat.startsWith("prep"))],
   ["mini-iv", "Irregulares", () => POOL.iv]
 ];
 MINI.forEach(([id, label, pool]) => defSet(id, "Mini test: " + label, "5 preguntas · 1 minuto", h => runQuiz(h, pool(), 5, id)));
 const miniChips = () => `<div class="minis">${MINI.map(([id, label]) => `<a class="mini" href="#practicar/${id}">${ICON.bolt}${label}</a>`).join("")}</div>`;
+defSet("ropa-cat", "Clasifica las palabras", "Como la ficha: ropa, joyas, colores y materiales · 16 palabras por ronda", h => classify(h));
+defSet("ropa-opt", `Ropa, joyas, colores y materiales: ${CLOTHES.length} palabras`, "20 preguntas con opciones", h => runQuiz(h, POOL.ropa, 20, "ropa-opt"));
+defSet("ropa-write", "Ropa, joyas, colores y materiales: escríbela", "20 palabras sin opciones", h => runQuiz(h, POOL.ropaw, 20, "ropa-write"));
 defSet("tn", "Conjugar verbos", "Escribe la forma correcta · todos los tiempos", h => runQuiz(h, POOL.tn, 10, "tn"));
 defSet("pc", "Past simple vs continuous", "Escribe la forma correcta", h => runQuiz(h, POOL.pc, POOL.pc.length, "pc"));
 defSet("te", "Expresiones de tiempo", "in, on, at, for, since, ago...", h => runQuiz(h, POOL.te, 10, "te"));
@@ -173,6 +182,7 @@ DECKS.iv = {name:"Verbos irregulares", cards: IRR.map(v => ({en:v[0], es:v[3], e
 TOPICS.forEach(t => DECKS["tp-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
 DECKS["prep-10"] = {name:"Las 10 preposiciones", cards: PREPS.map(p => ({en:p[0], es:p[1], ex:p[3].map(esc).join(" · "), say:`${p[0]}. ${p[3].join(". ")}`}))};
 PREP_CARDS.forEach(t => DECKS["pc-" + t.id] = {name:t.name, cards: t.words.map(([en, es]) => ({en, es, say:en}))});
+DECKS.ropa = {name:"Ropa, joyas, colores y materiales", cards: CLOTHES.map(([en, es]) => ({en, es, say:en}))};
 // Mazos de una sola dirección: la cara es la pregunta y el reverso la respuesta
 DECKS.pv2 = {name:"Phrasal verbs 2", cards: PV2.map(([en, es]) => ({en, es, say:en}))};
 DECKS["pv-fill"] = {name:"Phrasal verbs: completa la frase", oneWay:true, cards: PV.map(p => ({en:p[2], es:p[3][0], opts:p[3].slice(1), say:fillText(p[2], p[3][0]), ex:`<b>${esc(p[0])}</b> = ${esc(p[1])}`}))};
@@ -498,6 +508,8 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div>
     <h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
+    <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${["ropa-cat","ropa-opt","ropa-write"].map(setRow).join("")}</div>
+      <p class="xmp">Repasa antes la <a href="#guias/clothes">guía con todas las palabras</a> y las <a href="#tarjetas/ropa">tarjetas</a>.</p></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-dep2","prep-dep2-w","prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
       <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a> y las <a href="#tarjetas/pc-prep-dep">tarjetas de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
@@ -517,6 +529,7 @@ function cardsMenu(host){
   const row = id => `<a class="resrow" href="#tarjetas/${id}"><span><b>${esc(DECKS[id].name)}</b><small>${DECKS[id].cards.length} tarjetas</small></span>${doneMark("c:"+id)}</a>`;
   host.innerHTML = `<div class="menu">
     <p class="intro">Tarjetas para memorizar, en tres modos: <b>Girar</b> (piensa y comprueba), <b>Elegir</b> entre 4 opciones o <b>Escribir</b> la respuesta. Con ${ICON.spk} oyes la pronunciación.</p>
+    <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${row("ropa")}</div></section>
     <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${row("t-conj")}${row("t-which")}${row("t-signal")}${row("t-struct")}${row("iv")}</div></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${row("prep-10")}${row("pc-prep-dep")}${row("pc-prep-iot")}</div></section>
@@ -653,6 +666,52 @@ function runExam(host, ex){
     $("#redo").onclick = () => runExam(host, ex);
     $("#grade").disabled = true;
     window.scrollTo({top:0, behavior:"smooth"});
+  };
+}
+
+/* ---------- CLASIFICAR (como la ficha de clase) ---------- */
+// 16 palabras al azar; cada una se marca en una o varias categorías y al corregir se rellenan las cuatro columnas
+function classify(host){
+  markDone("q:ropa-cat");
+  const multi = CLOTHES.filter(w => w[2].length > 1), single = CLOTHES.filter(w => w[2].length === 1);
+  const words = shuffle([...shuffle(multi).slice(0, 2), ...shuffle(single).slice(0, 14)]);
+  const sel = words.map(() => new Set());
+  const cats = Object.entries(CLOTHES_CATS);
+  host.innerHTML = `<div class="quiz">
+    <p class="tag">Clasifica las palabras</p>
+    <p class="intro">Pon cada palabra en su categoría. Algunas van en más de una: márcalas todas.</p>
+    <div class="cls">${words.map((w, i) => `<div class="clrow" data-i="${i}">
+      <div class="clw"><b>${esc(w[0])}</b>${spk(w[0])}</div>
+      <div class="clbtns">${cats.map(([k, l]) => `<button type="button" class="clb" data-k="${k}" aria-pressed="false">${l}</button>`).join("")}</div>
+      <p class="why" hidden></p></div>`).join("")}</div>
+    <div class="row"><button class="btn primary" id="grade">Corregir</button></div>
+    <div id="clres"></div></div>`;
+  host.querySelectorAll(".clrow").forEach(row => row.addEventListener("click", e => {
+    const b = e.target.closest(".clb"); if(!b || row.dataset.locked) return;
+    const s = sel[+row.dataset.i], k = b.dataset.k;
+    s.has(k) ? s.delete(k) : s.add(k);
+    b.setAttribute("aria-pressed", s.has(k));
+  }));
+  $("#grade").onclick = () => {
+    let right = 0;
+    host.querySelectorAll(".clrow").forEach(row => {
+      const i = +row.dataset.i, w = words[i], s = sel[i];
+      const ok = s.size === w[2].length && w[2].every(c => s.has(c));
+      if(ok) right++;
+      row.dataset.locked = 1;
+      row.classList.add(ok ? "ok" : "bad");
+      row.querySelectorAll(".clb").forEach(b => { const k = b.dataset.k; if(w[2].includes(k)) b.classList.add("ok"); else if(s.has(k)) b.classList.add("bad"); });
+      const p = row.querySelector(".why"); p.hidden = false;
+      p.innerHTML = `${esc(w[1])} · va en: <b>${w[2].map(c => CLOTHES_CATS[c]).join(" + ")}</b>`;
+    });
+    touchDay(); save(); renderStats();
+    $("#grade").disabled = true;
+    $("#clres").innerHTML = `<div class="result"><p class="big">${right}/${words.length}</p>
+      <p>${right === words.length ? "Perfecto, todas bien clasificadas." : "Revisa las marcadas en rojo: debajo de cada una tienes la respuesta."}</p>
+      <div class="gcols">${cats.map(([k, l], n) => `<div class="gcell ${["a","b","c","a"][n]}"><p class="cname">${l}</p><p>${words.filter(w => w[2].includes(k)).map(w => esc(w[0])).join(", ") || "—"}</p></div>`).join("")}</div>
+      <div class="row"><button class="btn primary" id="again">Otra ronda</button></div></div>`;
+    $("#again").onclick = () => { classify(host); window.scrollTo({top:0}); };
+    $("#clres").scrollIntoView({block:"start", behavior:"smooth"});
   };
 }
 

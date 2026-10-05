@@ -52,3 +52,40 @@ const PREP_CARDS_RAW = [
  ["prep-iot","In, on, at: expresiones","at night=por la noche|in the morning=por la mañana|on Monday=el lunes|at the weekend=el fin de semana|in July=en julio|on 5th May=el 5 de mayo|at 8 o'clock=a las 8|at Christmas=en Navidad|on Christmas Day=el día de Navidad|in summer=en verano|at home=en casa|at work=en el trabajo|in bed=en la cama|on the bus=en el autobús|in the car=en el coche|on the wall=en la pared|in the photo=en la foto|on TV=en la tele|on the first floor=en el primer piso|at the station=en la estación|in the kitchen=en la cocina|on holiday=de vacaciones|at the moment=en este momento|on time=puntual|in time=a tiempo (con margen)|at the end of=al final de"]
 ];
 const PREP_CARDS = PREP_CARDS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
+
+// Ropa, joyas, colores y materiales. [inglés, español, categorías] · c = clothes and shoes, j = jewellery, k = colours, m = materials
+const CLOTHES_CATS = {c:"Clothes and shoes", j:"Jewellery", k:"Colours", m:"Materials"};
+const CLOTHES_CATS_ES = {c:"ropa y calzado", j:"joyas", k:"colores", m:"materiales"};
+const CLOTHES = [
+ // Lista de clase
+ ["bracelet","pulsera","j"],["button","botón","c"],["collar","cuello (de camisa)","c"],["cotton","algodón","m"],["cream","color crema","k"],
+ ["dark green","verde oscuro","k"],["dress","vestido","c"],["earrings","pendientes","j"],["gloves","guantes","c"],["gold","oro, dorado","mk"],
+ ["heel","tacón","c"],["jacket","chaqueta","c"],["jeans","vaqueros","c"],["jumper","jersey","c"],["leather","cuero","m"],
+ ["light blue","azul claro","k"],["navy blue","azul marino","k"],["necklace","collar (joya)","j"],["pink","rosa","k"],["purple","morado","k"],
+ ["ring","anillo","j"],["sandals","sandalias","c"],["shirt","camisa","c"],["silver","plata, plateado","mk"],["skirt","falda","c"],
+ ["sleeve","manga","c"],["suit","traje","c"],["sweatshirt","sudadera","c"],["T-shirt","camiseta","c"],["top","top, camiseta","c"],
+ ["trainers","zapatillas de deporte","c"],["wool","lana","m"],
+ // Ropa y calzado
+ ["coat","abrigo","c"],["raincoat","chubasquero","c"],["trousers","pantalones","c"],["shorts","pantalones cortos","c"],["tracksuit","chándal","c"],
+ ["blouse","blusa","c"],["cardigan","chaqueta de punto","c"],["hoodie","sudadera con capucha","c"],["waistcoat","chaleco","c"],["tie","corbata","c"],
+ ["bow tie","pajarita","c"],["scarf","bufanda","c"],["hat","sombrero","c"],["cap","gorra","c"],["belt","cinturón","c"],
+ ["socks","calcetines","c"],["tights","medias","c"],["pyjamas","pijama","c"],["swimsuit","bañador (de mujer)","c"],["swimming trunks","bañador (de hombre)","c"],
+ ["uniform","uniforme","c"],["boots","botas","c"],["shoes","zapatos","c"],["slippers","zapatillas de casa","c"],["high heels","zapatos de tacón","c"],
+ ["flip-flops","chanclas","c"],["pocket","bolsillo","c"],["zip","cremallera","c"],["hood","capucha","c"],["shoelaces","cordones","c"],
+ ["underwear","ropa interior","c"],["nightdress","camisón","c"],["vest","camiseta interior","c"],["dressing gown","bata","c"],["handbag","bolso","c"],
+ ["backpack","mochila","c"],["wallet","cartera","c"],["sunglasses","gafas de sol","c"],["glasses","gafas","c"],["umbrella","paraguas","c"],
+ // Joyas
+ ["watch","reloj (de pulsera)","j"],["chain","cadena","j"],["pendant","colgante","j"],["brooch","broche","j"],["anklet","tobillera (joya)","j"],
+ ["diamond","diamante","j"],["pearl","perla","j"],["jewellery","joyas","j"],["wedding ring","alianza","j"],["engagement ring","anillo de compromiso","j"],
+ ["cufflinks","gemelos","j"],["piercing","piercing","j"],
+ // Colores
+ ["red","rojo","k"],["orange","naranja","k"],["yellow","amarillo","k"],["green","verde","k"],["blue","azul","k"],
+ ["black","negro","k"],["white","blanco","k"],["grey","gris","k"],["brown","marrón","k"],["beige","beis","k"],
+ ["turquoise","turquesa","k"],["dark blue","azul oscuro","k"],["light green","verde claro","k"],["bright red","rojo intenso","k"],["pale pink","rosa pálido","k"],
+ ["lilac","lila","k"],["olive green","verde oliva","k"],["burgundy","granate","k"],["khaki","caqui","k"],["multicoloured","multicolor","k"],
+ // Materiales
+ ["silk","seda","m"],["denim","tela vaquera","m"],["linen","lino","m"],["nylon","nailon","m"],["polyester","poliéster","m"],
+ ["plastic","plástico","m"],["rubber","goma, caucho","m"],["metal","metal","m"],["velvet","terciopelo","m"],["fur","piel (con pelo)","m"],
+ ["suede","ante","m"],["lace","encaje","m"],["cashmere","cachemir","m"],["canvas","lona","m"],["platinum","platino","mk"],
+ ["steel","acero","m"],["bronze","bronce","mk"],["glass","cristal, vidrio","m"],["wood","madera","m"]
+].map(([en, es, c]) => [en, es, c.split("")]);

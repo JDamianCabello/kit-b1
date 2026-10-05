@@ -78,3 +78,6 @@ const PLAN = [
  [6, ["w","w-course"]], [6, ["s","sp-4"]], [7, ["x","sim3"]], [7, ["w","w-town"]], [8, ["w","w-box"]],
  [9, ["x","sim4"]], [9, ["w","w-sport"]]
 ].forEach(([w, t]) => PLAN[w].tasks.push(t));
+
+// Ropa, joyas, colores y materiales: en la semana de la ropa
+PLAN[2].tasks.push(["g","clothes"], ["q","ropa-cat"], ["c","ropa"]);
