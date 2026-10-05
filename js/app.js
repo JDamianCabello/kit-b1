@@ -104,7 +104,7 @@ const POOL = {
   }))
 };
 // Preposiciones sin opciones: hay que escribirla (como en un examen de clase)
-POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => ["prepositions","prep-iot","prep-dep","prep-ficha","prep-dep2"].includes(g[0]) && g[2][0] !== "—")
+POOL.prw = GR.map((g, i) => [g, i]).filter(([g]) => ["prepositions","prep-iot","prep-dep","prep-dep2"].includes(g[0]) && g[2][0] !== "—")
   .map(([g, i]) => add({id:`prw-${i}`, sec:"Preposiciones · escribe", cat:g[0], q:g[1], ans:g[4] || [g[2][0]], note:g[3]}));
 const others3 = (list, correct) => shuffle([...new Set(list)].filter(x => x !== correct)).slice(0, 3);
 POOL.pv2 = PV2.map(([en, es], i) => add({id:"pv2-"+i, sec:"Phrasal verbs 2", q:`«${es}» en inglés: ___`, opts:[en, ...others3(PV2.map(p => p[0]), en)], ans:[en], say:en, note:`<b>${en}</b> = ${es}`}));
@@ -136,13 +136,12 @@ defSet("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of,
 defSet("prep-iot", "In, on, at: tiempo y lugar", "15 preguntas · las que más caen", h => runQuiz(h, prepOpts(["prep-iot"]), 15, "prep-iot"));
 defSet("prep-dep", "Verbo o adjetivo + preposición", "15 preguntas · afraid of, good at, depend on...", h => runQuiz(h, prepOpts(["prep-dep"]), 15, "prep-dep"));
 defSet("prep-err", "Encuentra el error", "12 errores típicos para corregir", h => runQuiz(h, prepOpts(["prep-err"]), 12, "prep-err"));
-defSet("prep-ficha", "Ficha de clase: 31 frases", "Escribe la preposición, como en la ficha", h => runQuiz(h, POOL.prw.filter(x => x.cat === "prep-ficha"), 31, "prep-ficha"));
-defSet("prep-dep2", `Preposiciones dependientes: ${GR.filter(g => ["prep-ficha","prep-dep2"].includes(g[0])).length} frases`, "20 preguntas con opciones · fond of, rely on, provide with...", h => runQuiz(h, prepOpts(["prep-ficha","prep-dep2"]), 20, "prep-dep2"));
-defSet("prep-dep2-w", "Preposiciones dependientes: escríbela", "20 frases sin opciones", h => runQuiz(h, POOL.prw.filter(x => ["prep-ficha","prep-dep2"].includes(x.cat)), 20, "prep-dep2-w"));
+defSet("prep-dep2", `Preposiciones dependientes: ${GR.filter(g => ["prep-dep2"].includes(g[0])).length} frases`, "20 preguntas con opciones · fond of, rely on, provide with...", h => runQuiz(h, prepOpts(["prep-dep2"]), 20, "prep-dep2"));
+defSet("prep-dep2-w", "Preposiciones dependientes: escríbela", "20 frases sin opciones", h => runQuiz(h, POOL.prw.filter(x => ["prep-dep2"].includes(x.cat)), 20, "prep-dep2-w"));
 defSet("prep-write", "Preposiciones: escríbela tú", "15 frases sin opciones, más difícil", h => runQuiz(h, POOL.prw, 15, "prep-write"));
 PREP_TEXTS.forEach(e => defSet(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, h => runExam(h, e)));
 defSet("prep-final", "Examen final de preposiciones", "25 preguntas de todo tipo, 10 de ellas para escribir", h =>
-  runQuiz(h, [...shuffle(prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-ficha","prep-dep2"])).slice(0, 15), ...shuffle(POOL.prw).slice(0, 10)], 25, "prep-final", true));
+  runQuiz(h, [...shuffle(prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-dep2"])).slice(0, 15), ...shuffle(POOL.prw).slice(0, 10)], 25, "prep-final", true));
 defSet("pv2", "Phrasal verbs 2", `${PV2.length} phrasal verbs más · significados`, h => runQuiz(h, POOL.pv2, 10, "pv2"));
 defSet("tw", "¿Qué tiempo es?", "Identifica el tiempo verbal de cada frase", h => runQuiz(h, POOL.tw, 10, "tw"));
 defSet("tc", "Tiempos verbales con opciones", "Elige la forma correcta del verbo", h => runQuiz(h, POOL.tc, 10, "tc"));
@@ -151,7 +150,7 @@ const MINI = [
   ["mini-all", "Todo", () => OPTION_POOL],
   ["mini-pv", "Phrasal verbs", () => [...POOL.pv, ...POOL.pv2]],
   ["mini-tn", "Tiempos verbales", () => [...POOL.tc, ...POOL.tw, ...POOL.te]],
-  ["mini-prep", "Preposiciones", () => prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-ficha","prep-dep2"])],
+  ["mini-prep", "Preposiciones", () => prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-dep2"])],
   ["mini-vo", "Vocabulario", () => [...POOL.vo, ...POOL.tp]],
   ["mini-gr", "Gramática", () => POOL.gr.filter(x => !x.cat.startsWith("prep"))],
   ["mini-iv", "Irregulares", () => POOL.iv]
@@ -499,7 +498,7 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div>
     <h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
-    <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-ficha","prep-dep2","prep-dep2-w","prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
+    <section><h2 class="h2">Preposiciones</h2><div class="res">${["prep-dep2","prep-dep2-w","prep-exam","prep-iot","prep-dep","prep-err","prep-write","prep-text1","prep-text2","prep-final"].map(setRow).join("")}</div>
       <p class="xmp">Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la <a href="#guias/prepositions">guía de preposiciones</a> y las <a href="#tarjetas/pc-prep-dep">tarjetas de preposiciones</a>.</p></section>
     <section><h2 class="h2">Simulacros de examen</h2><div class="res">${EXAMS.map(e => setRow(e.id)).join("")}</div>
       <p class="xmp">Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los modelos oficiales gratuitos de <a href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/" target="_blank" rel="noopener">Cambridge English</a>.</p></section>
