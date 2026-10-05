@@ -322,3 +322,21 @@ li.say svg{width:15px;height:15px;vertical-align:-2px;color:var(--muted)}
 @media (hover:none){ .opt kbd,.xopt kbd:not(:only-child){display:none} .xq.inline .xopt kbd{display:inline} }
 @media (max-width:480px){ .quick{grid-template-columns:repeat(3,1fr)} .qbtn{padding:12px 10px} .qbtn b{font-size:20px} .panel{border-radius:12px} }
 @media (max-width:480px){ .panel{padding:18px 14px} .xq{padding-left:42px} .qn{left:10px} .xtext{padding:12px 14px} }
+
+/* completa la tabla */
+.ctable{display:flex;flex-direction:column;gap:6px}
+.crow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:start}
+.chead span{font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cgiven{padding:9px 0;font-size:17px}
+.ccell{display:flex;flex-direction:column;gap:2px}
+.ccell .xin{width:100%;max-width:none}
+.fix{color:var(--ok);font-weight:700;font-size:14px}
+.crule{grid-column:1/-1;color:var(--muted);font-size:13.5px}
+@media (max-width:560px){
+  .chead{display:none}
+  .crow{grid-template-columns:1fr;gap:6px;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .cgiven::before,.ccell::before{content:attr(data-label);display:block;font:700 11.5px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .cgiven{padding:0}
+}
+.xin.ok{border-color:var(--ok);background:var(--ok-bg)}
+.xin.bad{border-color:var(--bad);background:var(--bad-bg);text-decoration:line-through}

@@ -185,6 +185,7 @@ const MINI = [
 MINI.forEach(([id, label, pool]) => defSet(id, "Mini test: " + label, "5 preguntas · 1 minuto", h => runQuiz(h, pool(), 5, id)));
 const miniChips = () => `<div class="minis">${MINI.map(([id, label]) => `<a class="mini" href="#practicar/${id}">${ICON.bolt}${label}</a>`).join("")}</div>`;
 defSet("comp-sent", "Comparativos en frases", `${SENT_C.length} frases · 15 preguntas con los errores típicos como opciones`, h => runQuiz(h, POOL.cs, 15, "comp-sent"));
+defSet("comp-table", "Completa la tabla", "Adjetivo → comparativo → superlativo · 8 adjetivos por tabla", h => compTable(h));
 defSet("sup-sent", "Superlativos en frases", `${SENT_S.length} frases · 15 preguntas con los errores típicos como opciones`, h => runQuiz(h, POOL.ss, 15, "sup-sent"));
 defSet("comp-form", "Forma el comparativo y el superlativo", `${COMP_ADJ.length} adjetivos · 15 preguntas`, h => runQuiz(h, POOL.cf, 15, "comp-form"));
 defSet("ropa-cat", "Clasifica las palabras", "Como la ficha: ropa, joyas, colores y materiales · 16 palabras por ronda", h => classify(h));
@@ -539,7 +540,7 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div>
     <h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
-    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${["comp-sent","sup-sent","comp-form","gr-comparatives"].map(setRow).join("")}</div>
+    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${["comp-table","comp-sent","sup-sent","comp-form","gr-comparatives"].map(setRow).join("")}</div>
       <p class="xmp">Repasa antes la <a href="#guias/comparatives">guía</a> y las <a href="#tarjetas/comp-form">tarjetas</a>.</p></section>
     <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${["ropa-cat","ropa-opt","ropa-write"].map(setRow).join("")}</div>
       <p class="xmp">Repasa antes la <a href="#guias/clothes">guía con todas las palabras</a> y las <a href="#tarjetas/ropa">tarjetas</a>.</p></section>
@@ -700,6 +701,48 @@ function runExam(host, ex){
     $("#redo").onclick = () => runExam(host, ex);
     $("#grade").disabled = true;
     window.scrollTo({top:0, behavior:"smooth"});
+  };
+}
+
+/* ---------- COMPLETA LA TABLA (adjetivo, comparativo, superlativo) ---------- */
+// 8 adjetivos al azar. Modo fácil: te dan el adjetivo. Modo mezclado: te dan una de las tres formas.
+function compTable(host){
+  markDone("q:comp-table");
+  const mixed = !!store.tableMixed;
+  const heads = ["Adjective", "Comparative", "Superlative"];
+  const rows = shuffle(COMP_ADJ).slice(0, 8).map(a => ({a, vals:[a[0], a[2], a[3]], give: mixed ? Math.random() * 3 | 0 : 0}));
+  host.innerHTML = `<div class="quiz">
+    <p class="tag">Completa la tabla</p>
+    <div class="seg" role="group" aria-label="Modo"><button data-mixed="0" aria-pressed="${!mixed}">Te doy el adjetivo</button><button data-mixed="1" aria-pressed="${mixed}">Mezclado</button></div>
+    <p class="intro">${mixed ? "En cada fila te damos una forma: escribe las otras dos." : "Escribe el comparativo y el superlativo de cada adjetivo."} En el superlativo puedes poner «the» o no.</p>
+    <div class="ctable">
+      <div class="crow chead">${heads.map(h => `<span>${h}</span>`).join("")}</div>
+      ${rows.map((r, i) => `<div class="crow" data-r="${i}">${r.vals.map((v, c) => c === r.give
+        ? `<span class="cgiven" data-label="${heads[c]}"><b>${esc(v)}</b></span>`
+        : `<label class="ccell" data-label="${heads[c]}"><input class="xin" data-c="${c}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="${heads[c]} de la fila ${i+1}"></label>`).join("")}</div>`).join("")}
+    </div>
+    <div class="row"><button class="btn primary" id="grade">Corregir</button></div>
+    <div id="ctres"></div></div>`;
+  host.querySelectorAll("[data-mixed]").forEach(b => b.onclick = () => { store.tableMixed = b.dataset.mixed === "1"; save(); compTable(host); });
+  $("#grade").onclick = () => {
+    let right = 0, total = 0;
+    host.querySelectorAll(".crow[data-r]").forEach(rowEl => {
+      const r = rows[+rowEl.dataset.r];
+      rowEl.querySelectorAll("input").forEach(inp => {
+        const target = r.vals[+inp.dataset.c], ok = cardMatch(target, inp.value);
+        total++; if(ok) right++;
+        inp.disabled = true; inp.classList.add(ok ? "ok" : "bad");
+        if(!ok) inp.insertAdjacentHTML("afterend", `<small class="fix">${esc(target)}</small>`);
+      });
+      rowEl.insertAdjacentHTML("beforeend", `<small class="crule">${esc(r.a[1])} · ${esc(r.a[4])}</small>`);
+    });
+    touchDay(); save(); renderStats();
+    $("#grade").disabled = true;
+    $("#ctres").innerHTML = `<div class="result"><p class="big">${right}/${total}</p>
+      <p>${right === total ? "Perfecto, tabla completa." : "En rojo tienes la forma correcta y debajo de cada fila, la regla."}</p>
+      <div class="row"><button class="btn primary" id="again">Otra tabla</button></div></div>`;
+    $("#again").onclick = () => { compTable(host); window.scrollTo({top:0}); };
+    $("#ctres").scrollIntoView({block:"start", behavior:"smooth"});
   };
 }
 

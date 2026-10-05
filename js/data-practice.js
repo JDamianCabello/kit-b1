@@ -303,7 +303,7 @@ COMP_ADJ.push(
    .map(([a, es]) => [a, es, a.slice(0, -1) + "ier", "the " + a.slice(0, -1) + "iest", R_Y]),
  ...[["popular","popular"],["intelligent","inteligente"],["exciting","emocionante"],["boring","aburrido"],["careful","cuidadoso"],["delicious","delicioso"],
    ["modern","moderno"],["useful","útil"],["successful","exitoso"],["relaxing","relajante"],["crowded","abarrotado"],["patient","paciente"],["wonderful","maravilloso"],
-   ["peaceful","tranquilo, pacífico"],["colourful","colorido"],["attractive","atractivo"],["generous","generoso"]]
+   ["peaceful","tranquilo, pacífico"],["colourful","colorido"],["attractive","atractivo"],["generous","generoso"],["fashionable","de moda"]]
    .map(([a, es]) => [a, es, "more " + a, "the most " + a, R_LONG])
 );
 
