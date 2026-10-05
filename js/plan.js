@@ -85,3 +85,4 @@ PLAN[2].tasks.push(["g","clothes"], ["q","ropa-cat"], ["c","ropa"]);
 // Comparativos y superlativos: en la semana 3, junto a ropa y adjetivos para describir
 PLAN[2].tasks.push(["g","comparatives"], ["c","comp-form"], ["c","sup-form"], ["c","comp-sent"], ["q","comp-sent"], ["q","gr-comparatives"]);
 PLAN[2].goal = "Diferenciar presente simple y continuo, hablar de comida, ropa y aficiones, y comparar cosas (bigger, the best).";
+PLAN[2].tasks.push(["c","sup-sent"], ["q","sup-sent"]);

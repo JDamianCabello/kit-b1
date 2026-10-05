@@ -285,3 +285,82 @@ const COMP_SENT = [
  ["The museum is ___ from here than the park. (far)","further",["farer","more far","furthest"]],
  ["This is the ___ road in the city. (dangerous)","most dangerous",["dangerousest","more dangerous","dangerouser"]]
 ];
+
+// Más adjetivos (hasta 110)
+const R_ER = "corto: + -er / the + -est", R_E = "acaba en -e: solo + -r / -st", R_CVC = "consonante-vocal-consonante: dobla la última", R_Y = "acaba en -y: -ier / -iest", R_LONG = "largo: more / the most";
+COMP_ADJ.push(
+ ...[["clean","limpio"],["cool","fresco"],["dark","oscuro"],["deep","profundo"],["fresh","fresco (comida)"],["full","lleno"],["great","genial, grande"],["hard","duro, difícil"],
+   ["high","alto (montaña, edificio)"],["kind","amable"],["light","ligero"],["loud","ruidoso, alto (sonido)"],["low","bajo"],["near","cercano"],["new","nuevo"],["poor","pobre"],
+   ["quick","rápido"],["quiet","tranquilo"],["rich","rico"],["short","corto, bajo"],["slow","lento"],["smart","listo"],["soft","suave, blando"],["strong","fuerte"],
+   ["sweet","dulce"],["warm","cálido"],["weak","débil"],["bright","brillante, luminoso"],["thick","grueso"],["clever","listo"]]
+   .map(([a, es]) => [a, es, a + "er", "the " + a + "est", R_ER]),
+ ...[["wide","ancho"],["late","tarde"],["rude","maleducado"],["brave","valiente"],["close","cercano"],["cute","mono, adorable"],["fine","fino, bueno (tiempo)"],["pale","pálido"],["simple","sencillo"],["strange","raro"],["wise","sabio"]]
+   .map(([a, es]) => [a, es, a + "r", "the " + a + "st", R_E]),
+ ...[["fat","gordo"],["fit","en forma"],["red","rojo"],["flat","plano"]]
+   .map(([a, es]) => [a, es, a + a.slice(-1) + "er", "the " + a + a.slice(-1) + "est", R_CVC]),
+ ...[["angry","enfadado"],["dirty","sucio"],["lazy","vago"],["lucky","afortunado"],["pretty","bonito"],["tidy","ordenado"],["ugly","feo"],["healthy","sano"],
+   ["noisy","ruidoso"],["sunny","soleado"],["windy","ventoso"],["friendly","simpático"],["crazy","loco"],["scary","que da miedo"],["tasty","sabroso"],["silly","tonto"]]
+   .map(([a, es]) => [a, es, a.slice(0, -1) + "ier", "the " + a.slice(0, -1) + "iest", R_Y]),
+ ...[["popular","popular"],["intelligent","inteligente"],["exciting","emocionante"],["boring","aburrido"],["careful","cuidadoso"],["delicious","delicioso"],
+   ["modern","moderno"],["useful","útil"],["successful","exitoso"],["relaxing","relajante"],["crowded","abarrotado"],["patient","paciente"],["wonderful","maravilloso"],
+   ["peaceful","tranquilo, pacífico"],["colourful","colorido"],["attractive","atractivo"],["generous","generoso"]]
+   .map(([a, es]) => [a, es, "more " + a, "the most " + a, R_LONG])
+);
+
+// Frases: [frase con ___, adjetivo]. La respuesta y las opciones incorrectas se calculan a partir del adjetivo.
+const COMP_SENT2 = [
+ ["Trains are ___ than buses.","fast"],["My bag is ___ than yours.","heavy"],["Summer is ___ than spring.","hot"],["The sea is ___ than the river.","deep"],
+ ["This street is ___ than mine.","quiet"],["My new phone is ___ than the old one.","light"],["Your room is ___ than mine.","clean"],["Dogs are ___ than cats.","friendly"],
+ ["This test was ___ than the last one.","hard"],["Today is ___ than yesterday.","warm"],["Her voice is ___ than mine.","loud"],["The mountains are ___ than the hills.","high"],
+ ["Prices are ___ in the market than in the shop.","low"],["The station is ___ than the airport.","near"],["My car is ___ than my brother's.","new"],["He's ___ than his parents.","rich"],
+ ["This film is ___ than the book.","short"],["The bus is ___ than the train.","slow"],["She's ___ than everyone in her class.","smart"],["This pillow is ___ than that one.","soft"],
+ ["My dad is ___ than me.","strong"],["This cake is ___ than the other one.","sweet"],["I'm ___ than I was last year.","fit"],["This room is ___ than the kitchen.","dark"],
+ ["The fish here is ___ than in the supermarket.","fresh"],["The cinema was ___ than usual.","full"],["Your idea is ___ than mine.","great"],["She's ___ than her sister.","kind"],
+ ["My coffee is ___ than yours.","strong"],["The road is ___ here than in the city.","wide"],["I got home ___ than usual.","late"],["He's ___ than his friends.","brave"],
+ ["We are ___ friends now than before.","close"],["Your puppy is ___ than mine.","cute"],["You look ___ than yesterday. Are you OK?","pale"],["This exercise is ___ than I thought.","simple"],
+ ["My grandmother is ___ than anyone I know.","wise"],["My dog is ___ than my cat.","fat"],["Your T-shirt is ___ than mine.","red"],["The land here is ___ than in the north.","flat"],
+ ["My boss is ___ today than yesterday.","angry"],["Your shoes are ___ than mine.","dirty"],["My brother is ___ than me.","lazy"],["You're ___ than me. You always win!","lucky"],
+ ["She's even ___ than in her photos.","pretty"],["Your desk is ___ than mine.","tidy"],["This building is ___ than the old one.","ugly"],["Fruit is ___ than chocolate.","healthy"],
+ ["My street is ___ at night than during the day.","noisy"],["Spain is ___ than England.","sunny"],["It's ___ today than yesterday.","windy"],["My sister's ideas are ___ than mine.","crazy"],
+ ["This film is ___ than the first one.","scary"],["Homemade food is ___ than fast food.","tasty"],["His jokes are ___ than mine.","silly"],["Football is ___ than tennis in my country.","popular"],
+ ["Dolphins are ___ than many other animals.","intelligent"],["The second half was ___ than the first.","exciting"],["This lesson is ___ than yesterday's.","boring"],["You need to be ___ with your money.","careful"],
+ ["Grandma's soup is ___ than mine.","delicious"],["Their kitchen is ___ than ours.","modern"],["A dictionary is ___ than a comic for learning.","useful"],["Her second shop was ___ than the first.","successful"],
+ ["A walk in the park is ___ than a party.","relaxing"],["The beach is ___ in August than in May.","crowded"],["My mum is ___ than my dad.","patient"],["This holiday was ___ than the last one.","wonderful"],
+ ["Life in the village is ___ than in the city.","peaceful"],["Her clothes are ___ than mine.","colourful"],["This design is ___ than the other one.","attractive"],["He's ___ than his brother. He always shares.","generous"],
+ ["Is Madrid ___ than Paris?","expensive"],["This chair is ___ than the sofa.","comfortable"],["Motorbikes are ___ than cars.","dangerous"],["She's ___ now than ten years ago.","famous"],
+ ["Health is ___ than money.","important"],["The book is ___ than the film.","good"],["My cold is ___ today than yesterday.","bad"],["The park is ___ than the beach.","far"],
+ ["My cousin is two years ___ than me.","old"],["I'm ___ than my brother.","young"],["Fruit is ___ in the market than in the supermarket.","cheap"],["This queue is ___ than that one.","long"],
+ ["January is ___ than March.","cold"],["Paris is ___ than my town.","big"],["My new flat is ___ than the old one.","small"],["The sun is ___ today than yesterday.","bright"],
+ ["This wall is ___ than that one.","thick"],["This exercise is ___ than the first one.","difficult"],["She's ___ than her brother.","clever"],["Learning English is ___ than I thought.","easy"],
+ ["She's ___ now than before.","happy"],["I'm ___ this week than last week.","busy"],["Your reply was ___ than mine.","quick"],["My new job is ___ than my old one.","interesting"],
+ ["He's ___ than his father.","tall"],["This painting is ___ than that one.","beautiful"],["This coffee is ___ than the one at home.","weak"],["The basement is ___ than the living room.","cool"],
+ ["My little brother is ___ than me.","rude"],["My life is ___ than it was.","simple"],["Your hair is ___ than mine.","long"]
+];
+const SUP_SENT2 = [
+ ["Monday is the ___ day of the week.","busy"],["She's the ___ person I know.","kind"],["This is the ___ room in the house.","cold"],["Who is the ___ player in the team?","fast"],
+ ["It's the ___ restaurant in town.","expensive"],["That was the ___ film I've ever seen.","boring"],["He's the ___ boy in the class.","tall"],["It's the ___ river in Europe.","long"],
+ ["This is the ___ hotel in the city.","cheap"],["August is the ___ month of the year.","hot"],["She's the ___ singer in the world.","famous"],["Today is the ___ day of my life.","happy"],
+ ["Lake Baikal is the ___ lake in the world.","deep"],["This is the ___ street in my town.","quiet"],["He has the ___ voice in the choir.","loud"],["What's the ___ mountain in Spain?","high"],
+ ["This is the ___ supermarket to my house.","near"],["It's the ___ phone on the market.","new"],["He's the ___ man in the country.","rich"],["That's the ___ way to the station.","short"],
+ ["It's the ___ computer in the office.","slow"],["She's the ___ student in the school.","smart"],["This is the ___ bed I've ever slept in.","comfortable"],["He's the ___ man in the gym.","strong"],
+ ["This is the ___ cake in the shop.","sweet"],["It's the ___ coat I have.","warm"],["She's the ___ person in our team.","fit"],["This is the ___ part of the forest.","dark"],
+ ["They sell the ___ fish in the city.","fresh"],["It was the ___ concert of the year.","great"],["What's the ___ exam you've ever taken?","hard"],["This is the ___ laptop in the shop.","light"],
+ ["That's the ___ street in the city.","wide"],["He's always the ___ person to arrive.","late"],["She's the ___ firefighter in the city.","brave"],["This is the ___ beach to the hotel.","close"],
+ ["That's the ___ puppy I've ever seen!","cute"],["It's the ___ sentence in the book.","simple"],["My grandfather is the ___ person in my family.","wise"],["It's the ___ cat in the street.","fat"],
+ ["It's the ___ rose in the garden.","red"],["It's the ___ part of the country.","flat"],["That was the ___ I've ever been.","angry"],["These are the ___ shoes I have.","dirty"],
+ ["He's the ___ person in the office.","lazy"],["She's the ___ person I know. She always wins!","lucky"],["It's the ___ village in the region.","pretty"],["Her room is the ___ in the house.","tidy"],
+ ["That's the ___ building in the city.","ugly"],["This is the ___ breakfast on the menu.","healthy"],["This is the ___ bar in town.","noisy"],["Seville is one of the ___ cities in Spain.","sunny"],
+ ["Today is the ___ day of the year.","windy"],["That's the ___ idea I've ever heard!","crazy"],["It's the ___ film of the year.","scary"],["This is the ___ pizza in the city.","tasty"],
+ ["That's the ___ question I've ever heard.","silly"],["Football is the ___ sport in my country.","popular"],["She's the ___ girl in her year.","intelligent"],["It was the ___ match of the season.","exciting"],
+ ["This is the ___ lesson of the course.","boring"],["He's the ___ driver in the family.","careful"],["It's the ___ dish on the menu.","delicious"],["It's the ___ building in the city.","modern"],
+ ["This is the ___ app on my phone.","useful"],["She's the ___ writer in the country.","successful"],["It was the ___ holiday I've ever had.","relaxing"],["This is the ___ beach in summer.","crowded"],
+ ["She's the ___ teacher in the school.","patient"],["That was the ___ day of the trip.","wonderful"],["It's the ___ place I know.","peaceful"],["It's the ___ market in Asia.","colourful"],
+ ["He's the ___ actor in the film.","attractive"],["She's the ___ person in my family.","generous"],["Is Venice the ___ city in Italy?","beautiful"],["It's the ___ road in the country.","dangerous"],
+ ["This is the ___ question in the exam.","important"],["It was the ___ meal I've ever had.","good"],["It was the ___ day of my life.","bad"],["Pluto is one of the ___ places from the sun.","far"],
+ ["She's the ___ person in the village.","old"],["I'm the ___ in my family.","young"],["This is the ___ hotel in Paris.","big"],["It's the ___ question in the test.","easy"],
+ ["That was the ___ exam of the year.","difficult"],["It's the ___ star in the sky.","bright"],["This is the ___ book in the library.","thick"],["She's the ___ girl in the class.","clever"],
+ ["My uncle is the ___ person in my family.","funny"],["This is the ___ suitcase. I can't carry it!","heavy"],["Six o'clock is the ___ train.","early"],["It's the ___ house in the street.","large"],
+ ["She was the ___ person at the party.","nice"],["This is the ___ area of the city.","safe"],["That's the ___ dog I've ever seen.","thin"],["It was the ___ day of the year.","wet"],
+ ["It's the ___ film I've ever watched.","sad"],["Who is the ___ person in your class?","short"],["This is the ___ coffee I've ever had.","weak"],["The basement is the ___ place in the house.","cool"],
+ ["He's the ___ person in the office.","rude"],["This is the ___ beach in Spain.","clean"],["He's the ___ person in our group.","friendly"],["It's the ___ city in the world.","interesting"]
+];

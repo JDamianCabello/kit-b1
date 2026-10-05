@@ -119,15 +119,25 @@ POOL.ropaw = CLOTHES.map(([en, es, cs], i) => add({id:"ropaw-"+i, sec:"Ropa · e
 const uniq3 = (list, ans) => [...new Set(list)].filter(x => x !== ans).slice(0, 3);
 const er = a => a.endsWith("e") ? a + "r" : a + "er", est = a => a.endsWith("e") ? a + "st" : a + "est";
 // Opciones incorrectas = errores típicos: biger, more tall, the most tallest, the expensivest...
-const compWrong = ([adj, , comp, sup]) => uniq3([er(adj), "more " + adj, sup.replace(/^the /, ""), "the " + comp], comp);
+const compWrong = ([adj, , comp, sup]) => uniq3([er(adj), "more " + adj, sup.replace(/^the /, ""), comp.startsWith("more") ? "the " + comp : "more " + comp], comp);
 const supWrong = ([adj, , comp, sup]) => uniq3(["the " + est(adj), "the most " + adj, "the " + comp,
   sup.startsWith("the most") ? "the most " + est(adj) : "the most " + sup.replace(/^the /, "")], sup);
-POOL.cs = COMP_SENT.map(([s, a, d], i) => add({id:"cs"+i, sec:"Comparativos y superlativos", q:s, opts:[a, ...d], ans:[a], say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a), note:`Forma correcta: <mark>${a}</mark>`}));
+// Frases: las primeras tienen las opciones escritas a mano; las nuevas las calculan a partir del adjetivo
+const adjOf = a => COMP_ADJ.find(x => x[0] === a);
+const isSupAns = a => /est$|^most |^best$|^worst$/.test(a);
+const noThe = x => x.replace(/^the /, "");
+const SENT_C = [...COMP_SENT.filter(r => !isSupAns(r[1])),
+  ...COMP_SENT2.map(([s, a]) => { const A = adjOf(a); return [`${s} (${a})`, A[2], compWrong(A)]; })];
+const SENT_S = [...COMP_SENT.filter(r => isSupAns(r[1])),
+  ...SUP_SENT2.map(([s, a]) => { const A = adjOf(a), ans = noThe(A[3]); return [`${s} (${a})`, ans, uniq3(supWrong(A).map(noThe), ans)]; })];
+const sentItem = (pre, sec) => ([s, a, d], i) => add({id:pre+i, sec, q:s, opts:[a, ...d], ans:[a], say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a), note:`Forma correcta: <mark>${a}</mark>`});
+POOL.cs = SENT_C.map(sentItem("cs", "Comparativos"));
+POOL.ss = SENT_S.map(sentItem("ss", "Superlativos"));
 POOL.cf = COMP_ADJ.flatMap((a, i) => [
   add({id:"cfc"+i, sec:"Comparativo", q:`${a[0]} → comparativo: ___`, opts:[a[2], ...compWrong(a)], ans:[a[2]], say:`${a[0]}, ${a[2]}`, note:`<b>${a[2]}</b> · ${a[4]}`}),
   add({id:"cfs"+i, sec:"Superlativo", q:`${a[0]} → superlativo: ___`, opts:[a[3], ...supWrong(a)], ans:[a[3]], say:`${a[0]}, ${a[3]}`, note:`<b>${a[3]}</b> · ${a[4]}`})
 ]);
-const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc, ...POOL.ropa, ...POOL.cs, ...POOL.cf];
+const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc, ...POOL.ropa, ...POOL.cs, ...POOL.ss, ...POOL.cf];
 
 function mixPool(){
   const wrong = Object.keys(store.mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]);
@@ -174,7 +184,8 @@ const MINI = [
 ];
 MINI.forEach(([id, label, pool]) => defSet(id, "Mini test: " + label, "5 preguntas · 1 minuto", h => runQuiz(h, pool(), 5, id)));
 const miniChips = () => `<div class="minis">${MINI.map(([id, label]) => `<a class="mini" href="#practicar/${id}">${ICON.bolt}${label}</a>`).join("")}</div>`;
-defSet("comp-sent", "Comparativos y superlativos en frases", `${COMP_SENT.length} frases con los errores típicos como opciones`, h => runQuiz(h, POOL.cs, 12, "comp-sent"));
+defSet("comp-sent", "Comparativos en frases", `${SENT_C.length} frases · 15 preguntas con los errores típicos como opciones`, h => runQuiz(h, POOL.cs, 15, "comp-sent"));
+defSet("sup-sent", "Superlativos en frases", `${SENT_S.length} frases · 15 preguntas con los errores típicos como opciones`, h => runQuiz(h, POOL.ss, 15, "sup-sent"));
 defSet("comp-form", "Forma el comparativo y el superlativo", `${COMP_ADJ.length} adjetivos · 15 preguntas`, h => runQuiz(h, POOL.cf, 15, "comp-form"));
 defSet("ropa-cat", "Clasifica las palabras", "Como la ficha: ropa, joyas, colores y materiales · 16 palabras por ronda", h => classify(h));
 defSet("ropa-opt", `Ropa, joyas, colores y materiales: ${CLOTHES.length} palabras`, "20 preguntas con opciones", h => runQuiz(h, POOL.ropa, 20, "ropa-opt"));
@@ -199,7 +210,9 @@ DECKS.ropa = {name:"Ropa, joyas, colores y materiales", cards: CLOTHES.map(([en,
 // Comparativos y superlativos: las opciones incorrectas son los errores típicos (biger, more tall, gooder...)
 DECKS["comp-form"] = {name:"Forma el comparativo", oneWay:true, cards: COMP_ADJ.map(a => ({en:a[0], es:a[2], opts:compWrong(a), say:`${a[0]}, ${a[2]}, ${a[3]}`, ex:`${esc(a[1])} · ${esc(a[4])} · superlativo: <b>${esc(a[3])}</b>`}))};
 DECKS["sup-form"] = {name:"Forma el superlativo", oneWay:true, cards: COMP_ADJ.map(a => ({en:a[0], es:a[3], opts:supWrong(a), say:`${a[0]}, ${a[2]}, ${a[3]}`, ex:`${esc(a[1])} · ${esc(a[4])} · comparativo: <b>${esc(a[2])}</b>`}))};
-DECKS["comp-sent"] = {name:"Comparativos y superlativos en frases", oneWay:true, cards: COMP_SENT.map(([s, a, d]) => ({en:s, es:a, opts:d, say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a)}))};
+const sentCard = ([s, a, d]) => ({en:s, es:a, opts:d, say:fillText(s.replace(/\s*\([^)]*\)\s*$/, ""), a)});
+DECKS["comp-sent"] = {name:"Comparativos en frases", oneWay:true, cards: SENT_C.map(sentCard)};
+DECKS["sup-sent"] = {name:"Superlativos en frases", oneWay:true, cards: SENT_S.map(sentCard)};
 // Mazos de una sola dirección: la cara es la pregunta y el reverso la respuesta
 DECKS.pv2 = {name:"Phrasal verbs 2", cards: PV2.map(([en, es]) => ({en, es, say:en}))};
 DECKS["pv-fill"] = {name:"Phrasal verbs: completa la frase", oneWay:true, cards: PV.map(p => ({en:p[2], es:p[3][0], opts:p[3].slice(1), say:fillText(p[2], p[3][0]), ex:`<b>${esc(p[0])}</b> = ${esc(p[1])}`}))};
@@ -526,7 +539,7 @@ function practiceMenu(host){
       <a class="qbtn" href="#practicar/quick10"><b>5 min</b><span>10 preguntas</span></a>
     </div>
     <h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
-    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${["comp-sent","comp-form","gr-comparatives"].map(setRow).join("")}</div>
+    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${["comp-sent","sup-sent","comp-form","gr-comparatives"].map(setRow).join("")}</div>
       <p class="xmp">Repasa antes la <a href="#guias/comparatives">guía</a> y las <a href="#tarjetas/comp-form">tarjetas</a>.</p></section>
     <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${["ropa-cat","ropa-opt","ropa-write"].map(setRow).join("")}</div>
       <p class="xmp">Repasa antes la <a href="#guias/clothes">guía con todas las palabras</a> y las <a href="#tarjetas/ropa">tarjetas</a>.</p></section>
@@ -549,7 +562,7 @@ function cardsMenu(host){
   const row = id => `<a class="resrow" href="#tarjetas/${id}"><span><b>${esc(DECKS[id].name)}</b><small>${DECKS[id].cards.length} tarjetas</small></span>${doneMark("c:"+id)}</a>`;
   host.innerHTML = `<div class="menu">
     <p class="intro">Tarjetas para memorizar, en tres modos: <b>Girar</b> (piensa y comprueba), <b>Elegir</b> entre 4 opciones o <b>Escribir</b> la respuesta. Con ${ICON.spk} oyes la pronunciación.</p>
-    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${row("comp-form")}${row("sup-form")}${row("comp-sent")}</div></section>
+    <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${row("comp-form")}${row("sup-form")}${row("comp-sent")}${row("sup-sent")}</div></section>
     <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${row("ropa")}</div></section>
     <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${row("t-conj")}${row("t-which")}${row("t-signal")}${row("t-struct")}${row("iv")}</div></section>
