@@ -137,7 +137,8 @@ POOL.cf = COMP_ADJ.flatMap((a, i) => [
   add({id:"cfc"+i, sec:"Comparativo", q:`${a[0]} → comparativo: ___`, opts:[a[2], ...compWrong(a)], ans:[a[2]], say:`${a[0]}, ${a[2]}`, note:`<b>${a[2]}</b> · ${a[4]}`}),
   add({id:"cfs"+i, sec:"Superlativo", q:`${a[0]} → superlativo: ___`, opts:[a[3], ...supWrong(a)], ans:[a[3]], say:`${a[0]}, ${a[3]}`, note:`<b>${a[3]}</b> · ${a[4]}`})
 ]);
-const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc, ...POOL.ropa, ...POOL.cs, ...POOL.ss, ...POOL.cf];
+POOL.pvs = PV_SENT.map(([s, a, d, m], i) => add({id:"pvs"+i, sec:"Phrasal verbs en frases", q:s, opts:[a, ...d], ans:[a], say:fillText(s, a), note:`<mark>${m.split(" = ")[0]}</mark> = ${m.split(" = ")[1]}`}));
+const OPTION_POOL = [...POOL.pv, ...POOL.pv2, ...POOL.pvs, ...POOL.te, ...POOL.vo, ...POOL.gr, ...POOL.tp, ...POOL.tw, ...POOL.tc, ...POOL.ropa, ...POOL.cs, ...POOL.ss, ...POOL.cf];
 
 function mixPool(){
   const wrong = Object.keys(store.mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]);
@@ -168,13 +169,14 @@ defSet("prep-write", "Preposiciones: escríbela tú", "15 frases sin opciones, m
 PREP_TEXTS.forEach(e => defSet(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, h => runExam(h, e)));
 defSet("prep-final", "Examen final de preposiciones", "25 preguntas de todo tipo, 10 de ellas para escribir", h =>
   runQuiz(h, [...shuffle(prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-dep2"])).slice(0, 15), ...shuffle(POOL.prw).slice(0, 10)], 25, "prep-final", true));
+defSet("pv-sent", "Elige el phrasal verb", `${PV_SENT.length} frases · 15 preguntas con 4 phrasal verbs distintos`, h => runQuiz(h, POOL.pvs, 15, "pv-sent"));
 defSet("pv2", "Phrasal verbs 2", `${PV2.length} phrasal verbs más · significados`, h => runQuiz(h, POOL.pv2, 10, "pv2"));
 defSet("tw", "¿Qué tiempo es?", "Identifica el tiempo verbal de cada frase", h => runQuiz(h, POOL.tw, 10, "tw"));
 defSet("tc", "Tiempos verbales con opciones", "Elige la forma correcta del verbo", h => runQuiz(h, POOL.tc, 10, "tc"));
 // Mini tests: 5 preguntas de un tema, para cuando hay poco tiempo
 const MINI = [
   ["mini-all", "Todo", () => OPTION_POOL],
-  ["mini-pv", "Phrasal verbs", () => [...POOL.pv, ...POOL.pv2]],
+  ["mini-pv", "Phrasal verbs", () => [...POOL.pv, ...POOL.pv2, ...POOL.pvs]],
   ["mini-tn", "Tiempos verbales", () => [...POOL.tc, ...POOL.tw, ...POOL.te]],
   ["mini-prep", "Preposiciones", () => prepOpts(["prepositions","prep-iot","prep-dep","prep-err","prep-dep2"])],
   ["mini-vo", "Vocabulario", () => [...POOL.vo, ...POOL.tp, ...POOL.ropa]],
@@ -216,7 +218,8 @@ DECKS["comp-sent"] = {name:"Comparativos en frases", oneWay:true, cards: SENT_C.
 DECKS["sup-sent"] = {name:"Superlativos en frases", oneWay:true, cards: SENT_S.map(sentCard)};
 // Mazos de una sola dirección: la cara es la pregunta y el reverso la respuesta
 DECKS.pv2 = {name:"Phrasal verbs 2", cards: PV2.map(([en, es]) => ({en, es, say:en}))};
-DECKS["pv-fill"] = {name:"Phrasal verbs: completa la frase", oneWay:true, cards: PV.map(p => ({en:p[2], es:p[3][0], opts:p[3].slice(1), say:fillText(p[2], p[3][0]), ex:`<b>${esc(p[0])}</b> = ${esc(p[1])}`}))};
+DECKS["pv-sent"] = {name:"Phrasal verbs: elige el correcto", oneWay:true, cards: PV_SENT.map(([s, a, d, m]) => ({en:s, es:a, opts:d, say:fillText(s, a), ex:esc(m)}))};
+DECKS["pv-fill"] ={name:"Phrasal verbs: completa la frase", oneWay:true, cards: PV.map(p => ({en:p[2], es:p[3][0], opts:p[3].slice(1), say:fillText(p[2], p[3][0]), ex:`<b>${esc(p[0])}</b> = ${esc(p[1])}`}))};
 DECKS["t-struct"] = {name:"Tiempos: cómo se forman", cards: T_STRUCT.map(([en, es]) => ({en, es, say:en}))};
 DECKS["t-which"] = {name:"Tiempos: ¿qué tiempo es?", oneWay:true, cards: T_WHICH.map(([s, t]) => ({en:s, es:t, say:s, ex:esc(tenseForm(t))}))};
 DECKS["t-signal"] = {name:"Tiempos: palabras señal", oneWay:true, cards: T_SIGNAL.map(([s, t]) => ({en:s, es:t, say:strip(s), ex:esc(tenseForm(t))}))};
@@ -554,7 +557,7 @@ function practiceMenu(host){
     <section><h2 class="h2">Repaso</h2><div class="res">${setRow("mix")}</div></section>
     <section><h2 class="h2">Gramática</h2><div class="res">${grIds.map(setRow).join("")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${["tc","tw","tn","pc","te","iv"].map(setRow).join("")}</div></section>
-    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${["pv","pv2"].map(setRow).join("")}</div></section>
+    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${["pv-sent","pv","pv2"].map(setRow).join("")}</div></section>
     <section><h2 class="h2">Vocabulario</h2><div class="res">${Object.keys(SETS).filter(k => k.startsWith("vo-")).map(setRow).join("")}</div></section>
     <section><h2 class="h2">Vocabulario por temas</h2>${topicGroups(id => setRow("tp-"+id))}</section>
   </div>`;
@@ -565,7 +568,7 @@ function cardsMenu(host){
     <p class="intro">Tarjetas para memorizar, en tres modos: <b>Girar</b> (piensa y comprueba), <b>Elegir</b> entre 4 opciones o <b>Escribir</b> la respuesta. Con ${ICON.spk} oyes la pronunciación.</p>
     <section><h2 class="h2">Comparativos y superlativos</h2><div class="res">${row("comp-form")}${row("sup-form")}${row("comp-sent")}${row("sup-sent")}</div></section>
     <section><h2 class="h2">Ropa, joyas, colores y materiales</h2><div class="res">${row("ropa")}</div></section>
-    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
+    <section><h2 class="h2">Phrasal verbs</h2><div class="res">${row("pv-sent")}${row("pv")}${row("pv2")}${row("pv-fill")}</div></section>
     <section><h2 class="h2">Tiempos verbales</h2><div class="res">${row("t-conj")}${row("t-which")}${row("t-signal")}${row("t-struct")}${row("iv")}</div></section>
     <section><h2 class="h2">Preposiciones</h2><div class="res">${row("prep-10")}${row("pc-prep-dep")}${row("pc-prep-iot")}</div></section>
     <section><h2 class="h2">Vocabulario por temas</h2><p class="intro">${TOPICS.length} temas y ${TOPICS.reduce((n, t) => n + t.words.length, 0)} palabras.</p>${topicGroups(id => row("tp-"+id))}</section>

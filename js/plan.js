@@ -87,3 +87,4 @@ PLAN[2].tasks.push(["g","comparatives"], ["c","comp-form"], ["c","sup-form"], ["
 PLAN[2].goal = "Diferenciar presente simple y continuo, hablar de comida, ropa y aficiones, y comparar cosas (bigger, the best).";
 PLAN[2].tasks.push(["c","sup-sent"], ["q","sup-sent"]);
 PLAN[2].tasks.push(["q","comp-table"]);
+PLAN[5].tasks.push(["c","pv-sent"], ["q","pv-sent"]);
