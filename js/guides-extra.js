@@ -174,7 +174,7 @@ GUIDES.push(
     ["Ejemplos",[["My brother is taller than me."],["This phone is more expensive than that one."],["It's the best film I've ever seen."]]]
    ],
    extra:`<section class="gsec"><h3>as ... as (igual de)</h3><div class="gcols"><div class="gcell a"><p class="hl">She's <b>as tall as</b> me.</p><p class="hl">It's <b>not as cold as</b> yesterday.</p></div></div></section>`,
-   practice:["gr","comparatives","Practicar comparativos"] },
+   practice:["comp-sent","","Practicar comparativos y superlativos"] },
 
  { id:"modals", short:"Modales", title:"Modales: must, have to, should, might",
    sub:"Obligación, consejo y posibilidad. Siempre + verbo sin «to» (salvo have to).",

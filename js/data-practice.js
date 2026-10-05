@@ -238,3 +238,50 @@ const PC = [
  ["The sun ___ when we left the house.","shine",["was shining"],"Escenario de la historia: past continuous."],
  ["While they were having dinner, the lights ___ out.","go",["went"],"La acción corta que interrumpe: past simple (go → went)."]
 ];
+
+// Comparativos y superlativos. [adjetivo, español, comparativo, superlativo, regla]
+const COMP_ADJ = [
+ ["tall","alto","taller","the tallest","corto: + -er / the + -est"],["small","pequeño","smaller","the smallest","corto: + -er / the + -est"],
+ ["old","viejo","older","the oldest","corto: + -er / the + -est"],["young","joven","younger","the youngest","corto: + -er / the + -est"],
+ ["cheap","barato","cheaper","the cheapest","corto: + -er / the + -est"],["fast","rápido","faster","the fastest","corto: + -er / the + -est"],
+ ["long","largo","longer","the longest","corto: + -er / the + -est"],["cold","frío","colder","the coldest","corto: + -er / the + -est"],
+ ["nice","agradable, bonito","nicer","the nicest","acaba en -e: solo + -r / -st"],["large","grande","larger","the largest","acaba en -e: solo + -r / -st"],
+ ["safe","seguro","safer","the safest","acaba en -e: solo + -r / -st"],
+ ["big","grande","bigger","the biggest","consonante-vocal-consonante: dobla la última"],["hot","caliente, caluroso","hotter","the hottest","consonante-vocal-consonante: dobla la última"],
+ ["thin","delgado","thinner","the thinnest","consonante-vocal-consonante: dobla la última"],["wet","mojado","wetter","the wettest","consonante-vocal-consonante: dobla la última"],
+ ["sad","triste","sadder","the saddest","consonante-vocal-consonante: dobla la última"],
+ ["easy","fácil","easier","the easiest","acaba en -y: -ier / -iest"],["happy","feliz","happier","the happiest","acaba en -y: -ier / -iest"],
+ ["busy","ocupado","busier","the busiest","acaba en -y: -ier / -iest"],["funny","gracioso","funnier","the funniest","acaba en -y: -ier / -iest"],
+ ["heavy","pesado","heavier","the heaviest","acaba en -y: -ier / -iest"],["early","temprano","earlier","the earliest","acaba en -y: -ier / -iest"],
+ ["expensive","caro","more expensive","the most expensive","largo: more / the most"],["beautiful","bonito, precioso","more beautiful","the most beautiful","largo: more / the most"],
+ ["interesting","interesante","more interesting","the most interesting","largo: more / the most"],["difficult","difícil","more difficult","the most difficult","largo: more / the most"],
+ ["comfortable","cómodo","more comfortable","the most comfortable","largo: more / the most"],["important","importante","more important","the most important","largo: more / the most"],
+ ["dangerous","peligroso","more dangerous","the most dangerous","largo: more / the most"],["famous","famoso","more famous","the most famous","largo: more / the most"],
+ ["good","bueno","better","the best","irregular"],["bad","malo","worse","the worst","irregular"],["far","lejos","further","the furthest","irregular (también farther / the farthest)"]
+];
+// [frase, respuesta, [errores típicos]]
+const COMP_SENT = [
+ ["My brother is ___ than me. (tall)","taller",["more tall","tallest","the taller"]],
+ ["This book is ___ than the film. (interesting)","more interesting",["interestinger","most interesting","more interestinger"]],
+ ["It's the ___ day of the year. (hot)","hottest",["hotest","most hot","hotter"]],
+ ["Today is ___ than yesterday. (bad)","worse",["badder","more bad","worst"]],
+ ["She's the ___ student in the class. (good)","best",["better","goodest","most good"]],
+ ["This exercise is ___ than the last one. (easy)","easier",["more easy","easyer","easiest"]],
+ ["Russia is the ___ country in the world. (large)","largest",["larger","most large","largeest"]],
+ ["A car is ___ than a bike. (expensive)","more expensive",["expensiver","most expensive","the more expensive"]],
+ ["Who is the ___ person in your family? (young)","youngest",["younger","most young","youngst"]],
+ ["This is the ___ film I've ever seen. (funny)","funniest",["funnyest","most funny","funnier"]],
+ ["Is Spanish ___ than English? (difficult)","more difficult",["difficulter","most difficult","the more difficult"]],
+ ["Mount Everest is the ___ mountain in the world. (high)","highest",["higher","most high","highst"]],
+ ["I'm ___ today than yesterday. (busy)","busier",["busyer","more busy","busiest"]],
+ ["This sofa is the ___ in the shop. (comfortable)","most comfortable",["comfortablest","more comfortable","comfortabler"]],
+ ["My sister is as ___ as me. (tall)","tall",["taller","tallest","more tall"]],
+ ["This phone isn't as ___ as that one. (cheap)","cheap",["cheaper","cheapest","more cheap"]],
+ ["He drives ___ than his father. (fast)","faster",["more fast","fastest","more faster"]],
+ ["Winter is ___ than autumn here. (cold)","colder",["more cold","coldest","the colder"]],
+ ["That was the ___ exam of my life. (bad)","worst",["worse","baddest","most bad"]],
+ ["Which is the ___ city in Spain? (beautiful)","most beautiful",["beautifullest","more beautiful","beautifuler"]],
+ ["My new flat is ___ than my old one. (big)","bigger",["biger","more big","biggest"]],
+ ["The museum is ___ from here than the park. (far)","further",["farer","more far","furthest"]],
+ ["This is the ___ road in the city. (dangerous)","most dangerous",["dangerousest","more dangerous","dangerouser"]]
+];

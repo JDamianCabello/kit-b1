@@ -51,8 +51,8 @@ const PLAN = [
  { title:"El pasado", goal:"Contar lo que hiciste. Los verbos irregulares más frecuentes, de memoria.",
    tasks:[["g","past-basic"],["q","gr-past-basic"],["g","irr"],["c","iv"],["q","iv"],["g","time"],["q","te"],["c","tp-travel"],["c","tp-hotel"],["c","tp-money"],["c","tp-timewords"],
           ["t","Escribe un email de 100 palabras a un amigo contando tu último fin de semana."],["r","wi"]] },
- { title:"Contar historias", goal:"Past continuous, conectores y comparativos: lo que necesitas para la historia del Writing.",
-   tasks:[["g","past-cont"],["q","pc"],["g","linkers"],["g","comparatives"],["q","gr-comparatives"],["c","tp-weather"],["c","tp-feelings"],["c","tp-adjectives"],["c","tp-entertainment"],["g","writing"],
+ { title:"Contar historias", goal:"Past continuous y conectores: lo que necesitas para la historia del Writing.",
+   tasks:[["g","past-cont"],["q","pc"],["g","linkers"],["c","tp-weather"],["c","tp-feelings"],["c","tp-adjectives"],["c","tp-entertainment"],["g","writing"],
           ["t","Escribe una historia de 100 palabras que empiece: «It was a cold winter night...»"],["r","bbc-6min"]] },
  { title:"Futuro, phrasal verbs y Speaking", goal:"Hablar de planes y hacer tu primer simulacro.",
    tasks:[["g","future"],["g","particles"],["c","pv"],["q","pv"],["c","tp-work"],["c","tp-school"],["c","tp-communication"],["g","speaking"],["r","yt-speaking"],
@@ -81,3 +81,7 @@ const PLAN = [
 
 // Ropa, joyas, colores y materiales: en la semana de la ropa
 PLAN[2].tasks.push(["g","clothes"], ["q","ropa-cat"], ["c","ropa"]);
+
+// Comparativos y superlativos: en la semana 3, junto a ropa y adjetivos para describir
+PLAN[2].tasks.push(["g","comparatives"], ["c","comp-form"], ["c","sup-form"], ["c","comp-sent"], ["q","comp-sent"], ["q","gr-comparatives"]);
+PLAN[2].goal = "Diferenciar presente simple y continuo, hablar de comida, ropa y aficiones, y comparar cosas (bigger, the best).";
