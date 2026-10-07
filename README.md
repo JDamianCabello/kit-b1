@@ -49,6 +49,7 @@ Es una web estática de varias páginas: **HTML para el contenido, CSS para el d
 | `fallos.html` | Las preguntas falladas |
 | `css/styles.css` | Diseño, modo claro y oscuro |
 | `img/icons.svg` | Iconos (se usan con `<svg><use href="img/icons.svg#nombre"/></svg>`) |
+| `img/speaking/` | Fotos en WebP para el Speaking |
 | `js/data/` | Datos: preguntas, vocabulario, simulacros, guías y plan |
 | `js/lib/` | Código común: progreso (`store.js`), preguntas y mazos (`content.js`), voz (`speech.js`), cabecera (`shell.js`) y utilidades |
 | `js/pages/` | Un módulo por página |
@@ -58,4 +59,6 @@ Para cambiar el texto de una guía, un simulacro o un menú, edita su archivo `.
 
 ## Créditos
 
-Todo el contenido de ejercicios, guías y simulacros es original. Los recursos externos (Cambridge English, British Council, BBC Learning English, EngExam.info, YouTube) solo se enlazan y pertenecen a sus autores.
+Todo el contenido de ejercicios, guías y simulacros es original.
+
+Las fotos de Speaking (`img/speaking/`) son de [Unsplash](https://unsplash.com) y se usan con la [licencia de Unsplash](https://unsplash.com/license); cada foto muestra en la web su autor con un enlace a la original. Los iconos de los objetos del simulacro de Speaking son de [Lucide](https://lucide.dev) (licencia ISC). Los recursos externos (Cambridge English, British Council, BBC Learning English, EngExam.info, YouTube) solo se enlazan y pertenecen a sus autores.

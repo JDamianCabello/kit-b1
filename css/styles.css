@@ -937,3 +937,67 @@ body[data-tab="fallos"] main{display:flex;flex-direction:column;gap:24px}
   .mixbar p{flex-basis:100%;font-size:14px}
   .mixbar .btn{flex:1;justify-content:center}
 }
+
+/* Simulacro de Speaking */
+.mock{display:flex;flex-direction:column;gap:20px}
+.msetup{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.msetup p{margin:0}
+.mmode{border:0;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.mmode legend{font-weight:700;margin-bottom:8px;padding:0}
+.mmode label,.mrec{display:flex;gap:10px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);cursor:pointer;font-size:14.5px;color:var(--muted)}
+.mmode label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.mmode b,.mrec b{display:block;color:var(--ink);font-size:16px}
+.mmode input,.mrec input{width:20px;height:20px;flex:none;accent-color:var(--accent);margin:2px 0 0}
+.mrun{display:flex;flex-direction:column;gap:14px}
+.mparts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mparts li{text-align:center;padding:7px 4px;border-radius:9px;background:var(--surface-2);color:var(--muted);font:700 13.5px var(--body)}
+.mparts li.on{background:var(--ink);color:var(--bg)}
+.mtimer{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:6px 14px}
+.mtimer .clock{font-size:30px;min-width:2.4ch}
+.mtimer .bar{height:8px}
+.mstate{grid-column:1/-1;margin:0;font-weight:700;color:var(--accent)}
+.msteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+.mstep{display:flex;flex-direction:column;gap:14px}
+html:not(.js) .mstep+.mstep{border-top:1px solid var(--line);padding-top:22px}
+.mrole{margin:0;font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mquestion{margin:0;font:600 clamp(20px,3.2vw,25px)/1.4 var(--display);text-wrap:pretty}
+.mphoto{margin:0;display:flex;flex-direction:column;gap:6px}
+.mphoto img{width:100%;height:auto;border-radius:14px;display:block;background:var(--surface-2)}
+.mphoto figcaption{font-size:12.5px;color:var(--muted)}
+.mitems{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.mitems li{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);font-weight:700;font-size:15px;text-align:center}
+.mitems svg{width:34px;height:34px;color:var(--accent)}
+.mpartner{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--ta);color:var(--ta-ink)}
+.mpartner-line{margin:0;font-weight:700}
+.mpartner-line:empty{display:none}
+.mpartner .btn{display:inline-flex;align-items:center;gap:6px}
+.mhelp{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.mhelp summary{cursor:pointer;font-weight:700;color:var(--accent)}
+.mhelp p{margin:10px 0 0}
+.msay{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.msay li[data-say]{cursor:pointer}
+.msay li[data-say]:hover{color:var(--accent)}
+.mnav{position:sticky;bottom:12px;z-index:4;background:var(--surface);padding:10px;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.mnav .btn{display:inline-flex;align-items:center;gap:6px}
+.mnav .btn svg{width:16px;height:16px}
+.mnav #next{margin-left:auto}
+.mend{display:flex;flex-direction:column;gap:12px}
+.mend .h2{margin:0}
+.mrecs{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+.mrecs li{display:flex;flex-direction:column;gap:6px;font-size:15px}
+.mrecs audio{width:100%;max-width:420px}
+@media (max-width:700px){
+  .mmode{grid-template-columns:1fr}
+  .mitems{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .mitems li{padding:12px 6px;font-size:14px}
+  .mnav{bottom:8px;flex-wrap:nowrap}
+  .mnav #repeat{font-size:0;gap:0;padding:10px 12px}
+  .mnav #repeat svg{width:18px;height:18px}
+  .mnav .btn{padding:11px 12px}
+}
+.mquestion.long{font:500 clamp(17px,2.4vw,20px)/1.5 var(--body)}
+.sp-photo{gap:14px}
+.sp-photo .mphoto{width:100%}
+.sp-photo .mhelp{width:100%}
+/* Las fotos verticales no pasan del 70 % de la pantalla */
+.mphoto img{width:auto;max-width:100%;max-height:70vh;margin-inline:auto;object-fit:contain}

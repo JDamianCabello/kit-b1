@@ -94,6 +94,7 @@ test("mix", "Repaso mixto", "Mezcla de todo, con prioridad a tus fallos", mistak
 test("fallos", "Mis fallos", "Las preguntas que has fallado", mistakes => Object.keys(mistakes).filter(id => ITEMS[id]).map(id => ITEMS[id]), 15);
 [...EXAMS, ...EXAMS_MORE].forEach(e => own(e.id, e.title, e.sub, `${e.id}.html`));
 WRITING_TASKS.forEach(w => own(w.id, w.title, w.sub, `${w.id}.html`));
+own("sp-exam1", "Simulacro de Speaking: ropa y viajes", "Las 4 partes del examen con fotos · unos 12 minutos", "sp-exam1.html");
 SPEAKING.forEach(s => own(s.id, s.title, s.sub, `${s.id}.html`));
 PREP_TEXTS.forEach(e => own(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, `${e.id}.html`));
 test("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", () => prepOpts(["prepositions"]), 20);

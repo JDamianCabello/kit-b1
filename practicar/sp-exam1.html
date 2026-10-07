@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Simulacro de Speaking: ropa y viajes · Kit B1</title>
+    <meta name="description" content="Las 4 partes del examen con fotos · unos 12 minutos" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/speaking-exam.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <article class="mock" data-id="sp-exam1">
+          <div class="xhead">
+            <div>
+              <h1 class="h2">Simulacro de Speaking: ropa y viajes</h1>
+              <p class="intro">Las 4 partes del examen con fotos · unos 12 minutos</p>
+            </div>
+            <span class="clock small" id="mclock" hidden>0</span>
+          </div>
+          <section class="msetup js-only" id="setup" aria-labelledby="setup-title">
+            <h2 class="h3" id="setup-title">Antes de empezar</h2>
+            <p>
+              El móvil hace de examinador: lee cada pregunta en voz alta y un cronómetro te marca el tiempo, como en el
+              examen real. Contesta en voz alta.
+            </p>
+            <fieldset class="mmode">
+              <legend>¿Con quién lo haces?</legend>
+              <label
+                ><input type="radio" name="mode" value="solo" checked />
+                <span><b>Solo</b> El móvil hace también de compañero (Student B).</span></label
+              >
+              <label
+                ><input type="radio" name="mode" value="pair" />
+                <span><b>En pareja</b> Dos personas con el mismo móvil, cada una con su turno.</span></label
+              >
+            </fieldset>
+            <label class="mrec"
+              ><input type="checkbox" id="record" />
+              <span
+                ><b>Grabar mis respuestas</b> Para escucharte al final. Se quedan en este dispositivo y se borran al
+                cerrar la página.</span
+              ></label
+            >
+            <p class="warn tts-off">Este navegador no puede leer en voz alta: lee tú las preguntas en la pantalla.</p>
+            <button type="button" class="btn primary" id="start">
+              Empezar el simulacro <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg>
+            </button>
+          </section>
+          <div class="mrun" id="run" hidden>
+            <ol class="mparts" aria-label="Partes">
+              <li data-part="1">Parte 1</li>
+              <li data-part="2">Parte 2</li>
+              <li data-part="3">Parte 3</li>
+              <li data-part="4">Parte 4</li>
+            </ol>
+            <div class="mtimer">
+              <span class="clock" id="left">0</span>
+              <div class="bar"><i id="tbar"></i></div>
+              <p class="mstate" id="state" aria-live="polite"></p>
+            </div>
+          </div>
+          <ol class="msteps" id="steps">
+            <li class="mstep" data-part="1" data-secs="15" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="What's your name?">What's your name?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>My name's Laura. / I'm Laura.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="15" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Where do you come from?">Where do you come from?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>I'm from Seville, in the south of Spain. / I come from a small town near Madrid.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="20" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you work or are you a student?">Do you work or are you a student?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  I work in an office. I'm an administrative assistant. / I'm a student. I'm studying at university.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you like reading books?">Do you like reading books?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>Yes, I do. I usually read before going to bed. I love detective stories because they're exciting.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you like watching television?">Do you like watching television?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  Not really. I prefer watching series on my laptop, especially comedies, because they help me relax.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="What music do you like to listen to?">
+                What music do you like to listen to?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  I like pop and rock. I listen to music on the bus every morning and my favourite singer is Dua Lipa.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you like animals?">Do you like animals?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>Yes, a lot. I've got a dog called Toby. I take him for a walk every evening.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="How do you like to celebrate your birthday?">
+                How do you like to celebrate your birthday?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  I usually have dinner with my family and then I go out with my friends. Last year we had a party at my
+                  house.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="What did you do last weekend?">What did you do last weekend?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  On Saturday I went shopping with my sister and on Sunday I visited my grandparents. It was very
+                  relaxing.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Is there a country you would like to visit in the future?">
+                Is there a country you would like to visit in the future?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>I'd love to visit Japan because the culture is very different and I really like Japanese food.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you think English will be useful for you in the future?">
+                Do you think English will be useful for you in the future?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>Yes, definitely. I'd like to work abroad, and English is important for travelling too.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Which do you like best, the morning or the afternoon?">
+                Which do you like best, the morning or the afternoon?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>I prefer the afternoon because I'm not very active in the morning. I need a coffee to wake up!</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="1" data-secs="30" data-who="you" data-pick>
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Tell us about your English teacher.">
+                Tell us about your English teacher.
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  My teacher is called Mark. He's from London and he's very patient. His classes are fun because we play
+                  a lot of games.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="2" data-secs="60" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p
+                class="mquestion long"
+                data-say="Now, I'd like each of you to talk on your own about something. I'm going to give each of you a photograph and I'd like you to talk about it. Student A, here is your photograph. It shows people shopping for clothes. Please tell us what you can see in the photograph."
+              >
+                Now, I'd like each of you to talk on your own about something. I'm going to give each of you a
+                photograph and I'd like you to talk about it. Student A, here is your photograph. It shows people
+                shopping for clothes. Please tell us what you can see in the photograph.
+              </p>
+              <figure class="mphoto">
+                <img
+                  src="../img/speaking/tienda-ropa-amigas.webp"
+                  width="1000"
+                  height="563"
+                  alt="Dos mujeres jóvenes sonríen y hablan entre percheros de ropa en una tienda; una lleva una bolsa roja."
+                  loading="lazy"
+                />
+                <figcaption>
+                  Foto:
+                  <a
+                    href="https://unsplash.com/photos/two-women-are-shopping-for-clothes-in-a-store-3JG32Ob4Ae4"
+                    target="_blank"
+                    rel="noopener"
+                    >Vitaly Gariev</a
+                  >
+                  en Unsplash
+                </figcaption>
+              </figure>
+              <details class="mhelp">
+                <summary>Cosas que puedes decir de esta foto</summary>
+                <ul class="msay">
+                  <li data-say="In this photo I can see two young women in a clothes shop.">
+                    In this photo I can see two young women in a clothes shop.
+                  </li>
+                  <li data-say="They're standing between two rails full of clothes.">
+                    They're standing between two rails full of clothes.
+                  </li>
+                  <li data-say="The woman on the left has long brown hair and she's wearing a denim jacket.">
+                    The woman on the left has long brown hair and she's wearing a denim jacket.
+                  </li>
+                  <li data-say="The other woman is blonde. She's wearing a grey striped jumper and jeans.">
+                    The other woman is blonde. She's wearing a grey striped jumper and jeans.
+                  </li>
+                  <li data-say="They're smiling and talking to each other, so I think they're friends.">
+                    They're smiling and talking to each other, so I think they're friends.
+                  </li>
+                  <li
+                    data-say="The woman on the left is holding a red shopping bag, so maybe she has already bought something."
+                  >
+                    The woman on the left is holding a red shopping bag, so maybe she has already bought something.
+                  </li>
+                  <li data-say="Behind them there are lots of coats and jackets on hangers.">
+                    Behind them there are lots of coats and jackets on hangers.
+                  </li>
+                  <li data-say="On the right there's a mannequin wearing a dark blue jacket.">
+                    On the right there's a mannequin wearing a dark blue jacket.
+                  </li>
+                  <li
+                    data-say="Perhaps they're deciding what to buy, or one of them is asking for her friend's opinion."
+                  >
+                    Perhaps they're deciding what to buy, or one of them is asking for her friend's opinion.
+                  </li>
+                  <li data-say="The shop looks modern and bright, and they look like they're having a good time.">
+                    The shop looks modern and bright, and they look like they're having a good time.
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li
+              class="mstep"
+              data-part="2"
+              data-secs="60"
+              data-who="partner"
+              data-partner="This photo is in black and white. It shows the inside of a very big clothes shop. I think it's a second-hand shop. There are long rails full of clothes: T-shirts, shirts and jumpers. In the middle there's a woman with short dark hair. She's looking at the clothes. In the background I can see some other customers, but it isn't very crowded. On the left there's a sign with a price: five dollars ninety-nine, so the clothes are quite cheap. At the front there are some woolly hats and scarves."
+            >
+              <p class="mrole">Habla tu compañero (Student B)</p>
+              <p
+                class="mquestion"
+                data-say="Student B, here is your photograph. It also shows people shopping for clothes. Please tell us what you can see in the photograph."
+              >
+                Student B, here is your photograph. It also shows people shopping for clothes. Please tell us what you
+                can see in the photograph.
+              </p>
+              <figure class="mphoto">
+                <img
+                  src="../img/speaking/tienda-segunda-mano.webp"
+                  width="1000"
+                  height="667"
+                  alt="Foto en blanco y negro de una tienda grande de ropa de segunda mano con percheros llenos y algunas clientas mirando."
+                  loading="lazy"
+                />
+                <figcaption>
+                  Foto:
+                  <a href="https://unsplash.com/photos/xNL-QO_PfDo" target="_blank" rel="noopener">Sean Benesh</a> en
+                  Unsplash
+                </figcaption>
+              </figure>
+              <details class="mhelp">
+                <summary>Cosas que puedes decir de esta foto</summary>
+                <ul class="msay">
+                  <li data-say="This photo is in black and white.">This photo is in black and white.</li>
+                  <li data-say="It shows the inside of a very big clothes shop. I think it's a second-hand shop.">
+                    It shows the inside of a very big clothes shop. I think it's a second-hand shop.
+                  </li>
+                  <li data-say="There are long rails full of clothes: T-shirts, shirts and jumpers.">
+                    There are long rails full of clothes: T-shirts, shirts and jumpers.
+                  </li>
+                  <li data-say="In the middle there's a woman with short dark hair. She's looking at the clothes.">
+                    In the middle there's a woman with short dark hair. She's looking at the clothes.
+                  </li>
+                  <li data-say="In the background I can see some other customers, but it isn't very crowded.">
+                    In the background I can see some other customers, but it isn't very crowded.
+                  </li>
+                  <li
+                    data-say="On the left there's a sign with a price: five dollars ninety-nine, so the clothes are quite cheap."
+                  >
+                    On the left there's a sign with a price: five dollars ninety-nine, so the clothes are quite cheap.
+                  </li>
+                  <li data-say="At the front there are some woolly hats and scarves.">
+                    At the front there are some woolly hats and scarves.
+                  </li>
+                  <li data-say="There are long lights on the ceiling and a big painting on the wall.">
+                    There are long lights on the ceiling and a big painting on the wall.
+                  </li>
+                  <li data-say="I think people come here to find bargains.">
+                    I think people come here to find bargains.
+                  </li>
+                  <li
+                    data-say="I like shops like this because you can find unusual clothes and it's good for the environment."
+                  >
+                    I like shops like this because you can find unusual clothes and it's good for the environment.
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li class="mstep" data-part="2" data-secs="60" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p
+                class="mquestion"
+                data-say="Now, Student A, here is another photograph. It shows people helping the environment. Please tell us what you can see in the photograph."
+              >
+                Now, Student A, here is another photograph. It shows people helping the environment. Please tell us what
+                you can see in the photograph.
+              </p>
+              <figure class="mphoto">
+                <img
+                  src="../img/speaking/limpieza-playa.webp"
+                  width="1000"
+                  height="667"
+                  alt="Un grupo de voluntarios recoge basura en bolsas verdes en una playa, con colinas y palmeras al fondo y el cielo nublado."
+                  loading="lazy"
+                />
+                <figcaption>
+                  Foto:
+                  <a
+                    href="https://unsplash.com/photos/people-picking-garbage-near-beach-PzQNdXw2a6g"
+                    target="_blank"
+                    rel="noopener"
+                    >Brian Yurasits</a
+                  >
+                  en Unsplash
+                </figcaption>
+              </figure>
+              <details class="mhelp">
+                <summary>Cosas que puedes decir de esta foto</summary>
+                <ul class="msay">
+                  <li data-say="This photo shows a group of people cleaning a beach.">
+                    This photo shows a group of people cleaning a beach.
+                  </li>
+                  <li data-say="They're picking up rubbish and putting it into green bags.">
+                    They're picking up rubbish and putting it into green bags.
+                  </li>
+                  <li data-say="There's a lot of plastic and pieces of wood on the sand.">
+                    There's a lot of plastic and pieces of wood on the sand.
+                  </li>
+                  <li data-say="On the left there's an older man wearing green shorts and a white T-shirt.">
+                    On the left there's an older man wearing green shorts and a white T-shirt.
+                  </li>
+                  <li data-say="Next to him, a woman is wearing an orange cap and orange gloves.">
+                    Next to him, a woman is wearing an orange cap and orange gloves.
+                  </li>
+                  <li data-say="A boy in a yellow T-shirt is helping too.">
+                    A boy in a yellow T-shirt is helping too.
+                  </li>
+                  <li data-say="In the background I can see the sea, some hills and palm trees.">
+                    In the background I can see the sea, some hills and palm trees.
+                  </li>
+                  <li data-say="The sky is grey and cloudy, so it might rain soon.">
+                    The sky is grey and cloudy, so it might rain soon.
+                  </li>
+                  <li data-say="There's a dog walking on the beach on the left.">
+                    There's a dog walking on the beach on the left.
+                  </li>
+                  <li
+                    data-say="I think they're volunteers. It's important because plastic is very dangerous for sea animals."
+                  >
+                    I think they're volunteers. It's important because plastic is very dangerous for sea animals.
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li
+              class="mstep"
+              data-part="2"
+              data-secs="60"
+              data-who="partner"
+              data-partner="In this picture there's a young man holding a big blue rubbish bag. He's wearing glasses and a light blue T-shirt. He's smiling at the camera, so he looks happy. He's wearing gloves to protect his hands. Behind him, two women with red hair are collecting rubbish. They're all wearing the same T-shirts, so I think they're volunteers. They're next to a lake or a river, and there are lots of trees in the background."
+            >
+              <p class="mrole">Habla tu compañero (Student B)</p>
+              <p
+                class="mquestion"
+                data-say="Student B, here is your photograph. It also shows people helping the environment. Please tell us what you can see in the photograph."
+              >
+                Student B, here is your photograph. It also shows people helping the environment. Please tell us what
+                you can see in the photograph.
+              </p>
+              <figure class="mphoto">
+                <img
+                  src="../img/speaking/voluntario-lago.webp"
+                  width="1000"
+                  height="563"
+                  alt="Un chico joven con gafas sonríe a la cámara con una bolsa azul de basura; detrás, dos mujeres recogen basura junto a un lago."
+                  loading="lazy"
+                />
+                <figcaption>
+                  Foto:
+                  <a
+                    href="https://unsplash.com/photos/man-holding-trash-bag-with-volunteers-cleaning-beach-_RInM2eMgLQ"
+                    target="_blank"
+                    rel="noopener"
+                    >Vitaly Gariev</a
+                  >
+                  en Unsplash
+                </figcaption>
+              </figure>
+              <details class="mhelp">
+                <summary>Cosas que puedes decir de esta foto</summary>
+                <ul class="msay">
+                  <li data-say="In this picture there's a young man holding a big blue rubbish bag.">
+                    In this picture there's a young man holding a big blue rubbish bag.
+                  </li>
+                  <li data-say="He's wearing glasses and a light blue T-shirt.">
+                    He's wearing glasses and a light blue T-shirt.
+                  </li>
+                  <li data-say="He's smiling at the camera, so he looks happy.">
+                    He's smiling at the camera, so he looks happy.
+                  </li>
+                  <li data-say="He's wearing gloves to protect his hands.">
+                    He's wearing gloves to protect his hands.
+                  </li>
+                  <li data-say="Behind him, two women with red hair are collecting rubbish.">
+                    Behind him, two women with red hair are collecting rubbish.
+                  </li>
+                  <li data-say="They're all wearing the same T-shirts, so I think they're volunteers.">
+                    They're all wearing the same T-shirts, so I think they're volunteers.
+                  </li>
+                  <li data-say="They're next to a lake or a river, and there are lots of trees in the background.">
+                    They're next to a lake or a river, and there are lots of trees in the background.
+                  </li>
+                  <li data-say="It's probably summer because it looks sunny and warm.">
+                    It's probably summer because it looks sunny and warm.
+                  </li>
+                  <li data-say="I think they're cleaning the area because people left rubbish there.">
+                    I think they're cleaning the area because people left rubbish there.
+                  </li>
+                  <li data-say="I'd like to do something like this because it's a good way to help your town.">
+                    I'd like to do something like this because it's a good way to help your town.
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li
+              class="mstep"
+              data-part="3"
+              data-secs="150"
+              data-who="both"
+              data-lines='["Shall we start with the umbrella? It rains a lot in England, so I think it&apos;s really useful. What do you think?","That&apos;s true. What about the camera? He&apos;ll want to take lots of photos.","Hmm, I&apos;m not sure about the laptop. It&apos;s heavy and he&apos;s only going for a week.","I agree. He can use his phone for maps, so maybe he doesn&apos;t need a map.","Sunglasses aren&apos;t very important in England, are they?","So, what&apos;s the most important thing for you?"]'
+            >
+              <p class="mrole">Habláis los dos</p>
+              <p
+                class="mquestion long"
+                data-say="Now, in this part of the test you're going to talk about something together for about two minutes. I'm going to describe a situation to you. Your friend is going to travel to England for a week. He doesn't have much room in his suitcase. Here are some things that he could take. Talk together about the different things he could take, and say which would be most important. All right? Now, talk together."
+              >
+                Now, in this part of the test you're going to talk about something together for about two minutes. I'm
+                going to describe a situation to you. Your friend is going to travel to England for a week. He doesn't
+                have much room in his suitcase. Here are some things that he could take. Talk together about the
+                different things he could take, and say which would be most important. All right? Now, talk together.
+              </p>
+              <ul class="mitems">
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#paraguas"></use></svg><span>an umbrella</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#camisa"></use></svg><span>a warm jacket</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#camara"></use></svg><span>a camera</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#cargador"></use></svg><span>a phone charger</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#libro"></use></svg><span>a guidebook</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#portatil"></use></svg><span>a laptop</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#gafas"></use></svg><span>sunglasses</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#mapa"></use></svg><span>a map</span>
+                </li>
+              </ul>
+              <div class="mpartner js-only" hidden>
+                <p class="mpartner-line" aria-live="polite"></p>
+                <button type="button" class="btn small" data-partner-next>
+                  <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg> Que hable mi compañero
+                </button>
+              </div>
+              <details class="mhelp">
+                <summary>Frases para hablar en pareja</summary>
+                <ul class="msay">
+                  <li>Shall we start with...?</li>
+                  <li>What do you think about...?</li>
+                  <li>I think ... is important because...</li>
+                  <li>He definitely needs... / He doesn't need...</li>
+                  <li>That's a good idea. / I agree.</li>
+                  <li>I'm not so sure. I think...</li>
+                  <li>What about...?</li>
+                  <li>On the other hand...</li>
+                  <li>So, do we agree that ... is the most important?</li>
+                </ul>
+                <p class="xmp">Lo que podría decir tu compañero:</p>
+                <ul class="msay">
+                  <li
+                    data-say="Shall we start with the umbrella? It rains a lot in England, so I think it's really useful. What do you think?"
+                  >
+                    Shall we start with the umbrella? It rains a lot in England, so I think it's really useful. What do
+                    you think?
+                  </li>
+                  <li data-say="That's true. What about the camera? He'll want to take lots of photos.">
+                    That's true. What about the camera? He'll want to take lots of photos.
+                  </li>
+                  <li data-say="Hmm, I'm not sure about the laptop. It's heavy and he's only going for a week.">
+                    Hmm, I'm not sure about the laptop. It's heavy and he's only going for a week.
+                  </li>
+                  <li data-say="I agree. He can use his phone for maps, so maybe he doesn't need a map.">
+                    I agree. He can use his phone for maps, so maybe he doesn't need a map.
+                  </li>
+                  <li data-say="Sunglasses aren't very important in England, are they?">
+                    Sunglasses aren't very important in England, are they?
+                  </li>
+                  <li data-say="So, what's the most important thing for you?">
+                    So, what's the most important thing for you?
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li class="mstep" data-part="3" data-secs="45" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Thank you. So, which thing do you think would be most important?">
+                Thank you. So, which thing do you think would be most important?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  I think the most important thing is the phone charger, because he needs his phone for everything:
+                  maps, photos and calling his family.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="4" data-secs="40" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Have you ever travelled to another country?">
+                Have you ever travelled to another country?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>Yes, I have. I went to Portugal last summer with my family. We visited Lisbon and it was amazing.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="4" data-secs="40" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="What type of clothes do you pack when you go on holiday?">
+                What type of clothes do you pack when you go on holiday?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>
+                  It depends on the place. For the beach I pack shorts, T-shirts and a swimsuit, but for the mountains I
+                  take warm clothes and boots.
+                </p>
+              </details>
+            </li>
+            <li class="mstep" data-part="4" data-secs="40" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Do you like wearing sunglasses?">Do you like wearing sunglasses?</p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>Yes, I wear them all the time in summer because the sun is very strong in Spain.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="4" data-secs="40" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="What's the weather like in your country?">
+                What's the weather like in your country?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>In the south it's hot and sunny most of the year, but in the north it rains more and it's cooler.</p>
+              </details>
+            </li>
+            <li class="mstep" data-part="4" data-secs="40" data-who="you">
+              <p class="mrole">Contestas tú (Student A)</p>
+              <p class="mquestion" data-say="Does anyone help you to pack your suitcase?">
+                Does anyone help you to pack your suitcase?
+              </p>
+              <details class="mhelp">
+                <summary>Ejemplo de respuesta</summary>
+                <p>No, I do it myself. I usually make a list the day before so I don't forget anything.</p>
+              </details>
+            </li>
+          </ol>
+          <div class="row mnav js-only" id="nav" hidden>
+            <button type="button" class="btn" id="repeat">
+              <svg aria-hidden="true"><use href="../img/icons.svg#repetir"></use></svg> Repetir pregunta</button
+            ><button type="button" class="btn" id="go-now">Empezar ya</button
+            ><button type="button" class="btn primary" id="next">Siguiente →</button>
+          </div>
+          <section class="mend" id="end" hidden aria-labelledby="end-title">
+            <h2 class="h2" id="end-title">¡Simulacro terminado!</h2>
+            <div id="recs-box" hidden>
+              <h3 class="h3">Tus grabaciones</h3>
+              <ol class="mrecs" id="recs"></ol>
+            </div>
+            <h3 class="h3">Autoevaluación: lo que mira el examinador</h3>
+            <div class="checks">
+              <label
+                ><input type="checkbox" /> <b>Gramática y vocabulario:</b> he usado tiempos variados y palabras del tema
+                sin repetir siempre las mismas.</label
+              >
+              <label
+                ><input type="checkbox" /> <b>Organización:</b> mis respuestas tienen más de una frase y uso conectores
+                (because, but, so, also).</label
+              >
+              <label
+                ><input type="checkbox" /> <b>Pronunciación:</b> se me entiende bien y no hablo demasiado
+                deprisa.</label
+              >
+              <label
+                ><input type="checkbox" /> <b>Interacción:</b> en la parte 3 he preguntado la opinión de mi compañero y
+                he reaccionado a lo que decía.</label
+              >
+              <label
+                ><input type="checkbox" /> No me he quedado callado: si no sabía una palabra, la he explicado con
+                otras.</label
+              >
+            </div>
+            <div class="row">
+              <button type="button" class="btn primary" id="again">Repetir el simulacro</button
+              ><a class="btn" href="index.html">Volver a Practicar</a>
+            </div>
+          </section>
+        </article>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+    <template id="tpl-rec">
+      <li><span data-slot="label"></span><audio controls preload="metadata"></audio></li>
+    </template>
+  </body>
+</html>
