@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kit B1 Preliminary</title>
 <meta name="description" content="Plan de 10 semanas, guías visuales, ejercicios y simulacros para preparar el Cambridge B1 Preliminary desde cero.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kit B1 Preliminary">
+<meta property="og:description" content="Plan de 10 semanas, guías visuales, ejercicios y simulacros para preparar el Cambridge B1 Preliminary desde cero.">
+<meta property="og:image" content="icon-512.png">
 <meta name="theme-color" content="#eef1ef" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,12 +19,18 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
+<script>
+  // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+  try { const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme; if(t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch(e){}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a class="skip" href="#panel">Saltar al contenido</a>
+<noscript><p class="noscript">Kit B1 necesita JavaScript para funcionar. Actívalo en tu navegador y vuelve a cargar la página.</p></noscript>
 <div class="wrap">
   <header id="top">
     <div id="back"></div>
@@ -30,7 +41,8 @@
     <div class="stats" id="stats"></div>
   </header>
   <nav class="tabs" id="tabs" aria-label="Secciones"></nav>
-  <main class="panel" id="panel"></main>
+  <main class="panel" id="panel" tabindex="-1"></main>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <footer class="foot">Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web original.</footer>
 </div>
 <script src="js/data-practice.js"></script>

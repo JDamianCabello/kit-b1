@@ -2,7 +2,7 @@
 
 /* ---------- STORAGE ---------- */
 const KEY = "kitb1-v1";
-const DEFAULTS = () => ({answered:0, correct:0, mistakes:{}, days:[], done:{}, exams:{}, plan:{start:null}, drafts:{}, sprintBest:0, cardDir:"en", lastTab:"plan"});
+const DEFAULTS = () => ({answered:0, correct:0, mistakes:{}, days:[], done:{}, exams:{}, plan:{start:null}, drafts:{}, sprintBest:0, cardDir:"en", lastTab:"plan", theme:"auto"});
 let store = DEFAULTS();
 try { const s = JSON.parse(localStorage.getItem(KEY)); if(s) store = Object.assign(DEFAULTS(), s); } catch(e){}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -57,7 +57,10 @@ const ICON = {
   check: svg('<path d="M5 12l5 5L20 7"/>'),
   bolt: svg('<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'),
   flame: svg('<path d="M12 22c4 0 7-2.7 7-7 0-4.5-4-7-4.5-11-2.5 1.5-4 4-4 6.5C9.5 9 8.5 8 8 7c-2 2-3 4.5-3 8 0 4.3 3 7 7 7z"/>'),
-  target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>')
+  target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+  moon: svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
+  auto: svg('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>')
 };
 
 /* ---------- SPEECH (pronunciación con la voz del dispositivo) ---------- */
@@ -864,7 +867,8 @@ function planView(host){
       <p class="xmp">Es un ritmo intenso: cuenta con unas 2 horas al día además de las clases.</p>
       <label class="qq" for="start">¿Qué día empezaste el intensivo?</label>
       <div class="row"><input type="date" id="start" class="filter" value="${store.plan.start || ymd(new Date())}"><button class="btn primary" id="go">Guardar</button></div>
-    </section></div>`;
+    </section>${backupHTML()}</div>`;
+    bindBackup();
     $("#go").onclick = () => { const v = $("#start").value; if(!v) return; store.plan.start = v; delete store.plan.editing; save(); planView(host); };
     return;
   }
@@ -893,7 +897,9 @@ function planView(host){
       </details>`; }).join("")}
     </section>
     <p class="xmp">Empezaste el ${new Date(store.plan.start + "T00:00:00").toLocaleDateString("es-ES", {day:"numeric", month:"long", year:"numeric"})}. <button class="linkbtn" id="edit">Cambiar fecha</button></p>
+    ${backupHTML()}
   </div>`;
+  bindBackup();
   host.querySelectorAll(".tasks input").forEach(c => c.onchange = () => { if(c.checked) store.done[c.dataset.key] = true; else delete store.done[c.dataset.key]; touchDay(); save(); planView(host); });
   $("#edit").onclick = () => { store.plan.editing = true; planView(host); };
 }
@@ -935,9 +941,72 @@ function addJump(host){
 }
 const TABS = [["plan","Plan"],["guias","Guías"],["practicar","Practicar"],["tarjetas","Tarjetas"],["fallos","Fallos"]];
 function notFound(host){ host.innerHTML = `<p class="empty">No encuentro esta sección. <a href="#plan">Volver al plan</a></p>`; }
+// Tema: automático (el del sistema), claro u oscuro
+const THEMES = [["auto", "automático", "auto"], ["light", "claro", "sun"], ["dark", "oscuro", "moon"]];
+function applyTheme(){
+  const t = store.theme;
+  if(t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  else delete document.documentElement.dataset.theme;
+}
 function renderStats(){
   const s = streak();
-  $("#stats").innerHTML = `<span class="chip" title="Días seguidos practicando">${ICON.flame}<span class="l">Racha </span><b>${s} ${s===1?"día":"días"}</b></span><span class="chip" title="Porcentaje de aciertos">${ICON.target}<span class="l">Acierto </span><b>${pct(store.correct, store.answered)}%</b></span>`;
+  const th = THEMES.find(x => x[0] === store.theme) || THEMES[0];
+  $("#stats").innerHTML = `<span class="chip" title="Días seguidos practicando">${ICON.flame}<span class="l">Racha </span><b>${s} ${s===1?"día":"días"}</b></span><span class="chip" title="Porcentaje de aciertos">${ICON.target}<span class="l">Acierto </span><b>${pct(store.correct, store.answered)}%</b></span>
+    <button type="button" class="themebtn" id="themebtn" aria-label="Tema: ${th[1]}. Cambiar tema" title="Tema: ${th[1]}">${ICON[th[2]]}</button>`;
+  $("#themebtn").onclick = () => {
+    const k = THEMES.findIndex(x => x[0] === store.theme);
+    store.theme = THEMES[(k + 1) % THEMES.length][0];
+    save(); applyTheme(); renderStats();
+    $("#themebtn").focus();
+  };
+}
+
+/* ---------- AVISOS ---------- */
+let toastTimer = null;
+function toast(msg, action, cb){
+  const t = $("#toast"); if(!t) return;
+  clearTimeout(toastTimer);
+  t.innerHTML = `<span>${esc(msg)}</span>${action ? `<button type="button" class="btn small primary">${esc(action)}</button>` : ""}`;
+  t.hidden = false;
+  if(action) t.querySelector("button").onclick = () => { t.hidden = true; if(cb) cb(); };
+  else toastTimer = setTimeout(() => t.hidden = true, 3500);
+}
+
+/* ---------- COPIA DE SEGURIDAD ---------- */
+// El progreso vive solo en este navegador: se puede guardar en un archivo y restaurar en otro dispositivo
+function exportData(){
+  const blob = new Blob([JSON.stringify({app:"kit-b1", version:1, saved:new Date().toISOString(), data:store}, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `kit-b1-progreso-${ymd(new Date())}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  toast("Copia guardada en tus descargas.");
+}
+function importData(text){
+  let f = null;
+  try { f = JSON.parse(text); } catch(e){}
+  const d = f && f.data;
+  const ok = f && f.app === "kit-b1" && d && typeof d === "object" && !Array.isArray(d)
+    && d.mistakes && typeof d.mistakes === "object" && !Array.isArray(d.mistakes) && Array.isArray(d.days);
+  if(!ok){ toast("Ese archivo no es una copia válida de Kit B1."); return false; }
+  store = Object.assign(DEFAULTS(), d);
+  save(); applyTheme(); route();
+  toast("Progreso restaurado.");
+  return true;
+}
+const backupHTML = () => `<section class="backup"><h2 class="h2">Copia de seguridad</h2>
+  <p class="intro">Tu progreso se guarda solo en este navegador. Guarda una copia para no perderlo o para pasarlo a otro dispositivo.</p>
+  <div class="row"><button type="button" class="btn" id="exp">Guardar copia</button><button type="button" class="btn" id="imp">Restaurar copia</button>
+  <input type="file" id="impfile" accept="application/json,.json" hidden></div></section>`;
+function bindBackup(){
+  $("#exp").onclick = exportData;
+  $("#imp").onclick = () => $("#impfile").click();
+  $("#impfile").onchange = e => {
+    const file = e.target.files[0]; if(!file) return;
+    file.text().then(importData, () => toast("No he podido leer el archivo."));
+    e.target.value = "";
+  };
 }
 function renderNav(){
   const [tab] = parseHash();
@@ -949,6 +1018,7 @@ function parseHash(){
   const tab = decodeURIComponent(i < 0 ? h : h.slice(0, i)) || "plan";
   return [TABS.some(t => t[0] === tab) ? tab : "plan", i < 0 ? null : decodeURIComponent(h.slice(i + 1))];
 }
+let firstRoute = true;
 function route(){
   if(cleanup){ cleanup(); cleanup = null; }
   keyHandler = null;
@@ -965,10 +1035,28 @@ function route(){
   if(tab === "tarjetas") sub ? flashcards(host, sub) : cardsMenu(host);
   if(tab === "fallos") mistakes(host);
   if(!sub && tab !== "plan") addJump(host);
+  const name = TABS.find(t => t[0] === tab)[1], h2 = sub && host.querySelector("h2");
+  document.title = `${h2 ? h2.textContent.trim() + " · " : ""}${name} · Kit B1`;
   window.scrollTo({top:0});
+  // Al cambiar de sección, el lector de pantalla y el teclado empiezan por el contenido nuevo
+  if(!firstRoute) host.focus({preventScroll:true});
+  firstRoute = false;
 }
 window.addEventListener("hashchange", route);
+// «Saltar al contenido» mueve el foco sin tocar el hash, que es la ruta de la app
+document.querySelector(".skip").onclick = e => { e.preventDefault(); $("#panel").focus(); };
 if(!location.hash) history.replaceState(null, "", "#" + (store.lastTab || "plan"));
+applyTheme();
 route();
 
-if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register("sw.js").catch(() => {});
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
+  // Si ya había una versión controlando la página, el cambio de controlador es una actualización
+  const hadController = !!navigator.serviceWorker.controller;
+  let notified = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if(!hadController || notified) return;
+    notified = true;
+    toast("Hay una versión nueva de Kit B1.", "Recargar", () => location.reload());
+  });
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}

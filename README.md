@@ -7,8 +7,10 @@ App web para preparar el **Cambridge B1 Preliminary** desde cero en 10 semanas. 
 - **Practicar**: tests rápidos (2 min, 60 s, 5 min), simulacros que se corrigen solos y ejercicios de cada tema.
 - **Tarjetas**: phrasal verbs, verbos irregulares y 16 temas de vocabulario, con audio.
 - **Fallos**: guarda lo que fallas hasta que lo aciertas.
+- **Tema**: claro, oscuro o automático (el del sistema), con el botón redondo de arriba.
+- **Copia de seguridad**: al final del Plan puedes guardar tu progreso en un archivo y restaurarlo en otro dispositivo.
 
-El progreso se guarda en el navegador de cada dispositivo (no hay cuentas ni servidor).
+El progreso se guarda en el navegador de cada dispositivo (no hay cuentas ni servidor). Para pasarlo a otro móvil u ordenador, usa **Guardar copia** y **Restaurar copia** en la sección *Copia de seguridad* del Plan.
 
 ## Publicarlo gratis en GitHub Pages
 
@@ -28,7 +30,7 @@ El progreso se guarda en el navegador de cada dispositivo (no hay cuentas ni ser
 
 ### Actualizarla
 
-Sube los archivos cambiados al repositorio (Add file → Upload files). Si cambias archivos, sube también `sw.js` con el número de `CACHE` aumentado (por ejemplo `kitb1-v3`) para que los móviles descarguen la versión nueva.
+Sube los archivos cambiados al repositorio (Add file → Upload files). Si cambias archivos, sube también `sw.js` con el número de `CACHE` aumentado (por ejemplo, de `kitb1-v16` a `kitb1-v17`) para que los móviles descarguen la versión nueva.
 
 ## Archivos
 

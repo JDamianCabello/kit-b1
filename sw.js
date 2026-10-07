@@ -30,8 +30,10 @@ self.addEventListener("fetch", e => {
   } else if(/fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)){
     e.respondWith(
       caches.match(req).then(hit => hit || fetch(req).then(res => {
-        const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res;
-      }))
+        // Solo se guardan respuestas válidas (o opacas, las de otro dominio sin CORS)
+        if(res.ok || res.type === "opaque"){ const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
+        return res;
+      }).catch(() => Response.error()))
     );
   }
 });
