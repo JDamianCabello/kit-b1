@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mezcla de tarjetas · Kit B1</title>
+    <meta name="description" content="Elige los temas que quieras y practica todas sus tarjetas juntas." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/mix.js"></script>
+  </head>
+  <body data-tab="tarjetas" class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Tarjetas</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Tarjetas</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <form class="mixform" action="mazo.html" method="get">
+          <div class="ptop">
+            <h1 class="gh1">Mezcla</h1>
+            <p class="intro">
+              Marca los temas que quieras repasar juntos. Las tarjetas repetidas entre temas salen una sola vez.
+            </p>
+          </div>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Comparativos y superlativos</span
+              ><button type="button" class="linkbtn js-only" data-all="0">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="comp-form" data-count="112" /><span
+                  ><b>Forma el comparativo</b><small>112 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="sup-form" data-count="112" /><span
+                  ><b>Forma el superlativo</b><small>112 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="comp-sent" data-count="116" /><span
+                  ><b>Comparativos en frases</b><small>116 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="sup-sent" data-count="114" /><span
+                  ><b>Superlativos en frases</b><small>114 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Ropa, joyas, colores y materiales</span
+              ><button type="button" class="linkbtn js-only" data-all="1">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="ropa" data-count="123" /><span
+                  ><b>Ropa, joyas, colores y materiales</b><small>123 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Phrasal verbs</span><button type="button" class="linkbtn js-only" data-all="2">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pv-sent" data-count="100" /><span
+                  ><b>Phrasal verbs: elige el correcto</b><small>100 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pv" data-count="34" /><span
+                  ><b>Phrasal verbs</b><small>34 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pv2" data-count="30" /><span
+                  ><b>Phrasal verbs 2</b><small>30 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pv-fill" data-count="34" /><span
+                  ><b>Phrasal verbs: completa la frase</b><small>34 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Tiempos verbales</span><button type="button" class="linkbtn js-only" data-all="3">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="t-conj" data-count="20" /><span
+                  ><b>Tiempos: conjuga el verbo</b><small>20 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="t-which" data-count="20" /><span
+                  ><b>Tiempos: ¿qué tiempo es?</b><small>20 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="t-signal" data-count="18" /><span
+                  ><b>Tiempos: palabras señal</b><small>18 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="t-struct" data-count="14" /><span
+                  ><b>Tiempos: cómo se forman</b><small>14 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="iv" data-count="62" /><span
+                  ><b>Verbos irregulares</b><small>62 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Preposiciones</span><button type="button" class="linkbtn js-only" data-all="4">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="prep-10" data-count="10" /><span
+                  ><b>Las 10 preposiciones</b><small>10 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pc-prep-dep" data-count="28" /><span
+                  ><b>Verbo o adjetivo + preposición</b><small>28 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="pc-prep-iot" data-count="26" /><span
+                  ><b>In, on, at: expresiones</b><small>26 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Personas</span
+              ><button type="button" class="linkbtn js-only" data-all="5">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-family" data-count="123" /><span
+                  ><b>Familia y personas</b><small>123 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-describe" data-count="114" /><span
+                  ><b>Describir a alguien</b><small>114 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-feelings" data-count="117" /><span
+                  ><b>Sentimientos</b><small>117 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-body" data-count="111" /><span
+                  ><b>El cuerpo</b><small>111 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-jobs" data-count="123" /><span
+                  ><b>Profesiones</b><small>123 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-countries" data-count="128" /><span
+                  ><b>Países y nacionalidades</b><small>128 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Casa y vida diaria</span
+              ><button type="button" class="linkbtn js-only" data-all="6">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-house" data-count="118" /><span
+                  ><b>Casa</b><small>118 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-routine" data-count="110" /><span
+                  ><b>Rutina diaria</b><small>110 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-chores" data-count="108" /><span
+                  ><b>Tareas de casa</b><small>108 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-food" data-count="123" /><span
+                  ><b>Comida y bebida</b><small>123 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-cooking" data-count="121" /><span
+                  ><b>Cocinar y la cocina</b><small>121 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-timewords" data-count="132" /><span
+                  ><b>Palabras de tiempo</b><small>132 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-tools" data-count="118" /><span
+                  ><b>Objetos y herramientas</b><small>118 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Ciudad, viajes y compras</span
+              ><button type="button" class="linkbtn js-only" data-all="7">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-town" data-count="117" /><span
+                  ><b>La ciudad</b><small>117 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-travel" data-count="123" /><span
+                  ><b>Viajes y transporte</b><small>123 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-driving" data-count="105" /><span
+                  ><b>El coche y la carretera</b><small>105 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-hotel" data-count="112" /><span
+                  ><b>Hotel y vacaciones</b><small>112 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-clothes" data-count="119" /><span
+                  ><b>Ropa y compras</b><small>119 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-shopping" data-count="117" /><span
+                  ><b>De compras</b><small>117 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-money" data-count="108" /><span
+                  ><b>Dinero y banco</b><small>108 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Estudios, trabajo y tecnología</span
+              ><button type="button" class="linkbtn js-only" data-all="8">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-work" data-count="118" /><span
+                  ><b>Trabajo y estudios</b><small>118 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-school" data-count="117" /><span
+                  ><b>Colegio y estudios</b><small>117 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-tech" data-count="119" /><span
+                  ><b>Tecnología y medios</b><small>119 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-communication" data-count="120" /><span
+                  ><b>Teléfono y comunicación</b><small>120 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-science" data-count="113" /><span
+                  ><b>Ciencia y espacio</b><small>113 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Salud, naturaleza y problemas</span
+              ><button type="button" class="linkbtn js-only" data-all="9">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-health" data-count="121" /><span
+                  ><b>Salud y cuerpo</b><small>121 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-weather" data-count="114" /><span
+                  ><b>El tiempo</b><small>114 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-nature" data-count="122" /><span
+                  ><b>Naturaleza y medio ambiente</b><small>122 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-animals" data-count="120" /><span
+                  ><b>Animales</b><small>120 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-emergencies" data-count="118" /><span
+                  ><b>Emergencias y problemas</b><small>118 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-geography" data-count="109" /><span
+                  ><b>Geografía y el mundo</b><small>109 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Ocio y cultura</span
+              ><button type="button" class="linkbtn js-only" data-all="10">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-sport" data-count="121" /><span
+                  ><b>Deporte y tiempo libre</b><small>121 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-entertainment" data-count="122" /><span
+                  ><b>Cine, música y ocio</b><small>122 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-music" data-count="109" /><span
+                  ><b>Música e instrumentos</b><small>109 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-art" data-count="110" /><span
+                  ><b>Arte y manualidades</b><small>110 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-celebrations" data-count="114" /><span
+                  ><b>Fiestas y celebraciones</b><small>114 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Sociedad</span
+              ><button type="button" class="linkbtn js-only" data-all="11">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-society" data-count="112" /><span
+                  ><b>Sociedad y política</b><small>112 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-crime" data-count="107" /><span
+                  ><b>Crimen y ley</b><small>107 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="mixgroup">
+            <legend>
+              <span>Vocabulario: Palabras y frases útiles</span
+              ><button type="button" class="linkbtn js-only" data-all="12">Todos</button>
+            </legend>
+            <div class="mixgrid">
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-verbs" data-count="151" /><span
+                  ><b>Verbos imprescindibles</b><small>151 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-adjectives" data-count="142" /><span
+                  ><b>Adjetivos opuestos</b><small>142 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-collocations" data-count="114" /><span
+                  ><b>Expresiones con make, do, have y get</b><small>114 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-phrases" data-count="102" /><span
+                  ><b>Frases útiles para conversar</b><small>102 tarjetas</small></span
+                ></label
+              >
+              <label class="mixitem"
+                ><input type="checkbox" name="mix" value="tp-measures" data-count="124" /><span
+                  ><b>Formas, medidas y cantidades</b><small>124 tarjetas</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <div class="mixbar">
+            <p><b id="mix-decks">0 temas</b> · <span id="mix-cards">0 tarjetas</span></p>
+            <button type="button" class="btn ghost js-only" id="mix-clear">Quitar todo</button>
+            <button class="btn primary" id="mix-go">
+              Empezar <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg>
+            </button>
+          </div>
+        </form>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

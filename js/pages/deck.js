@@ -7,22 +7,34 @@ import { DECKS } from "../lib/content.js";
 import { renderStats } from "../lib/shell.js";
 import "../lib/speech.js";
 
-const deckId = params().get("id"), d = DECKS[deckId];
+// Un mazo (?id=pv) o una mezcla de varios (?mix=tp-food&mix=tp-house). Cada tarjeta recuerda su mazo:
+// de ahí salen las opciones de «Elegir» y si se pregunta en una sola dirección (oneWay).
+const deckId = params().get("id"), mixIds = params().getAll("mix").filter(id => DECKS[id]);
+const tag = id => c => ({...c, deck:id, oneWay:!!DECKS[id].oneWay});
+let d = null;
+if(mixIds.length){
+  const seen = new Set(), cards = [];
+  for(const id of mixIds) for(const c of DECKS[id].cards.map(tag(id))){
+    const k = c.en + "\u0000" + c.es;
+    if(!seen.has(k)){ seen.add(k); cards.push(c); }
+  }
+  d = {name:`Mezcla · ${mixIds.length} ${mixIds.length === 1 ? "tema" : "temas"}`, cards, mix:true};
+} else if(DECKS[deckId]) d = {...DECKS[deckId], cards: DECKS[deckId].cards.map(tag(deckId))};
 if(!d){ $("#not-found").hidden = false; }
 else init();
 
 function init(){
-  markDone("c:" + deckId);
+  if(!d.mix) markDone("c:" + deckId);
   $("#title").textContent = d.name;
   document.title = `${d.name} · Tarjetas · Kit B1`;
-  $("#dir").hidden = !!d.oneWay;
+  $("#dir").hidden = d.cards.every(c => c.oneWay);
 
   const pick = () => store.cardShort ? shuffle(d.cards).slice(0, 10) : shuffle(d.cards);
   let cards = pick(), i = 0, flipped = false, answered = null, opts = null, right = 0, seen = 0, missed = [], finished = false;
   const mode = () => store.cardMode || "flip";
-  const enFirst = () => d.oneWay || store.cardDir === "en";
-  const ask = c => enFirst() ? c.en : c.es;
-  const want = c => enFirst() ? c.es : c.en;
+  const enFirst = c => c.oneWay || store.cardDir === "en";
+  const ask = c => enFirst(c) ? c.en : c.es;
+  const want = c => enFirst(c) ? c.es : c.en;
   const reset = () => { flipped = false; answered = null; opts = null; };
   const HELP = {
     flip: "Gira la tarjeta y di si te la sabías. Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar, 1 = no me la sé, 2 = me la sé.",
@@ -31,15 +43,15 @@ function init(){
   };
 
   function render(){
-    const m = mode(), en = enFirst();
-    for(const b of $$("[data-dir]")) b.setAttribute("aria-pressed", b.dataset.dir === (en ? "en" : "es"));
+    const m = mode();
+    for(const b of $$("[data-dir]")) b.setAttribute("aria-pressed", b.dataset.dir === (store.cardDir === "es" ? "es" : "en"));
     for(const b of $$("[data-mode]")) b.setAttribute("aria-pressed", b.dataset.mode === m);
     for(const b of $$("[data-short]")) b.setAttribute("aria-pressed", (b.dataset.short === "1") === !!store.cardShort);
     $("#deck").hidden = finished;
     $("#finished").hidden = !finished;
     if(finished) return renderFinished();
 
-    const c = cards[i], done = !!answered;
+    const c = cards[i], done = !!answered, en = enFirst(c);
     const card = $("#card");
     card.classList.toggle("stack", m === "flip");
     card.classList.toggle("static", m !== "flip");
@@ -47,13 +59,13 @@ function init(){
     card.setAttribute("role", m === "flip" ? "button" : "group");
     const front = $("#card-front");
     front.textContent = ask(c);
-    front.className = `pv${en ? "" : " es-front"}${d.oneWay ? " long" : ""}`;
+    front.className = `pv${en ? "" : " es-front"}${c.oneWay ? " long" : ""}`;
     const showBack = m === "flip" && flipped;
     $("#card-back").hidden = !showBack; $("#card-back").textContent = want(c);
     $("#card-ex").hidden = !(showBack && c.ex); $("#card-ex").innerHTML = showBack && c.ex ? c.ex : "";   // ejemplo de nuestros datos, con <b> y <mark>
     $("#flip-hint").hidden = m !== "flip" || flipped;
     const say = $("#card-say");
-    say.hidden = !((en && !d.oneWay) || flipped || done);
+    say.hidden = !((en && !c.oneWay) || flipped || done);
     say.dataset.say = c.say || c.en;
 
     $("#session").hidden = m === "flip";
@@ -62,7 +74,8 @@ function init(){
     $("#write").hidden = m !== "write";
     if(m === "choice"){
       if(!opts){
-        const others = [...new Set(d.cards.map(want))].filter(x => x !== want(c));
+        // Opciones incorrectas del mismo mazo que la tarjeta, para que se parezcan
+        const others = [...new Set(DECKS[c.deck].cards.map(x => en ? x.es : x.en))].filter(x => x !== want(c));
         opts = shuffle([want(c), ...(c.opts && en ? c.opts : shuffle(others).slice(0, 3))]);
       }
       $("#opts").replaceChildren(...opts.map((o, k) => {
@@ -75,7 +88,7 @@ function init(){
     }
     if(m === "write"){
       const inp = $("#answer");
-      inp.placeholder = d.oneWay ? "Escribe la respuesta" : en ? "Escribe en español" : "Escribe en inglés";
+      inp.placeholder = c.oneWay ? "Escribe la respuesta" : en ? "Escribe en español" : "Escribe en inglés";
       inp.value = done ? answered.val : "";
       inp.disabled = done; inp.className = done ? (answered.ok ? "ok" : "bad") : "";
       for(const b of $$("#write button")) b.disabled = done;
