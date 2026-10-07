@@ -60,7 +60,13 @@ const ICON = {
   target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'),
   sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
   moon: svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
-  auto: svg('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>')
+  auto: svg('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>'),
+  ok: svg('<circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'),
+  ko: svg('<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/>'),
+  right: svg('<path d="M9 6l6 6-6 6"/>'),
+  arrow: svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
+  undo: svg('<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>'),
+  mic: svg('<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>')
 };
 
 /* ---------- SPEECH (pronunciación con la voz del dispositivo) ---------- */
@@ -271,8 +277,8 @@ function runQuiz(host, pool, n=10, setId=null, keepOrder=false){
     record(it, ok);
     const b = $("#blank"); b.textContent = it.ans[0] === "—" ? "(nada)" : it.ans[0]; b.classList.add("filled");
     if(it.opts){
-      host.querySelectorAll(".opt").forEach(o => { o.disabled = true; if(o.dataset.v === it.ans[0]) o.classList.add("ok"); });
-      if(!ok && btn) btn.classList.add("bad");
+      host.querySelectorAll(".opt").forEach(o => { o.disabled = true; if(o.dataset.v === it.ans[0]){ o.classList.add("ok"); o.insertAdjacentHTML("beforeend", ICON.ok); } });
+      if(!ok && btn){ btn.classList.add("bad"); btn.insertAdjacentHTML("beforeend", ICON.ko); }
     } else {
       const inp = $("#answer-input"); inp.disabled = true; inp.classList.add(ok ? "ok" : "bad");
       host.querySelectorAll("#typed button").forEach(x => x.disabled = true);
@@ -391,7 +397,7 @@ function flashcards(host, deckId){
     }
     let body;
     if(m === "flip"){
-      body = `<div class="card" id="card" role="button" tabindex="0" aria-live="polite">
+      body = `<div class="card stack" id="card" role="button" tabindex="0" aria-live="polite">
         ${front}
         ${flipped ? `<p class="es">${esc(want(c))}</p>${extra}` : `<small>Piensa la respuesta y toca para girar</small>`}
         ${((en && !d.oneWay) || flipped) ? spk(c.say || c.en) : ""}
@@ -408,7 +414,7 @@ function flashcards(host, deckId){
         ${m === "choice"
           ? `<div class="opts">${opts.map((o,k) => {
               const cls = done ? (o === want(c) ? "ok" : o === answered.val ? "bad" : "") : "";
-              return `<button class="opt ${cls}" data-k="${k}" ${done ? "disabled" : ""}><kbd>${k+1}</kbd>${esc(o)}</button>`; }).join("")}</div>`
+              return `<button class="opt ${cls}" data-k="${k}" ${done ? "disabled" : ""}><kbd>${k+1}</kbd>${esc(o)}${cls === "ok" ? ICON.ok : cls === "bad" ? ICON.ko : ""}</button>`; }).join("")}</div>`
           : `<form class="typed" id="cwrite"><input id="card-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"
               placeholder="${d.oneWay ? "Escribe la respuesta" : en ? "Escribe en español" : "Escribe en inglés"}" aria-label="Tu respuesta" value="${done ? esc(answered.val) : ""}" ${done ? `disabled class="${answered.ok ? "ok" : "bad"}"` : ""}>
               <button class="btn primary" ${done ? "disabled" : ""}>Comprobar</button><button type="button" class="btn ghost" id="cskip" ${done ? "disabled" : ""}>No lo sé</button></form>`}
@@ -417,15 +423,20 @@ function flashcards(host, deckId){
     host.innerHTML = `<div class="fc">${head}${body}
       <div class="fcnav">
         <button class="btn" id="prev" aria-label="Anterior">←</button>
-        <span class="count">${i+1} / ${cards.length}</span>
-        <button class="btn primary" id="nxt">Siguiente →</button>
+        <span class="fcprog"><span class="count">${i+1} / ${cards.length}</span>${cards.length <= 20
+          ? `<span class="dots">${cards.map((x, k) => `<i class="${k < i ? "past" : k === i ? "cur" : ""}"></i>`).join("")}</span>`
+          : `<span class="bar"><i style="width:${(i+1)/cards.length*100}%"></i></span>`}</span>
+        ${m === "flip" && flipped
+          ? `<span class="rate"><button class="btn nope" id="nope">${ICON.undo}No me la sé</button><button class="btn primary" id="know">${ICON.check}Me la sé</button></span>`
+          : `<button class="btn primary" id="nxt">${m === "flip" ? "Girar" : "Siguiente →"}</button>`}
       </div>
-      <p class="intro">${m === "flip" ? "Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar y flechas para moverte." : m === "choice" ? "Elige la traducción correcta. En ordenador puedes usar las teclas 1 a 4." : "Escribe la traducción. Las tildes no cuentan y si hay varias opciones vale cualquiera."}
+      <p class="intro">${m === "flip" ? "Gira la tarjeta y di si te la sabías. Desliza a los lados para cambiar de tarjeta. En ordenador: espacio para girar, 1 = no me la sé, 2 = me la sé." : m === "choice" ? "Elige la traducción correcta. En ordenador puedes usar las teclas 1 a 4." : "Escribe la traducción. Las tildes no cuentan y si hay varias opciones vale cualquiera."}
         <button class="linkbtn" id="shuf">Barajar de nuevo</button></p></div>`;
 
     bindHead();
     $("#prev").onclick = () => move(-1);
-    $("#nxt").onclick = () => move(1);
+    if($("#nxt")) $("#nxt").onclick = () => m === "flip" ? $("#card").click() : move(1);
+    if($("#know")){ $("#know").onclick = () => rate(true); $("#nope").onclick = () => rate(false); }
     $("#shuf").onclick = () => restart(pick());
 
     if(m === "flip"){
@@ -443,7 +454,7 @@ function flashcards(host, deckId){
         $("#cwrite").onsubmit = e => { e.preventDefault(); if(inp.value.trim()) check(inp.value, cardMatch(want(c), inp.value)); };
         $("#cskip").onclick = () => check("", false);
       }
-    } else $("#nxt").focus({preventScroll:true});
+    } else $("#nxt")?.focus({preventScroll:true});
   }
   function bindHead(){
     host.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => { store.cardDir = b.dataset.dir; save(); restart(cards); });
@@ -456,14 +467,17 @@ function flashcards(host, deckId){
     touchDay(); save(); renderStats();
     render();
   }
-  // En Elegir y Escribir, al pasar de la última tarjeta se muestra el resultado de la tanda
+  // Girar: «me la sé» / «no me la sé» cuenta para el resultado y pasa a la siguiente
+  function rate(ok){ seen++; if(ok) right++; else missed.push(cards[i]); touchDay(); save(); renderStats(); move(1); }
+  // Al pasar de la última tarjeta, si has respondido alguna, se muestra el resultado de la tanda
   const move = s => {
-    if(s > 0 && i === cards.length - 1 && mode() !== "flip" && seen){ finished = true; reset(); return render(); }
+    if(s > 0 && i === cards.length - 1 && seen){ finished = true; reset(); return render(); }
     i = (i + s + cards.length) % cards.length; reset(); render();
   };
   keyHandler = e => {
     const m = mode();
     if(m === "flip" && e.key === " "){ e.preventDefault(); $("#card")?.click(); }
+    if(m === "flip" && flipped && (e.key === "1" || e.key === "2")) rate(e.key === "2");
     if(m === "choice" && !answered){ const k = +e.key, bs = host.querySelectorAll(".opt"); if(k >= 1 && k <= bs.length) bs[k-1].click(); }
     if(e.key === "ArrowRight") move(1);
     if(e.key === "ArrowLeft") move(-1);
@@ -872,37 +886,68 @@ function planView(host){
     $("#go").onclick = () => { const v = $("#start").value; if(!v) return; store.plan.start = v; delete store.plan.editing; save(); planView(host); };
     return;
   }
-  const cw = weekNow();
-  const all = PLAN.flatMap((w, wi) => w.tasks.map((t, i) => taskInfo(t, wi+1, i)));
+  const cw = weekNow(), wn = planWeek || cw, w = PLAN[wn-1];
+  const weekTasks = n => PLAN[n-1].tasks.map((t, i) => ({...taskInfo(t, n, i), k:t[0]}));
+  const all = PLAN.flatMap((x, wi) => weekTasks(wi+1));
   const doneN = all.filter(t => store.done[t.key]).length;
   const exam = new Date(store.plan.start + "T00:00:00"); exam.setDate(exam.getDate() + 70);
-  host.innerHTML = `<div class="menu">
-    <section class="summary">
-      <div><p class="tag">Semana ${cw} de 10</p><h2 class="h2">${PLAN[cw-1].title}</h2><p class="intro">${PLAN[cw-1].goal}</p></div>
-      <div class="bar big-bar"><i style="width:${pct(doneN, all.length)}%"></i></div>
-      <p class="xmp">${doneN} de ${all.length} tareas del plan · examen hacia el ${exam.toLocaleDateString("es-ES", {day:"numeric", month:"long"})}</p>
-    </section>
-    <section><div class="quick">
-      <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
-      <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint</span></a>
-      <a class="qbtn" href="#practicar/mix"><b>10 min</b><span>Repaso mixto</span></a>
-    </div><h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
-    <section class="weeks">${PLAN.map((w, wi) => {
-      const n = wi + 1, tasks = w.tasks.map((t, i) => taskInfo(t, n, i)), d = tasks.filter(t => store.done[t.key]).length;
-      return `<details class="week ${n === cw ? "now" : ""}" ${n === cw ? "open" : ""}>
-        <summary><span class="wn">${n}</span><span class="wt"><b>${w.title}</b><small>${d}/${tasks.length} hechas</small></span>${d === tasks.length ? `<i class="seen">${ICON.check}</i>` : ""}</summary>
-        <p class="intro">${w.goal}</p>
-        <ul class="tasks">${tasks.map((t, i) => `<li><input type="checkbox" id="t-${n}-${i}" data-key="${esc(t.key)}" ${store.done[t.key] ? "checked" : ""} aria-label="Hecho">
-          ${t.href ? `<a href="${t.href}" ${t.ext ? 'target="_blank" rel="noopener"' : ""}>${esc(t.label)}${t.ext ? ICON.ext : ""}</a>` : `<label for="t-${n}-${i}">${esc(t.label)}</label>`}</li>`).join("")}</ul>
-      </details>`; }).join("")}
-    </section>
-    <p class="xmp">Empezaste el ${new Date(store.plan.start + "T00:00:00").toLocaleDateString("es-ES", {day:"numeric", month:"long", year:"numeric"})}. <button class="linkbtn" id="edit">Cambiar fecha</button></p>
-    ${backupHTML()}
+  const tasks = weekTasks(wn), d = tasks.filter(t => store.done[t.key]).length;
+  const strip = PLAN.map((x, wi) => {
+    const n = wi + 1, full = weekTasks(n).every(t => store.done[t.key]);
+    return `<button class="wk ${full ? "full" : ""} ${n === cw ? "now" : ""}" data-w="${n}" aria-pressed="${n === wn}" aria-label="Semana ${n}${full ? ", completa" : ""}">${full ? ICON.check : ""}${n}</button>`;
+  }).join("");
+  const row = (t, i) => {
+    const [kl, ic, kc] = KIND[t.k] || KIND.t, ok = !!store.done[t.key], id = `t-${wn}-${i}`;
+    const name = esc(t.label.replace(/^(Guía|Test|Tarjetas|Simulacro|Writing): /, ""));
+    const inner = `<span class="tname">${name}</span><span class="kind k-${kc}">${ic}${kl}</span>`;
+    return `<li class="${ok ? "done" : ""}"><input type="checkbox" id="${id}" data-key="${esc(t.key)}" ${ok ? "checked" : ""} aria-label="Hecho">
+      ${t.href ? `<a href="${t.href}" ${t.ext ? 'target="_blank" rel="noopener"' : ""}>${inner}${ICON.right}</a>` : `<label for="${id}">${inner}</label>`}</li>`;
+  };
+  const mids = Object.keys(store.mistakes).filter(id => ITEMS[id]).sort((a, b) => store.mistakes[b] - store.mistakes[a]);
+  const res = w.tasks.filter(t => t[0] === "r").map(t => RESOURCES.find(r => r.id === t[1])).filter(Boolean)[0];
+  host.innerHTML = `<div class="plan">
+    <div class="pmain">
+      <section class="whero">
+        <div class="wtop">
+          <div><p class="tag">Semana ${wn} de 10${wn !== cw ? ` · vas por la ${cw}` : ""}</p><h2 class="wtitle">${w.title}</h2><p class="intro">${w.goal}</p></div>
+          <p class="sticky">Examen hacia el ${exam.toLocaleDateString("es-ES", {day:"numeric", month:"long"})}</p>
+        </div>
+        <div class="wprog"><div class="qmeta"><span>${doneN} de ${all.length} tareas del plan</span><b>${pct(doneN, all.length)}%</b></div>
+          <div class="bar big-bar"><i style="width:${pct(doneN, all.length)}%"></i></div></div>
+        <div class="wstrip" role="group" aria-label="Elige la semana">${strip}</div>
+      </section>
+      <section class="ptasks">
+        <div class="phead"><h3 class="h2">${wn === cw ? "Tareas de esta semana" : `Tareas de la semana ${wn}`}</h3><span class="count">${d} de ${tasks.length} hechas</span></div>
+        <ul class="tasks">${tasks.map(row).join("")}</ul>
+      </section>
+      <p class="xmp">Empezaste el ${new Date(store.plan.start + "T00:00:00").toLocaleDateString("es-ES", {day:"numeric", month:"long", year:"numeric"})}. <button class="linkbtn" id="edit">Cambiar fecha</button></p>
+      ${backupHTML()}
+    </div>
+    <aside class="pside">
+      <section><h3 class="h2">Tengo poco tiempo</h3><div class="quick">
+        <a class="qbtn" href="#practicar/quick5"><b>2 min</b><span>Test rápido</span></a>
+        <a class="qbtn" href="#practicar/sprint"><b>60 s</b><span>Sprint</span></a>
+        <a class="qbtn" href="#practicar/mix"><b>10 min</b><span>Repaso mixto</span></a>
+      </div></section>
+      <section><h3 class="h3">Mini tests de 5 preguntas</h3>${miniChips()}</section>
+      ${mids.length ? `<section class="mcard">
+        <div class="mhead"><h3>Tus fallos</h3><b>${mids.length}</b></div>
+        <p class="mex">${filled(ITEMS[mids[0]])}</p>
+        <p>Cada pregunta sale de la lista cuando la aciertas.</p>
+        <a class="btn bad" href="#fallos">Practicar mis fallos ${ICON.arrow}</a>
+      </section>` : `<section class="mcard clean"><div class="mhead"><h3>Sin fallos guardados</h3>${ICON.check}</div><p>Cuando falles una pregunta aparecerá aquí hasta que la aciertes.</p></section>`}
+      ${res ? `<a class="pres" href="${res.url}" target="_blank" rel="noopener"><small>${esc(res.by)}</small><b>${esc(res.name)} ${ICON.ext}</b><span>${esc(res.what)}</span></a>` : ""}
+    </aside>
   </div>`;
   bindBackup();
   host.querySelectorAll(".tasks input").forEach(c => c.onchange = () => { if(c.checked) store.done[c.dataset.key] = true; else delete store.done[c.dataset.key]; touchDay(); save(); planView(host); });
+  host.querySelectorAll(".wk").forEach(b => b.onclick = () => { planWeek = +b.dataset.w === cw ? null : +b.dataset.w; planView(host); });
   $("#edit").onclick = () => { store.plan.editing = true; planView(host); };
 }
+// Semana que se está viendo en el plan (null = la actual) y el tipo de cada tarea: [nombre, icono, color]
+let planWeek = null;
+const KIND = {g:["Guía", ICON.guias, "g"], q:["Test", ICON.practicar, "q"], x:["Simulacro", ICON.practicar, "q"], w:["Writing", ICON.practicar, "q"],
+  s:["Práctica", ICON.practicar, "q"], c:["Tarjetas", ICON.tarjetas, "c"], r:["Recurso", ICON.ext, "r"], t:["Tarea", ICON.mic, "t"]};
 
 /* ---------- MISTAKES ---------- */
 function mistakes(host){
@@ -1026,8 +1071,10 @@ function route(){
   const [tab, sub] = parseHash();
   store.lastTab = tab; save();
   renderNav(); renderStats();
+  document.body.dataset.tab = tab;
+  if(sub && (tab === "practicar" || tab === "tarjetas")) document.body.dataset.focus = ""; else delete document.body.dataset.focus;
   const host = $("#panel");
-  $("#back").innerHTML = sub ? `<a class="back" href="#${tab}"><span aria-hidden="true">←</span> ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
+  $("#back").innerHTML = $("#back-top").innerHTML = sub ? `<a class="back" href="#${tab}"><span aria-hidden="true">←</span> ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
   document.body.classList.toggle("has-back", !!sub);
   if(tab === "plan") planView(host);
   if(tab === "guias") sub ? guide(host, sub) : guideIndex(host);
