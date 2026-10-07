@@ -1,5 +1,5 @@
 /* Kit B1 · ejercicios de gramática, uno por guía. [guía, frase, [opciones: la primera es la correcta], explicación] */
-const GR = [
+export const GR = [
  ["be","I ___ from Spain.",["am","is","are"],"<mark>I am</mark> (I'm)."],
  ["be","My sister ___ a nurse.",["is","are","am"],"He / she / it → <mark>is</mark>."],
  ["be","___ you tired?",["Are","Is","Do"],"Preguntas con be: <mark>Are</mark> you...? (sin do)."],
@@ -382,7 +382,7 @@ GR.push(
 );
 
 // Textos con huecos de preposiciones, en formato Reading Part 5 y Part 6
-const PREP_TEXTS = [
+export const PREP_TEXTS = [
  { id:"prep-text1", title:"Preposiciones: texto con huecos 1", sub:"Un texto de opción múltiple y otro para escribir. Unos 10 minutos.",
    parts:[
     { type:"cloze", title:"Elige la preposición (como Reading Part 5)", intro:"Elige la opción correcta para cada hueco.",

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>La pasiva · Guías · Kit B1</title>
+    <meta
+      name="description"
+      content="Cuando importa la acción y no quién la hace. Sale mucho en los textos del Reading."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="passive">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Forma</a><a href="#gs-1">Ejemplos</a><a href="#gs-2">Activa → pasiva</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-passive"
+                >Practicar la pasiva <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-b1">B1 · Hacia el B1</span> Guía 21 de 32</p>
+                <h1>La pasiva</h1>
+                <p>Cuando importa la acción y no quién la hace. Sale mucho en los textos del Reading.</p>
+              </div>
+              <div class="sticky">Paper <b>is made</b><br />from wood.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Presente</p>
+                  <p class="form">am / is / are + participio</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Pasado</p>
+                  <p class="form">was / were + participio</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Presente</p>
+                  <ul>
+                    <li class="say" data-say="English is spoken all over the world.">
+                      <span>English is spoken all over the world.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="These phones are made in China.">
+                      <span>These phones are made in China.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Pasado</p>
+                  <ul>
+                    <li class="say" data-say="The Eiffel Tower was built in 1889.">
+                      <span>The Eiffel Tower was built in 1889.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="The letters were sent yesterday.">
+                      <span>The letters were sent yesterday.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Activa → pasiva</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p>Shakespeare <b>wrote</b> Hamlet.</p>
+                  <p>→ Hamlet <b>was written by</b> Shakespeare.</p>
+                  <p class="xmp"><b>by</b> = por (quién lo hizo). Solo se pone si importa.</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-passive"
+                >Practicar la pasiva <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="gerund.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>-ing o to + verbo</b></a
+              >
+              <a href="relatives.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Who, which, where</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="gerund.html" aria-label="Guía anterior: -ing o to + verbo"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-passive"
+              ><span>Practicar la pasiva</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="relatives.html" aria-label="Guía siguiente: Who, which, where"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

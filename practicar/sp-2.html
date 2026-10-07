@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Speaking Part 2: describe una foto · Kit B1</title>
+    <meta name="description" content="8 escenas · 1 minuto sin parar" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/speaking.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <section class="quiz speak" data-secs="60" data-id="sp-2">
+          <div class="qmeta"><span id="pos"></span><span>60 s para contestar</span></div>
+          <h1 class="tag">Speaking Part 2: describe una foto</h1>
+          <p class="intro">Imagina esta foto y descríbela en inglés:</p>
+          <ol class="sp-items" id="items">
+            <li class="sp-item">
+              <p class="sentence">Una familia cocinando junta en la cocina.</p>
+              <div class="chips">
+                <span data-say="kitchen">kitchen</span><span data-say="cooking">cooking</span
+                ><span data-say="chopping vegetables">chopping vegetables</span><span data-say="apron">apron</span
+                ><span data-say="smiling">smiling</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Dos amigos haciendo senderismo en la montaña.</p>
+              <div class="chips">
+                <span data-say="hiking">hiking</span><span data-say="backpack">backpack</span
+                ><span data-say="path">path</span><span data-say="sunny">sunny</span><span data-say="view">view</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Estudiantes trabajando en grupo en una clase.</p>
+              <div class="chips">
+                <span data-say="classroom">classroom</span><span data-say="laptop">laptop</span
+                ><span data-say="discussing">discussing</span><span data-say="teacher">teacher</span
+                ><span data-say="notes">notes</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Gente comprando en un mercado al aire libre.</p>
+              <div class="chips">
+                <span data-say="market">market</span><span data-say="stall">stall</span
+                ><span data-say="fruit">fruit</span><span data-say="buying">buying</span
+                ><span data-say="busy">busy</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Un chico jugando al fútbol bajo la lluvia.</p>
+              <div class="chips">
+                <span data-say="rain">rain</span><span data-say="wet">wet</span
+                ><span data-say="kicking the ball">kicking the ball</span><span data-say="team">team</span
+                ><span data-say="muddy">muddy</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Una mujer trabajando con el portátil en una cafetería.</p>
+              <div class="chips">
+                <span data-say="café">café</span><span data-say="laptop">laptop</span
+                ><span data-say="coffee">coffee</span><span data-say="typing">typing</span
+                ><span data-say="busy">busy</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Una familia pasando el día en la playa.</p>
+              <div class="chips">
+                <span data-say="beach">beach</span><span data-say="sand">sand</span
+                ><span data-say="swimming">swimming</span><span data-say="umbrella">umbrella</span
+                ><span data-say="sunny">sunny</span>
+              </div>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Personas esperando en el andén de una estación de tren.</p>
+              <div class="chips">
+                <span data-say="platform">platform</span><span data-say="waiting">waiting</span
+                ><span data-say="suitcase">suitcase</span><span data-say="crowded">crowded</span
+                ><span data-say="train">train</span>
+              </div>
+            </li>
+          </ol>
+          <div class="row js-only">
+            <button type="button" class="btn primary" id="go">Empezar a hablar (60 s)</button>
+          </div>
+          <div class="timer" id="timer" hidden>
+            <span class="clock" id="left">60</span>
+            <div class="bar"><i id="tbar" style="width: 100%"></i></div>
+          </div>
+          <div class="feedback ok" id="done" hidden aria-live="polite">
+            <p class="verdict">¡Tiempo!</p>
+            <p class="note">
+              ¿Has hablado sin parar? Si te has quedado en blanco, repítelo con las frases útiles de abajo.
+            </p>
+          </div>
+          <div class="row js-only">
+            <button type="button" class="btn" id="prev" aria-label="Anterior">←</button
+            ><button type="button" class="btn primary" id="next">Siguiente →</button>
+          </div>
+          <details class="model" open>
+            <summary>Frases útiles (toca para oírlas)</summary>
+            <div class="chips">
+              <span data-say="In this picture I can see...">In this picture I can see...</span
+              ><span data-say="On the left / On the right...">On the left / On the right...</span
+              ><span data-say="In the background...">In the background...</span
+              ><span data-say="It looks like...">It looks like...</span
+              ><span data-say="I think they're...">I think they're...</span
+              ><span data-say="They're probably feeling...">They're probably feeling...</span>
+            </div>
+          </details>
+          <p class="xmp">
+            Imagina la foto y descríbela: dónde es, quién aparece, qué hacen, qué llevan y cómo se sienten. Si no sabes
+            una palabra, explícala con otras.
+          </p>
+        </section>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

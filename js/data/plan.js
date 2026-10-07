@@ -2,7 +2,7 @@
    Tareas: ["g", guía] ["q", test] ["c", tarjetas] ["x", simulacro] ["r", recurso] ["t", tarea libre] */
 
 // Recursos externos: solo enlaces, con su fuente. Nada de su contenido se copia aquí.
-const RESOURCES = [
+export const RESOURCES = [
  { id:"cam-prep", cat:"Examen oficial", name:"B1 Preliminary: preparación", by:"Cambridge English",
    url:"https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/",
    what:"Exámenes de muestra oficiales de Reading, Listening y Writing, con soluciones, y vídeos de Speaking con comentarios del examinador." },
@@ -38,7 +38,7 @@ const RESOURCES = [
    what:"Con audio de pronunciación británica y americana." }
 ];
 
-const PLAN = [
+export const PLAN = [
  { title:"Arranque: lo básico", goal:"Presentarte, hablar de tu familia y saber cómo es el examen.",
    tasks:[["g","exam"],["g","be"],["q","gr-be"],["g","pronouns"],["q","gr-pronouns"],["g","articles"],["q","gr-articles"],["g","numbers"],["q","gr-numbers"],
           ["c","tp-family"],["c","tp-describe"],["c","tp-countries"],["c","tp-jobs"],["t","Escribe 5 frases sobre ti: nombre, edad, de dónde eres, trabajo y familia."],["r","bbc-yt"]] },

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Speaking Part 1: preguntas personales · Kit B1</title>
+    <meta name="description" content="20 preguntas · 20 segundos por respuesta" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/speaking.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <section class="quiz speak" data-secs="20" data-id="sp-1">
+          <div class="qmeta"><span id="pos"></span><span>20 s para contestar</span></div>
+          <h1 class="tag">Speaking Part 1: preguntas personales</h1>
+
+          <ol class="sp-items" id="items">
+            <li class="sp-item">
+              <p class="sentence">What's your name?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What's your name?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Where do you live?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Where do you live?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Who do you live with?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Who do you live with?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Do you work or are you a student?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Do you work or are you a student?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What do you like doing in your free time?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What do you like doing in your free time?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Tell us about your family.</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Tell us about your family.">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What did you do last weekend?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What did you do last weekend?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What are you going to do next weekend?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What are you going to do next weekend?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Do you like cooking? Why or why not?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Do you like cooking? Why or why not?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What's your favourite food?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What's your favourite food?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">How do you usually travel to work or school?</p>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="How do you usually travel to work or school?"
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Tell us about your best friend.</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Tell us about your best friend.">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What kind of music do you like?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What kind of music do you like?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Where did you go on your last holiday?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Where did you go on your last holiday?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Do you prefer the city or the countryside? Why?</p>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="Do you prefer the city or the countryside? Why?"
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">How often do you use the internet?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="How often do you use the internet?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What's the weather like in your town?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What's the weather like in your town?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Tell us about a film you enjoyed.</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Tell us about a film you enjoyed.">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">Why are you learning English?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="Why are you learning English?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">What would you like to do in the future?</p>
+              <button class="btn ghost small tts-on" type="button" data-say="What would you like to do in the future?">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+          </ol>
+          <div class="row js-only">
+            <button type="button" class="btn primary" id="go">Empezar a hablar (20 s)</button>
+          </div>
+          <div class="timer" id="timer" hidden>
+            <span class="clock" id="left">20</span>
+            <div class="bar"><i id="tbar" style="width: 100%"></i></div>
+          </div>
+          <div class="feedback ok" id="done" hidden aria-live="polite">
+            <p class="verdict">¡Tiempo!</p>
+            <p class="note">
+              ¿Has hablado sin parar? Si te has quedado en blanco, repítelo con las frases útiles de abajo.
+            </p>
+          </div>
+          <div class="row js-only">
+            <button type="button" class="btn" id="prev" aria-label="Anterior">←</button
+            ><button type="button" class="btn primary" id="next">Siguiente →</button>
+          </div>
+          <details class="model" open>
+            <summary>Frases útiles (toca para oírlas)</summary>
+            <div class="chips">
+              <span data-say="I live in...">I live in...</span
+              ><span data-say="I'm a... / I work as...">I'm a... / I work as...</span
+              ><span data-say="In my free time I...">In my free time I...</span
+              ><span data-say="I really enjoy... because...">I really enjoy... because...</span
+              ><span data-say="Last weekend I...">Last weekend I...</span
+              ><span data-say="Next weekend I'm going to...">Next weekend I'm going to...</span>
+            </div>
+          </details>
+          <p class="xmp">Contesta con 2 frases: la respuesta y un detalle o razón.</p>
+        </section>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

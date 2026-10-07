@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Errores típicos · Guías · Kit B1</title>
+    <meta
+      name="description"
+      content="Los fallos que más se repiten cuando pensamos en español. Repásalos antes de cada Writing."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="traps">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc notoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc"></nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="linkers.html"
+                >Ver la guía de conectores <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta">
+                  <span class="lvtag lv-voc">VOC · Errores, vocabulario y conectores</span> Guía 26 de 32
+                </p>
+                <h1>Errores típicos de hispanohablantes</h1>
+                <p>Los fallos que más se repiten cuando pensamos en español. Repásalos antes de cada Writing.</p>
+              </div>
+              <div class="sticky">Léelos en voz alta<br />en su forma <b>correcta</b>.</div>
+            </div>
+
+            <section class="gsec">
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Incorrecto</th>
+                      <th>Correcto</th>
+                      <th>Por qué</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="wrong">I have 20 years.</span></td>
+                      <td><span class="right">I'm 20 (years old).</span></td>
+                      <td>La edad va con be.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">She don't like it.</span></td>
+                      <td><span class="right">She doesn't like it.</span></td>
+                      <td>He / she / it → does.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">Is raining.</span></td>
+                      <td><span class="right">It's raining.</span></td>
+                      <td>El sujeto siempre aparece.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">I live here since 2019.</span></td>
+                      <td><span class="right">I've lived here since 2019.</span></td>
+                      <td>Sigue ahora: present perfect.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">I have seen him yesterday.</span></td>
+                      <td><span class="right">I saw him yesterday.</span></td>
+                      <td>Fecha terminada: past simple.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">in next Friday</span></td>
+                      <td><span class="right">next Friday</span></td>
+                      <td>Sin preposición con next / last / this.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">at 6 of the afternoon</span></td>
+                      <td><span class="right">at 6 in the afternoon / at 6 pm</span></td>
+                      <td>in the afternoon.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">ago two years</span></td>
+                      <td><span class="right">two years ago</span></td>
+                      <td>ago va detrás.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">since two weeks</span></td>
+                      <td><span class="right">for two weeks</span></td>
+                      <td>for + duración.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">because of I like it</span></td>
+                      <td><span class="right">because I like it</span></td>
+                      <td>because of + sustantivo.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">Although it was cold, but we went out.</span></td>
+                      <td><span class="right">Although it was cold, we went out.</span></td>
+                      <td>although y but no van juntos.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">I went for buy bread.</span></td>
+                      <td><span class="right">I went to buy bread.</span></td>
+                      <td>Finalidad: to + verbo.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">The life is beautiful.</span></td>
+                      <td><span class="right">Life is beautiful.</span></td>
+                      <td>En general, sin the.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">people is</span></td>
+                      <td><span class="right">people are</span></td>
+                      <td>people es plural.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">an information / advices</span></td>
+                      <td><span class="right">some information / some advice</span></td>
+                      <td>Incontables.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">more bigger</span></td>
+                      <td><span class="right">bigger</span></td>
+                      <td>No se mezclan more y -er.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">I am agree.</span></td>
+                      <td><span class="right">I agree.</span></td>
+                      <td>agree es un verbo.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="wrong">Where you live?</span></td>
+                      <td><span class="right">Where do you live?</span></td>
+                      <td>Las preguntas llevan auxiliar.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="linkers.html"
+                >Ver la guía de conectores <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="too-enough.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Too, enough, so, such</b></a
+              >
+              <a href="clothes.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Ropa, joyas, colores y materiales</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="too-enough.html" aria-label="Guía anterior: Too, enough, so, such"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="linkers.html"
+              ><span>Ver la guía de conectores</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="clothes.html" aria-label="Guía siguiente: Ropa, joyas, colores y materiales"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

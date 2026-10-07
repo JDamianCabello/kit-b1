@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Practicar · Kit B1</title>
+    <meta
+      name="description"
+      content="Tests rápidos, simulacros del B1 Preliminary, Writing, Speaking y ejercicios de cada tema."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/practice-index.js"></script>
+  </head>
+  <body data-tab="practicar">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <main class="panel" id="main" tabindex="-1">
+        <div class="pindex">
+          <div class="ptop">
+            <h1 class="gh1">Practicar</h1>
+            <p class="intro">
+              111 ejercicios: tests rápidos, simulacros del examen, Writing y Speaking. Lo que hagas se marca en el
+              plan.
+            </p>
+          </div>
+          <div class="quick big">
+            <a class="qbtn" href="test.html?set=quick5"
+              ><b>2 min</b><span>Test rápido</span><small>5 preguntas de todo</small></a
+            >
+            <a class="qbtn" href="sprint.html"
+              ><b>60 s</b><span>Sprint</span><small id="sprint-best">Todas las que puedas</small></a
+            >
+            <a class="qbtn" href="test.html?set=quick10"
+              ><b>5 min</b><span>10 preguntas</span><small>Variadas</small></a
+            >
+          </div>
+          <div class="minis-row">
+            <span>Mini tests de 5:</span>
+            <div class="minis">
+              <a class="mini" href="test.html?set=mini-all"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Todo</a
+              ><a class="mini" href="test.html?set=mini-pv"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Phrasal verbs</a
+              ><a class="mini" href="test.html?set=mini-tn"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Tiempos verbales</a
+              ><a class="mini" href="test.html?set=mini-prep"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Preposiciones</a
+              ><a class="mini" href="test.html?set=mini-vo"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Vocabulario</a
+              ><a class="mini" href="test.html?set=mini-ropa"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Ropa y colores</a
+              ><a class="mini" href="test.html?set=mini-gr"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Gramática</a
+              ><a class="mini" href="test.html?set=mini-iv"
+                ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Irregulares</a
+              >
+            </div>
+          </div>
+          <div class="pcols">
+            <nav class="jumpnav" aria-label="Secciones">
+              <p class="tag">Secciones</p>
+              <a href="#simulacros">Simulacros de examen</a><a href="#writing">Writing</a
+              ><a href="#speaking">Speaking</a><a href="#comparativos">Comparativos y superlativos</a
+              ><a href="#ropa">Ropa, joyas, colores y materiales</a><a href="#preposiciones">Preposiciones</a
+              ><a href="#repaso">Repaso</a><a href="#gramatica">Gramática</a><a href="#tiempos">Tiempos verbales</a
+              ><a href="#phrasal">Phrasal verbs</a><a href="#vocabulario">Vocabulario</a
+              ><a href="#temas">Vocabulario por temas</a>
+            </nav>
+            <div class="psecs">
+              <section class="psec" id="simulacros" aria-labelledby="simulacros-t">
+                <div class="phead">
+                  <h2 class="h2" id="simulacros-t">Simulacros de examen</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  Mini simulacros con contenido original en el formato del examen. Para el examen completo, usa los
+                  modelos oficiales gratuitos de
+                  <a
+                    href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/"
+                    target="_blank"
+                    rel="noopener"
+                    >Cambridge English</a
+                  >.
+                </p>
+                <div class="xexams">
+                  <a class="xexam" href="sim1.html" data-done="x:sim1" data-set="sim1"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#examen"></use></svg><b>Simulacro 1</b
+                    ><small>Reading, Listening y un email. Unos 35 minutos.</small><span class="xbest" hidden></span
+                    ><span class="xgo">Empezar →</span></a
+                  ><a class="xexam" href="sim2.html" data-done="x:sim2" data-set="sim2"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#examen"></use></svg><b>Simulacro 2</b
+                    ><small>Reading, Listening y una historia. Unos 35 minutos.</small><span class="xbest" hidden></span
+                    ><span class="xgo">Empezar →</span></a
+                  ><a class="xexam" href="sim3.html" data-done="x:sim3" data-set="sim3"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#examen"></use></svg><b>Simulacro 3</b
+                    ><small>Con Reading Part 2 y Listening Part 3. Unos 40 minutos.</small
+                    ><span class="xbest" hidden></span><span class="xgo">Empezar →</span></a
+                  ><a class="xexam" href="sim4.html" data-done="x:sim4" data-set="sim4"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#examen"></use></svg><b>Simulacro 4</b
+                    ><small>Reading Parts 1, 2, 3 y 6, Listening y un artículo. Unos 40 minutos.</small
+                    ><span class="xbest" hidden></span><span class="xgo">Empezar →</span></a
+                  >
+                </div>
+              </section>
+              <section class="psec" id="writing" aria-labelledby="writing-t">
+                <div class="phead">
+                  <h2 class="h2" id="writing-t">Writing</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  Escribe unas 100 palabras, autoevalúate con la lista y compara con la respuesta modelo.
+                </p>
+                <div class="xgrid">
+                  <a class="xcard" href="w-party.html" data-done="x:w-party" data-set="w-party">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Email: una fiesta de cumpleaños</b><small>Writing Part 1 · email a un amigo</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="w-course.html" data-done="x:w-course" data-set="w-course">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Email: tu curso de inglés</b><small>Writing Part 1 · email a un amigo</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="w-phone.html" data-done="x:w-phone" data-set="w-phone">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Historia: la llamada</b><small>Writing Part 2 · historia de unas 100 palabras</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="w-box.html" data-done="x:w-box" data-set="w-box">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Historia: la caja</b><small>Writing Part 2 · historia de unas 100 palabras</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="w-town.html" data-done="x:w-town" data-set="w-town">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Artículo: tu ciudad</b><small>Writing Part 2 · artículo de unas 100 palabras</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="w-sport.html" data-done="x:w-sport" data-set="w-sport">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Writing</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Artículo: deportes</b><small>Writing Part 2 · artículo de unas 100 palabras</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="speaking" aria-labelledby="speaking-t">
+                <div class="phead">
+                  <h2 class="h2" id="speaking-t">Speaking</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  El móvil lee la pregunta y un cronómetro marca tu tiempo. Contesta en voz alta; si puedes, grábate y
+                  escúchate.
+                </p>
+                <div class="xgrid">
+                  <a class="xcard" href="sp-1.html" data-done="q:sp-1" data-set="sp-1">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#micro"></use></svg>Speaking</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Speaking Part 1: preguntas personales</b><small>20 preguntas · 20 segundos por respuesta</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="sp-2.html" data-done="q:sp-2" data-set="sp-2">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#micro"></use></svg>Speaking</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Speaking Part 2: describe una foto</b><small>8 escenas · 1 minuto sin parar</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="sp-3.html" data-done="q:sp-3" data-set="sp-3">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#micro"></use></svg>Speaking</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Speaking Part 3: decidir en pareja</b><small>4 situaciones · 2 minutos</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="sp-4.html" data-done="q:sp-4" data-set="sp-4">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#micro"></use></svg>Speaking</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Speaking Part 4: da tu opinión</b><small>12 preguntas · 45 segundos</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="comparativos" aria-labelledby="comparativos-t">
+                <div class="phead">
+                  <h2 class="h2" id="comparativos-t">Comparativos y superlativos</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  Repasa antes la <a href="../guias/comparatives.html">guía</a> y las
+                  <a href="../tarjetas/mazo.html?id=comp-form">tarjetas</a>.
+                </p>
+                <div class="xgrid">
+                  <a class="xcard" href="tabla.html" data-done="q:comp-table" data-set="comp-table">
+                    <span class="xtop"
+                      ><span class="kind k-c"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#tabla"></use></svg>Tabla</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Completa la tabla</b><small>Adjetivo → comparativo → superlativo · 8 adjetivos por tabla</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=comp-sent" data-done="q:comp-sent" data-set="comp-sent">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Comparativos en frases</b
+                    ><small>116 frases · 15 preguntas con los errores típicos como opciones</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=sup-sent" data-done="q:sup-sent" data-set="sup-sent">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Superlativos en frases</b
+                    ><small>114 frases · 15 preguntas con los errores típicos como opciones</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=comp-form" data-done="q:comp-form" data-set="comp-form">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Forma el comparativo y el superlativo</b><small>112 adjetivos · 15 preguntas</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-comparatives"
+                    data-done="q:gr-comparatives"
+                    data-set="gr-comparatives"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Comparativos y superlativos</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="ropa" aria-labelledby="ropa-t">
+                <div class="phead">
+                  <h2 class="h2" id="ropa-t">Ropa, joyas, colores y materiales</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  Repasa antes la <a href="../guias/clothes.html">guía con todas las palabras</a> y las
+                  <a href="../tarjetas/mazo.html?id=ropa">tarjetas</a>.
+                </p>
+                <div class="xgrid">
+                  <a class="xcard" href="clasificar.html" data-done="q:ropa-cat" data-set="ropa-cat">
+                    <span class="xtop"
+                      ><span class="kind k-c"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#etiqueta"></use></svg>Clasificar</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Clasifica las palabras</b
+                    ><small>Como la ficha: ropa, joyas, colores y materiales · 16 palabras por ronda</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=ropa-opt" data-done="q:ropa-opt" data-set="ropa-opt">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Ropa, joyas, colores y materiales: 123 palabras</b><small>20 preguntas con opciones</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=ropa-write" data-done="q:ropa-write" data-set="ropa-write">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Ropa, joyas, colores y materiales: escríbela</b><small>20 palabras sin opciones</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="preposiciones" aria-labelledby="preposiciones-t">
+                <div class="phead">
+                  <h2 class="h2" id="preposiciones-t">Preposiciones</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">
+                  Orden recomendado: guía → tests por tipo → textos con huecos → examen final. Repasa antes la
+                  <a href="../guias/prepositions.html">guía de preposiciones</a> y las
+                  <a href="../tarjetas/mazo.html?id=pc-prep-dep">tarjetas de preposiciones</a>.
+                </p>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=prep-dep2" data-done="q:prep-dep2" data-set="prep-dep2">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Preposiciones dependientes: 102 frases</b
+                    ><small>20 preguntas con opciones · fond of, rely on, provide with...</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-dep2-w" data-done="q:prep-dep2-w" data-set="prep-dep2-w">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Preposiciones dependientes: escríbela</b><small>20 frases sin opciones</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-exam" data-done="q:prep-exam" data-set="prep-exam">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Examen de preposiciones</b
+                    ><small>20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-iot" data-done="q:prep-iot" data-set="prep-iot">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>In, on, at: tiempo y lugar</b><small>15 preguntas · las que más caen</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-dep" data-done="q:prep-dep" data-set="prep-dep">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Verbo o adjetivo + preposición</b><small>15 preguntas · afraid of, good at, depend on...</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-err" data-done="q:prep-err" data-set="prep-err">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Encuentra el error</b><small>12 errores típicos para corregir</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-write" data-done="q:prep-write" data-set="prep-write">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Preposiciones: escríbela tú</b><small>15 frases sin opciones, más difícil</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="prep-text1.html" data-done="x:prep-text1" data-set="prep-text1">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#texto"></use></svg>Texto</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Texto con huecos 1</b
+                    ><small>Un texto de opción múltiple y otro para escribir. Unos 10 minutos.</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="prep-text2.html" data-done="x:prep-text2" data-set="prep-text2">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#texto"></use></svg>Texto</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Texto con huecos 2</b
+                    ><small>Un texto de opción múltiple y otro para escribir. Unos 10 minutos.</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=prep-final" data-done="q:prep-final" data-set="prep-final">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Examen final de preposiciones</b
+                    ><small>25 preguntas de todo tipo, 10 de ellas para escribir</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="repaso" aria-labelledby="repaso-t">
+                <div class="phead">
+                  <h2 class="h2" id="repaso-t">Repaso</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=mix" data-done="q:mix" data-set="mix">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Repaso mixto</b><small>Mezcla de todo, con prioridad a tus fallos</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=quick10" data-done="q:quick10" data-set="quick10">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Test de 5 minutos</b><small>10 preguntas variadas</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="sprint.html" data-done="q:sprint" data-set="sprint">
+                    <span class="xtop"
+                      ><span class="kind k-t"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#rayo"></use></svg>Sprint</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Sprint de 60 segundos</b><small>Todas las que puedas en un minuto</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="gramatica" aria-labelledby="gramatica-t">
+                <div class="phead">
+                  <h2 class="h2" id="gramatica-t">Gramática</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=gr-be" data-done="q:gr-be" data-set="gr-be">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>To be</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-pronouns" data-done="q:gr-pronouns" data-set="gr-pronouns">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Pronombres y posesivos</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-articles" data-done="q:gr-articles" data-set="gr-articles">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>a / an / the y plurales</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-numbers" data-done="q:gr-numbers" data-set="gr-numbers">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Números, hora y fechas</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-questions" data-done="q:gr-questions" data-set="gr-questions">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Hacer preguntas</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-there" data-done="q:gr-there" data-set="gr-there">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>There is / are y lugar</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-prepositions"
+                    data-done="q:gr-prepositions"
+                    data-set="gr-prepositions"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Preposiciones clave</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-countable" data-done="q:gr-countable" data-set="gr-countable">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Some, any, much, many</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-can" data-done="q:gr-can" data-set="gr-can">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Can y gustos</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-past-basic"
+                    data-done="q:gr-past-basic"
+                    data-set="gr-past-basic"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Past simple desde cero</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-used-to" data-done="q:gr-used-to" data-set="gr-used-to">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Used to</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-comparatives"
+                    data-done="q:gr-comparatives"
+                    data-set="gr-comparatives"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Comparativos y superlativos</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-modals" data-done="q:gr-modals" data-set="gr-modals">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Modales</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-gerund" data-done="q:gr-gerund" data-set="gr-gerund">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>-ing o to + verbo</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-passive" data-done="q:gr-passive" data-set="gr-passive">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>La pasiva</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-relatives" data-done="q:gr-relatives" data-set="gr-relatives">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Who, which, where</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-conditionals"
+                    data-done="q:gr-conditionals"
+                    data-set="gr-conditionals"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Condicionales</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=gr-reported" data-done="q:gr-reported" data-set="gr-reported">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Estilo indirecto</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=gr-too-enough"
+                    data-done="q:gr-too-enough"
+                    data-set="gr-too-enough"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Too, enough, so, such</b><small>Gramática</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="tiempos" aria-labelledby="tiempos-t">
+                <div class="phead">
+                  <h2 class="h2" id="tiempos-t">Tiempos verbales</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tc" data-done="q:tc" data-set="tc">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Tiempos verbales con opciones</b><small>Elige la forma correcta del verbo</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tw" data-done="q:tw" data-set="tw">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>¿Qué tiempo es?</b><small>Identifica el tiempo verbal de cada frase</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tn" data-done="q:tn" data-set="tn">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Conjugar verbos</b><small>Escribe la forma correcta · todos los tiempos</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=pc" data-done="q:pc" data-set="pc">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Past simple vs continuous</b><small>Escribe la forma correcta</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=te" data-done="q:te" data-set="te">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Expresiones de tiempo</b><small>in, on, at, for, since, ago...</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=iv" data-done="q:iv" data-set="iv">
+                    <span class="xtop"
+                      ><span class="kind k-g"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#teclado"></use></svg>Escribir</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Verbos irregulares</b><small>Escribe el pasado o el participio</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="phrasal" aria-labelledby="phrasal-t">
+                <div class="phead">
+                  <h2 class="h2" id="phrasal-t">Phrasal verbs</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=pv-sent" data-done="q:pv-sent" data-set="pv-sent">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Elige el phrasal verb</b><small>100 frases · 15 preguntas con 4 phrasal verbs distintos</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=pv" data-done="q:pv" data-set="pv">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Phrasal verbs</b><small>34 phrasal verbs del B1</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=pv2" data-done="q:pv2" data-set="pv2">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Phrasal verbs 2</b><small>30 phrasal verbs más · significados</small
+                    ><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="vocabulario" aria-labelledby="vocabulario-t">
+                <div class="phead">
+                  <h2 class="h2" id="vocabulario-t">Vocabulario</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+
+                <div class="xgrid">
+                  <a
+                    class="xcard"
+                    href="test.html?set=vo-falsos-amigos"
+                    data-done="q:vo-falsos-amigos"
+                    data-set="vo-falsos-amigos"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Falsos amigos</b><small>Vocabulario</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=vo-confusiones"
+                    data-done="q:vo-confusiones"
+                    data-set="vo-confusiones"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Confusiones</b><small>Vocabulario</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=vo-make-do" data-done="q:vo-make-do" data-set="vo-make-do">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Make / Do</b><small>Vocabulario</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=vo-collocations"
+                    data-done="q:vo-collocations"
+                    data-set="vo-collocations"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Collocations</b><small>Vocabulario</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=vo-temas-del-examen"
+                    data-done="q:vo-temas-del-examen"
+                    data-set="vo-temas-del-examen"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Temas del examen</b><small>Vocabulario</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+              <section class="psec" id="temas" aria-labelledby="temas-t">
+                <div class="phead">
+                  <h2 class="h2" id="temas-t">Vocabulario por temas</h2>
+                  <span class="count" data-done-count></span>
+                </div>
+                <p class="xmp">31 temas con test de 10 preguntas.</p>
+                <h3 class="h3">Personas</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-family" data-done="q:tp-family" data-set="tp-family">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Familia y personas</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-describe" data-done="q:tp-describe" data-set="tp-describe">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Describir a alguien</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-feelings" data-done="q:tp-feelings" data-set="tp-feelings">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Sentimientos</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-body" data-done="q:tp-body" data-set="tp-body">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>El cuerpo</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-jobs" data-done="q:tp-jobs" data-set="tp-jobs">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Profesiones</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-countries" data-done="q:tp-countries" data-set="tp-countries">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Países y nacionalidades</b><small>20 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Casa y vida diaria</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-house" data-done="q:tp-house" data-set="tp-house">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Casa</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-routine" data-done="q:tp-routine" data-set="tp-routine">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Rutina diaria</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-chores" data-done="q:tp-chores" data-set="tp-chores">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Tareas de casa</b><small>15 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-food" data-done="q:tp-food" data-set="tp-food">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Comida y bebida</b><small>20 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-cooking" data-done="q:tp-cooking" data-set="tp-cooking">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Cocinar y la cocina</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-timewords" data-done="q:tp-timewords" data-set="tp-timewords">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Palabras de tiempo</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Ciudad, viajes y compras</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-town" data-done="q:tp-town" data-set="tp-town">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>La ciudad</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-travel" data-done="q:tp-travel" data-set="tp-travel">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Viajes y transporte</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-hotel" data-done="q:tp-hotel" data-set="tp-hotel">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Hotel y vacaciones</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-clothes" data-done="q:tp-clothes" data-set="tp-clothes">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Ropa y compras</b><small>20 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-shopping" data-done="q:tp-shopping" data-set="tp-shopping">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>De compras</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-money" data-done="q:tp-money" data-set="tp-money">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Dinero y banco</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Estudios, trabajo y tecnología</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-work" data-done="q:tp-work" data-set="tp-work">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Trabajo y estudios</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-school" data-done="q:tp-school" data-set="tp-school">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Colegio y estudios</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-tech" data-done="q:tp-tech" data-set="tp-tech">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Tecnología y medios</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=tp-communication"
+                    data-done="q:tp-communication"
+                    data-set="tp-communication"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Teléfono y comunicación</b><small>16 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Salud, naturaleza y problemas</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-health" data-done="q:tp-health" data-set="tp-health">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Salud y cuerpo</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-weather" data-done="q:tp-weather" data-set="tp-weather">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>El tiempo</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-nature" data-done="q:tp-nature" data-set="tp-nature">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Naturaleza y medio ambiente</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a class="xcard" href="test.html?set=tp-animals" data-done="q:tp-animals" data-set="tp-animals">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Animales</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=tp-emergencies"
+                    data-done="q:tp-emergencies"
+                    data-set="tp-emergencies"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Emergencias y problemas</b><small>17 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Ocio</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-sport" data-done="q:tp-sport" data-set="tp-sport">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Deporte y tiempo libre</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=tp-entertainment"
+                    data-done="q:tp-entertainment"
+                    data-set="tp-entertainment"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Cine, música y ocio</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+                <h3 class="h3">Palabras útiles</h3>
+                <div class="xgrid">
+                  <a class="xcard" href="test.html?set=tp-verbs" data-done="q:tp-verbs" data-set="tp-verbs">
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Verbos imprescindibles</b><small>18 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                  <a
+                    class="xcard"
+                    href="test.html?set=tp-adjectives"
+                    data-done="q:tp-adjectives"
+                    data-set="tp-adjectives"
+                  >
+                    <span class="xtop"
+                      ><span class="kind k-q"
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg>Test</span
+                      ><span class="xdone" hidden
+                        ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg>Hecho</span
+                      ></span
+                    >
+                    <b>Adjetivos opuestos</b><small>21 palabras</small><span class="xbest" hidden></span
+                  ></a>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

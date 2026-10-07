@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Speaking Part 3: decidir en pareja · Kit B1</title>
+    <meta name="description" content="4 situaciones · 2 minutos" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/speaking.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <section class="quiz speak" data-secs="120" data-id="sp-3">
+          <div class="qmeta"><span id="pos"></span><span>120 s para contestar</span></div>
+          <h1 class="tag">Speaking Part 3: decidir en pareja</h1>
+
+          <ol class="sp-items" id="items">
+            <li class="sp-item">
+              <p class="sentence">
+                A friend is leaving your town. Talk together about these presents and decide which would be best.
+              </p>
+              <div class="chips">
+                <span data-say="a book">a book</span><span data-say="a photo album">a photo album</span
+                ><span data-say="a watch">a watch</span><span data-say="concert tickets">concert tickets</span
+                ><span data-say="a plant">a plant</span>
+              </div>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="A friend is leaving your town. Talk together about these presents and decide which would be best."
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">
+                Your school wants students to do more exercise. Talk about these ideas and decide which is the best.
+              </p>
+              <div class="chips">
+                <span data-say="a football club">a football club</span
+                ><span data-say="a dance class">a dance class</span
+                ><span data-say="cycling to school">cycling to school</span
+                ><span data-say="a swimming pool">a swimming pool</span
+                ><span data-say="a walking club">a walking club</span>
+              </div>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="Your school wants students to do more exercise. Talk about these ideas and decide which is the best."
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">
+                A family is going on holiday. Talk about what they should take and decide on the two most important
+                things.
+              </p>
+              <div class="chips">
+                <span data-say="a map">a map</span><span data-say="sun cream">sun cream</span
+                ><span data-say="a camera">a camera</span><span data-say="board games">board games</span
+                ><span data-say="a first aid kit">a first aid kit</span>
+              </div>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="A family is going on holiday. Talk about what they should take and decide on the two most important things."
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+            <li class="sp-item">
+              <p class="sentence">
+                Your town wants more tourists. Talk about these ideas and decide which would be the most popular.
+              </p>
+              <div class="chips">
+                <span data-say="a music festival">a music festival</span
+                ><span data-say="a new museum">a new museum</span><span data-say="cheaper hotels">cheaper hotels</span
+                ><span data-say="more parks">more parks</span><span data-say="better buses">better buses</span>
+              </div>
+              <button
+                class="btn ghost small tts-on"
+                type="button"
+                data-say="Your town wants more tourists. Talk about these ideas and decide which would be the most popular."
+              >
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar
+              </button>
+            </li>
+          </ol>
+          <div class="row js-only">
+            <button type="button" class="btn primary" id="go">Empezar a hablar (120 s)</button>
+          </div>
+          <div class="timer" id="timer" hidden>
+            <span class="clock" id="left">120</span>
+            <div class="bar"><i id="tbar" style="width: 100%"></i></div>
+          </div>
+          <div class="feedback ok" id="done" hidden aria-live="polite">
+            <p class="verdict">¡Tiempo!</p>
+            <p class="note">
+              ¿Has hablado sin parar? Si te has quedado en blanco, repítelo con las frases útiles de abajo.
+            </p>
+          </div>
+          <div class="row js-only">
+            <button type="button" class="btn" id="prev" aria-label="Anterior">←</button
+            ><button type="button" class="btn primary" id="next">Siguiente →</button>
+          </div>
+          <details class="model" open>
+            <summary>Frases útiles (toca para oírlas)</summary>
+            <div class="chips">
+              <span data-say="What do you think about...?">What do you think about...?</span
+              ><span data-say="I think ... is a good idea because...">I think ... is a good idea because...</span
+              ><span data-say="I'm not sure about...">I'm not sure about...</span
+              ><span data-say="That's true, but...">That's true, but...</span
+              ><span data-say="Shall we choose...?">Shall we choose...?</span
+              ><span data-say="So, we agree that...">So, we agree that...</span>
+            </div>
+          </details>
+          <p class="xmp">
+            Habla de todas las opciones, pregunta a tu compañero y llegad a una decisión. Si practicas solo, di tú las
+            dos partes.
+          </p>
+        </section>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

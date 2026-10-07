@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>El examen B1 · Guías · Kit B1</title>
+    <meta name="description" content="Cuatro partes, cada una vale un 25 %. Conocer el formato ya te da puntos." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="exam">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Las cuatro partes</a><a href="#gs-1">Reading</a><a href="#gs-2">Writing</a
+              ><a href="#gs-3">Listening</a><a href="#gs-4">Speaking</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/sim1.html"
+                >Hacer un simulacro <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-ex">EXAMEN · El examen</span> Guía 30 de 32</p>
+                <h1>El examen B1 Preliminary</h1>
+                <p>Cuatro partes, cada una vale un 25 %. Conocer el formato ya te da puntos.</p>
+              </div>
+              <div class="sticky">Aprobado:<br /><b>140</b> en la escala<br />Cambridge</div>
+            </div>
+
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Las cuatro partes</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parte</th>
+                      <th>Duración</th>
+                      <th>Qué hay</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Reading</td>
+                      <td>45 min</td>
+                      <td>6 partes, 32 preguntas</td>
+                    </tr>
+                    <tr>
+                      <td>Writing</td>
+                      <td>45 min</td>
+                      <td>2 tareas de unas 100 palabras</td>
+                    </tr>
+                    <tr>
+                      <td>Listening</td>
+                      <td>unos 30 min</td>
+                      <td>4 partes, 25 preguntas. Cada audio se oye dos veces</td>
+                    </tr>
+                    <tr>
+                      <td>Speaking</td>
+                      <td>12–17 min</td>
+                      <td>4 partes, en pareja con otro candidato</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="xmp">
+                Con 140–159 en la Cambridge English Scale apruebas el B1. Con 160–170 obtienes el B1 con grado A y
+                certificado de B2.
+              </p>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Reading</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parte</th>
+                      <th>Tarea</th>
+                      <th>Truco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>5 textos cortos (avisos, mensajes) con 3 opciones</td>
+                      <td>Piensa quién escribe el aviso y para qué.</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Emparejar 5 personas con 8 textos</td>
+                      <td>Subraya lo que necesita cada persona. Hay 3 textos que sobran.</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Texto largo con 5 preguntas de opción múltiple</td>
+                      <td>Las preguntas siguen el orden del texto.</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Texto con 5 huecos y 8 frases (como el de fútbol)</td>
+                      <td>Busca pronombres (they, this, it) y conectores que enlacen.</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>6 huecos de vocabulario con 4 opciones</td>
+                      <td>Collocations y phrasal verbs: make/do, look for/after...</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>6 huecos, escribes una palabra</td>
+                      <td>Gramática: artículos, preposiciones, auxiliares, pronombres.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Writing</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parte</th>
+                      <th>Tarea</th>
+                      <th>Truco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1 (obligatoria)</td>
+                      <td>Email de unas 100 palabras respondiendo a 4 notas</td>
+                      <td>Usa las 4 notas. Saluda y despídete bien.</td>
+                    </tr>
+                    <tr>
+                      <td>2 (eliges una)</td>
+                      <td>Artículo o historia de unas 100 palabras</td>
+                      <td>La historia debe empezar con la frase que te dan.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Listening</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parte</th>
+                      <th>Tarea</th>
+                      <th>Truco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>7 audios cortos, eliges entre 3 imágenes</td>
+                      <td>Suelen mencionar las 3 imágenes. Escucha cuál es la definitiva.</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>6 conversaciones cortas, opción múltiple</td>
+                      <td>Lee las preguntas antes. Busca opiniones y sentimientos.</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Completar 6 huecos de unas notas</td>
+                      <td>Palabras, números, fechas. Te pueden deletrear nombres: repasa el alfabeto.</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Entrevista larga, 6 preguntas</td>
+                      <td>Las preguntas siguen el orden de la entrevista.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-4">
+              <h3><span class="gsn">5</span>Speaking</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parte</th>
+                      <th>Tarea</th>
+                      <th>Truco</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Preguntas personales (2–3 min)</td>
+                      <td>Contesta con 2 frases, no solo «yes».</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Describir una foto durante 1 minuto</td>
+                      <td>Habla sin parar: dónde, quién, qué hacen, qué llevan.</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Decidir algo con tu compañero a partir de dibujos</td>
+                      <td>Pregúntale su opinión. Cuenta la interacción.</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Conversación sobre el tema de la parte 3</td>
+                      <td>Da tu opinión y un ejemplo personal.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/sim1.html"
+                >Hacer un simulacro <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="linkers.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Conectores</b></a
+              >
+              <a href="writing.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Writing: plantillas</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="linkers.html" aria-label="Guía anterior: Conectores"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/sim1.html"
+              ><span>Hacer un simulacro</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="writing.html" aria-label="Guía siguiente: Writing: plantillas"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

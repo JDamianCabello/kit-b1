@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Too, enough, so, such · Guías · Kit B1</title>
+    <meta name="description" content="Demasiado, suficiente y tan: cuatro palabras que se confunden mucho." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="too-enough">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc"><a href="#gs-0">Forma</a><a href="#gs-1">Ejemplos</a></nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-too-enough"
+                >Practicar too y enough <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-b1">B1 · Hacia el B1</span> Guía 25 de 32</p>
+                <h1>Too, enough, so y such</h1>
+                <p>Demasiado, suficiente y tan: cuatro palabras que se confunden mucho.</p>
+              </div>
+              <div class="sticky"><s>It's too much cold.</s><br />It's <b>too</b> cold.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">too</p>
+                  <ul>
+                    <li><b>too</b> + adjetivo</li>
+                    <li>too much + incontable</li>
+                    <li>too many + plural</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">enough</p>
+                  <ul>
+                    <li>adjetivo + <b>enough</b></li>
+                    <li><b>enough</b> + sustantivo</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">so / such</p>
+                  <ul>
+                    <li><b>so</b> + adjetivo</li>
+                    <li><b>such a</b> + adjetivo + sustantivo</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">too</p>
+                  <ul>
+                    <li class="say" data-say="It's too expensive.">
+                      <span>It's too expensive.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="I drank too much coffee.">
+                      <span>I drank too much coffee.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">enough</p>
+                  <ul>
+                    <li class="say" data-say="She isn't old enough to drive.">
+                      <span>She isn't old enough to drive.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="We haven't got enough time.">
+                      <span>We haven't got enough time.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">so / such</p>
+                  <ul>
+                    <li class="say" data-say="The film was so good!">
+                      <span>The film was so good!</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="It was such a good film!">
+                      <span>It was such a good film!</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-too-enough"
+                >Practicar too y enough <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="reported.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Estilo indirecto</b></a
+              >
+              <a href="traps.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Errores típicos</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="reported.html" aria-label="Guía anterior: Estilo indirecto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-too-enough"
+              ><span>Practicar too y enough</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="traps.html" aria-label="Guía siguiente: Errores típicos"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

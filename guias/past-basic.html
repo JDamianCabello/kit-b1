@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Past simple desde cero · Guías · Kit B1</title>
+    <meta name="description" content="Was / were, verbos regulares con -ed y cómo hacer negativas y preguntas." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="past-basic">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Forma</a><a href="#gs-1">Ejemplos</a><a href="#gs-2">Cómo se pronuncia -ed</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-past-basic"
+                >Practicar past simple <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a2">A2 · Tiempos verbales</span> Guía 11 de 32</p>
+                <h1>Past simple desde cero</h1>
+                <p>Was / were, verbos regulares con -ed y cómo hacer negativas y preguntas.</p>
+              </div>
+              <div class="sticky"><s>I didn't went.</s><br />I didn't <b>go</b>.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">was / were</p>
+                  <ul>
+                    <li>I / he / she / it <b>was</b></li>
+                    <li>you / we / they <b>were</b></li>
+                    <li>wasn't · weren't</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Verbos regulares</p>
+                  <ul>
+                    <li>verbo + <b>-ed</b>: work → worked</li>
+                    <li>-e: live → lived</li>
+                    <li>consonante + y: study → studied</li>
+                    <li>CVC: stop → stopped</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Negativas y preguntas</p>
+                  <ul>
+                    <li><b>didn't</b> + verbo base</li>
+                    <li><b>Did</b> + sujeto + verbo?</li>
+                    <li>Yes, I did. / No, I didn't.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">was / were</p>
+                  <ul>
+                    <li class="say" data-say="I was at home yesterday.">
+                      <span>I was at home yesterday.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="They were very happy.">
+                      <span>They were very happy.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Verbos regulares</p>
+                  <ul>
+                    <li class="say" data-say="We watched a film.">
+                      <span>We watched a film.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She studied all night.">
+                      <span>She studied all night.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Negativas y preguntas</p>
+                  <ul>
+                    <li class="say" data-say="I didn't see him.">
+                      <span>I didn't see him.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Did you like it?">
+                      <span>Did you like it?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Cómo se pronuncia -ed</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Sonido</th>
+                      <th>Cuándo</th>
+                      <th>Ejemplos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>/t/</td>
+                      <td>tras p, k, f, s, sh, ch</td>
+                      <td>work<b>ed</b>, watch<b>ed</b>, stopp<b>ed</b></td>
+                    </tr>
+                    <tr>
+                      <td>/d/</td>
+                      <td>tras sonidos sonoros (la mayoría)</td>
+                      <td>play<b>ed</b>, liv<b>ed</b>, clean<b>ed</b></td>
+                    </tr>
+                    <tr>
+                      <td>/ɪd/ (sílaba extra)</td>
+                      <td>solo tras t o d</td>
+                      <td>want<b>ed</b>, need<b>ed</b>, decid<b>ed</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="xmp">Los irregulares (go → went) están en la guía «Verbos irregulares».</p>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-past-basic"
+                >Practicar past simple <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="ps-pc.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Presente simple vs continuo</b></a
+              >
+              <a href="irr.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Verbos irregulares</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="ps-pc.html" aria-label="Guía anterior: Presente simple vs continuo"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-past-basic"
+              ><span>Practicar past simple</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="irr.html" aria-label="Guía siguiente: Verbos irregulares"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

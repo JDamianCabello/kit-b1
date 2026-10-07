@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Writing: plantillas · Guías · Kit B1</title>
+    <meta name="description" content="Estructuras y frases listas para usar en el examen." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="writing">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Estructura</a><a href="#gs-1">Frases útiles</a><a href="#gs-2">Antes de entregar</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/w-party.html"
+                >Practicar un email <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-ex">EXAMEN · El examen</span> Guía 31 de 32</p>
+                <h1>Writing: email, artículo e historia</h1>
+                <p>Estructuras y frases listas para usar en el examen.</p>
+              </div>
+              <div class="sticky">Tacha cada nota<br />cuando la uses.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Estructura</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Email</p>
+                  <ul>
+                    <li>Saludo: Hi Jo, / Dear Sam,</li>
+                    <li>1 frase reaccionando a su email</li>
+                    <li>Un párrafo por cada nota</li>
+                    <li>Despedida</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Artículo</p>
+                  <ul>
+                    <li>Título</li>
+                    <li>Pregunta al lector para empezar</li>
+                    <li>2 párrafos con tu opinión y ejemplos</li>
+                    <li>Conclusión</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Historia</p>
+                  <ul>
+                    <li>Empieza con la frase dada</li>
+                    <li>Qué pasó (past simple)</li>
+                    <li>Problema o sorpresa</li>
+                    <li>Final: cómo te sentiste</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Frases útiles</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Email</p>
+                  <ul>
+                    <li>Thanks for your email!</li>
+                    <li>It's great that...</li>
+                    <li>I'd prefer... because...</li>
+                    <li>Why don't we...?</li>
+                    <li>How about...?</li>
+                    <li>See you soon, / Write soon,</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Artículo</p>
+                  <ul>
+                    <li>Have you ever...?</li>
+                    <li>In my opinion,...</li>
+                    <li>I think... because...</li>
+                    <li>For example,...</li>
+                    <li>To sum up,...</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Historia</p>
+                  <ul>
+                    <li>It was a sunny morning when...</li>
+                    <li>Suddenly,...</li>
+                    <li>At first,... Then,...</li>
+                    <li>In the end,...</li>
+                    <li>I'll never forget that day.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Antes de entregar</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <ul>
+                    <li>¿He contestado las 4 notas (o todo lo que pide)?</li>
+                    <li>¿Tiene unas 100 palabras?</li>
+                    <li>¿He usado conectores? (because, but, so, although, however)</li>
+                    <li>¿He variado los tiempos verbales? (pasado, presente perfecto, futuro)</li>
+                    <li>¿He revisado -s en he/she, pasados irregulares y mayúsculas?</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/w-party.html"
+                >Practicar un email <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="exam.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>El examen B1</b></a
+              >
+              <a href="speaking.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Speaking: frases</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="exam.html" aria-label="Guía anterior: El examen B1"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/w-party.html"
+              ><span>Practicar un email</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="speaking.html" aria-label="Guía siguiente: Speaking: frases"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

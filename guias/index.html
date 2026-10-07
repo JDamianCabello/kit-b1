@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Guías · Kit B1</title>
+    <meta name="description" content="32 guías visuales en español, de cero a B1, cada una con su test." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guides-index.js"></script>
+  </head>
+  <body data-tab="guias">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gindex">
+          <div class="gtop">
+            <div>
+              <h1 class="gh1">Guías</h1>
+              <p class="intro">32 explicaciones visuales en español, de cero a B1. Cada una termina con un test.</p>
+            </div>
+            <div class="gprog js-only">
+              <div class="qmeta"><span>Leídas</span><b id="read-count"></b></div>
+              <div class="bar"><i id="read-bar"></i></div>
+            </div>
+          </div>
+          <div class="gtools js-only">
+            <label class="gsearch"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#buscar"></use></svg
+              ><input type="search" id="gq" placeholder="Busca una guía: pasiva, since, -ing…" aria-label="Buscar guía"
+            /></label>
+            <div class="glv" role="group" aria-label="Nivel">
+              <button type="button" data-lv="" aria-pressed="true">Todas</button>
+              <button type="button" data-lv="0" aria-pressed="false"><i class="dot lv-a1"></i>Empieza aquí (A1)</button>
+              <button type="button" data-lv="1" aria-pressed="false">
+                <i class="dot lv-a2"></i>Tiempos verbales (A2)
+              </button>
+              <button type="button" data-lv="2" aria-pressed="false"><i class="dot lv-b1"></i>Hacia el B1</button>
+              <button type="button" data-lv="3" aria-pressed="false">
+                <i class="dot lv-voc"></i>Errores, vocabulario y conectores
+              </button>
+              <button type="button" data-lv="4" aria-pressed="false"><i class="dot lv-ex"></i>El examen</button>
+            </div>
+          </div>
+          <a class="gnext" id="next-guide" href="#" hidden>
+            <div class="gnext-t">
+              <p class="tag"><span id="next-tag">Sigue por aquí</span> <span class="lvtag" id="next-level"></span></p>
+              <h2 id="next-title"></h2>
+              <p class="intro" id="next-sub"></p>
+            </div>
+            <div class="gnext-r">
+              <span class="btn primary"
+                >Abrir guía <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></span>
+            </div>
+          </a>
+          <div id="glist">
+            <section class="gsect lv-a1" data-level="0" aria-labelledby="gs-0">
+              <div class="gsect-l">
+                <span class="lvtag">A1</span>
+                <h2 id="gs-0">Empieza aquí</h2>
+                <p>Lo primero: ser, preguntar, contar y situar cosas.</p>
+                <b data-read-count></b>
+              </div>
+              <div class="ggrid">
+                <a
+                  class="gcard"
+                  href="be.html"
+                  data-guide="be"
+                  data-weeks="1"
+                  data-search="to be to be: am · is · are ser y estar en un solo verbo. es lo primero que hay que dominar."
+                >
+                  <span class="gnum">01</span>
+                  <span class="gtx"
+                    ><b>To be</b><small>Ser y estar en un solo verbo. Es lo primero que hay que dominar.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="pronouns.html"
+                  data-guide="pronouns"
+                  data-weeks="1"
+                  data-search="pronombres y posesivos pronombres y posesivos yo, me, mi, mío: cuatro palabras distintas en inglés."
+                >
+                  <span class="gnum">02</span>
+                  <span class="gtx"
+                    ><b>Pronombres y posesivos</b
+                    ><small>Yo, me, mi, mío: cuatro palabras distintas en inglés.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="articles.html"
+                  data-guide="articles"
+                  data-weeks="1"
+                  data-search="a / an / the y plurales a / an / the, plurales y this / that cuándo poner artículo y cuándo no. los hispanohablantes ponen «the» de más."
+                >
+                  <span class="gnum">03</span>
+                  <span class="gtx"
+                    ><b>a / an / the y plurales</b
+                    ><small>Cuándo poner artículo y cuándo no. Los hispanohablantes ponen «the» de más.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="numbers.html"
+                  data-guide="numbers"
+                  data-weeks="1"
+                  data-search="números, hora y fechas números, hora y fechas salen muchísimo en el listening: precios, horas, fechas y teléfonos."
+                >
+                  <span class="gnum">04</span>
+                  <span class="gtx"
+                    ><b>Números, hora y fechas</b
+                    ><small>Salen muchísimo en el Listening: precios, horas, fechas y teléfonos.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="questions.html"
+                  data-guide="questions"
+                  data-weeks="2"
+                  data-search="hacer preguntas cómo hacer preguntas en inglés casi siempre hace falta un auxiliar delante del sujeto."
+                >
+                  <span class="gnum">05</span>
+                  <span class="gtx"
+                    ><b>Hacer preguntas</b
+                    ><small>En inglés casi siempre hace falta un auxiliar delante del sujeto.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="there.html"
+                  data-guide="there"
+                  data-weeks="2"
+                  data-search="there is / are y lugar there is / there are y preposiciones de lugar «hay» en inglés, y cómo decir dónde está cada cosa."
+                >
+                  <span class="gnum">06</span>
+                  <span class="gtx"
+                    ><b>There is / are y lugar</b
+                    ><small>«Hay» en inglés, y cómo decir dónde está cada cosa.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="prepositions.html"
+                  data-guide="prepositions"
+                  data-weeks="2"
+                  data-search="preposiciones clave preposiciones: of, from, for, on, in, to, at, with, about, between para elegir bien, piensa en el significado. cada preposición tiene una pregunta que te ayuda."
+                >
+                  <span class="gnum">07</span>
+                  <span class="gtx"
+                    ><b>Preposiciones clave</b
+                    ><small
+                      >Para elegir bien, piensa en el significado. Cada preposición tiene una pregunta que te
+                      ayuda.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="countable.html"
+                  data-guide="countable"
+                  data-weeks="3"
+                  data-search="some, any, much, many contables e incontables some, any, much, many, a few, a little: la clave es si se puede contar."
+                >
+                  <span class="gnum">08</span>
+                  <span class="gtx"
+                    ><b>Some, any, much, many</b
+                    ><small>Some, any, much, many, a few, a little: la clave es si se puede contar.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="can.html"
+                  data-guide="can"
+                  data-weeks="3"
+                  data-search="can y gustos can, can't y cómo hablar de gustos habilidades, permiso y lo que te gusta hacer."
+                >
+                  <span class="gnum">09</span>
+                  <span class="gtx"
+                    ><b>Can y gustos</b><small>Habilidades, permiso y lo que te gusta hacer.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+              </div>
+            </section>
+            <section class="gsect lv-a2" data-level="1" aria-labelledby="gs-1">
+              <div class="gsect-l">
+                <span class="lvtag">A2</span>
+                <h2 id="gs-1">Tiempos verbales</h2>
+                <p>Presente, pasado y futuro: lo que más sale en el examen.</p>
+                <b data-read-count></b>
+              </div>
+              <div class="ggrid">
+                <a
+                  class="gcard"
+                  href="ps-pc.html"
+                  data-guide="ps-pc"
+                  data-weeks="2"
+                  data-search="presente simple vs continuo present simple vs present continuous mismo tiempo, momentos distintos: lo de siempre frente a lo de ahora."
+                >
+                  <span class="gnum">10</span>
+                  <span class="gtx"
+                    ><b>Presente simple vs continuo</b
+                    ><small>Mismo tiempo, momentos distintos: lo de siempre frente a lo de ahora.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="past-basic.html"
+                  data-guide="past-basic"
+                  data-weeks="4"
+                  data-search="past simple desde cero past simple desde cero was / were, verbos regulares con -ed y cómo hacer negativas y preguntas."
+                >
+                  <span class="gnum">11</span>
+                  <span class="gtx"
+                    ><b>Past simple desde cero</b
+                    ><small>Was / were, verbos regulares con -ed y cómo hacer negativas y preguntas.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="irr.html"
+                  data-guide="irr"
+                  data-weeks="4"
+                  data-search="verbos irregulares verbos irregulares los 62 más frecuentes del b1. infinitivo, past simple y participio."
+                >
+                  <span class="gnum">12</span>
+                  <span class="gtx"
+                    ><b>Verbos irregulares</b
+                    ><small>Los 62 más frecuentes del B1. Infinitivo, past simple y participio.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="past-cont.html"
+                  data-guide="past-cont"
+                  data-weeks="5"
+                  data-search="past simple vs past continuous past simple vs past continuous la acción corta interrumpe a la acción larga. clave para contar historias en el writing."
+                >
+                  <span class="gnum">13</span>
+                  <span class="gtx"
+                    ><b>Past simple vs Past continuous</b
+                    ><small
+                      >La acción corta interrumpe a la acción larga. Clave para contar historias en el Writing.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="future.html"
+                  data-guide="future"
+                  data-weeks="6"
+                  data-search="will, going to y presente continuo el futuro: will · going to · present continuous tres formas de hablar del futuro según lo decidido que esté."
+                >
+                  <span class="gnum">14</span>
+                  <span class="gtx"
+                    ><b>Will, going to y presente continuo</b
+                    ><small>Tres formas de hablar del futuro según lo decidido que esté.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="time.html"
+                  data-guide="time"
+                  data-weeks="4"
+                  data-search="in, on, at, for, since, ago expresiones de tiempo las preposiciones de tiempo y las palabras for, since, ago, during y while."
+                >
+                  <span class="gnum">15</span>
+                  <span class="gtx"
+                    ><b>In, on, at, for, since, ago</b
+                    ><small>Las preposiciones de tiempo y las palabras for, since, ago, during y while.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+              </div>
+            </section>
+            <section class="gsect lv-b1" data-level="2" aria-labelledby="gs-2">
+              <div class="gsect-l">
+                <span class="lvtag">B1</span>
+                <h2 id="gs-2">Hacia el B1</h2>
+                <p>El salto al B1: perfect, pasiva, condicionales y más.</p>
+                <b data-read-count></b>
+              </div>
+              <div class="ggrid">
+                <a
+                  class="gcard"
+                  href="past-pp.html"
+                  data-guide="past-pp"
+                  data-weeks="7"
+                  data-search="past simple vs present perfect past simple vs present perfect ¿dices cuándo pasó? past simple. ¿no importa cuándo o sigue ahora? present perfect."
+                >
+                  <span class="gnum">16</span>
+                  <span class="gtx"
+                    ><b>Past simple vs Present perfect</b
+                    ><small
+                      >¿Dices cuándo pasó? Past simple. ¿No importa cuándo o sigue ahora? Present perfect.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="used-to.html"
+                  data-guide="used-to"
+                  data-weeks="8"
+                  data-search="used to used to hábitos y situaciones del pasado que ya no son así."
+                >
+                  <span class="gnum">17</span>
+                  <span class="gtx"
+                    ><b>Used to</b><small>Hábitos y situaciones del pasado que ya no son así.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="comparatives.html"
+                  data-guide="comparatives"
+                  data-weeks="3"
+                  data-search="comparativos y superlativos comparativos y superlativos más que, el más: depende de lo largo que sea el adjetivo."
+                >
+                  <span class="gnum">18</span>
+                  <span class="gtx"
+                    ><b>Comparativos y superlativos</b
+                    ><small>Más que, el más: depende de lo largo que sea el adjetivo.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="modals.html"
+                  data-guide="modals"
+                  data-weeks="7"
+                  data-search="modales modales: must, have to, should, might obligación, consejo y posibilidad. siempre + verbo sin «to» (salvo have to)."
+                >
+                  <span class="gnum">19</span>
+                  <span class="gtx"
+                    ><b>Modales</b
+                    ><small>Obligación, consejo y posibilidad. Siempre + verbo sin «to» (salvo have to).</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="gerund.html"
+                  data-guide="gerund"
+                  data-weeks="8"
+                  data-search="-ing o to + verbo ¿-ing o to + verbo? depende del verbo que va delante. apréndelos en grupos."
+                >
+                  <span class="gnum">20</span>
+                  <span class="gtx"
+                    ><b>-ing o to + verbo</b
+                    ><small>Depende del verbo que va delante. Apréndelos en grupos.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="passive.html"
+                  data-guide="passive"
+                  data-weeks="8"
+                  data-search="la pasiva la pasiva cuando importa la acción y no quién la hace. sale mucho en los textos del reading."
+                >
+                  <span class="gnum">21</span>
+                  <span class="gtx"
+                    ><b>La pasiva</b
+                    ><small
+                      >Cuando importa la acción y no quién la hace. Sale mucho en los textos del Reading.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="relatives.html"
+                  data-guide="relatives"
+                  data-weeks="8"
+                  data-search="who, which, where relativos: who, which, that, where, whose para unir frases y dar más información sin repetir. muy útiles en el writing."
+                >
+                  <span class="gnum">22</span>
+                  <span class="gtx"
+                    ><b>Who, which, where</b
+                    ><small>Para unir frases y dar más información sin repetir. Muy útiles en el Writing.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="conditionals.html"
+                  data-guide="conditionals"
+                  data-weeks="9"
+                  data-search="condicionales condicionales: 0, 1 y 2 si pasa x, entonces y. cada tipo tiene sus tiempos fijos."
+                >
+                  <span class="gnum">23</span>
+                  <span class="gtx"
+                    ><b>Condicionales</b><small>Si pasa X, entonces Y. Cada tipo tiene sus tiempos fijos.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="reported.html"
+                  data-guide="reported"
+                  data-weeks="9"
+                  data-search="estilo indirecto estilo indirecto (reported speech) contar lo que otra persona dijo. el verbo da un paso atrás en el tiempo."
+                >
+                  <span class="gnum">24</span>
+                  <span class="gtx"
+                    ><b>Estilo indirecto</b
+                    ><small>Contar lo que otra persona dijo. El verbo da un paso atrás en el tiempo.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="too-enough.html"
+                  data-guide="too-enough"
+                  data-weeks="9"
+                  data-search="too, enough, so, such too, enough, so y such demasiado, suficiente y tan: cuatro palabras que se confunden mucho."
+                >
+                  <span class="gnum">25</span>
+                  <span class="gtx"
+                    ><b>Too, enough, so, such</b
+                    ><small>Demasiado, suficiente y tan: cuatro palabras que se confunden mucho.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+              </div>
+            </section>
+            <section class="gsect lv-voc" data-level="3" aria-labelledby="gs-3">
+              <div class="gsect-l">
+                <span class="lvtag">VOC</span>
+                <h2 id="gs-3">Errores, vocabulario y conectores</h2>
+                <p>Los fallos típicos, vocabulario y conectores.</p>
+                <b data-read-count></b>
+              </div>
+              <div class="ggrid">
+                <a
+                  class="gcard"
+                  href="traps.html"
+                  data-guide="traps"
+                  data-weeks=""
+                  data-search="errores típicos errores típicos de hispanohablantes los fallos que más se repiten cuando pensamos en español. repásalos antes de cada writing."
+                >
+                  <span class="gnum">26</span>
+                  <span class="gtx"
+                    ><b>Errores típicos</b
+                    ><small
+                      >Los fallos que más se repiten cuando pensamos en español. Repásalos antes de cada Writing.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="clothes.html"
+                  data-guide="clothes"
+                  data-weeks="3"
+                  data-search="ropa, joyas, colores y materiales ropa, joyas, colores y materiales las palabras agrupadas en las cuatro categorías de la ficha. algunas van en más de una: gold y silver son material y también color."
+                >
+                  <span class="gnum">27</span>
+                  <span class="gtx"
+                    ><b>Ropa, joyas, colores y materiales</b
+                    ><small
+                      >Las palabras agrupadas en las cuatro categorías de la ficha. Algunas van en más de una: gold y
+                      silver son material y también color.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="particles.html"
+                  data-guide="particles"
+                  data-weeks="6"
+                  data-search="phrasal verbs por partícula phrasal verbs por partícula la partícula suele dar una pista del significado. aprende los verbos en grupos."
+                >
+                  <span class="gnum">28</span>
+                  <span class="gtx"
+                    ><b>Phrasal verbs por partícula</b
+                    ><small
+                      >La partícula suele dar una pista del significado. Aprende los verbos en grupos.</small
+                    ></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="linkers.html"
+                  data-guide="linkers"
+                  data-weeks="5"
+                  data-search="conectores conectores para el writing unen frases en emails e historias. aquí es donde más puntos se pierden."
+                >
+                  <span class="gnum">29</span>
+                  <span class="gtx"
+                    ><b>Conectores</b
+                    ><small>Unen frases en emails e historias. Aquí es donde más puntos se pierden.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+              </div>
+            </section>
+            <section class="gsect lv-ex" data-level="4" aria-labelledby="gs-4">
+              <div class="gsect-l">
+                <span class="lvtag">EXAMEN</span>
+                <h2 id="gs-4">El examen</h2>
+                <p>Cómo es el examen y frases listas para usar.</p>
+                <b data-read-count></b>
+              </div>
+              <div class="ggrid">
+                <a
+                  class="gcard"
+                  href="exam.html"
+                  data-guide="exam"
+                  data-weeks="1 10"
+                  data-search="el examen b1 el examen b1 preliminary cuatro partes, cada una vale un 25 %. conocer el formato ya te da puntos."
+                >
+                  <span class="gnum">30</span>
+                  <span class="gtx"
+                    ><b>El examen B1</b
+                    ><small>Cuatro partes, cada una vale un 25 %. Conocer el formato ya te da puntos.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="writing.html"
+                  data-guide="writing"
+                  data-weeks="5"
+                  data-search="writing: plantillas writing: email, artículo e historia estructuras y frases listas para usar en el examen."
+                >
+                  <span class="gnum">31</span>
+                  <span class="gtx"
+                    ><b>Writing: plantillas</b><small>Estructuras y frases listas para usar en el examen.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+                <a
+                  class="gcard"
+                  href="speaking.html"
+                  data-guide="speaking"
+                  data-weeks="6"
+                  data-search="speaking: frases speaking: frases útiles frases para cada parte y para salir del paso cuando no sabes una palabra."
+                >
+                  <span class="gnum">32</span>
+                  <span class="gtx"
+                    ><b>Speaking: frases</b
+                    ><small>Frases para cada parte y para salir del paso cuando no sabes una palabra.</small></span
+                  >
+                  <span class="gread" hidden
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#acierto-ok"></use></svg
+                    ><span>Leída</span></span
+                  ><span class="gnow" hidden>Esta semana</span
+                  ><span class="gchev"
+                    ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></span
+                ></a>
+              </div>
+            </section>
+          </div>
+          <p class="empty" id="no-guides" hidden>No hay ninguna guía con esa búsqueda.</p>
+          <section class="gres" aria-labelledby="res-title">
+            <div class="gres-h">
+              <h2 class="h2" id="res-title">Recursos gratis de otras webs</h2>
+              <span class="intro">Se abren en su web original</span>
+            </div>
+            <h3 class="h3">Examen oficial</h3>
+            <div class="rgrid">
+              <a
+                class="rcard"
+                href="https://www.cambridgeenglish.org/exams-and-tests/preliminary/preparation/"
+                target="_blank"
+                rel="noopener"
+                ><small>Cambridge English</small
+                ><b
+                  >B1 Preliminary: preparación
+                  <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span
+                  >Exámenes de muestra oficiales de Reading, Listening y Writing, con soluciones, y vídeos de Speaking
+                  con comentarios del examinador.</span
+                ></a
+              >
+              <a class="rcard" href="https://www.youtube.com/@CambridgeEnglishTV" target="_blank" rel="noopener"
+                ><small>Cambridge English</small
+                ><b
+                  >Canal de YouTube <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Vídeos oficiales, entre ellos exámenes de Speaking reales grabados.</span></a
+              >
+              <a
+                class="rcard"
+                href="https://www.youtube.com/results?search_query=B1+Preliminary+speaking+test"
+                target="_blank"
+                rel="noopener"
+                ><small>YouTube</small
+                ><b
+                  >Buscar «B1 Preliminary speaking test» en YouTube
+                  <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span
+                  >Para ver cómo es el Speaking por dentro. Mejor si el vídeo es del canal oficial de Cambridge.</span
+                ></a
+              >
+            </div>
+            <h3 class="h3">Writing</h3>
+            <div class="rgrid">
+              <a class="rcard" href="https://writeandimprove.com/" target="_blank" rel="noopener"
+                ><small>Cambridge English</small
+                ><b
+                  >Write &amp; Improve <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span
+                  >Pega tus emails e historias y te da una corrección automática con tu nivel estimado. Gratis.</span
+                ></a
+              >
+            </div>
+            <h3 class="h3">Práctica del examen</h3>
+            <div class="rgrid">
+              <a
+                class="rcard"
+                href="https://engexam.info/b1-preliminary-pet-practice-tests/reading/"
+                target="_blank"
+                rel="noopener"
+                ><small>EngExam.info</small
+                ><b
+                  >Tests de Reading y Listening PET
+                  <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Tests de práctica del B1 Preliminary con explicaciones.</span></a
+              >
+            </div>
+            <h3 class="h3">Gramática</h3>
+            <div class="rgrid">
+              <a
+                class="rcard"
+                href="https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2"
+                target="_blank"
+                rel="noopener"
+                ><small>British Council · LearnEnglish</small
+                ><b
+                  >Gramática A1–A2 <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Explicaciones y ejercicios gratis de nivel básico.</span></a
+              >
+              <a
+                class="rcard"
+                href="https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2"
+                target="_blank"
+                rel="noopener"
+                ><small>British Council · LearnEnglish</small
+                ><b
+                  >Gramática B1–B2 <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Explicaciones y ejercicios gratis de nivel intermedio.</span></a
+              >
+            </div>
+            <h3 class="h3">Listening</h3>
+            <div class="rgrid">
+              <a
+                class="rcard"
+                href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english"
+                target="_blank"
+                rel="noopener"
+                ><small>BBC Learning English</small
+                ><b
+                  >6 Minute English <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Episodios de 6 minutos con vocabulario y transcripción. Perfecto para el metro.</span></a
+              >
+              <a class="rcard" href="https://www.youtube.com/@bbclearningenglish" target="_blank" rel="noopener"
+                ><small>BBC Learning English</small
+                ><b
+                  >Canal de YouTube <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Vídeos cortos de gramática, vocabulario y pronunciación.</span></a
+              >
+              <a class="rcard" href="https://www.youtube.com/@EnglishwithLucy" target="_blank" rel="noopener"
+                ><small>YouTube</small
+                ><b
+                  >English with Lucy <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Pronunciación y vocabulario en inglés británico, el acento del examen.</span></a
+              >
+            </div>
+            <h3 class="h3">Diccionario</h3>
+            <div class="rgrid">
+              <a
+                class="rcard"
+                href="https://dictionary.cambridge.org/es/diccionario/ingles-espanol/"
+                target="_blank"
+                rel="noopener"
+                ><small>Cambridge Dictionary</small
+                ><b
+                  >Diccionario inglés-español
+                  <svg aria-hidden="true"><use href="../img/icons.svg#externo"></use></svg></b
+                ><span>Con audio de pronunciación británica y americana.</span></a
+              >
+            </div>
+          </section>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

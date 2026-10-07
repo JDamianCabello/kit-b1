@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Presente simple vs continuo · Guías · Kit B1</title>
+    <meta name="description" content="Mismo tiempo, momentos distintos: lo de siempre frente a lo de ahora." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="ps-pc">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Cuándo se usa</a><a href="#gs-1">Forma</a><a href="#gs-2">Ejemplos</a
+              ><a href="#gs-3">Expresiones de tiempo</a><a href="#gs-4">Ortografía: -s y -ing</a
+              ><a href="#gs-5">Verbos de estado (casi nunca en -ing)</a
+              ><a href="#gs-6">Adverbios de frecuencia: dónde van</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=tn"
+                >Practicar tiempos verbales <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a2">A2 · Tiempos verbales</span> Guía 10 de 32</p>
+                <h1>Present simple <em>vs</em> Present continuous</h1>
+                <p>Mismo tiempo, momentos distintos: lo de siempre frente a lo de ahora.</p>
+              </div>
+              <div class="sticky">I know the answer.<br /><s>I'm knowing the answer.</s></div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Cuándo se usa</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Present simple</p>
+                  <ul>
+                    <li>Rutinas y hábitos</li>
+                    <li>Hechos generales</li>
+                    <li>Cosas siempre verdad</li>
+                    <li>Situaciones permanentes</li>
+                    <li>Horarios (trenes, clases)</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present continuous</p>
+                  <ul>
+                    <li>Lo que pasa ahora mismo</li>
+                    <li>Situaciones temporales</li>
+                    <li>Cosas que están cambiando</li>
+                    <li>Planes de futuro ya organizados</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Present simple</p>
+                  <p class="form">Sujeto + verbo (+ -s/-es con he/she/it)</p>
+                  <p>✗ don't / doesn't + verbo</p>
+                  <p>? Do / Does + sujeto + verbo?</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present continuous</p>
+                  <p class="form">Sujeto + am/is/are + verbo-ing</p>
+                  <p>✗ am not / isn't / aren't + -ing</p>
+                  <p>? Am / Is / Are + sujeto + -ing?</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Present simple</p>
+                  <ul>
+                    <li class="say" data-say="I go to school every day.">
+                      <span>I <b>go</b> to school every day.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She usually gets up at 7 a.m.">
+                      <span>She usually <b>gets up</b> at 7 a.m.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Water boils at 100°C.">
+                      <span>Water <b>boils</b> at 100°C.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="He lives in Madrid.">
+                      <span>He <b>lives</b> in Madrid.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present continuous</p>
+                  <ul>
+                    <li class="say" data-say="I'm studying now.">
+                      <span>I<b>'m studying</b> now.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She's getting ready.">
+                      <span>She<b>'s getting</b> ready.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="It's raining at the moment.">
+                      <span>It<b>'s raining</b> at the moment.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="He's living in Madrid for a year.">
+                      <span>He<b>'s living</b> in Madrid for a year.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Expresiones de tiempo</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Present simple</p>
+                  <div class="chips">
+                    <span>always</span><span>usually</span><span>often</span><span>sometimes</span><span>rarely</span
+                    ><span>never</span><span>every day</span><span>on Mondays</span><span>in the morning</span
+                    ><span>at the weekend</span>
+                  </div>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present continuous</p>
+                  <div class="chips">
+                    <span>now</span><span>right now</span><span>at the moment</span><span>today</span
+                    ><span>this week</span><span>these days</span><span>currently</span><span>tonight</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-4">
+              <h3><span class="gsn">5</span>Ortografía: -s y -ing</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Regla</th>
+                      <th>Ejemplo</th>
+                      <th>Forma</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>La mayoría: + -s / + -ing</td>
+                      <td>play</td>
+                      <td>plays · <b>playing</b></td>
+                    </tr>
+                    <tr>
+                      <td>Acaban en -o, -ch, -sh, -ss, -x: + -es</td>
+                      <td>watch · go</td>
+                      <td><b>watches</b> · <b>goes</b></td>
+                    </tr>
+                    <tr>
+                      <td>Consonante + y: -ies</td>
+                      <td>study</td>
+                      <td><b>studies</b> · studying</td>
+                    </tr>
+                    <tr>
+                      <td>Acaban en -e: quita la e</td>
+                      <td>write</td>
+                      <td><b>writing</b></td>
+                    </tr>
+                    <tr>
+                      <td>Consonante-vocal-consonante: dobla</td>
+                      <td>run · swim</td>
+                      <td><b>running</b> · <b>swimming</b></td>
+                    </tr>
+                    <tr>
+                      <td>Acaban en -ie: -ying</td>
+                      <td>die · lie</td>
+                      <td><b>dying</b> · <b>lying</b></td>
+                    </tr>
+                    <tr>
+                      <td>Acaban en -l (inglés británico): dobla</td>
+                      <td>travel</td>
+                      <td><b>travelling</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-5">
+              <h3><span class="gsn">6</span>Verbos de estado (casi nunca en -ing)</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <div class="chips">
+                    <span>know</span><span>understand</span><span>believe</span><span>remember</span><span>forget</span
+                    ><span>think (opinar)</span><span>mean</span>
+                  </div>
+                  <p class="xmp">Mente</p>
+                </div>
+                <div class="gcell b">
+                  <div class="chips">
+                    <span>like</span><span>love</span><span>hate</span><span>prefer</span><span>want</span
+                    ><span>need</span>
+                  </div>
+                  <p class="xmp">Gustos y deseos</p>
+                </div>
+                <div class="gcell c">
+                  <div class="chips">
+                    <span>have (poseer)</span><span>belong</span><span>own</span><span>seem</span><span>cost</span
+                    ><span>be</span>
+                  </div>
+                  <p class="xmp">Posesión y estado</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-6">
+              <h3><span class="gsn">7</span>Adverbios de frecuencia: dónde van</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Antes del verbo</p>
+                  <p class="hl">I <b>usually</b> get up at 7.</p>
+                  <p class="xmp">always · usually · often · sometimes · rarely · never</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Después de be</p>
+                  <p class="hl">She <b>is always</b> late.</p>
+                  <p class="xmp">Con am / is / are el adverbio va detrás.</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=tn"
+                >Practicar tiempos verbales <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="can.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Can y gustos</b></a
+              >
+              <a href="past-basic.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Past simple desde cero</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="can.html" aria-label="Guía anterior: Can y gustos"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=tn"
+              ><span>Practicar tiempos verbales</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="past-basic.html" aria-label="Guía siguiente: Past simple desde cero"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

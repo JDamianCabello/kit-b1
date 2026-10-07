@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Hacer preguntas · Guías · Kit B1</title>
+    <meta name="description" content="En inglés casi siempre hace falta un auxiliar delante del sujeto." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="questions">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Forma</a><a href="#gs-1">Ejemplos</a><a href="#gs-2">Palabras interrogativas</a
+              ><a href="#gs-3">Respuestas cortas</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-questions"
+                >Practicar preguntas <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a1">A1 · Empieza aquí</span> Guía 5 de 32</p>
+                <h1>Cómo hacer preguntas</h1>
+                <p>En inglés casi siempre hace falta un auxiliar delante del sujeto.</p>
+              </div>
+              <div class="sticky"><s>Where you live?</s><br />Where <b>do</b> you live?</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Con be</p>
+                  <p class="form">Be + sujeto + ...?</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Con do / does / did</p>
+                  <p class="form">Do / Does / Did + sujeto + verbo?</p>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Con otro auxiliar</p>
+                  <p class="form">can / will / have + sujeto + verbo?</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Con be</p>
+                  <ul>
+                    <li class="say" data-say="Are you tired?">
+                      <span>Are you tired?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Where is the station?">
+                      <span>Where is the station?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Was it expensive?">
+                      <span>Was it expensive?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Con do / does / did</p>
+                  <ul>
+                    <li class="say" data-say="Do you like pizza?">
+                      <span>Do you like pizza?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Where does she work?">
+                      <span>Where does she work?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="What did you do yesterday?">
+                      <span>What did you do yesterday?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Con otro auxiliar</p>
+                  <ul>
+                    <li class="say" data-say="Can you swim?">
+                      <span>Can you swim?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Will it rain tomorrow?">
+                      <span>Will it rain tomorrow?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Have you finished?">
+                      <span>Have you finished?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Palabras interrogativas</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Inglés</th>
+                      <th>Español</th>
+                      <th>Ejemplo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>What</td>
+                      <td>qué</td>
+                      <td>What's your name?</td>
+                    </tr>
+                    <tr>
+                      <td>Where</td>
+                      <td>dónde</td>
+                      <td>Where do you live?</td>
+                    </tr>
+                    <tr>
+                      <td>When</td>
+                      <td>cuándo</td>
+                      <td>When is your birthday?</td>
+                    </tr>
+                    <tr>
+                      <td>Who</td>
+                      <td>quién</td>
+                      <td>Who is that man?</td>
+                    </tr>
+                    <tr>
+                      <td>Why</td>
+                      <td>por qué</td>
+                      <td>Why are you sad? – <b>Because</b>...</td>
+                    </tr>
+                    <tr>
+                      <td>How</td>
+                      <td>cómo</td>
+                      <td>How are you?</td>
+                    </tr>
+                    <tr>
+                      <td>How old</td>
+                      <td>cuántos años</td>
+                      <td>How old are you?</td>
+                    </tr>
+                    <tr>
+                      <td>How much</td>
+                      <td>cuánto (precio, incontables)</td>
+                      <td>How much is it?</td>
+                    </tr>
+                    <tr>
+                      <td>How many</td>
+                      <td>cuántos (contables)</td>
+                      <td>How many brothers have you got?</td>
+                    </tr>
+                    <tr>
+                      <td>How often</td>
+                      <td>con qué frecuencia</td>
+                      <td>How often do you go to the gym?</td>
+                    </tr>
+                    <tr>
+                      <td>How long</td>
+                      <td>cuánto tiempo</td>
+                      <td>How long does it take?</td>
+                    </tr>
+                    <tr>
+                      <td>Which</td>
+                      <td>cuál (entre opciones)</td>
+                      <td>Which do you prefer, tea or coffee?</td>
+                    </tr>
+                    <tr>
+                      <td>Whose</td>
+                      <td>de quién</td>
+                      <td>Whose bag is this?</td>
+                    </tr>
+                    <tr>
+                      <td>What time</td>
+                      <td>a qué hora</td>
+                      <td>What time does the film start?</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Respuestas cortas</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="hl">Do you like it? – Yes, I <b>do</b>. / No, I <b>don't</b>.</p>
+                  <p class="hl">Is she Spanish? – Yes, she <b>is</b>. / No, she <b>isn't</b>.</p>
+                  <p class="xmp">Queda raro contestar solo «Yes» o «No».</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-questions"
+                >Practicar preguntas <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="numbers.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Números, hora y fechas</b></a
+              >
+              <a href="there.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>There is / are y lugar</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="numbers.html" aria-label="Guía anterior: Números, hora y fechas"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-questions"
+              ><span>Practicar preguntas</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="there.html" aria-label="Guía siguiente: There is / are y lugar"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

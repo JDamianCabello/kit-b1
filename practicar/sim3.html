@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Simulacro 3 · Kit B1</title>
+    <meta name="description" content="Con Reading Part 2 y Listening Part 3. Unos 40 minutos." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/exam.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <article class="exam" data-exam="sim3">
+          <div class="xhead">
+            <div>
+              <h1 class="h2">Simulacro 3</h1>
+              <p class="intro">Con Reading Part 2 y Listening Part 3. Unos 40 minutos.</p>
+            </div>
+            <span class="clock small" id="clock" aria-label="Tiempo">0:00</span>
+          </div>
+          <div class="result" id="result" hidden aria-live="polite">
+            <p class="big" id="r-score"></p>
+            <p id="r-msg"></p>
+            <p class="xmp">
+              Abajo tienes cada respuesta explicada. El Writing se autoevalúa con la lista y la respuesta modelo.
+            </p>
+            <button type="button" class="btn" id="redo">Repetir simulacro</button>
+          </div>
+          <section class="xpart" aria-labelledby="p0">
+            <h2 class="h3" id="p0">Reading · Part 1</h2>
+            <p class="intro">Lee cada texto y elige la opción que dice lo mismo.</p>
+            <div class="xq" data-answer="0">
+              <p class="qn">1</p>
+              <p class="notice">
+                <b>CAFÉ</b><br />Free Wi-Fi for customers. Ask at the counter for the password. Maximum 1 hour at busy
+                times.
+              </p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false">
+                  <kbd>A</kbd>Only customers can use the Wi-Fi.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false">
+                  <kbd>B</kbd>The Wi-Fi password is on the wall.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false">
+                  <kbd>C</kbd>You can't use the Wi-Fi at busy times.
+                </button>
+              </div>
+              <p class="why" hidden>
+                «Free Wi-Fi for customers». En horas punta se puede usar, pero como máximo una hora.
+              </p>
+            </div>
+            <div class="xq" data-answer="1">
+              <p class="qn">2</p>
+              <p class="notice">
+                Mum, the dentist called. My appointment on Tuesday is now at 4.30, not 3.30. Can you still take me?
+                Olivia
+              </p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false">
+                  <kbd>A</kbd>Olivia's appointment is on a different day.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false">
+                  <kbd>B</kbd>Olivia wants to know if her mum can take her at the new time.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false">
+                  <kbd>C</kbd>The dentist can't see Olivia on Tuesday.
+                </button>
+              </div>
+              <p class="why" hidden>El día es el mismo; cambia la hora. «Can you still take me?»</p>
+            </div>
+            <div class="xq" data-answer="1">
+              <p class="qn">3</p>
+              <p class="notice"><b>GYM</b><br />Please clean the machines after use. Towels available at reception.</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false">
+                  <kbd>A</kbd>Members must bring their own towels.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false">
+                  <kbd>B</kbd>You should clean the equipment when you finish.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false">
+                  <kbd>C</kbd>Reception staff clean the machines.
+                </button>
+              </div>
+              <p class="why" hidden>
+                «clean the machines after use» = límpialas cuando termines. Las toallas las dan en recepción.
+              </p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p1">
+            <h2 class="h3" id="p1">Reading · Part 2</h2>
+            <p class="intro">Lee lo que busca cada persona y elige el texto que mejor le encaja. Sobran dos textos.</p>
+            <div class="mtexts">
+              <div class="xtext mtext">
+                <span class="mletter">A</span>
+                <p>
+                  <b>Wave Kids Club</b>: swimming and water polo for children aged 8 to 12. Monday to Thursday, 5 to 6
+                  pm.
+                </p>
+              </div>
+              <div class="xtext mtext">
+                <span class="mletter">B</span>
+                <p>
+                  <b>Spice Kitchen</b>: learn to make Thai and Japanese dishes. Evening classes on Tuesdays and
+                  Thursdays.
+                </p>
+              </div>
+              <div class="xtext mtext">
+                <span class="mletter">C</span>
+                <p>
+                  <b>Language Café</b>: free English conversation evenings every Friday. Come and chat with people from
+                  all over the world.
+                </p>
+              </div>
+              <div class="xtext mtext">
+                <span class="mletter">D</span>
+                <p><b>Wok &amp; Roll</b>: Chinese and Vietnamese cooking workshops every Saturday morning.</p>
+              </div>
+              <div class="xtext mtext">
+                <span class="mletter">E</span>
+                <p><b>Speak Up Academy</b>: private English lessons with a native teacher. £40 an hour.</p>
+              </div>
+            </div>
+            <div class="xq" data-answer="3">
+              <p class="qn">1</p>
+              <p>
+                <b>Carla</b> wants to learn to cook Asian food. She works from Monday to Friday, so she can only go to
+                classes at the weekend.
+              </p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button
+                ><button type="button" class="xopt" data-v="4" aria-pressed="false"><kbd>E</kbd></button>
+              </div>
+              <p class="why" hidden>Wok & Roll: cocina asiática y los sábados. Spice Kitchen es entre semana.</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">2</p>
+              <p>
+                <b>Ben</b> is looking for an after-school sports activity for his 10-year-old son, who loves being in
+                the water.
+              </p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button
+                ><button type="button" class="xopt" data-v="4" aria-pressed="false"><kbd>E</kbd></button>
+              </div>
+              <p class="why" hidden>Wave Kids Club: deporte en el agua, para su edad y por la tarde.</p>
+            </div>
+            <div class="xq" data-answer="2">
+              <p class="qn">3</p>
+              <p>
+                <b>Marta</b> wants to practise speaking English. She'd like to meet new people and doesn't want to spend
+                much money.
+              </p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button
+                ><button type="button" class="xopt" data-v="4" aria-pressed="false"><kbd>E</kbd></button>
+              </div>
+              <p class="why" hidden>
+                Language Café: gratis y conoces gente. Speak Up es caro y a solas con el profesor.
+              </p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p2">
+            <h2 class="h3" id="p2">Reading · Part 4</h2>
+            <p class="intro">Elige la frase que va en cada hueco. Sobra una.</p>
+            <div class="xtext">
+              <p>
+                Last summer, my friend Leo and I cycled from London to Paris. <span class="gap">1</span> We trained for
+                three months before the trip, riding 50 kilometres every weekend.
+              </p>
+              <p>
+                The first day was the hardest. It rained all day and Leo had a flat tyre.
+                <span class="gap">2</span> Luckily, a farmer stopped and helped us fix it.
+              </p>
+              <p>
+                We arrived in Paris after four days. <span class="gap">3</span> We were tired, but we were really proud
+                of ourselves.
+              </p>
+            </div>
+            <ol class="sents">
+              <li><b>A</b> It was something we had wanted to do for years.</li>
+              <li><b>B</b> We didn't have the right tools to repair it.</li>
+              <li><b>C</b> We celebrated with a big dinner near the Eiffel Tower.</li>
+              <li><b>D</b> Paris is the most visited city in the world.</li>
+            </ol>
+            <div class="xq inline" data-answer="0">
+              <p class="qq">Hueco 1</p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button>
+              </div>
+              <p class="why" hidden>Explica por qué hicieron el viaje antes de hablar del entrenamiento.</p>
+            </div>
+            <div class="xq inline" data-answer="1">
+              <p class="qq">Hueco 2</p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button>
+              </div>
+              <p class="why" hidden>«it» = the flat tyre. Por eso necesitaron ayuda.</p>
+            </div>
+            <div class="xq inline" data-answer="2">
+              <p class="qq">Hueco 3</p>
+              <div class="xopts compact" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd></button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd></button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd></button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd></button>
+              </div>
+              <p class="why" hidden>Qué hicieron al llegar. La D no tiene relación con su historia.</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p3">
+            <h2 class="h3" id="p3">Reading · Part 5</h2>
+            <p class="intro">Elige la palabra correcta para cada hueco.</p>
+            <div class="xtext">
+              <p>Dear Sam,</p>
+              <p>
+                I'm sorry I couldn't <span class="gap">1</span> to your party. I had to <span class="gap">2</span> care
+                of my little brother because my parents were away. I hope you <span class="gap">3</span> a great time!
+                Can we <span class="gap">4</span> next week? I'd love to hear all about it.
+              </p>
+              <p>Love, Alex</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">1</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>come</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>reach</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>arrive</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>visit</button>
+              </div>
+              <p class="why" hidden><b>come to</b> a party.</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">2</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>take</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>make</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>have</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>give</button>
+              </div>
+              <p class="why" hidden><b>take care of</b> = cuidar de.</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">3</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>had</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>made</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>did</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>passed</button>
+              </div>
+              <p class="why" hidden><b>have</b> a great time.</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">4</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>meet</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>know</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>find</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>join</button>
+              </div>
+              <p class="why" hidden><b>meet</b> = quedar, vernos.</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p4">
+            <h2 class="h3" id="p4">Reading · Part 6</h2>
+            <p class="intro">Escribe UNA palabra en cada hueco.</p>
+            <div class="xtext">
+              <p>
+                My name is Pedro and I live <span class="gap">1</span> a small town near Valencia. I
+                <span class="gap">2</span> been learning English for six months. I study
+                <span class="gap">3</span> evening after work. My favourite part of the course is speaking,
+                <span class="gap">4</span> I find grammar quite difficult.
+              </p>
+            </div>
+            <div class="xq inline" data-answer='["in"]'>
+              <label class="qq" for="open-4-0">Hueco 1</label
+              ><input
+                class="xin"
+                id="open-4-0"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden><b>in</b> + ciudad o pueblo.</p>
+            </div>
+            <div class="xq inline" data-answer='["have","&apos;ve"]'>
+              <label class="qq" for="open-4-1">Hueco 2</label
+              ><input
+                class="xin"
+                id="open-4-1"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>Present perfect continuous: I <b>have</b> been learning.</p>
+            </div>
+            <div class="xq inline" data-answer='["every"]'>
+              <label class="qq" for="open-4-2">Hueco 3</label
+              ><input
+                class="xin"
+                id="open-4-2"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden><b>every</b> evening = todas las tardes.</p>
+            </div>
+            <div class="xq inline" data-answer='["but","although","though"]'>
+              <label class="qq" for="open-4-3">Hueco 4</label
+              ><input
+                class="xin"
+                id="open-4-3"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>Contraste: <b>but</b> (o although).</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p5">
+            <h2 class="h3" id="p5">Listening · Part 1</h2>
+            <p class="intro">Pulsa «Escuchar» y elige la respuesta. Puedes oír cada audio dos veces.</p>
+            <p class="warn tts-off">
+              Este navegador no puede leer textos en voz alta. Abajo tienes la transcripción para leerla.
+            </p>
+            <div class="xq" data-answer="2">
+              <p class="qn">1</p>
+              <p class="qq">What did the woman lose?</p>
+              <button type="button" class="btn small play tts-on" data-plays="2">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar <span>(2)</span>
+              </button>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>Her keys</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>Her wallet</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>Her phone</button>
+              </div>
+              <details class="script">
+                <summary>Transcripción</summary>
+                <p data-line="W"><b>Woman:</b> I can't find my phone anywhere!</p>
+                <p data-line="M"><b>Man:</b> Is it in your bag?</p>
+                <p data-line="W"><b>Woman:</b> No. I've got my keys and my wallet, but not my phone.</p>
+                <p data-line="M"><b>Man:</b> Let me call it... Oh, listen, it's ringing under the sofa.</p>
+              </details>
+              <p class="why" hidden>Tiene las llaves y la cartera: «but not my phone».</p>
+            </div>
+            <div class="xq" data-answer="2">
+              <p class="qn">2</p>
+              <p class="qq">What will they do on Saturday?</p>
+              <button type="button" class="btn small play tts-on" data-plays="2">
+                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                Escuchar <span>(2)</span>
+              </button>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>Go to the beach</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>Go to the cinema</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>Visit a museum</button>
+              </div>
+              <details class="script">
+                <summary>Transcripción</summary>
+                <p data-line="M"><b>Man:</b> Shall we go to the beach on Saturday?</p>
+                <p data-line="W"><b>Woman:</b> The forecast says it'll rain. How about the cinema?</p>
+                <p data-line="M"><b>Man:</b> We went last week. Let's visit the new museum instead.</p>
+                <p data-line="W"><b>Woman:</b> OK, good idea.</p>
+              </details>
+              <p class="why" hidden>Descartan la playa (lluvia) y el cine (ya fueron): «Let's visit the new museum».</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p6">
+            <h2 class="h3" id="p6">Listening · Part 3</h2>
+            <p class="intro">
+              Vas a oír a una profesora hablando de un curso. Completa las notas con una palabra, un número o una fecha.
+              Puedes escucharlo dos veces.
+            </p>
+            <p class="warn tts-off">
+              Este navegador no puede leer textos en voz alta. Abajo tienes la transcripción para leerla.
+            </p>
+            <button type="button" class="btn small play tts-on" data-plays="2">
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              Escuchar <span>(2)</span>
+            </button>
+            <div class="xtext notes">
+              <p><b>Summer art course</b></p>
+              <p>Starts: Monday <span class="gap">1</span> July</p>
+              <p>Classes finish at: <span class="gap">2</span></p>
+              <p>Price: £<span class="gap">3</span></p>
+              <p>Bring: an old <span class="gap">4</span></p>
+              <p>Teacher's surname: <span class="gap">5</span></p>
+            </div>
+            <div class="xq inline" data-answer='["14th","14","fourteenth","the 14th"]'>
+              <label class="qq" for="open-6-0">Hueco 1</label
+              ><input
+                class="xin"
+                id="open-6-0"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>«Monday the fourteenth of July».</p>
+            </div>
+            <div class="xq inline" data-answer='["12.30","12:30","half past twelve","1230"]'>
+              <label class="qq" for="open-6-1">Hueco 2</label
+              ><input
+                class="xin"
+                id="open-6-1"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>«until half past twelve» = 12:30.</p>
+            </div>
+            <div class="xq inline" data-answer='["120","one hundred and twenty"]'>
+              <label class="qq" for="open-6-2">Hueco 3</label
+              ><input
+                class="xin"
+                id="open-6-2"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>«one hundred and twenty pounds».</p>
+            </div>
+            <div class="xq inline" data-answer='["shirt"]'>
+              <label class="qq" for="open-6-3">Hueco 4</label
+              ><input
+                class="xin"
+                id="open-6-3"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>«bring an old shirt».</p>
+            </div>
+            <div class="xq inline" data-answer='["Green"]'>
+              <label class="qq" for="open-6-4">Hueco 5</label
+              ><input
+                class="xin"
+                id="open-6-4"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <p class="why" hidden>Lo deletrea: G-R-E-E-N.</p>
+            </div>
+            <details class="script">
+              <summary>Transcripción</summary>
+              <p data-line="W">Hello everyone, and welcome to the summer art course.</p>
+              <p data-line="W">
+                Classes start on Monday the fourteenth of July, and finish on Friday the first of August.
+              </p>
+              <p data-line="W">They're from ten o'clock until half past twelve every morning.</p>
+              <p data-line="W">
+                The course costs one hundred and twenty pounds, and that includes all the paint and paper.
+              </p>
+              <p data-line="W">Please bring an old shirt to protect your clothes.</p>
+              <p data-line="W">Your teacher is called Anna Green. That's G, R, E, E, N.</p>
+            </details>
+          </section>
+          <section class="xpart" aria-labelledby="p7">
+            <h2 class="h3" id="p7">Writing · Part 1</h2>
+            <p class="intro">Escribe unas 100 palabras. Después repasa la lista y compara con la respuesta modelo.</p>
+            <div class="xtext">
+              <p>Read this email from your English friend Kim and the notes you have made.</p>
+              <div class="notice">
+                <p>Hi!</p>
+                <p>I've decided to start learning Spanish! <span class="note-tag">Great!</span></p>
+                <p>Have you got any tips for me? <span class="note-tag">Give advice</span></p>
+                <p>Which is better for learning, books or apps? <span class="note-tag">Say which and why</span></p>
+                <p>Could you help me practise sometimes? <span class="note-tag">Yes, suggest when</span></p>
+                <p>Kim</p>
+              </div>
+              <p><b>Write your email to Kim using all the notes.</b></p>
+            </div>
+            <label class="sr-only" for="w-sim3-7">Tu texto</label>
+            <textarea
+              class="wtext"
+              id="w-sim3-7"
+              data-draft="sim3-7"
+              rows="10"
+              placeholder="Escribe aquí..."
+            ></textarea>
+            <p class="wcount" data-count-for="w-sim3-7"></p>
+            <div class="checks" hidden>
+              <p class="qq">Autoevaluación: marca lo que cumples</p>
+              <label><input type="checkbox" /> He usado las 4 notas.</label
+              ><label><input type="checkbox" /> Empiezo y termino el email de forma adecuada.</label
+              ><label><input type="checkbox" /> Tiene entre 90 y 120 palabras.</label
+              ><label><input type="checkbox" /> He usado conectores (because, so, but, although...).</label
+              ><label><input type="checkbox" /> He revisado verbos: -s con he/she, pasados y futuros.</label>
+              <details class="model">
+                <summary>Ver respuesta modelo</summary>
+                <p>Hi Kim,</p>
+                <p>That's fantastic news! Spanish is a beautiful language and I'm sure you'll love it.</p>
+                <p>
+                  My best tip is to practise a little every day, even for ten minutes. You should also watch Spanish
+                  films with subtitles.
+                </p>
+                <p>
+                  I think apps are better than books because they're fun and you can use them anywhere, for example on
+                  the bus. But a good grammar book is useful too.
+                </p>
+                <p>
+                  Of course I can help you! Why don't we have a video call every Sunday evening? We can speak Spanish
+                  for half an hour and English for half an hour.
+                </p>
+                <p>Write soon,<br />Dani</p>
+              </details>
+              <p class="xmp">
+                Para una corrección automática gratis, pega tu texto en
+                <a href="https://writeandimprove.com/" target="_blank" rel="noopener">Write &amp; Improve</a> (Cambridge
+                English).
+              </p>
+            </div>
+          </section>
+          <div class="row gradebar"><button type="button" class="btn primary" id="grade">Corregir</button></div>
+        </article>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

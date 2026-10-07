@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ropa, joyas, colores y materiales · Guías · Kit B1</title>
+    <meta
+      name="description"
+      content="Las palabras agrupadas en las cuatro categorías de la ficha. Algunas van en más de una: gold y silver son material y también color."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="clothes">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc"><a href="#gs-0">Las cuatro categorías</a><a href="#gs-1">Cómo se usan</a></nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/clasificar.html"
+                >Clasificar palabras (como la ficha)
+                <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta">
+                  <span class="lvtag lv-voc">VOC · Errores, vocabulario y conectores</span> Guía 27 de 32
+                </p>
+                <h1>Ropa, joyas, colores y materiales</h1>
+                <p>
+                  Las palabras agrupadas en las cuatro categorías de la ficha. Algunas van en más de una: gold y silver
+                  son material y también color.
+                </p>
+              </div>
+              <div class="sticky">a <b>gold</b> ring<br />= material<br />a <b>gold</b> dress<br />= color</div>
+            </div>
+
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Las cuatro categorías</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Clothes and shoes · ropa y calzado</p>
+                  <ul>
+                    <li class="say" data-say="button"><b>button</b> – botón</li>
+                    <li class="say" data-say="collar"><b>collar</b> – cuello (de camisa)</li>
+                    <li class="say" data-say="dress"><b>dress</b> – vestido</li>
+                    <li class="say" data-say="gloves"><b>gloves</b> – guantes</li>
+                    <li class="say" data-say="heel"><b>heel</b> – tacón</li>
+                    <li class="say" data-say="jacket"><b>jacket</b> – chaqueta</li>
+                    <li class="say" data-say="jeans"><b>jeans</b> – vaqueros</li>
+                    <li class="say" data-say="jumper"><b>jumper</b> – jersey</li>
+                    <li class="say" data-say="sandals"><b>sandals</b> – sandalias</li>
+                    <li class="say" data-say="shirt"><b>shirt</b> – camisa</li>
+                    <li class="say" data-say="skirt"><b>skirt</b> – falda</li>
+                    <li class="say" data-say="sleeve"><b>sleeve</b> – manga</li>
+                    <li class="say" data-say="suit"><b>suit</b> – traje</li>
+                    <li class="say" data-say="sweatshirt"><b>sweatshirt</b> – sudadera</li>
+                    <li class="say" data-say="T-shirt"><b>T-shirt</b> – camiseta</li>
+                    <li class="say" data-say="top"><b>top</b> – top, camiseta</li>
+                    <li class="say" data-say="trainers"><b>trainers</b> – zapatillas de deporte</li>
+                    <li class="say" data-say="coat"><b>coat</b> – abrigo</li>
+                    <li class="say" data-say="raincoat"><b>raincoat</b> – chubasquero</li>
+                    <li class="say" data-say="trousers"><b>trousers</b> – pantalones</li>
+                    <li class="say" data-say="shorts"><b>shorts</b> – pantalones cortos</li>
+                    <li class="say" data-say="tracksuit"><b>tracksuit</b> – chándal</li>
+                    <li class="say" data-say="blouse"><b>blouse</b> – blusa</li>
+                    <li class="say" data-say="cardigan"><b>cardigan</b> – chaqueta de punto</li>
+                    <li class="say" data-say="hoodie"><b>hoodie</b> – sudadera con capucha</li>
+                    <li class="say" data-say="waistcoat"><b>waistcoat</b> – chaleco</li>
+                    <li class="say" data-say="tie"><b>tie</b> – corbata</li>
+                    <li class="say" data-say="bow tie"><b>bow tie</b> – pajarita</li>
+                    <li class="say" data-say="scarf"><b>scarf</b> – bufanda</li>
+                    <li class="say" data-say="hat"><b>hat</b> – sombrero</li>
+                    <li class="say" data-say="cap"><b>cap</b> – gorra</li>
+                    <li class="say" data-say="belt"><b>belt</b> – cinturón</li>
+                    <li class="say" data-say="socks"><b>socks</b> – calcetines</li>
+                    <li class="say" data-say="tights"><b>tights</b> – medias</li>
+                    <li class="say" data-say="pyjamas"><b>pyjamas</b> – pijama</li>
+                    <li class="say" data-say="swimsuit"><b>swimsuit</b> – bañador (de mujer)</li>
+                    <li class="say" data-say="swimming trunks"><b>swimming trunks</b> – bañador (de hombre)</li>
+                    <li class="say" data-say="uniform"><b>uniform</b> – uniforme</li>
+                    <li class="say" data-say="boots"><b>boots</b> – botas</li>
+                    <li class="say" data-say="shoes"><b>shoes</b> – zapatos</li>
+                    <li class="say" data-say="slippers"><b>slippers</b> – zapatillas de casa</li>
+                    <li class="say" data-say="high heels"><b>high heels</b> – zapatos de tacón</li>
+                    <li class="say" data-say="flip-flops"><b>flip-flops</b> – chanclas</li>
+                    <li class="say" data-say="pocket"><b>pocket</b> – bolsillo</li>
+                    <li class="say" data-say="zip"><b>zip</b> – cremallera</li>
+                    <li class="say" data-say="hood"><b>hood</b> – capucha</li>
+                    <li class="say" data-say="shoelaces"><b>shoelaces</b> – cordones</li>
+                    <li class="say" data-say="underwear"><b>underwear</b> – ropa interior</li>
+                    <li class="say" data-say="nightdress"><b>nightdress</b> – camisón</li>
+                    <li class="say" data-say="vest"><b>vest</b> – camiseta interior</li>
+                    <li class="say" data-say="dressing gown"><b>dressing gown</b> – bata</li>
+                    <li class="say" data-say="handbag"><b>handbag</b> – bolso</li>
+                    <li class="say" data-say="backpack"><b>backpack</b> – mochila</li>
+                    <li class="say" data-say="wallet"><b>wallet</b> – cartera</li>
+                    <li class="say" data-say="sunglasses"><b>sunglasses</b> – gafas de sol</li>
+                    <li class="say" data-say="glasses"><b>glasses</b> – gafas</li>
+                    <li class="say" data-say="umbrella"><b>umbrella</b> – paraguas</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Jewellery · joyas</p>
+                  <ul>
+                    <li class="say" data-say="bracelet"><b>bracelet</b> – pulsera</li>
+                    <li class="say" data-say="earrings"><b>earrings</b> – pendientes</li>
+                    <li class="say" data-say="necklace"><b>necklace</b> – collar (joya)</li>
+                    <li class="say" data-say="ring"><b>ring</b> – anillo</li>
+                    <li class="say" data-say="watch"><b>watch</b> – reloj (de pulsera)</li>
+                    <li class="say" data-say="chain"><b>chain</b> – cadena</li>
+                    <li class="say" data-say="pendant"><b>pendant</b> – colgante</li>
+                    <li class="say" data-say="brooch"><b>brooch</b> – broche</li>
+                    <li class="say" data-say="anklet"><b>anklet</b> – tobillera (joya)</li>
+                    <li class="say" data-say="diamond"><b>diamond</b> – diamante</li>
+                    <li class="say" data-say="pearl"><b>pearl</b> – perla</li>
+                    <li class="say" data-say="jewellery"><b>jewellery</b> – joyas</li>
+                    <li class="say" data-say="wedding ring"><b>wedding ring</b> – alianza</li>
+                    <li class="say" data-say="engagement ring"><b>engagement ring</b> – anillo de compromiso</li>
+                    <li class="say" data-say="cufflinks"><b>cufflinks</b> – gemelos</li>
+                    <li class="say" data-say="piercing"><b>piercing</b> – piercing</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Colours · colores</p>
+                  <ul>
+                    <li class="say" data-say="cream"><b>cream</b> – color crema</li>
+                    <li class="say" data-say="dark green"><b>dark green</b> – verde oscuro</li>
+                    <li class="say" data-say="gold"><b>gold</b> – oro, dorado ★</li>
+                    <li class="say" data-say="light blue"><b>light blue</b> – azul claro</li>
+                    <li class="say" data-say="navy blue"><b>navy blue</b> – azul marino</li>
+                    <li class="say" data-say="pink"><b>pink</b> – rosa</li>
+                    <li class="say" data-say="purple"><b>purple</b> – morado</li>
+                    <li class="say" data-say="silver"><b>silver</b> – plata, plateado ★</li>
+                    <li class="say" data-say="red"><b>red</b> – rojo</li>
+                    <li class="say" data-say="orange"><b>orange</b> – naranja</li>
+                    <li class="say" data-say="yellow"><b>yellow</b> – amarillo</li>
+                    <li class="say" data-say="green"><b>green</b> – verde</li>
+                    <li class="say" data-say="blue"><b>blue</b> – azul</li>
+                    <li class="say" data-say="black"><b>black</b> – negro</li>
+                    <li class="say" data-say="white"><b>white</b> – blanco</li>
+                    <li class="say" data-say="grey"><b>grey</b> – gris</li>
+                    <li class="say" data-say="brown"><b>brown</b> – marrón</li>
+                    <li class="say" data-say="beige"><b>beige</b> – beis</li>
+                    <li class="say" data-say="turquoise"><b>turquoise</b> – turquesa</li>
+                    <li class="say" data-say="dark blue"><b>dark blue</b> – azul oscuro</li>
+                    <li class="say" data-say="light green"><b>light green</b> – verde claro</li>
+                    <li class="say" data-say="bright red"><b>bright red</b> – rojo intenso</li>
+                    <li class="say" data-say="pale pink"><b>pale pink</b> – rosa pálido</li>
+                    <li class="say" data-say="lilac"><b>lilac</b> – lila</li>
+                    <li class="say" data-say="olive green"><b>olive green</b> – verde oliva</li>
+                    <li class="say" data-say="burgundy"><b>burgundy</b> – granate</li>
+                    <li class="say" data-say="khaki"><b>khaki</b> – caqui</li>
+                    <li class="say" data-say="multicoloured"><b>multicoloured</b> – multicolor</li>
+                    <li class="say" data-say="platinum"><b>platinum</b> – platino ★</li>
+                    <li class="say" data-say="bronze"><b>bronze</b> – bronce ★</li>
+                  </ul>
+                </div>
+                <div class="gcell a">
+                  <p class="cname">Materials · materiales</p>
+                  <ul>
+                    <li class="say" data-say="cotton"><b>cotton</b> – algodón</li>
+                    <li class="say" data-say="gold"><b>gold</b> – oro, dorado ★</li>
+                    <li class="say" data-say="leather"><b>leather</b> – cuero</li>
+                    <li class="say" data-say="silver"><b>silver</b> – plata, plateado ★</li>
+                    <li class="say" data-say="wool"><b>wool</b> – lana</li>
+                    <li class="say" data-say="silk"><b>silk</b> – seda</li>
+                    <li class="say" data-say="denim"><b>denim</b> – tela vaquera</li>
+                    <li class="say" data-say="linen"><b>linen</b> – lino</li>
+                    <li class="say" data-say="nylon"><b>nylon</b> – nailon</li>
+                    <li class="say" data-say="polyester"><b>polyester</b> – poliéster</li>
+                    <li class="say" data-say="plastic"><b>plastic</b> – plástico</li>
+                    <li class="say" data-say="rubber"><b>rubber</b> – goma, caucho</li>
+                    <li class="say" data-say="metal"><b>metal</b> – metal</li>
+                    <li class="say" data-say="velvet"><b>velvet</b> – terciopelo</li>
+                    <li class="say" data-say="fur"><b>fur</b> – piel (con pelo)</li>
+                    <li class="say" data-say="suede"><b>suede</b> – ante</li>
+                    <li class="say" data-say="lace"><b>lace</b> – encaje</li>
+                    <li class="say" data-say="cashmere"><b>cashmere</b> – cachemir</li>
+                    <li class="say" data-say="canvas"><b>canvas</b> – lona</li>
+                    <li class="say" data-say="platinum"><b>platinum</b> – platino ★</li>
+                    <li class="say" data-say="steel"><b>steel</b> – acero</li>
+                    <li class="say" data-say="bronze"><b>bronze</b> – bronce ★</li>
+                    <li class="say" data-say="glass"><b>glass</b> – cristal, vidrio</li>
+                    <li class="say" data-say="wood"><b>wood</b> – madera</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="xmp">★ = va en más de una categoría.</p>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Cómo se usan</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Orden de los adjetivos</p>
+                  <p>color + material + prenda</p>
+                  <p class="hl">a black leather jacket</p>
+                  <p class="hl">a white cotton T-shirt</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Siempre en plural</p>
+                  <p>jeans, trousers, shorts, pyjamas, tights, glasses</p>
+                  <p class="hl">My jeans <b>are</b> new. <br />a pair of trousers</p>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Verbos útiles</p>
+                  <p class="hl">
+                    wear = llevar puesto<br />put on = ponerse<br />take off = quitarse<br />try on = probarse<br />It
+                    suits you = te queda bien
+                  </p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/clasificar.html"
+                >Clasificar palabras (como la ficha)
+                <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="traps.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Errores típicos</b></a
+              >
+              <a href="particles.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Phrasal verbs por partícula</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="traps.html" aria-label="Guía anterior: Errores típicos"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/clasificar.html"
+              ><span>Clasificar palabras (como la ficha)</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="particles.html" aria-label="Guía siguiente: Phrasal verbs por partícula"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

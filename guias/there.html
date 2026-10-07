@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>There is / are y lugar · Guías · Kit B1</title>
+    <meta name="description" content="«Hay» en inglés, y cómo decir dónde está cada cosa." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="there">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Forma</a><a href="#gs-1">En pasado</a><a href="#gs-2">Preposiciones de lugar</a
+              ><a href="#gs-3">At, in, on con lugares</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-there"
+                >Practicar there is y lugar <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a1">A1 · Empieza aquí</span> Guía 6 de 32</p>
+                <h1>There is / there are y preposiciones de lugar</h1>
+                <p>«Hay» en inglés, y cómo decir dónde está cada cosa.</p>
+              </div>
+              <div class="sticky"><s>There is two cats.</s><br />There <b>are</b> two cats.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">There is (singular / incontable)</p>
+                  <ul>
+                    <li>There<b>'s</b> a bank near here.</li>
+                    <li>There <b>isn't</b> any milk.</li>
+                    <li><b>Is there</b> a bus stop?</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">There are (plural)</p>
+                  <ul>
+                    <li>There <b>are</b> two bedrooms.</li>
+                    <li>There <b>aren't</b> any shops.</li>
+                    <li><b>Are there</b> any chairs?</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>En pasado</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">There is (singular / incontable)</p>
+                  <ul>
+                    <li>There <b>was</b> a problem.</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">There are (plural)</p>
+                  <ul>
+                    <li>There <b>were</b> a lot of people.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Preposiciones de lugar</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Preposición</th>
+                      <th>Significado</th>
+                      <th>Ejemplo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>in</td>
+                      <td>dentro de</td>
+                      <td>The keys are <b>in</b> my bag.</td>
+                    </tr>
+                    <tr>
+                      <td>on</td>
+                      <td>encima de (tocando)</td>
+                      <td>The book is <b>on</b> the table.</td>
+                    </tr>
+                    <tr>
+                      <td>under</td>
+                      <td>debajo de</td>
+                      <td>The cat is <b>under</b> the bed.</td>
+                    </tr>
+                    <tr>
+                      <td>next to</td>
+                      <td>al lado de</td>
+                      <td>The bank is <b>next to</b> the café.</td>
+                    </tr>
+                    <tr>
+                      <td>between</td>
+                      <td>entre (dos)</td>
+                      <td>It's <b>between</b> the bank and the school.</td>
+                    </tr>
+                    <tr>
+                      <td>opposite</td>
+                      <td>enfrente de</td>
+                      <td>The park is <b>opposite</b> my house.</td>
+                    </tr>
+                    <tr>
+                      <td>in front of</td>
+                      <td>delante de</td>
+                      <td>There's a car <b>in front of</b> the door.</td>
+                    </tr>
+                    <tr>
+                      <td>behind</td>
+                      <td>detrás de</td>
+                      <td>The garden is <b>behind</b> the house.</td>
+                    </tr>
+                    <tr>
+                      <td>near</td>
+                      <td>cerca de</td>
+                      <td>I live <b>near</b> the beach.</td>
+                    </tr>
+                    <tr>
+                      <td>above</td>
+                      <td>encima (sin tocar)</td>
+                      <td>There's a lamp <b>above</b> the table.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>At, in, on con lugares</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">at</p>
+                  <p>un punto: at home, at work, at school, at the station</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">in</p>
+                  <p>dentro, ciudades, países: in the kitchen, in Madrid, in Spain</p>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">on</p>
+                  <p>superficies, calles, transporte: on the wall, on Oxford Street, on the bus</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-there"
+                >Practicar there is y lugar <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="questions.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Hacer preguntas</b></a
+              >
+              <a href="prepositions.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Preposiciones clave</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="questions.html" aria-label="Guía anterior: Hacer preguntas"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-there"
+              ><span>Practicar there is y lugar</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="prepositions.html" aria-label="Guía siguiente: Preposiciones clave"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

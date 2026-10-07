@@ -1,5 +1,5 @@
 /* Kit B1 · vocabulario por temas del B1 Preliminary. Formato: "inglés=español|..." */
-const TOPICS_RAW = [
+export const TOPICS_RAW = [
  ["family","Familia y personas","mother=madre|father=padre|parents=padres|brother=hermano|sister=hermana|son=hijo|daughter=hija|grandparents=abuelos|uncle=tío|aunt=tía|cousin=primo, prima|husband=marido|wife=esposa|twins=gemelos|boyfriend=novio|neighbour=vecino"],
  ["describe","Describir a alguien","tall=alto|short=bajo|slim=delgado|curly hair=pelo rizado|straight hair=pelo liso|beard=barba|friendly=simpático|kind=amable|funny=gracioso|shy=tímido|lazy=vago|hard-working=trabajador|clever=listo|polite=educado|rude=maleducado|generous=generoso"],
  ["feelings","Sentimientos","happy=feliz|sad=triste|angry=enfadado|worried=preocupado|nervous=nervioso|bored=aburrido|excited=emocionado|tired=cansado|scared=asustado|surprised=sorprendido|proud=orgulloso|embarrassed=avergonzado|disappointed=decepcionado|relaxed=relajado|jealous=celoso|lonely=solo (sentirse)"],
@@ -35,7 +35,7 @@ TOPICS_RAW.push(
  ["chores","Tareas de casa","do the washing=poner la lavadora|do the ironing=planchar|do the washing-up=fregar los platos|make the bed=hacer la cama|hoover=pasar la aspiradora|tidy up=ordenar|dust=quitar el polvo|take out the rubbish=sacar la basura|feed the cat=dar de comer al gato|water the plants=regar las plantas|cook dinner=hacer la cena|lay the table=poner la mesa|clean the windows=limpiar las ventanas|sweep=barrer|mop the floor=fregar el suelo"]
 );
 // Temas agrupados para los menús
-const TOPIC_GROUPS = [
+export const TOPIC_GROUPS = [
  {title:"Personas", ids:["family","describe","feelings","body","jobs","countries"]},
  {title:"Casa y vida diaria", ids:["house","routine","chores","food","cooking","timewords"]},
  {title:"Ciudad, viajes y compras", ids:["town","travel","hotel","clothes","shopping","money"]},
@@ -44,19 +44,19 @@ const TOPIC_GROUPS = [
  {title:"Ocio", ids:["sport","entertainment"]},
  {title:"Palabras útiles", ids:["verbs","adjectives"]}
 ];
-const TOPICS = TOPICS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
+export const TOPICS = TOPICS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
 
 // Tarjetas de preposiciones. Formato: "inglés=español|..."
-const PREP_CARDS_RAW = [
+export const PREP_CARDS_RAW = [
  ["prep-dep","Verbo o adjetivo + preposición","afraid of=tener miedo de|proud of=orgulloso de|tired of=harto de|good at=bueno en|interested in=interesado en|famous for=famoso por|different from=diferente de|married to=casado con|depend on=depender de|listen to=escuchar a|wait for=esperar a|look at=mirar|look for=buscar|look after=cuidar|agree with=estar de acuerdo con|worry about=preocuparse por|talk about=hablar de|belong to=pertenecer a|angry with=enfadado con|keen on=aficionado a|responsible for=responsable de|pay for=pagar (algo)|apologise for=pedir perdón por|laugh at=reírse de|arrive in=llegar a (ciudad, país)|arrive at=llegar a (un lugar concreto)|think about=pensar en|look forward to=tener ganas de"],
  ["prep-iot","In, on, at: expresiones","at night=por la noche|in the morning=por la mañana|on Monday=el lunes|at the weekend=el fin de semana|in July=en julio|on 5th May=el 5 de mayo|at 8 o'clock=a las 8|at Christmas=en Navidad|on Christmas Day=el día de Navidad|in summer=en verano|at home=en casa|at work=en el trabajo|in bed=en la cama|on the bus=en el autobús|in the car=en el coche|on the wall=en la pared|in the photo=en la foto|on TV=en la tele|on the first floor=en el primer piso|at the station=en la estación|in the kitchen=en la cocina|on holiday=de vacaciones|at the moment=en este momento|on time=puntual|in time=a tiempo (con margen)|at the end of=al final de"]
 ];
-const PREP_CARDS = PREP_CARDS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
+export const PREP_CARDS = PREP_CARDS_RAW.map(([id, name, s]) => ({ id, name, words: s.split("|").map(p => p.split("=")) }));
 
 // Ropa, joyas, colores y materiales. [inglés, español, categorías] · c = clothes and shoes, j = jewellery, k = colours, m = materials
-const CLOTHES_CATS = {c:"Clothes and shoes", j:"Jewellery", k:"Colours", m:"Materials"};
-const CLOTHES_CATS_ES = {c:"ropa y calzado", j:"joyas", k:"colores", m:"materiales"};
-const CLOTHES = [
+export const CLOTHES_CATS = {c:"Clothes and shoes", j:"Jewellery", k:"Colours", m:"Materials"};
+export const CLOTHES_CATS_ES = {c:"ropa y calzado", j:"joyas", k:"colores", m:"materiales"};
+export const CLOTHES = [
  // Lista de clase
  ["bracelet","pulsera","j"],["button","botón","c"],["collar","cuello (de camisa)","c"],["cotton","algodón","m"],["cream","color crema","k"],
  ["dark green","verde oscuro","k"],["dress","vestido","c"],["earrings","pendientes","j"],["gloves","guantes","c"],["gold","oro, dorado","mk"],

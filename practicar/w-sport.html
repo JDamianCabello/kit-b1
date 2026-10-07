@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Artículo: deportes · Kit B1</title>
+    <meta name="description" content="Writing Part 2 · artículo de unas 100 palabras" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/exam.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <article class="exam" data-exam="w-sport">
+          <div class="xhead">
+            <div>
+              <h1 class="h2">Artículo: deportes</h1>
+              <p class="intro">Writing Part 2 · artículo de unas 100 palabras</p>
+            </div>
+            <span class="clock small" id="clock" aria-label="Tiempo">0:00</span>
+          </div>
+          <div class="result" id="result" hidden aria-live="polite">
+            <p class="big" id="r-score"></p>
+            <p id="r-msg"></p>
+            <p class="xmp">
+              Abajo tienes cada respuesta explicada. El Writing se autoevalúa con la lista y la respuesta modelo.
+            </p>
+            <button type="button" class="btn" id="redo">Repetir simulacro</button>
+          </div>
+          <section class="xpart" aria-labelledby="p0">
+            <h2 class="h3" id="p0">Tu texto</h2>
+            <p class="intro">
+              Escribe unas 100 palabras. Cuando termines, pulsa el botón para autoevaluarte y ver la respuesta modelo.
+            </p>
+            <div class="xtext">
+              <div class="notice">
+                <p><b>Articles wanted!</b></p>
+                <p>Do you prefer team sports or individual sports? Why?</p>
+                <p>Write an article answering these questions.</p>
+              </div>
+            </div>
+            <label class="sr-only" for="w-w-sport-0">Tu texto</label>
+            <textarea
+              class="wtext"
+              id="w-w-sport-0"
+              data-draft="w-sport-0"
+              rows="10"
+              placeholder="Escribe aquí..."
+            ></textarea>
+            <p class="wcount" data-count-for="w-w-sport-0"></p>
+            <div class="checks" hidden>
+              <p class="qq">Autoevaluación: marca lo que cumples</p>
+              <label><input type="checkbox" /> Tiene título.</label
+              ><label><input type="checkbox" /> Contesta a todas las preguntas del anuncio.</label
+              ><label><input type="checkbox" /> Tiene entre 90 y 120 palabras.</label
+              ><label
+                ><input type="checkbox" /> Da mi opinión con razones y ejemplos (In my opinion, because, for
+                example).</label
+              ><label><input type="checkbox" /> Termina con una conclusión.</label>
+              <details class="model">
+                <summary>Ver respuesta modelo</summary>
+                <p><b>Together is better</b></p>
+                <p>Some people love running alone, but I prefer team sports. Why?</p>
+                <p>
+                  First, they're more fun. When I play basketball with my friends, we laugh a lot, even when we lose.
+                </p>
+                <p>
+                  Second, you learn important things, like how to work with other people and how to help each other.
+                </p>
+                <p>
+                  Of course, individual sports have some advantages. For example, you can do them whenever you want.
+                </p>
+                <p>In my opinion, though, nothing is better than celebrating a win with your team.</p>
+              </details>
+              <p class="xmp">
+                Para una corrección automática gratis, pega tu texto en
+                <a href="https://writeandimprove.com/" target="_blank" rel="noopener">Write &amp; Improve</a> (Cambridge
+                English).
+              </p>
+            </div>
+          </section>
+          <div class="row gradebar">
+            <button type="button" class="btn primary" id="grade">He terminado: autoevaluarme</button>
+          </div>
+        </article>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

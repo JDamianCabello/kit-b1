@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Fallos · Kit B1</title>
+    <meta name="description" content="Las preguntas que has fallado, para repasarlas hasta acertarlas." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/pages/mistakes.js"></script>
+  </head>
+  <body data-tab="fallos">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <p class="brand">
+          <a href="index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="index.html"
+            ><svg aria-hidden="true"><use href="img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="guias/index.html"
+            ><svg aria-hidden="true"><use href="img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="practicar/index.html"
+            ><svg aria-hidden="true"><use href="img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="fallos.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <noscript
+        ><p class="noscript">
+          Este ejercicio necesita JavaScript. Actívalo en tu navegador y vuelve a cargar la página.
+        </p></noscript
+      >
+      <main class="panel" id="main" tabindex="-1">
+        <section class="mhero" aria-labelledby="mtitle">
+          <p class="mbig"><b data-stat="mistakes-total">0</b><span>fallos</span></p>
+          <div class="mhero-t">
+            <h1 id="mtitle">Tus fallos</h1>
+            <p>Se guardan en este dispositivo. Cada pregunta sale de la lista cuando la aciertas.</p>
+          </div>
+          <div class="mhero-a" id="mactions" hidden>
+            <a class="btn bad" href="practicar/test.html?set=fallos"
+              >Practicar mis fallos <svg aria-hidden="true"><use href="img/icons.svg#flecha"></use></svg
+            ></a>
+            <button type="button" class="linkbtn" id="clear">Borrar la lista</button>
+            <p class="confirm" id="confirm" hidden>
+              ¿Seguro? <button type="button" class="btn" id="yes">Sí, borrar</button
+              ><button type="button" class="btn ghost" id="no">Cancelar</button>
+            </p>
+          </div>
+        </section>
+        <p class="empty" id="mempty" hidden>
+          No tienes fallos guardados. Cuando falles una pregunta aparecerá aquí, y sale de la lista cuando la aciertes.
+        </p>
+        <p class="xmp" id="msort" hidden>Ordenados por veces fallados.</p>
+        <ol class="mlist" id="mlist"></ol>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+    <template id="tpl-mistake">
+      <li class="mitem">
+        <div class="mtop"><span class="msec" data-slot="sec"></span><span class="mtimes" data-slot="times"></span></div>
+        <p class="msent" data-slot="sentence"></p>
+        <p class="mnote" data-slot="note"></p>
+      </li>
+    </template>
+  </body>
+</html>

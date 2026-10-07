@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Will, going to y presente continuo · Guías · Kit B1</title>
+    <meta name="description" content="Tres formas de hablar del futuro según lo decidido que esté." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="future">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Cuándo se usa</a><a href="#gs-1">Forma</a><a href="#gs-2">Ejemplos</a
+              ><a href="#gs-3">Pistas</a><a href="#gs-4">Primer condicional (muy frecuente en el B1)</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=tn"
+                >Practicar tiempos verbales <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a2">A2 · Tiempos verbales</span> Guía 14 de 32</p>
+                <h1>El futuro: <em>will · going to · present continuous</em></h1>
+                <p>Tres formas de hablar del futuro según lo decidido que esté.</p>
+              </div>
+              <div class="sticky">Oferta rápida:<br />I<b>'ll</b> help you!<br /><s>I help you!</s></div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Cuándo se usa</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">will</p>
+                  <ul>
+                    <li>Decisión en el momento</li>
+                    <li>Predicción u opinión</li>
+                    <li>Ofrecimientos y promesas</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">going to</p>
+                  <ul>
+                    <li>Plan o intención ya decidida</li>
+                    <li>Predicción con pruebas (lo estás viendo)</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">present continuous</p>
+                  <ul>
+                    <li>Cita o plan organizado, con día, hora o lugar</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">will</p>
+                  <p class="form">will + verbo</p>
+                  <p>✗ won't + verbo</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">going to</p>
+                  <p class="form">am/is/are going to + verbo</p>
+                  <p>✗ isn't going to + verbo</p>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">present continuous</p>
+                  <p class="form">am/is/are + verbo-ing</p>
+                  <p>+ día u hora</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">will</p>
+                  <ul>
+                    <li class="say" data-say="The phone's ringing. I'll get it.">
+                      <span>The phone's ringing. I<b>'ll get</b> it.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="I think Spain will win.">
+                      <span>I think Spain <b>will win</b>.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="I won't tell anyone, I promise.">
+                      <span>I <b>won't tell</b> anyone, I promise.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">going to</p>
+                  <ul>
+                    <li class="say" data-say="I'm going to study medicine.">
+                      <span>I<b>'m going to study</b> medicine.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Look at those clouds! It's going to rain.">
+                      <span>Look at those clouds! It<b>'s going to rain</b>.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">present continuous</p>
+                  <ul>
+                    <li class="say" data-say="I'm meeting Ana at 6 tomorrow.">
+                      <span>I<b>'m meeting</b> Ana at 6 tomorrow.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="We're flying to Rome on Friday.">
+                      <span>We<b>'re flying</b> to Rome on Friday.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Pistas</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">will</p>
+                  <div class="chips">
+                    <span>I think</span><span>probably</span><span>I'm sure</span><span>maybe</span
+                    ><span>OK, I'll...</span>
+                  </div>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">going to</p>
+                  <div class="chips"><span>Look!</span><span>I've decided</span><span>my plan is</span></div>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">present continuous</p>
+                  <div class="chips">
+                    <span>tomorrow at 6</span><span>on Friday</span><span>tonight</span><span>this weekend</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-4">
+              <h3><span class="gsn">5</span>Primer condicional (muy frecuente en el B1)</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="form">If + present simple, will + verbo</p>
+                  <p class="hl">If it rains, we'll stay at home.</p>
+                  <p class="xmp">Nunca «If it will rain».</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=tn"
+                >Practicar tiempos verbales <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="past-cont.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Past simple vs Past continuous</b></a
+              >
+              <a href="time.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>In, on, at, for, since, ago</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="past-cont.html" aria-label="Guía anterior: Past simple vs Past continuous"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=tn"
+              ><span>Practicar tiempos verbales</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="time.html" aria-label="Guía siguiente: In, on, at, for, since, ago"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

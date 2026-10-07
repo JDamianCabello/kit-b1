@@ -1,11 +1,12 @@
 /* Kit B1 · más simulacros (con Reading Part 2 y Listening Part 3), tareas de Writing y práctica de Speaking.
    Todo el contenido es original, en el formato del B1 Preliminary. */
 
-const CHECKS_EMAIL = ["He usado las 4 notas.","Empiezo y termino el email de forma adecuada.","Tiene entre 90 y 120 palabras.","He usado conectores (because, so, but, although...).","He revisado verbos: -s con he/she, pasados y futuros."];
-const CHECKS_STORY = ["Empieza exactamente con la frase dada.","Tiene principio, problema o sorpresa y final.","Tiene entre 90 y 120 palabras.","Usa past simple y past continuous.","Usa conectores de secuencia (First, Then, Suddenly, In the end)."];
-const CHECKS_ARTICLE = ["Tiene título.","Contesta a todas las preguntas del anuncio.","Tiene entre 90 y 120 palabras.","Da mi opinión con razones y ejemplos (In my opinion, because, for example).","Termina con una conclusión."];
+export const CHECKS_EMAIL = ["He usado las 4 notas.","Empiezo y termino el email de forma adecuada.","Tiene entre 90 y 120 palabras.","He usado conectores (because, so, but, although...).","He revisado verbos: -s con he/she, pasados y futuros."];
+export const CHECKS_STORY = ["Empieza exactamente con la frase dada.","Tiene principio, problema o sorpresa y final.","Tiene entre 90 y 120 palabras.","Usa past simple y past continuous.","Usa conectores de secuencia (First, Then, Suddenly, In the end)."];
+export const CHECKS_ARTICLE = ["Tiene título.","Contesta a todas las preguntas del anuncio.","Tiene entre 90 y 120 palabras.","Da mi opinión con razones y ejemplos (In my opinion, because, for example).","Termina con una conclusión."];
 
-EXAMS.push(
+// Simulacros 3 y 4: se añaden a los de exams.js en js/lib/content.js
+export const EXAMS_MORE = [
  { id:"sim3", title:"Simulacro 3", sub:"Con Reading Part 2 y Listening Part 3. Unos 40 minutos.",
    parts:[
     { type:"choice", title:"Reading · Part 1", intro:"Lee cada texto y elige la opción que dice lo mismo.",
@@ -136,10 +137,10 @@ EXAMS.push(
       checks:CHECKS_ARTICLE,
       model:`<p><b>Time to relax</b></p><p>Do you ever feel stressed after a long week? I do, and my favourite way to relax is cooking.</p><p>On Sunday afternoons I put on some music, open a recipe book and cook something new. Last week, for example, I made a Thai curry for the first time.</p><p>I enjoy it because I forget about work and concentrate on the food. It's also creative, and at the end I can share a delicious meal with my family.</p><p>In my opinion, everyone should find a hobby that helps them relax. Why don't you try cooking?</p>` }
    ]}
-);
+];
 
 // Tareas de Writing sueltas: cada una se abre como un mini examen con una sola parte
-const WRITING_TASKS = [
+export const WRITING_TASKS = [
  { id:"w-party", title:"Email: una fiesta de cumpleaños", sub:"Writing Part 1 · email a un amigo",
    task:`<div class="notice"><p>Hi!</p><p>I'm having a party for my birthday next Saturday! <span class="note-tag">Great!</span></p><p>Can you come? <span class="note-tag">Say yes</span></p><p>What kind of food do you like? <span class="note-tag">Tell Sam</span></p><p>Could you help me with the music? <span class="note-tag">Suggest...</span></p><p>Sam</p></div>`,
    checks:CHECKS_EMAIL,
@@ -167,7 +168,7 @@ const WRITING_TASKS = [
 ];
 
 // Práctica de Speaking: preguntas, fotos descritas, tareas en pareja y debate
-const SPEAKING = [
+export const SPEAKING = [
  { id:"sp-1", title:"Speaking Part 1: preguntas personales", sub:"20 preguntas · 20 segundos por respuesta", secs:20,
    tip:"Contesta con 2 frases: la respuesta y un detalle o razón.",
    phrases:["I live in...","I'm a... / I work as...","In my free time I...","I really enjoy... because...","Last weekend I...","Next weekend I'm going to..."],

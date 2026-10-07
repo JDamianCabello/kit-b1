@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>In, on, at, for, since, ago · Guías · Kit B1</title>
+    <meta name="description" content="Las preposiciones de tiempo y las palabras for, since, ago, during y while." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="time">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Se usa con</a><a href="#gs-1">Ejemplos</a><a href="#gs-2">Sin preposición</a
+              ><a href="#gs-3">For, since, ago, during, while</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=te"
+                >Practicar expresiones de tiempo <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a2">A2 · Tiempos verbales</span> Guía 15 de 32</p>
+                <h1>Expresiones de tiempo</h1>
+                <p>Las preposiciones de tiempo y las palabras for, since, ago, during y while.</p>
+              </div>
+              <div class="sticky"><s>in next Friday</s><br />next Friday</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Se usa con</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">in</p>
+                  <ul>
+                    <li>meses</li>
+                    <li>años</li>
+                    <li>estaciones</li>
+                    <li>partes del día</li>
+                    <li>siglos</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">on</p>
+                  <ul>
+                    <li>días</li>
+                    <li>fechas</li>
+                    <li>días + parte del día</li>
+                    <li>días especiales</li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">at</p>
+                  <ul>
+                    <li>horas</li>
+                    <li>night</li>
+                    <li>the weekend (UK)</li>
+                    <li>Christmas, Easter</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">in</p>
+                  <div class="chips">
+                    <span>in July</span><span>in 2024</span><span>in summer</span><span>in the morning</span
+                    ><span>in the afternoon</span>
+                  </div>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">on</p>
+                  <div class="chips">
+                    <span>on Monday</span><span>on 5th May</span><span>on Friday morning</span
+                    ><span>on my birthday</span><span>on Christmas Day</span>
+                  </div>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">at</p>
+                  <div class="chips">
+                    <span>at 9 o'clock</span><span>at night</span><span>at midnight</span><span>at the weekend</span
+                    ><span>at Christmas</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Sin preposición</h3>
+              <div class="gcols">
+                <div class="gcell c">
+                  <p>Delante de <b>next, last, this, every, tomorrow, yesterday</b> no va in / on / at.</p>
+                  <p class="hl">See you next Friday. I saw him last week.</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>For, since, ago, during, while</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Palabra</th>
+                      <th>Significado</th>
+                      <th>Ejemplo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>for</td>
+                      <td>durante (una cantidad de tiempo)</td>
+                      <td>I've lived here <b>for</b> ten years.</td>
+                    </tr>
+                    <tr>
+                      <td>since</td>
+                      <td>desde (un momento)</td>
+                      <td>I've lived here <b>since</b> 2015.</td>
+                    </tr>
+                    <tr>
+                      <td>ago</td>
+                      <td>hace (va detrás)</td>
+                      <td>I moved here ten years <b>ago</b>.</td>
+                    </tr>
+                    <tr>
+                      <td>during</td>
+                      <td>durante + sustantivo</td>
+                      <td>I fell asleep <b>during</b> the film.</td>
+                    </tr>
+                    <tr>
+                      <td>while</td>
+                      <td>mientras + sujeto y verbo</td>
+                      <td>I fell asleep <b>while</b> I was watching the film.</td>
+                    </tr>
+                    <tr>
+                      <td>by</td>
+                      <td>como muy tarde</td>
+                      <td>Send it <b>by</b> Friday.</td>
+                    </tr>
+                    <tr>
+                      <td>until</td>
+                      <td>hasta</td>
+                      <td>I worked <b>until</b> 6 pm.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=te"
+                >Practicar expresiones de tiempo <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="future.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Will, going to y presente continuo</b></a
+              >
+              <a href="past-pp.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Past simple vs Present perfect</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="future.html" aria-label="Guía anterior: Will, going to y presente continuo"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=te"
+              ><span>Practicar expresiones de tiempo</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="past-pp.html" aria-label="Guía siguiente: Past simple vs Present perfect"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

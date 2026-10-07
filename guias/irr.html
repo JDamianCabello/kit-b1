@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Verbos irregulares · Guías · Kit B1</title>
+    <meta name="description" content="Los 62 más frecuentes del B1. Infinitivo, past simple y participio." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="irr">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc notoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc"></nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=iv"
+                >Ponerme a prueba <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a2">A2 · Tiempos verbales</span> Guía 12 de 32</p>
+                <h1>Verbos irregulares</h1>
+                <p>Los 62 más frecuentes del B1. Infinitivo, past simple y participio.</p>
+              </div>
+              <div class="sticky">Dilos en voz alta:<br />go – went – gone</div>
+            </div>
+
+            <section class="gsec">
+              <input
+                class="filter"
+                id="irr-filter"
+                type="search"
+                placeholder="Busca un verbo (en inglés o español)"
+                aria-label="Buscar verbo"
+              />
+              <div id="irr-table">
+                <div class="gtable">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Infinitivo</th>
+                        <th>Past simple</th>
+                        <th>Participio</th>
+                        <th>Significado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="be, was, been" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>be</td>
+                        <td><b>was / were</b></td>
+                        <td><b>been</b></td>
+                        <td>ser, estar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="become, became, become" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>become</td>
+                        <td><b>became</b></td>
+                        <td><b>become</b></td>
+                        <td>convertirse</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="begin, began, begun" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>begin</td>
+                        <td><b>began</b></td>
+                        <td><b>begun</b></td>
+                        <td>empezar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="break, broke, broken" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>break</td>
+                        <td><b>broke</b></td>
+                        <td><b>broken</b></td>
+                        <td>romper</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="bring, brought, brought" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>bring</td>
+                        <td><b>brought</b></td>
+                        <td><b>brought</b></td>
+                        <td>traer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="build, built, built" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>build</td>
+                        <td><b>built</b></td>
+                        <td><b>built</b></td>
+                        <td>construir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="buy, bought, bought" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>buy</td>
+                        <td><b>bought</b></td>
+                        <td><b>bought</b></td>
+                        <td>comprar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="catch, caught, caught" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>catch</td>
+                        <td><b>caught</b></td>
+                        <td><b>caught</b></td>
+                        <td>coger, atrapar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="choose, chose, chosen" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>choose</td>
+                        <td><b>chose</b></td>
+                        <td><b>chosen</b></td>
+                        <td>elegir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="come, came, come" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>come</td>
+                        <td><b>came</b></td>
+                        <td><b>come</b></td>
+                        <td>venir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="cost, cost, cost" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>cost</td>
+                        <td><b>cost</b></td>
+                        <td><b>cost</b></td>
+                        <td>costar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="cut, cut, cut" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>cut</td>
+                        <td><b>cut</b></td>
+                        <td><b>cut</b></td>
+                        <td>cortar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="do, did, done" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>do</td>
+                        <td><b>did</b></td>
+                        <td><b>done</b></td>
+                        <td>hacer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="drink, drank, drunk" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>drink</td>
+                        <td><b>drank</b></td>
+                        <td><b>drunk</b></td>
+                        <td>beber</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="drive, drove, driven" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>drive</td>
+                        <td><b>drove</b></td>
+                        <td><b>driven</b></td>
+                        <td>conducir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="eat, ate, eaten" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>eat</td>
+                        <td><b>ate</b></td>
+                        <td><b>eaten</b></td>
+                        <td>comer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="fall, fell, fallen" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>fall</td>
+                        <td><b>fell</b></td>
+                        <td><b>fallen</b></td>
+                        <td>caer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="feel, felt, felt" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>feel</td>
+                        <td><b>felt</b></td>
+                        <td><b>felt</b></td>
+                        <td>sentir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="find, found, found" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>find</td>
+                        <td><b>found</b></td>
+                        <td><b>found</b></td>
+                        <td>encontrar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="fly, flew, flown" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>fly</td>
+                        <td><b>flew</b></td>
+                        <td><b>flown</b></td>
+                        <td>volar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="forget, forgot, forgotten" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>forget</td>
+                        <td><b>forgot</b></td>
+                        <td><b>forgotten</b></td>
+                        <td>olvidar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="get, got, got" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>get</td>
+                        <td><b>got</b></td>
+                        <td><b>got</b></td>
+                        <td>conseguir, llegar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="give, gave, given" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>give</td>
+                        <td><b>gave</b></td>
+                        <td><b>given</b></td>
+                        <td>dar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="go, went, gone" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>go</td>
+                        <td><b>went</b></td>
+                        <td><b>gone</b></td>
+                        <td>ir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="grow, grew, grown" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>grow</td>
+                        <td><b>grew</b></td>
+                        <td><b>grown</b></td>
+                        <td>crecer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="have, had, had" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>have</td>
+                        <td><b>had</b></td>
+                        <td><b>had</b></td>
+                        <td>tener</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="hear, heard, heard" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>hear</td>
+                        <td><b>heard</b></td>
+                        <td><b>heard</b></td>
+                        <td>oír</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="keep, kept, kept" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>keep</td>
+                        <td><b>kept</b></td>
+                        <td><b>kept</b></td>
+                        <td>guardar, mantener</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="know, knew, known" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>know</td>
+                        <td><b>knew</b></td>
+                        <td><b>known</b></td>
+                        <td>saber, conocer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="leave, left, left" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>leave</td>
+                        <td><b>left</b></td>
+                        <td><b>left</b></td>
+                        <td>irse, dejar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="lend, lent, lent" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>lend</td>
+                        <td><b>lent</b></td>
+                        <td><b>lent</b></td>
+                        <td>prestar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="lose, lost, lost" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>lose</td>
+                        <td><b>lost</b></td>
+                        <td><b>lost</b></td>
+                        <td>perder</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="make, made, made" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>make</td>
+                        <td><b>made</b></td>
+                        <td><b>made</b></td>
+                        <td>hacer, fabricar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="meet, met, met" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>meet</td>
+                        <td><b>met</b></td>
+                        <td><b>met</b></td>
+                        <td>conocer, quedar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="pay, paid, paid" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>pay</td>
+                        <td><b>paid</b></td>
+                        <td><b>paid</b></td>
+                        <td>pagar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="put, put, put" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>put</td>
+                        <td><b>put</b></td>
+                        <td><b>put</b></td>
+                        <td>poner</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="read, read, read" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>read</td>
+                        <td><b>read</b></td>
+                        <td><b>read</b></td>
+                        <td>leer</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="ride, rode, ridden" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>ride</td>
+                        <td><b>rode</b></td>
+                        <td><b>ridden</b></td>
+                        <td>montar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="ring, rang, rung" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>ring</td>
+                        <td><b>rang</b></td>
+                        <td><b>rung</b></td>
+                        <td>sonar, llamar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="run, ran, run" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>run</td>
+                        <td><b>ran</b></td>
+                        <td><b>run</b></td>
+                        <td>correr</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="say, said, said" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>say</td>
+                        <td><b>said</b></td>
+                        <td><b>said</b></td>
+                        <td>decir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="see, saw, seen" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>see</td>
+                        <td><b>saw</b></td>
+                        <td><b>seen</b></td>
+                        <td>ver</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="sell, sold, sold" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>sell</td>
+                        <td><b>sold</b></td>
+                        <td><b>sold</b></td>
+                        <td>vender</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="send, sent, sent" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>send</td>
+                        <td><b>sent</b></td>
+                        <td><b>sent</b></td>
+                        <td>enviar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="sing, sang, sung" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>sing</td>
+                        <td><b>sang</b></td>
+                        <td><b>sung</b></td>
+                        <td>cantar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="sit, sat, sat" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>sit</td>
+                        <td><b>sat</b></td>
+                        <td><b>sat</b></td>
+                        <td>sentarse</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="sleep, slept, slept" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>sleep</td>
+                        <td><b>slept</b></td>
+                        <td><b>slept</b></td>
+                        <td>dormir</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="speak, spoke, spoken" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>speak</td>
+                        <td><b>spoke</b></td>
+                        <td><b>spoken</b></td>
+                        <td>hablar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="spend, spent, spent" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>spend</td>
+                        <td><b>spent</b></td>
+                        <td><b>spent</b></td>
+                        <td>gastar, pasar (tiempo)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="stand, stood, stood" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>stand</td>
+                        <td><b>stood</b></td>
+                        <td><b>stood</b></td>
+                        <td>estar de pie</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="steal, stole, stolen" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>steal</td>
+                        <td><b>stole</b></td>
+                        <td><b>stolen</b></td>
+                        <td>robar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="swim, swam, swum" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>swim</td>
+                        <td><b>swam</b></td>
+                        <td><b>swum</b></td>
+                        <td>nadar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="take, took, taken" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>take</td>
+                        <td><b>took</b></td>
+                        <td><b>taken</b></td>
+                        <td>coger, llevar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="teach, taught, taught" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>teach</td>
+                        <td><b>taught</b></td>
+                        <td><b>taught</b></td>
+                        <td>enseñar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="tell, told, told" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>tell</td>
+                        <td><b>told</b></td>
+                        <td><b>told</b></td>
+                        <td>decir, contar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="think, thought, thought" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>think</td>
+                        <td><b>thought</b></td>
+                        <td><b>thought</b></td>
+                        <td>pensar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="throw, threw, thrown" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>throw</td>
+                        <td><b>threw</b></td>
+                        <td><b>thrown</b></td>
+                        <td>lanzar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button
+                            class="spk"
+                            type="button"
+                            data-say="understand, understood, understood"
+                            aria-label="Escuchar"
+                          >
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>understand</td>
+                        <td><b>understood</b></td>
+                        <td><b>understood</b></td>
+                        <td>entender</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="wake, woke, woken" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>wake</td>
+                        <td><b>woke</b></td>
+                        <td><b>woken</b></td>
+                        <td>despertar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="wear, wore, worn" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>wear</td>
+                        <td><b>wore</b></td>
+                        <td><b>worn</b></td>
+                        <td>llevar puesto</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="win, won, won" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>win</td>
+                        <td><b>won</b></td>
+                        <td><b>won</b></td>
+                        <td>ganar</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <button class="spk" type="button" data-say="write, wrote, written" aria-label="Escuchar">
+                            <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                          </button>
+                        </td>
+                        <td>write</td>
+                        <td><b>wrote</b></td>
+                        <td><b>written</b></td>
+                        <td>escribir</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=iv"
+                >Ponerme a prueba <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="past-basic.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>Past simple desde cero</b></a
+              >
+              <a href="past-cont.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Past simple vs Past continuous</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="past-basic.html" aria-label="Guía anterior: Past simple desde cero"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=iv"
+              ><span>Ponerme a prueba</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="past-cont.html" aria-label="Guía siguiente: Past simple vs Past continuous"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

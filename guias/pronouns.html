@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Pronombres y posesivos · Guías · Kit B1</title>
+    <meta name="description" content="Yo, me, mi, mío: cuatro palabras distintas en inglés." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="pronouns">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">La tabla completa</a><a href="#gs-1">Cómo se usan</a><a href="#gs-2">El genitivo 's</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-pronouns"
+                >Practicar pronombres <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a1">A1 · Empieza aquí</span> Guía 2 de 32</p>
+                <h1>Pronombres y posesivos</h1>
+                <p>Yo, me, mi, mío: cuatro palabras distintas en inglés.</p>
+              </div>
+              <div class="sticky">This is <b>my</b> book.<br />It's <b>mine</b>.</div>
+            </div>
+
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>La tabla completa</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Sujeto</th>
+                      <th>Objeto</th>
+                      <th>Adjetivo posesivo</th>
+                      <th>Pronombre posesivo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>I</td>
+                      <td>me</td>
+                      <td>my</td>
+                      <td>mine</td>
+                    </tr>
+                    <tr>
+                      <td>you</td>
+                      <td>you</td>
+                      <td>your</td>
+                      <td>yours</td>
+                    </tr>
+                    <tr>
+                      <td>he</td>
+                      <td>him</td>
+                      <td>his</td>
+                      <td>his</td>
+                    </tr>
+                    <tr>
+                      <td>she</td>
+                      <td>her</td>
+                      <td>her</td>
+                      <td>hers</td>
+                    </tr>
+                    <tr>
+                      <td>it</td>
+                      <td>it</td>
+                      <td>its</td>
+                      <td>–</td>
+                    </tr>
+                    <tr>
+                      <td>we</td>
+                      <td>us</td>
+                      <td>our</td>
+                      <td>ours</td>
+                    </tr>
+                    <tr>
+                      <td>they</td>
+                      <td>them</td>
+                      <td>their</td>
+                      <td>theirs</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Cómo se usan</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Objeto</p>
+                  <p>Detrás del verbo o preposición</p>
+                  <p class="hl">Call <b>me</b>. I love <b>her</b>. Come with <b>us</b>.</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Adjetivo posesivo</p>
+                  <p>Delante de un sustantivo</p>
+                  <p class="hl"><b>my</b> car, <b>their</b> house</p>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Pronombre posesivo</p>
+                  <p>Solo, sin sustantivo</p>
+                  <p class="hl">The car is <b>mine</b>.</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>El genitivo 's</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <ul>
+                    <li><b>Ana's</b> car = el coche de Ana</li>
+                    <li>my <b>parents'</b> house = la casa de mis padres (plural: solo apóstrofo)</li>
+                    <li>the <b>children's</b> toys (plural irregular: 's)</li>
+                  </ul>
+                  <p class="xmp">Ojo: <b>its</b> = su (de una cosa). <b>it's</b> = it is.</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-pronouns"
+                >Practicar pronombres <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="be.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>To be</b></a
+              >
+              <a href="articles.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>a / an / the y plurales</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="be.html" aria-label="Guía anterior: To be"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-pronouns"
+              ><span>Practicar pronombres</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="articles.html" aria-label="Guía siguiente: a / an / the y plurales"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

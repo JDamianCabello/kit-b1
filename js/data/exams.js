@@ -1,6 +1,6 @@
 /* Kit B1 · simulacros de examen con contenido original en formato B1 Preliminary.
    a = índice de la opción correcta. En "gapped", answers = índice de la frase para cada hueco. */
-const EXAMS = [
+export const EXAMS = [
  { id:"sim1", title:"Simulacro 1", sub:"Reading, Listening y un email. Unos 35 minutos.",
    parts:[
     { type:"choice", title:"Reading · Part 1", intro:"Lee cada texto y elige la opción que dice lo mismo.",

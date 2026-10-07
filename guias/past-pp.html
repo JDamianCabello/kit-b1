@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Past simple vs Present perfect · Guías · Kit B1</title>
+    <meta
+      name="description"
+      content="¿Dices cuándo pasó? Past simple. ¿No importa cuándo o sigue ahora? Present perfect."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="past-pp">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Cuándo se usa</a><a href="#gs-1">Forma</a><a href="#gs-2">Ejemplos</a
+              ><a href="#gs-3">Expresiones de tiempo</a><a href="#gs-4">Ever, never, already, yet, just: dónde van</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="irr.html"
+                >Repasar verbos irregulares <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-b1">B1 · Hacia el B1</span> Guía 16 de 32</p>
+                <h1>Past simple <em>vs</em> Present perfect</h1>
+                <p>¿Dices cuándo pasó? Past simple. ¿No importa cuándo o sigue ahora? Present perfect.</p>
+              </div>
+              <div class="sticky"><s>I have seen him yesterday.</s><br />I saw him yesterday.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Cuándo se usa</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Past simple</p>
+                  <ul>
+                    <li>Acción terminada en un momento concreto</li>
+                    <li>Dices (o se sabe) cuándo pasó</li>
+                    <li>Contar una historia paso a paso</li>
+                    <li>Cosas que ya no son así</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present perfect</p>
+                  <ul>
+                    <li>Experiencias en la vida, sin decir cuándo</li>
+                    <li>Algo que empezó y sigue ahora</li>
+                    <li>Pasado con resultado ahora</li>
+                    <li>Noticias recientes</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Past simple</p>
+                  <p class="form">Sujeto + verbo-ed / irregular</p>
+                  <p>✗ didn't + verbo</p>
+                  <p>? Did + sujeto + verbo?</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present perfect</p>
+                  <p class="form">Sujeto + have/has + participio</p>
+                  <p>✗ haven't / hasn't + participio</p>
+                  <p>? Have / Has + sujeto + participio?</p>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Past simple</p>
+                  <ul>
+                    <li class="say" data-say="I visited London in 2022.">
+                      <span>I <b>visited</b> London in 2022.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She lost her keys yesterday.">
+                      <span>She <b>lost</b> her keys yesterday.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="We lived in Paris for two years.">
+                      <span>We <b>lived</b> in Paris for two years. (ya no)</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Did you see the match last night?">
+                      <span><b>Did</b> you <b>see</b> the match last night?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present perfect</p>
+                  <ul>
+                    <li class="say" data-say="I've visited London twice.">
+                      <span>I<b>'ve visited</b> London twice.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She's lost her keys.">
+                      <span>She<b>'s lost</b> her keys. (sigue sin ellas)</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="We've lived here for two years.">
+                      <span>We<b>'ve lived</b> here for two years. (y seguimos)</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Have you ever seen a whale?">
+                      <span><b>Have</b> you ever <b>seen</b> a whale?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Expresiones de tiempo</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Past simple</p>
+                  <div class="chips">
+                    <span>yesterday</span><span>last week</span><span>last year</span><span>in 2020</span
+                    ><span>two days ago</span><span>when I was ten</span><span>then</span>
+                  </div>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Present perfect</p>
+                  <div class="chips">
+                    <span>ever</span><span>never</span><span>already</span><span>yet</span><span>just</span
+                    ><span>since</span><span>for</span><span>so far</span><span>recently</span
+                    ><span>this week (no ha acabado)</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-4">
+              <h3><span class="gsn">5</span>Ever, never, already, yet, just: dónde van</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Palabra</th>
+                      <th>Posición</th>
+                      <th>Ejemplo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ever</td>
+                      <td>preguntas, antes del participio</td>
+                      <td>Have you <b>ever</b> been to Italy?</td>
+                    </tr>
+                    <tr>
+                      <td>never</td>
+                      <td>antes del participio</td>
+                      <td>I've <b>never</b> tried sushi.</td>
+                    </tr>
+                    <tr>
+                      <td>already</td>
+                      <td>antes del participio</td>
+                      <td>I've <b>already</b> finished.</td>
+                    </tr>
+                    <tr>
+                      <td>yet</td>
+                      <td>al final, en negativas y preguntas</td>
+                      <td>I haven't finished <b>yet</b>. Have you finished <b>yet</b>?</td>
+                    </tr>
+                    <tr>
+                      <td>just</td>
+                      <td>antes del participio</td>
+                      <td>She's <b>just</b> arrived.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="irr.html"
+                >Repasar verbos irregulares <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="time.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>In, on, at, for, since, ago</b></a
+              >
+              <a href="used-to.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Used to</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="time.html" aria-label="Guía anterior: In, on, at, for, since, ago"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="irr.html"
+              ><span>Repasar verbos irregulares</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="used-to.html" aria-label="Guía siguiente: Used to"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

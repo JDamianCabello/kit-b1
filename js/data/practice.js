@@ -1,6 +1,6 @@
 /* Kit B1 · datos de práctica: phrasal verbs, tiempos, expresiones de tiempo, vocabulario, irregulares */
 // [phrasal verb, significado, frase con ___, [opciones: la primera es la correcta]]
-const PV = [
+export const PV = [
  ["give up","dejar (un hábito), rendirse","My dad ___ smoking last year.",["gave up","gave in","gave out","gave away"]],
  ["give back","devolver","Can you ___ the book I lent you?",["give back","give up","give in","give away"]],
  ["look after","cuidar","Can you ___ my cat while I'm on holiday?",["look after","look for","look up","look into"]],
@@ -38,7 +38,7 @@ const PV = [
 ];
 
 // [frase, verbo entre paréntesis, [respuestas válidas], explicación]
-const TN = [
+export const TN = [
  ["I ___ in Madrid since 2019.","live",["have lived","have been living"],"<b>Present perfect</b>: empezó en el pasado y sigue ahora. <mark>since</mark> + momento concreto."],
  ["Yesterday we ___ to the beach.","go",["went"],"<b>Past simple</b>: acción terminada con momento concreto (<mark>yesterday</mark>). Go es irregular: go, went, gone."],
  ["Look! It ___.","rain",["is raining"],"<b>Present continuous</b>: está pasando ahora mismo (<mark>Look!</mark>)."],
@@ -72,7 +72,7 @@ const TN = [
 ];
 
 // [frase, [opciones: primera correcta], explicación]  "—" = sin preposición
-const TE = [
+export const TE = [
  ["I'll see you ___ Monday.",["on","in","at","—"],"<mark>on</mark> + días y fechas: on Monday, on 5th May."],
  ["My birthday is ___ July.",["in","on","at","—"],"<mark>in</mark> + meses, años, estaciones: in July, in 2024, in summer."],
  ["The class starts ___ 9 o'clock.",["at","in","on","—"],"<mark>at</mark> + horas: at 9 o'clock, at midnight."],
@@ -96,7 +96,7 @@ const TE = [
 ];
 
 // [categoría, frase, [opciones: primera correcta], explicación]
-const VO = [
+export const VO = [
  ["Falsos amigos","I want to buy a new novel. Is there a ___ near here?",["bookshop","library","bookcase"],"<mark>bookshop</mark> = librería. <b>library</b> = biblioteca."],
  ["Falsos amigos","She was very ___ when she fell over in front of everyone.",["embarrassed","embarrassing","pregnant"],"<mark>embarrassed</mark> = avergonzada. Embarazada es <b>pregnant</b>."],
  ["Falsos amigos","I thought the film would be boring, but ___ it was great.",["actually","currently","nowadays"],"<mark>actually</mark> = en realidad. Actualmente es <b>currently</b>."],
@@ -150,7 +150,7 @@ const VO = [
 ];
 
 // [infinitivo, past simple, participio, significado]
-const IRR = [
+export const IRR = [
  ["be","was / were","been","ser, estar"],["become","became","become","convertirse"],["begin","began","begun","empezar"],
  ["break","broke","broken","romper"],["bring","brought","brought","traer"],["build","built","built","construir"],
  ["buy","bought","bought","comprar"],["catch","caught","caught","coger, atrapar"],["choose","chose","chosen","elegir"],
@@ -176,11 +176,11 @@ const IRR = [
 
 
 // Phrasal verbs 2: más verbos del B1. "inglés=español|..."
-const PV2 = "call back=devolver la llamada|calm down=calmarse|slow down=ir más despacio|sit down=sentarse|stand up=ponerse de pie|turn on=encender|turn off=apagar|go out=salir (de fiesta, de casa)|eat out=comer fuera|try on=probarse (ropa)|put away=guardar, recoger|throw away=tirar (a la basura)|get back=volver, regresar|look up to=admirar a|run into=encontrarse con (por casualidad)|take after=parecerse a (un familiar)|bring up=criar|cut down on=reducir (el consumo de)|fall out=pelearse, enfadarse|give away=regalar|go off=sonar (una alarma); estropearse|hold on=esperar un momento|make up=inventar; reconciliarse|put up with=aguantar, soportar|sort out=solucionar, organizar|stay up=quedarse despierto|come up with=idear, ocurrírsele|drop off=dejar (a alguien en un sitio)|sign up=apuntarse, inscribirse|wash up=fregar los platos"
+export const PV2 = "call back=devolver la llamada|calm down=calmarse|slow down=ir más despacio|sit down=sentarse|stand up=ponerse de pie|turn on=encender|turn off=apagar|go out=salir (de fiesta, de casa)|eat out=comer fuera|try on=probarse (ropa)|put away=guardar, recoger|throw away=tirar (a la basura)|get back=volver, regresar|look up to=admirar a|run into=encontrarse con (por casualidad)|take after=parecerse a (un familiar)|bring up=criar|cut down on=reducir (el consumo de)|fall out=pelearse, enfadarse|give away=regalar|go off=sonar (una alarma); estropearse|hold on=esperar un momento|make up=inventar; reconciliarse|put up with=aguantar, soportar|sort out=solucionar, organizar|stay up=quedarse despierto|come up with=idear, ocurrírsele|drop off=dejar (a alguien en un sitio)|sign up=apuntarse, inscribirse|wash up=fregar los platos"
   .split("|").map(p => p.split("="));
 
 // Tiempos verbales para tarjetas
-const T_STRUCT = [
+export const T_STRUCT = [
  ["Present simple","sujeto + verbo (+ -s con he/she/it)"],["Present continuous","am / is / are + verbo-ing"],
  ["Past simple","verbo-ed o forma irregular"],["Past continuous","was / were + verbo-ing"],
  ["Present perfect","have / has + participio"],["Present perfect continuous","have / has been + verbo-ing"],
@@ -188,7 +188,7 @@ const T_STRUCT = [
  ["Used to","used to + verbo"],["First conditional","if + presente, will + verbo"],["Second conditional","if + pasado, would + verbo"],
  ["Passive (present)","am / is / are + participio"],["Passive (past)","was / were + participio"]
 ];
-const T_WHICH = [
+export const T_WHICH = [
  ["I've never been to Paris.","Present perfect"],["She usually walks to school.","Present simple"],["Look! It's snowing.","Present continuous"],
  ["We went to the beach yesterday.","Past simple"],["I was cooking when you called.","Past continuous"],["When we arrived, the film had started.","Past perfect"],
  ["I think it will rain tomorrow.","Future with will"],["I'm going to study medicine.","Going to"],["I've been waiting for an hour.","Present perfect continuous"],
@@ -197,14 +197,14 @@ const T_WHICH = [
  ["Water boils at 100 degrees.","Present simple"],["They were playing tennis at 5 pm.","Past continuous"],["She didn't see the email.","Past simple"],
  ["I'm meeting Ana at 6 tomorrow.","Present continuous"],["He has just arrived.","Present perfect"]
 ];
-const T_SIGNAL = [
+export const T_SIGNAL = [
  ["yesterday","Past simple"],["two days ago","Past simple"],["last week","Past simple"],["right now","Present continuous"],["at the moment","Present continuous"],
  ["usually","Present simple"],["every day","Present simple"],["since 2019","Present perfect"],["already","Present perfect"],["ever / never","Present perfect"],
  ["yet","Present perfect"],["while I was...","Past continuous"],["at 8 pm yesterday","Past continuous"],["by the time","Past perfect"],
  ["when I was a child (hábito)","Used to"],["Look! (lo estás viendo)","Going to"],["I think... / probably","Future with will"],["for two hours (hasta ahora)","Present perfect continuous"]
 ];
 // [frase, respuesta, [distractores]]
-const T_CONJ = [
+export const T_CONJ = [
  ["She ___ to school yesterday. (go)","went",["goes","has gone","was going"]],
  ["I ___ here since 2019. (live)","have lived",["live","lived","am living"]],
  ["Look! It ___. (rain)","is raining",["rains","rained","has rained"]],
@@ -228,7 +228,7 @@ const T_CONJ = [
 ];
 
 // Past simple vs past continuous (práctica rápida de la guía). [frase, verbo, [respuestas], explicación]
-const PC = [
+export const PC = [
  ["I ___ a film when my friends arrived.","watch",["was watching"],"Acción larga (past continuous) interrumpida por <mark>when</mark> + past simple."],
  ["She ___ to school yesterday.","not / go",["did not go"],"<mark>yesterday</mark>: past simple. Negativa: didn't + infinitivo."],
  ["We ___ football while it was raining.","play",["were playing"],"Dos acciones largas a la vez con <mark>while</mark>: past continuous. We → <b>were</b>."],
@@ -240,7 +240,7 @@ const PC = [
 ];
 
 // Comparativos y superlativos. [adjetivo, español, comparativo, superlativo, regla]
-const COMP_ADJ = [
+export const COMP_ADJ = [
  ["tall","alto","taller","the tallest","corto: + -er / the + -est"],["small","pequeño","smaller","the smallest","corto: + -er / the + -est"],
  ["old","viejo","older","the oldest","corto: + -er / the + -est"],["young","joven","younger","the youngest","corto: + -er / the + -est"],
  ["cheap","barato","cheaper","the cheapest","corto: + -er / the + -est"],["fast","rápido","faster","the fastest","corto: + -er / the + -est"],
@@ -260,7 +260,7 @@ const COMP_ADJ = [
  ["good","bueno","better","the best","irregular"],["bad","malo","worse","the worst","irregular"],["far","lejos","further","the furthest","irregular (también farther / the farthest)"]
 ];
 // [frase, respuesta, [errores típicos]]
-const COMP_SENT = [
+export const COMP_SENT = [
  ["My brother is ___ than me. (tall)","taller",["more tall","tallest","the taller"]],
  ["This book is ___ than the film. (interesting)","more interesting",["interestinger","most interesting","more interestinger"]],
  ["It's the ___ day of the year. (hot)","hottest",["hotest","most hot","hotter"]],
@@ -287,7 +287,7 @@ const COMP_SENT = [
 ];
 
 // Más adjetivos (hasta 110)
-const R_ER = "corto: + -er / the + -est", R_E = "acaba en -e: solo + -r / -st", R_CVC = "consonante-vocal-consonante: dobla la última", R_Y = "acaba en -y: -ier / -iest", R_LONG = "largo: more / the most";
+export const R_ER = "corto: + -er / the + -est", R_E = "acaba en -e: solo + -r / -st", R_CVC = "consonante-vocal-consonante: dobla la última", R_Y = "acaba en -y: -ier / -iest", R_LONG = "largo: more / the most";
 COMP_ADJ.push(
  ...[["clean","limpio"],["cool","fresco"],["dark","oscuro"],["deep","profundo"],["fresh","fresco (comida)"],["full","lleno"],["great","genial, grande"],["hard","duro, difícil"],
    ["high","alto (montaña, edificio)"],["kind","amable"],["light","ligero"],["loud","ruidoso, alto (sonido)"],["low","bajo"],["near","cercano"],["new","nuevo"],["poor","pobre"],
@@ -308,7 +308,7 @@ COMP_ADJ.push(
 );
 
 // Frases: [frase con ___, adjetivo]. La respuesta y las opciones incorrectas se calculan a partir del adjetivo.
-const COMP_SENT2 = [
+export const COMP_SENT2 = [
  ["Trains are ___ than buses.","fast"],["My bag is ___ than yours.","heavy"],["Summer is ___ than spring.","hot"],["The sea is ___ than the river.","deep"],
  ["This street is ___ than mine.","quiet"],["My new phone is ___ than the old one.","light"],["Your room is ___ than mine.","clean"],["Dogs are ___ than cats.","friendly"],
  ["This test was ___ than the last one.","hard"],["Today is ___ than yesterday.","warm"],["Her voice is ___ than mine.","loud"],["The mountains are ___ than the hills.","high"],
@@ -336,7 +336,7 @@ const COMP_SENT2 = [
  ["He's ___ than his father.","tall"],["This painting is ___ than that one.","beautiful"],["This coffee is ___ than the one at home.","weak"],["The basement is ___ than the living room.","cool"],
  ["My little brother is ___ than me.","rude"],["My life is ___ than it was.","simple"],["Your hair is ___ than mine.","long"]
 ];
-const SUP_SENT2 = [
+export const SUP_SENT2 = [
  ["Monday is the ___ day of the week.","busy"],["She's the ___ person I know.","kind"],["This is the ___ room in the house.","cold"],["Who is the ___ player in the team?","fast"],
  ["It's the ___ restaurant in town.","expensive"],["That was the ___ film I've ever seen.","boring"],["He's the ___ boy in the class.","tall"],["It's the ___ river in Europe.","long"],
  ["This is the ___ hotel in the city.","cheap"],["August is the ___ month of the year.","hot"],["She's the ___ singer in the world.","famous"],["Today is the ___ day of my life.","happy"],
@@ -366,7 +366,7 @@ const SUP_SENT2 = [
 ];
 
 // Phrasal verbs en frases: elige el correcto entre verbos distintos. [frase, respuesta, [incorrectas], significado]
-const PV_SENT = [
+export const PV_SENT = [
  ["I usually ___ at 7 and have a shower.","get up",["give up","set up","take up"],"get up = levantarse"],
  ["Can you ___ my dog while I'm away?","look after",["take after","look for","put off"],"look after = cuidar"],
  ["I'm ___ my keys. Have you seen them?","looking for",["looking after","taking off","putting on"],"look for = buscar"],

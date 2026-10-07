@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Números, hora y fechas · Guías · Kit B1</title>
+    <meta name="description" content="Salen muchísimo en el Listening: precios, horas, fechas y teléfonos." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="numbers">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Números</a><a href="#gs-1">Ordinales (para fechas)</a><a href="#gs-2">La hora</a
+              ><a href="#gs-3">Fechas, días y meses</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-numbers"
+                >Practicar números y horas <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a1">A1 · Empieza aquí</span> Guía 4 de 32</p>
+                <h1>Números, hora y fechas</h1>
+                <p>Salen muchísimo en el Listening: precios, horas, fechas y teléfonos.</p>
+              </div>
+              <div class="sticky">13 thir<b>TEEN</b><br />30 <b>THIR</b>ty</div>
+            </div>
+
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Números</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Número</th>
+                      <th>Se dice</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>13 / 30</td>
+                      <td>thir<b>teen</b> (acento al final) / <b>thir</b>ty (acento al principio)</td>
+                    </tr>
+                    <tr>
+                      <td>21</td>
+                      <td>twenty-one</td>
+                    </tr>
+                    <tr>
+                      <td>100</td>
+                      <td>a hundred / one hundred</td>
+                    </tr>
+                    <tr>
+                      <td>250</td>
+                      <td>two hundred <b>and</b> fifty</td>
+                    </tr>
+                    <tr>
+                      <td>1,500</td>
+                      <td>one thousand five hundred (en inglés la coma separa miles)</td>
+                    </tr>
+                    <tr>
+                      <td>2.5</td>
+                      <td>two <b>point</b> five</td>
+                    </tr>
+                    <tr>
+                      <td>2025 (año)</td>
+                      <td>twenty twenty-five</td>
+                    </tr>
+                    <tr>
+                      <td>£4.50</td>
+                      <td>four pounds fifty</td>
+                    </tr>
+                    <tr>
+                      <td>0 en teléfonos</td>
+                      <td>«oh»: 6 0 7 → six oh seven</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ordinales (para fechas)</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <div class="chips">
+                    <span>1st first</span><span>2nd second</span><span>3rd third</span><span>4th fourth</span
+                    ><span>5th fifth</span><span>8th eighth</span><span>9th ninth</span><span>12th twelfth</span
+                    ><span>20th twentieth</span><span>21st twenty-first</span><span>31st thirty-first</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>La hora</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Hora</th>
+                      <th>Se dice</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>7:00</td>
+                      <td>seven o'clock</td>
+                    </tr>
+                    <tr>
+                      <td>7:10</td>
+                      <td>ten <b>past</b> seven</td>
+                    </tr>
+                    <tr>
+                      <td>7:15</td>
+                      <td>(a) quarter <b>past</b> seven</td>
+                    </tr>
+                    <tr>
+                      <td>7:30</td>
+                      <td>half <b>past</b> seven</td>
+                    </tr>
+                    <tr>
+                      <td>7:45</td>
+                      <td>(a) quarter <b>to</b> eight</td>
+                    </tr>
+                    <tr>
+                      <td>7:50</td>
+                      <td>ten <b>to</b> eight</td>
+                    </tr>
+                    <tr>
+                      <td>Digital</td>
+                      <td>seven fifteen, seven forty-five</td>
+                    </tr>
+                    <tr>
+                      <td>¿Qué hora es?</td>
+                      <td>What time is it? · It's... · ¿A qué hora? What time...? / At...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Fechas, días y meses</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Escribir y decir</p>
+                  <p>Se escribe: <b>5th May</b> o 5 May</p>
+                  <p>Se dice: <b>the fifth of May</b></p>
+                  <p class="xmp">Días y meses siempre con mayúscula.</p>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Días</p>
+                  <div class="chips">
+                    <span>Monday</span><span>Tuesday</span><span>Wednesday</span><span>Thursday</span><span>Friday</span
+                    ><span>Saturday</span><span>Sunday</span>
+                  </div>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Meses</p>
+                  <div class="chips">
+                    <span>January</span><span>February</span><span>March</span><span>April</span><span>May</span
+                    ><span>June</span><span>July</span><span>August</span><span>September</span><span>October</span
+                    ><span>November</span><span>December</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-numbers"
+                >Practicar números y horas <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <a href="articles.html" class="gprev"
+                ><small
+                  ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg> Anterior</small
+                ><b>a / an / the y plurales</b></a
+              >
+              <a href="questions.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Hacer preguntas</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <a class="btn" href="articles.html" aria-label="Guía anterior: a / an / the y plurales"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#izquierda"></use></svg
+            ></a>
+            <a class="btn primary" href="../practicar/test.html?set=gr-numbers"
+              ><span>Practicar números y horas</span
+              ><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="questions.html" aria-label="Guía siguiente: Hacer preguntas"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>

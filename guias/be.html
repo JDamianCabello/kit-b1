@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>To be · Guías · Kit B1</title>
+    <meta name="description" content="Ser y estar en un solo verbo. Es lo primero que hay que dominar." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      try {
+        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/guide.js"></script>
+  </head>
+  <body data-tab="guias" data-focus class="has-back" data-guide="be">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Guías</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <div class="gwrap">
+          <aside class="gtoc" aria-label="En esta guía">
+            <p class="tag">En esta guía</p>
+            <nav id="gtoc">
+              <a href="#gs-0">Forma</a><a href="#gs-1">Ejemplos</a
+              ><a href="#gs-2">En español decimos «tener», en inglés es «be»</a><a href="#gs-3">Pronombres sujeto</a>
+            </nav>
+            <div class="gtoc-p">
+              <b>¿Lo tienes? Compruébalo.</b
+              ><a class="btn primary" href="../practicar/test.html?set=gr-be"
+                >Practicar to be <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+          </aside>
+          <article class="guide">
+            <div class="ghead">
+              <div>
+                <p class="gmeta"><span class="lvtag lv-a1">A1 · Empieza aquí</span> Guía 1 de 32</p>
+                <h1>To be: <em>am · is · are</em></h1>
+                <p>Ser y estar en un solo verbo. Es lo primero que hay que dominar.</p>
+              </div>
+              <div class="sticky"><s>I have 20 years.</s><br />I<b>'m</b> 20 years old.</div>
+            </div>
+            <section class="gsec" id="gs-0">
+              <h3><span class="gsn">1</span>Forma</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Afirmativa</p>
+                  <ul>
+                    <li>I <b>am</b> → I'm</li>
+                    <li>you / we / they <b>are</b> → you're</li>
+                    <li>he / she / it <b>is</b> → she's</li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Negativa</p>
+                  <ul>
+                    <li>I<b>'m not</b></li>
+                    <li>you <b>aren't</b></li>
+                    <li>she <b>isn't</b></li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Pregunta</p>
+                  <ul>
+                    <li><b>Am</b> I...?</li>
+                    <li><b>Are</b> you...?</li>
+                    <li><b>Is</b> she...?</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-1">
+              <h3><span class="gsn">2</span>Ejemplos</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <p class="cname">Afirmativa</p>
+                  <ul>
+                    <li class="say" data-say="I'm from Spain.">
+                      <span>I'm from Spain.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="She's a teacher.">
+                      <span>She's a teacher.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="We're tired.">
+                      <span>We're tired.</span><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell b">
+                  <p class="cname">Negativa</p>
+                  <ul>
+                    <li class="say" data-say="I'm not hungry.">
+                      <span>I'm not hungry.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="They aren't at home.">
+                      <span>They aren't at home.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="It isn't cold today.">
+                      <span>It isn't cold today.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gcell c">
+                  <p class="cname">Pregunta</p>
+                  <ul>
+                    <li class="say" data-say="Are you OK?">
+                      <span>Are you OK?</span><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Is he your brother?">
+                      <span>Is he your brother?</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                    <li class="say" data-say="Yes, he is. / No, he isn't.">
+                      <span>Yes, he is. / No, he isn't.</span
+                      ><svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="gsec" id="gs-2">
+              <h3><span class="gsn">3</span>En español decimos «tener», en inglés es «be»</h3>
+              <div class="gtable">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Español</th>
+                      <th>Inglés</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>tener 20 años</td>
+                      <td><b>be</b> 20 (years old)</td>
+                    </tr>
+                    <tr>
+                      <td>tener hambre / sed</td>
+                      <td><b>be</b> hungry / thirsty</td>
+                    </tr>
+                    <tr>
+                      <td>tener frío / calor</td>
+                      <td><b>be</b> cold / hot</td>
+                    </tr>
+                    <tr>
+                      <td>tener miedo</td>
+                      <td><b>be</b> afraid / scared</td>
+                    </tr>
+                    <tr>
+                      <td>tener razón</td>
+                      <td><b>be</b> right</td>
+                    </tr>
+                    <tr>
+                      <td>tener sueño</td>
+                      <td><b>be</b> sleepy / tired</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section class="gsec" id="gs-3">
+              <h3><span class="gsn">4</span>Pronombres sujeto</h3>
+              <div class="gcols">
+                <div class="gcell a">
+                  <div class="chips">
+                    <span>I – yo</span><span>you – tú, vosotros</span><span>he – él</span><span>she – ella</span
+                    ><span>it – ello (cosas, animales)</span><span>we – nosotros</span><span>they – ellos, ellas</span>
+                  </div>
+                  <p class="xmp">En inglés el sujeto siempre se dice: <b>It</b> is raining (no «Is raining»).</p>
+                </div>
+              </div>
+            </section>
+            <div class="gend">
+              <div>
+                <h3>Ponlo en práctica</h3>
+                <p>Los fallos se guardan para que los repases.</p>
+              </div>
+              <a class="btn primary" href="../practicar/test.html?set=gr-be"
+                >Practicar to be <svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+              ></a>
+            </div>
+            <p class="xmp">
+              Toca los ejemplos marcados con
+              <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg>
+              para oírlos.
+            </p>
+            <nav class="gpn" aria-label="Otras guías">
+              <span></span>
+              <a href="pronouns.html" class="gnextl"
+                ><small
+                  >Siguiente <svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg></small
+                ><b>Pronombres y posesivos</b></a
+              >
+            </nav>
+          </article>
+          <div class="gbar">
+            <span></span>
+            <a class="btn primary" href="../practicar/test.html?set=gr-be"
+              ><span>Practicar to be</span><svg aria-hidden="true"><use href="../img/icons.svg#flecha"></use></svg
+            ></a>
+            <a class="btn" href="pronouns.html" aria-label="Guía siguiente: Pronombres y posesivos"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#derecha"></use></svg
+            ></a>
+          </div>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Contenido original para estudiar. Los recursos externos pertenecen a sus autores y se enlazan en su web
+        original.
+      </footer>
+    </div>
+  </body>
+</html>
