@@ -65,6 +65,8 @@ const ICON = {
   ko: svg('<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/>'),
   right: svg('<path d="M9 6l6 6-6 6"/>'),
   arrow: svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
+  search: svg('<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>'),
+  left: svg('<path d="M15 6l-6 6 6 6"/>'),
   undo: svg('<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>'),
   mic: svg('<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>')
 };
@@ -501,22 +503,70 @@ function practiceHref(p){
   if(k === "tn") return "#practicar/" + (a === "time" ? "te" : "tn");
   return "#practicar/" + k;
 }
+// Niveles de las secciones de guías (mismo orden que GUIDE_SECTIONS): [etiqueta, clase de color, descripción]
+const GLEVELS = [["A1", "a1", "Lo primero: ser, preguntar, contar y situar cosas."], ["A2", "a2", "Presente, pasado y futuro: lo que más sale en el examen."],
+  ["B1", "b1", "El salto al B1: perfect, pasiva, condicionales y más."], ["VOC", "voc", "Los fallos típicos, vocabulario y conectores."], ["EXAMEN", "ex", "Cómo es el examen y frases listas para usar."]];
+const GORDER = () => GUIDE_SECTIONS.flatMap((s, k) => s.ids.map(id => ({id, k}))).filter(x => GUIDES.some(g => g.id === x.id));
+const plainText = h => String(h).replace(/<[^>]+>/g, "");
+let guideFilter = {q:"", lv:null};
 function guideIndex(host){
-  host.innerHTML = `<div class="menu">
-    <p class="intro">Explicaciones visuales en español, de cero a B1. Cada guía termina con un ejercicio.</p>
-    ${GUIDE_SECTIONS.map(s => `<section><h2 class="h2">${s.title}</h2><div class="tiles">
-      ${s.ids.map(id => { const g = GUIDES.find(x => x.id === id); return g ? `<a class="tile" href="#guias/${id}"><span>${g.short}</span>${store.done["g:"+id] ? `<i class="seen" title="Vista">${ICON.check}</i>` : ""}</a>` : ""; }).join("")}
-    </div></section>`).join("")}
+  const order = GORDER(), read = order.filter(x => store.done["g:" + x.id]).length;
+  // «Sigue por aquí»: la primera guía sin leer de la semana del plan; si no hay, la primera sin leer
+  const weekIds = store.plan.start ? PLAN[weekNow()-1].tasks.filter(t => t[0] === "g").map(t => t[1]) : [];
+  const next = order.find(x => weekIds.includes(x.id) && !store.done["g:" + x.id]) || order.find(x => !store.done["g:" + x.id]);
+  const ng = next && GUIDES.find(g => g.id === next.id);
+  host.innerHTML = `<div class="gindex">
+    <div class="gtop">
+      <div><h2 class="gh1">Guías</h2><p class="intro">${order.length} explicaciones visuales en español, de cero a B1. Cada una termina con un test.</p></div>
+      <div class="gprog"><div class="qmeta"><span>Leídas</span><b>${read} de ${order.length}</b></div><div class="bar"><i style="width:${pct(read, order.length)}%"></i></div></div>
+    </div>
+    <div class="gtools">
+      <label class="gsearch">${ICON.search}<input type="search" id="gq" placeholder="Busca una guía: pasiva, since, -ing…" aria-label="Buscar guía" value="${esc(guideFilter.q)}"></label>
+      <div class="glv" role="group" aria-label="Nivel">
+        <button data-lv="" aria-pressed="${guideFilter.lv === null}">Todas</button>
+        ${GUIDE_SECTIONS.map((s, k) => `<button data-lv="${k}" aria-pressed="${guideFilter.lv === k}"><i class="dot lv-${GLEVELS[k][1]}"></i>${esc(s.title)}</button>`).join("")}
+      </div>
+    </div>
+    ${ng ? `<a class="gnext" href="#guias/${ng.id}">
+      <div class="gnext-t"><p class="tag">${weekIds.includes(ng.id) ? `Sigue por aquí · semana ${weekNow()}` : "Sigue por aquí"} <span class="lvtag lv-${GLEVELS[next.k][1]}">${GLEVELS[next.k][0]}</span></p>
+        <h3>${esc(ng.short)}</h3><p class="intro">${ng.sub}</p></div>
+      <div class="gnext-r"><p class="sticky">${ng.sticky}</p><span class="btn primary">Abrir guía ${ICON.arrow}</span></div>
+    </a>` : ""}
+    <div id="glist"></div>
     ${resourcesHTML()}
   </div>`;
+  const draw = () => {
+    const q = guideFilter.q.trim().toLowerCase();
+    let n = 0;
+    const html = GUIDE_SECTIONS.map((s, k) => {
+      const items = s.ids.map(id => GUIDES.find(g => g.id === id)).filter(Boolean).map(g => ({g, n: ++n}));
+      const shown = items.filter(({g}) => !q || (g.short + " " + plainText(g.title) + " " + plainText(g.sub)).toLowerCase().includes(q));
+      if((guideFilter.lv !== null && guideFilter.lv !== k) || !shown.length) return "";
+      const [lv, cls, desc] = GLEVELS[k] || ["", "ex", ""], r = items.filter(({g}) => store.done["g:" + g.id]).length;
+      return `<section class="gsect lv-${cls}">
+        <div class="gsect-l"><span class="lvtag">${lv}</span><h3>${esc(s.title.replace(/\s*\(A\d\)$/, ""))}</h3><p>${desc}</p><b>${r} de ${items.length} leídas</b></div>
+        <div class="ggrid">${shown.map(({g, n}) => {
+          const done = store.done["g:" + g.id], now = weekIds.includes(g.id) && !done;
+          return `<a class="gcard ${now ? "now" : ""}" href="#guias/${g.id}"><span class="gnum">${String(n).padStart(2, "0")}</span>
+            <span class="gtx"><b>${esc(g.short)}</b><small>${g.sub}</small></span>
+            ${done ? `<span class="gread">${ICON.ok}<span>Leída</span></span>` : now ? `<span class="gnow">Esta semana</span>` : `<span class="gchev">${ICON.right}</span>`}</a>`;
+        }).join("")}</div></section>`;
+    }).join("");
+    $("#glist").innerHTML = html || `<p class="empty">No hay ninguna guía con «${esc(guideFilter.q)}».</p>`;
+  };
+  draw();
+  $("#gq").oninput = e => { guideFilter.q = e.target.value; draw(); };
+  host.querySelectorAll("[data-lv]").forEach(b => b.onclick = () => {
+    guideFilter.lv = b.dataset.lv === "" ? null : +b.dataset.lv;
+    host.querySelectorAll("[data-lv]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    draw();
+  });
 }
 function resourcesHTML(){
   const cats = [...new Set(RESOURCES.map(r => r.cat))];
-  return `<section id="recursos"><h2 class="h2">Recursos gratis de otras webs</h2>
-    <p class="intro">Enlaces a materiales gratuitos de sus autores. Se abren en su web original.</p>
-    ${cats.map(c => `<h3 class="h3">${c}</h3><div class="res">${RESOURCES.filter(r => r.cat === c).map(r => `
-      <a class="resrow" href="${r.url}" target="_blank" rel="noopener">
-        <span><b>${esc(r.name)}</b><small class="by">${esc(r.by)}</small><small>${esc(r.what)}</small></span>${ICON.ext}</a>`).join("")}</div>`).join("")}
+  return `<section id="recursos" class="gres"><div class="gres-h"><h2 class="h2">Recursos gratis de otras webs</h2><span class="intro">Se abren en su web original</span></div>
+    ${cats.map(c => `<h3 class="h3">${c}</h3><div class="rgrid">${RESOURCES.filter(r => r.cat === c).map(r => `
+      <a class="rcard" href="${r.url}" target="_blank" rel="noopener"><small>${esc(r.by)}</small><b>${esc(r.name)} ${ICON.ext}</b><span>${esc(r.what)}</span></a>`).join("")}</div>`).join("")}
   </section>`;
 }
 function guide(host, id){
@@ -524,17 +574,49 @@ function guide(host, id){
   if(!g) return notFound(host);
   markDone("g:" + id);
   const tones = ["a","b","c"];
-  const li = (x, ex) => ex && TTS ? `<li class="say" data-say="${esc(strip(x))}">${x} ${ICON.spk}</li>` : `<li>${x}</li>`;
+  const li = (x, ex) => ex && TTS ? `<li class="say" data-say="${esc(strip(x))}"><span>${x}</span>${ICON.spk}</li>` : `<li>${x}</li>`;
   const cell = ex => (c, k) => `<div class="gcell ${tones[k]}"><p class="cname">${g.cols[k]}</p>${Array.isArray(c) ? `<ul>${c.map(x => li(x, ex)).join("")}</ul>` : c}</div>`;
   let extra = g.extra;
   if(extra === "IRREGULARS") extra = `<section class="gsec"><input class="filter" id="irr-filter" type="search" placeholder="Busca un verbo (en inglés o español)" aria-label="Buscar verbo"><div id="irr-table"></div></section>`;
-  host.innerHTML = `<article class="guide">
-    <div class="ghead"><div><h2>${g.title}</h2><p>${g.sub}</p></div><div class="sticky">${g.sticky}</div></div>
-    ${g.rows.map(r => `<section class="gsec"><h3>${r[0]}</h3><div class="gcols">${r[1].map(cell(r[0] === "Ejemplos")).join("")}</div></section>`).join("")}
-    ${extra}
-    ${g.practice ? `<div class="practice"><a class="btn primary" href="${practiceHref(g.practice)}">${g.practice[2]} →</a><span>Pon en práctica lo que acabas de repasar.</span></div>` : ""}
-    ${TTS ? `<p class="xmp">Toca los ejemplos marcados con ${ICON.spk} para oírlos.</p>` : ""}
-  </article>`;
+  const order = GORDER(), pos = order.findIndex(x => x.id === id), lvl = GLEVELS[order[pos]?.k] || GLEVELS[4];
+  const prev = GUIDES.find(x => x.id === order[pos-1]?.id), next = GUIDES.find(x => x.id === order[pos+1]?.id);
+  const test = g.practice ? `<a class="btn primary" href="${practiceHref(g.practice)}">${g.practice[2]} ${ICON.arrow}</a>` : "";
+  host.innerHTML = `<div class="gwrap">
+    <aside class="gtoc" aria-label="En esta guía"><p class="tag">En esta guía</p><nav id="gtoc"></nav>
+      ${g.practice ? `<div class="gtoc-p"><b>¿Lo tienes? Compruébalo.</b>${test}</div>` : ""}</aside>
+    <article class="guide">
+      <div class="ghead"><div><p class="gmeta"><span class="lvtag lv-${lvl[1]}">${lvl[0]} · ${esc(GUIDE_SECTIONS[order[pos]?.k]?.title.replace(/\s*\(A\d\)$/, "") || "")}</span> Guía ${pos + 1} de ${order.length}</p>
+        <h2>${g.title}</h2><p>${g.sub}</p></div><div class="sticky">${g.sticky}</div></div>
+      ${g.rows.map(r => `<section class="gsec"><h3>${r[0]}</h3><div class="gcols">${r[1].map(cell(r[0] === "Ejemplos")).join("")}</div></section>`).join("")}
+      ${extra}
+      ${g.practice ? `<div class="gend"><div><h3>Ponlo en práctica</h3><p>Los fallos se guardan para que los repases.</p></div>${test}</div>` : ""}
+      ${TTS ? `<p class="xmp">Toca los ejemplos marcados con ${ICON.spk} para oírlos.</p>` : ""}
+      <nav class="gpn" aria-label="Otras guías">
+        ${prev ? `<a href="#guias/${prev.id}" class="gprev"><small>${ICON.left} Anterior</small><b>${esc(prev.short)}</b></a>` : "<span></span>"}
+        ${next ? `<a href="#guias/${next.id}" class="gnextl"><small>Siguiente ${ICON.right}</small><b>${esc(next.short)}</b></a>` : "<span></span>"}
+      </nav>
+    </article>
+    <div class="gbar">${prev ? `<a class="btn" href="#guias/${prev.id}" aria-label="Guía anterior: ${esc(prev.short)}">${ICON.left}</a>` : `<span></span>`}
+      ${g.practice ? `<a class="btn primary" href="${practiceHref(g.practice)}"><span>${g.practice[2]}</span>${ICON.arrow}</a>` : `<a class="btn primary" href="#guias">Todas las guías</a>`}
+      ${next ? `<a class="btn" href="#guias/${next.id}" aria-label="Guía siguiente: ${esc(next.short)}">${ICON.right}</a>` : `<span></span>`}</div>
+  </div>`;
+  // Índice de la guía: numera cada sección y marca la que se está leyendo
+  const secs = [...host.querySelectorAll(".guide .gsec")].filter(x => x.querySelector("h3"));
+  if(secs.length < 2) host.querySelector(".gtoc").classList.add("notoc");
+  $("#gtoc").innerHTML = secs.map((x, k) => {
+    const h = x.querySelector("h3"); x.id = "gs-" + k;
+    h.insertAdjacentHTML("afterbegin", `<span class="gsn">${k + 1}</span>`);
+    return `<a href="#" data-to="gs-${k}">${esc(plainText(h.innerHTML.replace(/<span class="gsn">\d+<\/span>/, "")))}</a>`;
+  }).join("");
+  host.querySelectorAll("#gtoc a").forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.to).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); });
+  if("IntersectionObserver" in window && secs.length){
+    const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){
+      host.querySelectorAll("#gtoc a").forEach(a => a.classList.toggle("on", a.dataset.to === en.target.id));
+      host.querySelector("#gtoc a.on")?.scrollIntoView({block:"nearest", inline:"nearest"});
+    } }), {rootMargin:"-30% 0px -60% 0px"});
+    secs.forEach(x => io.observe(x));
+    cleanup = () => io.disconnect();
+  }
   if(g.extra === "IRREGULARS"){
     const draw = f => { f = f.trim().toLowerCase();
       const rows = IRR.filter(v => !f || v.some(x => x.toLowerCase().includes(f)));
@@ -1072,7 +1154,7 @@ function route(){
   store.lastTab = tab; save();
   renderNav(); renderStats();
   document.body.dataset.tab = tab;
-  if(sub && (tab === "practicar" || tab === "tarjetas")) document.body.dataset.focus = ""; else delete document.body.dataset.focus;
+  if(sub && (tab === "practicar" || tab === "tarjetas" || tab === "guias")) document.body.dataset.focus = ""; else delete document.body.dataset.focus;
   const host = $("#panel");
   $("#back").innerHTML = $("#back-top").innerHTML = sub ? `<a class="back" href="#${tab}"><span aria-hidden="true">←</span> ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
   document.body.classList.toggle("has-back", !!sub);
