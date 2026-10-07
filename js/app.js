@@ -55,7 +55,9 @@ const ICON = {
   spk: svg('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/>'),
   ext: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
   check: svg('<path d="M5 12l5 5L20 7"/>'),
-  bolt: svg('<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>')
+  bolt: svg('<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'),
+  flame: svg('<path d="M12 22c4 0 7-2.7 7-7 0-4.5-4-7-4.5-11-2.5 1.5-4 4-4 6.5C9.5 9 8.5 8 8 7c-2 2-3 4.5-3 8 0 4.3 3 7 7 7z"/>'),
+  target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>')
 };
 
 /* ---------- SPEECH (pronunciación con la voz del dispositivo) ---------- */
@@ -636,7 +638,7 @@ function runExam(host, ex){
     <div class="xhead"><div><h2 class="h2">${ex.title}</h2><p class="intro">${ex.sub}</p></div><span class="clock small" id="xclock">0:00</span></div>
     <div id="xresult"></div>
     ${html}
-    <div class="row"><button class="btn primary" id="grade">${ex.parts.every(p => p.type === "write") ? "He terminado: autoevaluarme" : "Corregir examen"}</button></div>
+    <div class="row gradebar"><button class="btn primary" id="grade">${ex.parts.every(p => p.type === "write") ? "He terminado: autoevaluarme" : "Corregir examen"}</button></div>
   </div>`;
 
   const clock = setInterval(() => { const s = Math.floor((Date.now()-t0)/1000), c = $("#xclock"); if(c) c.textContent = `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; }, 1000);
@@ -692,7 +694,7 @@ function runExam(host, ex){
     clearInterval(clock);
     // Tarea solo de Writing: no hay nota automática, solo autoevaluación
     if(!total){
-      $("#grade").disabled = true;
+      $("#grade").disabled = true; host.querySelector(".gradebar").hidden = true;
       host.querySelector(".checks")?.scrollIntoView({block:"start", behavior:"smooth"});
       return;
     }
@@ -702,7 +704,7 @@ function runExam(host, ex){
     const verdict = score >= 85 ? "Nivel B1 muy sólido." : score >= 70 ? "Estarías aprobando (en el examen real se aprueba con unos 70 %)." : score >= 50 ? "Cerca. Repasa las explicaciones de los fallos." : "Aún queda camino. Revisa las guías de los fallos y repítelo en unos días.";
     $("#xresult").innerHTML = `<div class="result"><p class="big">${score}%</p><p><b>${right} de ${total}</b> en Reading y Listening. ${verdict}</p><p class="xmp">Abajo tienes cada respuesta explicada. El Writing se autoevalúa con la lista y la respuesta modelo.</p><button class="btn" id="redo">Repetir simulacro</button></div>`;
     $("#redo").onclick = () => runExam(host, ex);
-    $("#grade").disabled = true;
+    $("#grade").disabled = true; host.querySelector(".gradebar").hidden = true;
     window.scrollTo({top:0, behavior:"smooth"});
   };
 }
@@ -724,7 +726,7 @@ function compTable(host){
         ? `<span class="cgiven" data-label="${heads[c]}"><b>${esc(v)}</b></span>`
         : `<label class="ccell" data-label="${heads[c]}"><input class="xin" data-c="${c}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="${heads[c]} de la fila ${i+1}"></label>`).join("")}</div>`).join("")}
     </div>
-    <div class="row"><button class="btn primary" id="grade">Corregir</button></div>
+    <div class="row gradebar"><button class="btn primary" id="grade">Corregir</button></div>
     <div id="ctres"></div></div>`;
   host.querySelectorAll("[data-mixed]").forEach(b => b.onclick = () => { store.tableMixed = b.dataset.mixed === "1"; save(); compTable(host); });
   $("#grade").onclick = () => {
@@ -764,7 +766,7 @@ function classify(host){
       <div class="clw"><b>${esc(w[0])}</b>${spk(w[0])}</div>
       <div class="clbtns">${cats.map(([k, l]) => `<button type="button" class="clb" data-k="${k}" aria-pressed="false">${l}</button>`).join("")}</div>
       <p class="why" hidden></p></div>`).join("")}</div>
-    <div class="row"><button class="btn primary" id="grade">Corregir</button></div>
+    <div class="row gradebar"><button class="btn primary" id="grade">Corregir</button></div>
     <div id="clres"></div></div>`;
   host.querySelectorAll(".clrow").forEach(row => row.addEventListener("click", e => {
     const b = e.target.closest(".clb"); if(!b || row.dataset.locked) return;
@@ -920,11 +922,22 @@ function mistakes(host){
 }
 
 /* ---------- LAYOUT & ROUTER ---------- */
+// Índice de secciones al principio de los menús largos: en el móvil evita tener que bajar mucho
+function addJump(host){
+  const hs = [...host.querySelectorAll(".menu > section > h2.h2")];
+  if(hs.length < 4) return;
+  hs.forEach((h, k) => h.parentElement.id ||= "sec-" + k);
+  host.querySelector(".menu").insertAdjacentHTML("afterbegin", `<nav class="jump" aria-label="Ir a la sección">${hs.map(h => `<a href="#" data-to="${h.parentElement.id}">${esc(h.textContent)}</a>`).join("")}</nav>`);
+  host.querySelectorAll(".jump a").forEach(a => a.onclick = e => {
+    e.preventDefault();
+    document.getElementById(a.dataset.to).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  });
+}
 const TABS = [["plan","Plan"],["guias","Guías"],["practicar","Practicar"],["tarjetas","Tarjetas"],["fallos","Fallos"]];
 function notFound(host){ host.innerHTML = `<p class="empty">No encuentro esta sección. <a href="#plan">Volver al plan</a></p>`; }
 function renderStats(){
   const s = streak();
-  $("#stats").innerHTML = `<span class="chip" title="Días seguidos practicando">Racha <b>${s} ${s===1?"día":"días"}</b></span><span class="chip">Acierto <b>${pct(store.correct, store.answered)}%</b></span>`;
+  $("#stats").innerHTML = `<span class="chip" title="Días seguidos practicando">${ICON.flame}<span class="l">Racha </span><b>${s} ${s===1?"día":"días"}</b></span><span class="chip" title="Porcentaje de aciertos">${ICON.target}<span class="l">Acierto </span><b>${pct(store.correct, store.answered)}%</b></span>`;
 }
 function renderNav(){
   const [tab] = parseHash();
@@ -944,12 +957,14 @@ function route(){
   store.lastTab = tab; save();
   renderNav(); renderStats();
   const host = $("#panel");
-  $("#back").innerHTML = sub ? `<a class="back" href="#${tab}">← ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
+  $("#back").innerHTML = sub ? `<a class="back" href="#${tab}"><span aria-hidden="true">←</span> ${TABS.find(t => t[0] === tab)[1]}</a>` : "";
+  document.body.classList.toggle("has-back", !!sub);
   if(tab === "plan") planView(host);
   if(tab === "guias") sub ? guide(host, sub) : guideIndex(host);
   if(tab === "practicar") sub ? (SETS[sub] ? SETS[sub].run(host) : notFound(host)) : practiceMenu(host);
   if(tab === "tarjetas") sub ? flashcards(host, sub) : cardsMenu(host);
   if(tab === "fallos") mistakes(host);
+  if(!sub && tab !== "plan") addJump(host);
   window.scrollTo({top:0});
 }
 window.addEventListener("hashchange", route);
