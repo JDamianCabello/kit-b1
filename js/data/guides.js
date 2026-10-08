@@ -1,6 +1,6 @@
-/* Kit B1 · guías: datos del índice. El contenido de cada guía está en guias/<id>.html */
+/* Inglés Paso a Paso · guías: datos del índice. El contenido de cada guía está en guias/<id>.html */
 
-// Datos de cada guía para el índice y el plan; practice = [tipo, id, texto del botón]
+// Datos de cada guía para el índice y los planes; practice = [tipo, id, texto del botón]
 export const GUIDES = [
  {id:"ps-pc",short:"Presente simple vs continuo",title:"Present simple <em>vs</em> Present continuous",sub:"Mismo tiempo, momentos distintos: lo de siempre frente a lo de ahora.",sticky:"I know the answer.<br><s>I'm knowing the answer.</s>",practice:["tn","conj","Practicar tiempos verbales"]},
  {id:"past-pp",short:"Past simple vs Present perfect",title:"Past simple <em>vs</em> Present perfect",sub:"¿Dices cuándo pasó? Past simple. ¿No importa cuándo o sigue ahora? Present perfect.",sticky:"<s>I have seen him yesterday.</s><br>I saw him yesterday.",practice:["gu","irr","Repasar verbos irregulares"]},

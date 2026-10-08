@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Kit B1 Preliminary",
-  "short_name": "Kit B1",
-  "description": "Plan de 10 semanas, guías, ejercicios y simulacros para el Cambridge B1 Preliminary.",
+  "name": "Inglés Paso a Paso",
+  "short_name": "Paso a Paso",
+  "description": "Aprende inglés paso a paso: guías, ejercicios, tarjetas, lecturas y planes de estudio del A1 al B1, con preparación del examen B1 Preliminary.",
   "lang": "es",
   "dir": "ltr",
   "start_url": "./index.html",
@@ -54,6 +54,18 @@
       "name": "Sprint de 60 segundos",
       "short_name": "Sprint",
       "url": "./practicar/sprint.html",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Mis planes",
+      "short_name": "Planes",
+      "url": "./planes/index.html",
       "icons": [
         {
           "src": "icon-192.png",

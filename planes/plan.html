@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Speaking Part 3: decidir en pareja · Inglés Paso a Paso</title>
-    <meta name="description" content="4 situaciones · 2 minutos" />
+    <title>Plan · Inglés Paso a Paso</title>
+    <meta name="description" content="Un plan de estudio de inglés semana a semana." />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#100d0b" media="(prefers-color-scheme: dark)" />
@@ -27,14 +27,14 @@
       href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
     />
     <link rel="stylesheet" href="../css/styles.css" />
-    <script type="module" src="../js/pages/speaking.js"></script>
+    <script type="module" src="../js/pages/plan-view.js"></script>
   </head>
-  <body data-tab="practicar" data-focus class="has-back">
+  <body data-tab="planes" class="has-back">
     <a class="skip" href="#main">Saltar al contenido</a>
     <header class="topbar">
       <div class="topin">
         <div id="back-top">
-          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Planes</a>
         </div>
         <p class="brand">
           <a href="../index.html"><span class="logo" aria-hidden="true">EN</span><span class="bn"><span class="bn1">Inglés </span>Paso a Paso</span></a>
@@ -43,13 +43,13 @@
           <a href="../index.html"
             ><svg aria-hidden="true"><use href="../img/icons.svg#inicio"></use></svg><span>Inicio</span></a
           >
-          <a href="../planes/index.html"
+          <a href="../planes/index.html" aria-current="page"
             ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Planes</span></a
           >
           <a href="../guias/index.html"
             ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
           >
-          <a href="../practicar/index.html" aria-current="page"
+          <a href="../practicar/index.html"
             ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
           >
           <a href="../tarjetas/index.html"
@@ -134,120 +134,80 @@
     </header>
     <div class="wrap">
       <div id="back">
-        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Planes</a>
       </div>
 
       <main class="panel" id="main" tabindex="-1">
-        <section class="quiz speak" data-secs="120" data-id="sp-3">
-          <div class="qmeta"><span id="pos"></span><span>120 s para contestar</span></div>
-          <h1 class="tag">Speaking Part 3: decidir en pareja</h1>
-
-          <ol class="sp-items" id="items">
-            <li class="sp-item">
-              <p class="sentence">
-                A friend is leaving your town. Talk together about these presents and decide which would be best.
-              </p>
-              <div class="chips">
-                <span data-say="a book">a book</span><span data-say="a photo album">a photo album</span
-                ><span data-say="a watch">a watch</span><span data-say="concert tickets">concert tickets</span
-                ><span data-say="a plant">a plant</span>
+        <p class="empty" id="notfound" hidden>No encuentro este plan. <a href="index.html">Ver todos los planes</a></p>
+        <div class="plan" id="plan" hidden>
+          <div class="pmain">
+            <section class="whero" aria-labelledby="hero-title">
+              <div class="wtop">
+                <div>
+                  <p class="tag" id="plan-name"></p>
+                  <h1 class="wtitle" id="hero-title"></h1>
+                  <p class="intro" id="hero-goal"></p>
+                </div>
+                <p class="sticky" id="hero-end" hidden></p>
               </div>
-              <button
-                class="btn ghost small tts-on"
-                type="button"
-                data-say="A friend is leaving your town. Talk together about these presents and decide which would be best."
-              >
-                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg> Escuchar
-              </button>
-            </li>
-            <li class="sp-item">
-              <p class="sentence">
-                Your school wants students to do more exercise. Talk about these ideas and decide which is the best.
-              </p>
-              <div class="chips">
-                <span data-say="a football club">a football club</span
-                ><span data-say="a dance class">a dance class</span
-                ><span data-say="cycling to school">cycling to school</span
-                ><span data-say="a swimming pool">a swimming pool</span
-                ><span data-say="a walking club">a walking club</span>
+              <div class="wprog" id="prog" hidden>
+                <div class="qmeta"><span id="prog-text"></span><b id="prog-pct"></b></div>
+                <div class="bar big-bar"><i id="prog-bar"></i></div>
               </div>
-              <button
-                class="btn ghost small tts-on"
-                type="button"
-                data-say="Your school wants students to do more exercise. Talk about these ideas and decide which is the best."
-              >
-                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg> Escuchar
-              </button>
-            </li>
-            <li class="sp-item">
-              <p class="sentence">
-                A family is going on holiday. Talk about what they should take and decide on the two most important
-                things.
-              </p>
-              <div class="chips">
-                <span data-say="a map">a map</span><span data-say="sun cream">sun cream</span
-                ><span data-say="a camera">a camera</span><span data-say="board games">board games</span
-                ><span data-say="a first aid kit">a first aid kit</span>
+              <nav class="wstrip" id="strip" aria-label="Semanas"></nav>
+            </section>
+            <section class="ptasks" aria-labelledby="tasks-title">
+              <div class="phead tasks-head">
+                <h2 class="h2" id="tasks-title">Tareas de la semana</h2>
+                <span class="count" id="tasks-count"></span>
               </div>
-              <button
-                class="btn ghost small tts-on"
-                type="button"
-                data-say="A family is going on holiday. Talk about what they should take and decide on the two most important things."
+              <ul class="tasks" id="tasks"></ul>
+            </section>
+            <p class="xmp" id="started" hidden>
+              Empezaste el <span id="start-text"></span>.
+              <button type="button" class="linkbtn" id="edit-start">Cambiar fecha</button> ·
+              <button type="button" class="linkbtn" id="leave">Dejar este plan</button>
+              <span id="leave-confirm" hidden
+                >¿Seguro? Tu progreso no se borra.
+                <button type="button" class="linkbtn" id="leave-yes">Sí, dejarlo</button> ·
+                <button type="button" class="linkbtn" id="leave-no">No</button></span
               >
-                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg> Escuchar
-              </button>
-            </li>
-            <li class="sp-item">
-              <p class="sentence">
-                Your town wants more tourists. Talk about these ideas and decide which would be the most popular.
-              </p>
-              <div class="chips">
-                <span data-say="a music festival">a music festival</span
-                ><span data-say="a new museum">a new museum</span><span data-say="cheaper hotels">cheaper hotels</span
-                ><span data-say="more parks">more parks</span><span data-say="better buses">better buses</span>
-              </div>
-              <button
-                class="btn ghost small tts-on"
-                type="button"
-                data-say="Your town wants more tourists. Talk about these ideas and decide which would be the most popular."
-              >
-                <svg aria-hidden="true"><use href="../img/icons.svg#altavoz"></use></svg> Escuchar
-              </button>
-            </li>
-          </ol>
-          <div class="row js-only">
-            <button type="button" class="btn primary" id="go">Empezar a hablar (120 s)</button>
-          </div>
-          <div class="timer" id="timer" hidden>
-            <span class="clock" id="left">120</span>
-            <div class="bar"><i id="tbar" style="width: 100%"></i></div>
-          </div>
-          <div class="feedback ok" id="done" hidden aria-live="polite">
-            <p class="verdict">¡Tiempo!</p>
-            <p class="note">
-              ¿Has hablado sin parar? Si te has quedado en blanco, repítelo con las frases útiles de abajo.
             </p>
           </div>
-          <div class="row js-only">
-            <button type="button" class="btn" id="prev" aria-label="Anterior">←</button
-            ><button type="button" class="btn primary" id="next">Siguiente →</button>
-          </div>
-          <details class="model" open>
-            <summary>Frases útiles (toca para oírlas)</summary>
-            <div class="chips">
-              <span data-say="What do you think about...?">What do you think about...?</span
-              ><span data-say="I think ... is a good idea because...">I think ... is a good idea because...</span
-              ><span data-say="I'm not sure about...">I'm not sure about...</span
-              ><span data-say="That's true, but...">That's true, but...</span
-              ><span data-say="Shall we choose...?">Shall we choose...?</span
-              ><span data-say="So, we agree that...">So, we agree that...</span>
-            </div>
-          </details>
-          <p class="xmp">
-            Habla de todas las opciones, pregunta a tu compañero y llegad a una decisión. Si practicas solo, di tú las
-            dos partes.
-          </p>
-        </section>
+          <aside class="pside">
+            <section class="pstart" id="start" aria-labelledby="start-title">
+              <p class="tag">Empieza este plan</p>
+              <h2 class="h2" id="start-title"></h2>
+              <p id="plan-desc"></p>
+              <ul class="plfacts">
+                <li><b id="f-level"></b><span>Nivel</span></li>
+                <li><b id="f-weeks"></b><span>Duración</span></li>
+                <li><b id="f-pace"></b><span>Ritmo</span></li>
+              </ul>
+              <form class="pstart-form" id="start-form">
+                <label class="qq" for="start-date">¿Qué día empiezas (o empezaste)?</label>
+                <div class="row">
+                  <input type="date" id="start-date" class="filter" required /><button class="btn primary" id="start-btn">
+                    Empezar
+                  </button>
+                </div>
+              </form>
+              <p class="xmp">Puedes seguir varios planes a la vez. Lo que ya hayas hecho en la web cuenta desde el primer día.</p>
+            </section>
+            <section class="plother" aria-labelledby="other-title">
+              <h2 class="h3" id="other-title">Otros planes</h2>
+              <div class="plmini" id="others"></div>
+            </section>
+          </aside>
+        </div>
+        <template id="t-task">
+          <li>
+            <input type="checkbox" /><a
+              ><span class="tname"></span><span class="kind"><svg aria-hidden="true"><use></use></svg><span></span></span
+              ><svg aria-hidden="true" class="go"><use></use></svg
+            ></a>
+          </li>
+        </template>
       </main>
       <div id="toast" class="toast" role="status" aria-live="polite" hidden>
         <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>

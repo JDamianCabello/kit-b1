@@ -1,13 +1,15 @@
 /* Índice de guías: las tarjetas ya están en el HTML.
    Aquí se marcan las leídas y las de esta semana, se filtra por texto y nivel y se elige «Sigue por aquí». */
-import { store, weekNow, pct } from "../lib/store.js";
+import { store, pct } from "../lib/store.js";
+import { activePlans, currentWeek } from "../lib/plans.js";
 import { $, $$ } from "../lib/dom.js";
 import "../lib/shell.js";
 
 const cards = $$(".gcard"), sections = $$(".gsect");
-const week = store.plan.start ? String(weekNow()) : null;
+// Guías de la semana en curso de tus planes (si sigues alguno)
+const weekGuides = new Set(activePlans().flatMap(p => p.weeks[currentWeek(p) - 1].tasks.filter(t => t[0] === "g").map(t => t[1])));
 const isRead = c => !!store.done["g:" + c.dataset.guide];
-const thisWeek = c => week && c.dataset.weeks.split(" ").includes(week);
+const thisWeek = c => weekGuides.has(c.dataset.guide);
 
 // Estado de cada guía
 for(const c of cards){
@@ -25,12 +27,12 @@ const read = cards.filter(isRead).length;
 $("#read-count").textContent = `${read} de ${cards.length}`;
 $("#read-bar").style.width = `${pct(read, cards.length)}%`;
 
-// «Sigue por aquí»: la primera sin leer de la semana del plan; si no hay, la primera sin leer
+// «Sigue por aquí»: la primera sin leer de la semana de tus planes; si no hay, la primera sin leer
 const next = cards.find(c => thisWeek(c) && !isRead(c)) || cards.find(c => !isRead(c));
 if(next){
   const box = $("#next-guide"), sec = next.closest(".gsect");
   box.href = next.getAttribute("href");
-  $("#next-tag").textContent = thisWeek(next) ? `Sigue por aquí · semana ${week}` : "Sigue por aquí";
+  $("#next-tag").textContent = thisWeek(next) ? "Sigue por aquí · de tu plan" : "Sigue por aquí";
   $("#next-level").textContent = $(".lvtag", sec).textContent;
   $("#next-level").className = `lvtag lv-${[...sec.classList].find(k => k.startsWith("lv-")).slice(3)}`;
   $("#next-title").textContent = $(".gtx b", next).textContent;

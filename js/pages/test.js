@@ -105,6 +105,6 @@ const id = params().get("set"), set = SETS[id];
 if(!set || !set.pool){ $("#not-found").hidden = false; }
 else {
   $("#title").textContent = set.label;
-  document.title = `${set.label} · Kit B1`;
+  document.title = `${set.label} · Inglés Paso a Paso`;
   start(set.pool(store.mistakes), set.n, set.keep, id);
 }

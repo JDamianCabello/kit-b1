@@ -1,4 +1,4 @@
-/* Kit B1 · ejercicios de gramática, uno por guía. [guía, frase, [opciones: la primera es la correcta], explicación] */
+/* Inglés Paso a Paso · ejercicios de gramática, uno por guía. [guía, frase, [opciones: la primera es la correcta], explicación] */
 export const GR = [
  ["be","I ___ from Spain.",["am","is","are"],"<mark>I am</mark> (I'm)."],
  ["be","My sister ___ a nurse.",["is","are","am"],"He / she / it → <mark>is</mark>."],

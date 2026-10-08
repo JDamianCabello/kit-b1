@@ -1,4 +1,4 @@
-/* Kit B1 · simulacros de examen con contenido original en formato B1 Preliminary.
+/* Inglés Paso a Paso · simulacros de examen con contenido original en formato B1 Preliminary.
    a = índice de la opción correcta. En "gapped", answers = índice de la frase para cada hueco. */
 export const EXAMS = [
  { id:"sim1", title:"Simulacro 1", sub:"Reading, Listening y un email. Unos 35 minutos.",

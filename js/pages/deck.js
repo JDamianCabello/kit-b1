@@ -26,7 +26,7 @@ else init();
 function init(){
   if(!d.mix) markDone("c:" + deckId);
   $("#title").textContent = d.name;
-  document.title = `${d.name} · Tarjetas · Kit B1`;
+  document.title = `${d.name} · Tarjetas · Inglés Paso a Paso`;
   $("#dir").hidden = d.cards.every(c => c.oneWay);
 
   const pick = () => store.cardShort ? shuffle(d.cards).slice(0, 10) : shuffle(d.cards);

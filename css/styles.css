@@ -134,7 +134,7 @@ a,button,summary,label,input{touch-action:manipulation}
 img{max-width:100%}
 a{color:var(--accent)}
 .wrap{max-width:800px;margin:0 auto;padding:32px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:20px}
-body[data-tab="plan"] .wrap{max-width:1180px}
+body:is([data-tab="inicio"],[data-tab="planes"]) .wrap{max-width:1180px}
 /* barra superior: marca, pestañas y estadísticas */
 .topbar{background:var(--surface);border-bottom:1px solid var(--line)}
 .topin{max-width:1180px;margin:0 auto;padding:0 16px;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -151,7 +151,7 @@ nav.tabs{display:flex;gap:4px;align-self:stretch}
 nav.tabs a{position:relative;display:flex;align-items:center;gap:8px;font:600 16px var(--display);color:var(--muted);padding:0 16px;border-bottom:3px solid transparent;text-decoration:none;white-space:nowrap}
 nav.tabs a svg{width:18px;height:18px}
 nav.tabs a[aria-current="page"]{color:var(--ink);border-color:var(--accent)}
-@media (min-width:701px) and (max-width:1060px){
+@media (min-width:701px) and (max-width:1180px){
   .topin{flex-wrap:wrap;padding-top:14px;row-gap:6px}
   nav.tabs{order:3;width:100%;min-height:50px}
   nav.tabs a{padding:0 12px}
@@ -320,7 +320,7 @@ li.say svg{width:15px;height:15px;vertical-align:-2px;color:var(--muted)}
 /* plan */
 .big-bar{height:10px}
 /* plan: semana actual, tareas y columna lateral */
-body[data-tab="plan"] .panel{background:none;border:0;padding:0;border-radius:0}
+body:is([data-tab="inicio"],[data-tab="planes"]) .panel{background:none;border:0;padding:0;border-radius:0}
 .plan{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px;align-items:start}
 .pmain,.pside{display:flex;flex-direction:column;gap:24px;min-width:0}
 .pside section{display:flex;flex-direction:column}
@@ -798,7 +798,7 @@ i.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var
    ========================================================================== */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 /* Sin JavaScript se ve todo el contenido fijo; se esconden los controles que no funcionarían */
-html:not(.js) :is(.js-only,.stats,.whero,.tasks-head){display:none!important}
+html:not(.js) :is(.js-only,.stats,.whero:not(.hhero),.tasks-head){display:none!important}
 .js .week>.phead,.js .week>.week-goal{display:none}
 /* Tema: el botón enseña el icono del tema elegido */
 .themebtn>span{display:none}
@@ -1100,3 +1100,89 @@ html:not(.js) .mstep+.mstep{border-top:1px solid var(--line);padding-top:22px}
 .tm-pals label:has(input:focus-visible),.tm-modes label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:1px}
 .tm-sw{flex:none;width:34px;height:20px;border-radius:999px;background:linear-gradient(90deg,var(--sw1) 0 40%,var(--sw2) 40% 70%,var(--sw3) 70%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
 @media (max-width:700px){ .thememenu{top:calc(var(--toph) + 4px + env(safe-area-inset-top,0px));right:10px;width:min(280px,calc(100vw - 20px))} }
+
+/* ---------- planes: catálogo, tarjetas y ficha ---------- */
+.plgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plcard{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;transition:border-color .15s,transform .12s}
+.plcard:hover{border-color:var(--accent)}
+.plcard:active{transform:scale(.99)}
+.plcard.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.plcard b{font:800 19px/1.15 var(--display);letter-spacing:-.01em}
+.plcard small{color:var(--muted);font-size:14px;line-height:1.45;flex:1}
+.pltop{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pltop .lvtag{--lv:var(--accent-soft);--lv-ink:var(--accent)}
+.plstate{font:700 13px var(--body);color:var(--accent)}
+.plmeta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted)}
+.plmeta span+span::before{content:"·";margin-right:12px}
+.plcard .bar{height:6px}
+.plfacts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.plfacts li{display:flex;flex-direction:column-reverse;gap:2px;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.plfacts b{font:700 15px/1.2 var(--display)}
+.plfacts span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.pside .pstart{max-width:none}
+.plmini{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.plmini a{display:flex;flex-direction:column;gap:1px;padding:10px 14px;color:var(--ink);text-decoration:none}
+.plmini a+a{border-top:1px solid var(--line)}
+.plmini a:hover{background:var(--surface-2)}
+.plmini b{font:700 15px/1.25 var(--body)}
+.plmini small{font-size:13px;color:var(--muted)}
+@media (max-width:900px){ .plgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:700px){
+  .plgrid{grid-template-columns:minmax(0,1fr);gap:10px}
+  .plcard{padding:14px 16px}
+  .plcard b{font-size:17px}
+  .plfacts b{font-size:14px}
+  nav.tabs a{font-size:11px;padding:6px 0}
+}
+
+/* ---------- inicio: bienvenida, tus planes y accesos ---------- */
+.hhero{gap:12px}
+.hhero .wtitle{margin:0}
+.hhero .intro{max-width:62ch}
+.hhero .row{margin-top:6px}
+.hplans,.hexplore{display:flex;flex-direction:column;gap:12px}
+.hplans .phead{margin:0}
+.hplans .phead a{color:var(--accent);font-weight:700;text-decoration:none}
+.hplan-list{display:flex;flex-direction:column;gap:14px}
+.hplan{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.hplan-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;color:var(--ink);text-decoration:none}
+.hplan-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hplan-txt b{font:800 21px/1.15 var(--display);letter-spacing:-.01em}
+.hplan-txt small{color:var(--muted);font-size:14.5px}
+.hplan-top:hover b{color:var(--accent)}
+.hplan-pct{font:800 22px/1 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.hplan .bar{height:8px}
+.hplan-next{margin:2px 0 0;font-size:14px;color:var(--muted);font-weight:700}
+.hplan .tasks{border-radius:12px}
+.hnone{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.hnone p{margin:0}
+.hexplore .xgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1000px){
+  .home .hhero{order:1} .home .hplans{order:2} .home .pside>section:first-child{order:3} .home .hexplore{order:4}
+  .home .pside>section:nth-child(2){order:5} .home .mcard{order:6} .home .backup{order:8}
+  body[data-tab="planes"] .pstart{order:0}
+}
+@media (max-width:700px){
+  .hplan{padding:14px}
+  .hplan-txt b{font-size:18px}
+  .hhero .row .btn{flex:1 1 auto;text-align:center}
+}
+
+/* Marca «Inglés Paso a Paso»: en una línea; con poco sitio se quedan las etiquetas cortas */
+.brand .bn{white-space:nowrap}
+.topin .chip .l{display:none}
+@media (min-width:701px){ nav.tabs{gap:2px} nav.tabs a{padding:0 12px} }
+@media (max-width:700px){
+  .brand{font-size:21px} .brand .bn1{display:none}
+  /* seis pestañas abajo: que quepan aunque la pantalla sea estrecha */
+  nav.tabs a{min-width:0;font-size:10.5px}
+  nav.tabs a>span:not(.badge){max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  nav.tabs a svg{width:22px;height:22px}
+}
+@media (max-width:400px){
+  .brand{font-size:19px}
+  .topin{gap:8px}
+  .stats{gap:4px}
+  .chip{padding:4px 8px;font-size:13px;gap:4px}
+  .themebtn{width:30px;height:30px}
+}

@@ -1,4 +1,4 @@
-/* Kit B1 · datos de práctica: phrasal verbs, tiempos, expresiones de tiempo, vocabulario, irregulares */
+/* Inglés Paso a Paso · datos de práctica: phrasal verbs, tiempos, expresiones de tiempo, vocabulario, irregulares */
 // [phrasal verb, significado, frase con ___, [opciones: la primera es la correcta]]
 export const PV = [
  ["give up","dejar (un hábito), rendirse","My dad ___ smoking last year.",["gave up","gave in","gave out","gave away"]],

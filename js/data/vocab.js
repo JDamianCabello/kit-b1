@@ -1,4 +1,4 @@
-/* Kit B1 · vocabulario por temas del B1 Preliminary. Formato: "inglés=español|..." */
+/* Inglés Paso a Paso · vocabulario por temas del B1 Preliminary. Formato: "inglés=español|..." */
 // Cada tema: [id, nombre, palabras]. Palabras: "inglés=español", separadas por | o saltos de línea.
 export const TOPICS_RAW = [
  ["family", "Familia y personas", `

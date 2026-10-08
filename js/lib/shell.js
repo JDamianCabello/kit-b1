@@ -64,7 +64,7 @@ if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if(!hadController || notified) return;
     notified = true;
-    toast("Hay una versión nueva de Kit B1.", "Recargar", () => location.reload());
+    toast("Hay una versión nueva de Inglés Paso a Paso.", "Recargar", () => location.reload());
   });
   navigator.serviceWorker.register(new URL("../../sw.js", import.meta.url), {scope: new URL("../../", import.meta.url).pathname}).catch(() => {});
 }

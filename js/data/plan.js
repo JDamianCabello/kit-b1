@@ -1,4 +1,4 @@
-/* Kit B1 · plan de 10 semanas desde cero y recursos externos gratuitos.
+/* Inglés Paso a Paso · plan intensivo de 10 semanas para el examen B1 (uno de los planes de js/data/plans.js) y recursos externos gratuitos.
    Tareas: ["g", guía] ["q", test] ["c", tarjetas] ["x", simulacro] ["r", recurso] ["t", tarea libre] */
 
 // Recursos externos: solo enlaces, con su fuente. Nada de su contenido se copia aquí.

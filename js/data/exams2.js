@@ -1,4 +1,4 @@
-/* Kit B1 · más simulacros (con Reading Part 2 y Listening Part 3), tareas de Writing y práctica de Speaking.
+/* Inglés Paso a Paso · más simulacros (con Reading Part 2 y Listening Part 3), tareas de Writing y práctica de Speaking.
    Todo el contenido es original, en el formato del B1 Preliminary. */
 
 export const CHECKS_EMAIL = ["He usado las 4 notas.","Empiezo y termino el email de forma adecuada.","Tiene entre 90 y 120 palabras.","He usado conectores (because, so, but, although...).","He revisado verbos: -s con he/she, pasados y futuros."];
