@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Lectura 3: dos fábulas de Esopo · Kit B1</title>
+    <meta name="description" content="The Crow and the Pitcher · The Ants and the Grasshopper · 7 preguntas" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#100d0b" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema y paleta elegidos (se guardan en localStorage), antes de pintar la página para que no parpadee
+      try {
+        const s = JSON.parse(localStorage.getItem("kitb1-v1")) || {},
+          r = document.documentElement;
+        if (s.theme === "light" || s.theme === "dark") r.dataset.theme = s.theme;
+        if (s.palette && s.palette !== "naranja") r.dataset.palette = s.palette;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/exam.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" popovertarget="theme-menu" aria-label="Tema y colores">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+          <div class="thememenu" id="theme-menu" popover>
+            <p class="tm-title" id="tm-mode">Modo</p>
+            <div class="tm-modes" role="radiogroup" aria-labelledby="tm-mode">
+              <label><input type="radio" name="tm-mode" value="auto" /><span>Automático</span></label>
+              <label><input type="radio" name="tm-mode" value="light" /><span>Claro</span></label>
+              <label><input type="radio" name="tm-mode" value="dark" /><span>Oscuro</span></label>
+            </div>
+            <p class="tm-title" id="tm-pal">Colores</p>
+            <div class="tm-pals" role="radiogroup" aria-labelledby="tm-pal">
+              <label
+                ><input type="radio" name="tm-pal" value="naranja" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2410c; --sw2: #ffdcc7; --sw3: #7c2d12"
+                  aria-hidden="true"
+                ></span
+                ><span>Naranja</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="cobalto" /><span
+                  class="tm-sw"
+                  style="--sw1: #0057e6; --sw2: #dce8ff; --sw3: #0045b5"
+                  aria-hidden="true"
+                ></span
+                ><span>Cobalto</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="lavanda" /><span
+                  class="tm-sw"
+                  style="--sw1: #7a4fa6; --sw2: #e8dcf4; --sw3: #2b1d3a"
+                  aria-hidden="true"
+                ></span
+                ><span>Lavanda</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="bosque" /><span
+                  class="tm-sw"
+                  style="--sw1: #2d5e3a; --sw2: #d7e8cc; --sw3: #1b3a28"
+                  aria-hidden="true"
+                ></span
+                ><span>Bosque</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="rosa" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2257a; --sw2: #fbd9eb; --sw3: #1a1a1a"
+                  aria-hidden="true"
+                ></span
+                ><span>Rosa y carbón</span></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <article class="exam" data-exam="lect-3">
+          <div class="xhead">
+            <div>
+              <h1 class="h2">Lectura 3: dos fábulas de Esopo</h1>
+              <p class="intro">The Crow and the Pitcher · The Ants and the Grasshopper · 7 preguntas</p>
+            </div>
+            <span class="clock small" id="clock" aria-label="Tiempo">0:00</span>
+          </div>
+          <div class="result" id="result" hidden aria-live="polite">
+            <p class="big" id="r-score"></p>
+            <p id="r-msg"></p>
+            <p class="xmp">Abajo tienes cada respuesta explicada.</p>
+            <button type="button" class="btn" id="redo">Repetir</button>
+          </div>
+          <section class="xpart" aria-labelledby="p0">
+            <h2 class="h3" id="p0">The Crow and the Pitcher</h2>
+            <p class="intro">Lee la fábula y elige la respuesta correcta (como Reading Part 3).</p>
+            <div class="xtext">
+              <h4>The Crow and the Pitcher</h4>
+              <p>It had not rained for a long time, and the birds could find very little to drink. A thirsty crow found a pitcher – a tall jug – with a little water at the bottom. But the pitcher was high and had a narrow neck, and however hard he tried, the crow couldn't reach the water. The poor bird felt he was going to die of thirst.</p>
+              <p>Then he had an idea. He picked up some small stones and dropped them into the pitcher, one by one. With each stone, the water rose a little higher, until at last it was near enough for him to drink.</p>
+              <p><i>Moral: When you are in trouble, using your brain can help you.</i></p>
+            </div>
+            <div class="xq" data-answer="2">
+              <p class="qn">1</p>
+              <p class="qq">Why couldn't the crow drink at first?</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>Another bird was drinking it.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>The water was dirty.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>The water was too low and the neck was too narrow.</button>
+              </div>
+              <p class="why" hidden>«the pitcher was high and had a narrow neck».</p>
+            </div>
+            <div class="xq" data-answer="1">
+              <p class="qn">2</p>
+              <p class="qq">What did the crow do?</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>He broke the pitcher.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>He dropped stones into the pitcher.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>He waited for the rain.</button>
+              </div>
+              <p class="why" hidden>«He picked up some small stones and dropped them into the pitcher».</p>
+            </div>
+            <div class="xq" data-answer="1">
+              <p class="qn">3</p>
+              <p class="qq">“However hard he tried” means that…</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>he didn't try very much.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>it didn't matter how much he tried.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>he only tried once.</button>
+              </div>
+              <p class="why" hidden><b>however hard</b> = por mucho que.</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p1">
+            <h2 class="h3" id="p1">The Ants and the Grasshopper</h2>
+            <p class="intro">Lee la fábula y elige la respuesta correcta (como Reading Part 3).</p>
+            <div class="xtext">
+              <h4>The Ants and the Grasshopper</h4>
+              <p>One sunny day in late autumn, a family of ants were busy drying the grain they had collected during the summer. Then a hungry grasshopper, with his violin under his arm, came up to them and politely asked for something to eat.</p>
+              <p>“What!” said the ants in surprise. “Haven't you saved any food for the winter? What were you doing all summer?”</p>
+              <p>“I didn't have time to collect any food,” said the grasshopper sadly. “I was so busy making music that the summer was over before I knew it.”</p>
+              <p>The ants shrugged their shoulders. “Making music, were you?” they said. “Very well, now dance!” And they turned their backs on the grasshopper and went on with their work.</p>
+              <p><i>Moral: There is a time for work and a time for play.</i></p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">4</p>
+              <p class="qq">What were the ants doing?</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>Drying the food they had saved.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>Looking for food for the winter.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>Listening to music.</button>
+              </div>
+              <p class="why" hidden>«drying the grain they had collected during the summer».</p>
+            </div>
+            <div class="xq" data-answer="2">
+              <p class="qn">5</p>
+              <p class="qq">Why didn't the grasshopper have any food?</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>He had eaten it all in autumn.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>The ants had taken it.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>He had spent the summer making music.</button>
+              </div>
+              <p class="why" hidden>«I was so busy making music that the summer was over».</p>
+            </div>
+            <div class="xq" data-answer="1">
+              <p class="qn">6</p>
+              <p class="qq">How did the ants react?</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>They shared their food with him.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>They refused to help him.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>They asked him to play for them.</button>
+              </div>
+              <p class="why" hidden>«they turned their backs on the grasshopper and went on with their work».</p>
+            </div>
+            <div class="xq" data-answer="0">
+              <p class="qn">7</p>
+              <p class="qq">When the ants “shrugged their shoulders”, they showed that they…</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>didn't care about his problem.</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>were cold.</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>were very tired.</button>
+              </div>
+              <p class="why" hidden><b>shrug your shoulders</b> = encogerse de hombros (no me importa).</p>
+            </div>
+          </section>
+          <p class="xmp src">Fábulas adaptadas a nivel B1 a partir de <a href="https://www.gutenberg.org/ebooks/19994" target="_blank" rel="noopener"><i>The Aesop for Children</i></a> (Rand McNally, 1919), un texto de dominio público. Preguntas y explicaciones originales.</p>
+          <div class="row gradebar"><button type="button" class="btn primary" id="grade">Corregir</button></div>
+        </article>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Texto adaptado de una fuente abierta: la referencia y la licencia están al final del ejercicio.
+      </footer>
+    </div>
+  </body>
+</html>

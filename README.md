@@ -5,6 +5,7 @@ App web para preparar el **Cambridge B1 Preliminary** desde cero en 10 semanas. 
 - **Plan**: 10 semanas con tareas. Lo que haces en la app se marca solo.
 - **Guías**: 32 guías visuales en español, de «to be» a los condicionales, más guías del examen.
 - **Practicar**: tests rápidos (2 min, 60 s, 5 min), simulacros que se corrigen solos y ejercicios de cada tema.
+- **Lectura y textos**: fábulas de Esopo adaptadas al B1 con preguntas de comprensión, e historias con huecos para practicar la gramática en contexto.
 - **Tarjetas**: phrasal verbs, verbos irregulares y 16 temas de vocabulario, con audio.
 - **Fallos**: guarda lo que fallas hasta que lo aciertas.
 - **Tema**: claro, oscuro o automático (el del sistema), con el botón redondo de arriba.
@@ -59,6 +60,9 @@ Para cambiar el texto de una guía, un simulacro o un menú, edita su archivo `.
 
 ## Créditos
 
-Todo el contenido de ejercicios, guías y simulacros es original.
+El contenido de las guías y los simulacros es original, igual que la mayoría de los ejercicios. Algunos ejercicios están adaptados de fuentes abiertas:
+
+- **Historias con huecos** (`practicar/hist-1.html`, `practicar/hist-2.html`) y las preguntas de gramática marcadas en `js/data/grammar.js`: adaptadas de [*A Digital Workbook for Beginning ESOL*](https://openoregon.pressbooks.pub/esol23/), de Eric Dodson, Davida Jordan y Tim Krause (Portland Community College, 2018), con licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Cambios: los textos se han reescrito y ampliado, los ejercicios se han convertido en preguntas de opción múltiple o para escribir y se han añadido explicaciones en español.
+- **Lecturas** (`practicar/lect-1.html` a `lect-4.html`): fábulas adaptadas a nivel B1 a partir de [*The Aesop for Children*](https://www.gutenberg.org/ebooks/19994) (Rand McNally, 1919), de dominio público. Las preguntas y explicaciones son originales.
 
 Las fotos de Speaking (`img/speaking/`) son de [Unsplash](https://unsplash.com) y se usan con la [licencia de Unsplash](https://unsplash.com/license); cada foto muestra en la web su autor con un enlace a la original. Los iconos de los objetos del simulacro de Speaking son de [Lucide](https://lucide.dev) (licencia ISC). Los recursos externos (Cambridge English, British Council, BBC Learning English, EngExam.info, YouTube) solo se enlazan y pertenecen a sus autores.

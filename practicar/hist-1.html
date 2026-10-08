@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Historias con huecos 1 · Kit B1</title>
+    <meta name="description" content="Presente simple y verbos con -ing o to · 17 huecos" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#100d0b" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon-180.png" />
+    <script>
+      // Tema y paleta elegidos (se guardan en localStorage), antes de pintar la página para que no parpadee
+      try {
+        const s = JSON.parse(localStorage.getItem("kitb1-v1")) || {},
+          r = document.documentElement;
+        if (s.theme === "light" || s.theme === "dark") r.dataset.theme = s.theme;
+        if (s.palette && s.palette !== "naranja") r.dataset.palette = s.palette;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&display=swap"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script type="module" src="../js/pages/exam.js"></script>
+  </head>
+  <body data-tab="practicar" data-focus class="has-back">
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="topbar">
+      <div class="topin">
+        <div id="back-top">
+          <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+        </div>
+        <p class="brand">
+          <a href="../index.html"><span class="logo" aria-hidden="true">B1</span>Kit B1</a>
+        </p>
+        <nav class="tabs" aria-label="Secciones">
+          <a href="../index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#plan"></use></svg><span>Plan</span></a
+          >
+          <a href="../guias/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#guias"></use></svg><span>Guías</span></a
+          >
+          <a href="../practicar/index.html" aria-current="page"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#practicar"></use></svg><span>Practicar</span></a
+          >
+          <a href="../tarjetas/index.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#tarjetas"></use></svg><span>Tarjetas</span></a
+          >
+          <a href="../fallos.html"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#fallos"></use></svg><span>Fallos</span
+            ><span class="badge" data-stat="mistakes" hidden></span
+          ></a>
+        </nav>
+        <div class="stats">
+          <span class="chip" title="Días seguidos practicando"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#racha"></use></svg><span class="l">Racha </span
+            ><b data-stat="streak">0 días</b></span
+          >
+          <span class="chip" title="Porcentaje de aciertos"
+            ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
+            ><b data-stat="accuracy">0%</b></span
+          >
+          <button type="button" class="themebtn" id="theme" popovertarget="theme-menu" aria-label="Tema y colores">
+            <span class="i-auto"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
+            ><span class="i-light"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#sol"></use></svg></span
+            ><span class="i-dark"
+              ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
+            ></span>
+          </button>
+          <div class="thememenu" id="theme-menu" popover>
+            <p class="tm-title" id="tm-mode">Modo</p>
+            <div class="tm-modes" role="radiogroup" aria-labelledby="tm-mode">
+              <label><input type="radio" name="tm-mode" value="auto" /><span>Automático</span></label>
+              <label><input type="radio" name="tm-mode" value="light" /><span>Claro</span></label>
+              <label><input type="radio" name="tm-mode" value="dark" /><span>Oscuro</span></label>
+            </div>
+            <p class="tm-title" id="tm-pal">Colores</p>
+            <div class="tm-pals" role="radiogroup" aria-labelledby="tm-pal">
+              <label
+                ><input type="radio" name="tm-pal" value="naranja" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2410c; --sw2: #ffdcc7; --sw3: #7c2d12"
+                  aria-hidden="true"
+                ></span
+                ><span>Naranja</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="cobalto" /><span
+                  class="tm-sw"
+                  style="--sw1: #0057e6; --sw2: #dce8ff; --sw3: #0045b5"
+                  aria-hidden="true"
+                ></span
+                ><span>Cobalto</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="lavanda" /><span
+                  class="tm-sw"
+                  style="--sw1: #7a4fa6; --sw2: #e8dcf4; --sw3: #2b1d3a"
+                  aria-hidden="true"
+                ></span
+                ><span>Lavanda</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="bosque" /><span
+                  class="tm-sw"
+                  style="--sw1: #2d5e3a; --sw2: #d7e8cc; --sw3: #1b3a28"
+                  aria-hidden="true"
+                ></span
+                ><span>Bosque</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="rosa" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2257a; --sw2: #fbd9eb; --sw3: #1a1a1a"
+                  aria-hidden="true"
+                ></span
+                ><span>Rosa y carbón</span></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="wrap">
+      <div id="back">
+        <a class="back" href="index.html"><span aria-hidden="true">←</span> Practicar</a>
+      </div>
+
+      <main class="panel" id="main" tabindex="-1">
+        <article class="exam" data-exam="hist-1">
+          <div class="xhead">
+            <div>
+              <h1 class="h2">Historias con huecos 1</h1>
+              <p class="intro">Presente simple y verbos con -ing o to · 17 huecos</p>
+            </div>
+            <span class="clock small" id="clock" aria-label="Tiempo">0:00</span>
+          </div>
+          <div class="result" id="result" hidden aria-live="polite">
+            <p class="big" id="r-score"></p>
+            <p id="r-msg"></p>
+            <p class="xmp">Abajo tienes cada respuesta explicada.</p>
+            <button type="button" class="btn" id="redo">Repetir</button>
+          </div>
+          <section class="xpart" aria-labelledby="p0">
+            <h2 class="h3" id="p0">Present simple (como Reading Part 5)</h2>
+            <p class="intro">Elige la opción correcta para cada hueco.</p>
+            <div class="xtext">
+              <h4>Mitch, the farmer</h4>
+              <p>My brother's name <span class="gap">1</span> Mitch. He's a farmer and he <span class="gap">2</span> very hard every day. He <span class="gap">3</span> a big truck and he <span class="gap">4</span> a lot of corn and beans. He lives on a farm with his family, and his four sons <span class="gap">5</span> him with the work. Mitch always says, “We love the country. We <span class="gap">6</span> like the city at all.” This year the fields <span class="gap">7</span> very dry, because it <span class="gap">8</span> for weeks, and the plants really need water.</p>
+            </div>
+            <div class="xq inline" data-answer="1">
+              <p class="qq">Hueco 1</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>be</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>is</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>has</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>are</button>
+              </div>
+              <p class="why" hidden>El nombre (singular) + <b>is</b>.</p>
+            </div>
+            <div class="xq inline" data-answer="1">
+              <p class="qq">Hueco 2</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>is work</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>works</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>work</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>working</button>
+              </div>
+              <p class="why" hidden>Rutina (every day), he → <b>works</b>.</p>
+            </div>
+            <div class="xq inline" data-answer="0">
+              <p class="qq">Hueco 3</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>drives</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>drive</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>drived</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>is drive</button>
+              </div>
+              <p class="why" hidden>he → <b>drives</b>.</p>
+            </div>
+            <div class="xq inline" data-answer="3">
+              <p class="qq">Hueco 4</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>is grow</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>grow</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>growes</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>grows</button>
+              </div>
+              <p class="why" hidden>he → <b>grows</b>.</p>
+            </div>
+            <div class="xq inline" data-answer="1">
+              <p class="qq">Hueco 5</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>helps</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>help</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>helping</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>are help</button>
+              </div>
+              <p class="why" hidden>his four sons = they → <b>help</b>, sin -s.</p>
+            </div>
+            <div class="xq inline" data-answer="2">
+              <p class="qq">Hueco 6</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>not</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>doesn't</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>don't</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>aren't</button>
+              </div>
+              <p class="why" hidden>we → <b>don't</b> + verbo.</p>
+            </div>
+            <div class="xq inline" data-answer="3">
+              <p class="qq">Hueco 7</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>have</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>is</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>do</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>are</button>
+              </div>
+              <p class="why" hidden>the fields (plural) → <b>are</b>.</p>
+            </div>
+            <div class="xq inline" data-answer="1">
+              <p class="qq">Hueco 8</p>
+              <div class="xopts" role="group">
+                <button type="button" class="xopt" data-v="0" aria-pressed="false"><kbd>A</kbd>isn't raining</button
+                ><button type="button" class="xopt" data-v="1" aria-pressed="false"><kbd>B</kbd>hasn't rained</button
+                ><button type="button" class="xopt" data-v="2" aria-pressed="false"><kbd>C</kbd>not rained</button
+                ><button type="button" class="xopt" data-v="3" aria-pressed="false"><kbd>D</kbd>doesn't rain</button>
+              </div>
+              <p class="why" hidden>Desde hace semanas hasta ahora (for weeks) → present perfect: <b>hasn't rained</b>.</p>
+            </div>
+          </section>
+          <section class="xpart" aria-labelledby="p1">
+            <h2 class="h3" id="p1">-ing o to + verbo (como Reading Part 6)</h2>
+            <p class="intro">Escribe la forma correcta del verbo entre paréntesis.</p>
+            <div class="xtext">
+              <h4>A trip to Egypt</h4>
+              <p>My friend and I talked about <span class="gap">1</span> (take) a trip together. We're both interested in <span class="gap">2</span> (see) the pyramids, and we wanted to learn some Arabic before <span class="gap">3</span> (leave). My friend is very good at <span class="gap">4</span> (learn) languages, so I asked her <span class="gap">5</span> (help) me plan the trip. She told me <span class="gap">6</span> (bring) my passport, and she also told me <span class="gap">7</span> (be) patient. I invited my sister <span class="gap">8</span> (come) with us, too, because I need her <span class="gap">9</span> (translate) for me!</p>
+            </div>
+            <div class="xq inline" data-answer='["taking"]'>
+              <label class="qq" for="open-1-0">Hueco 1 (take)</label
+              ><input class="xin" id="open-1-0" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>Después de preposición (about) → <b>taking</b>.</p>
+            </div>
+            <div class="xq inline" data-answer='["seeing"]'>
+              <label class="qq" for="open-1-1">Hueco 2 (see)</label
+              ><input class="xin" id="open-1-1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>interested in + <b>-ing</b>.</p>
+            </div>
+            <div class="xq inline" data-answer='["leaving"]'>
+              <label class="qq" for="open-1-2">Hueco 3 (leave)</label
+              ><input class="xin" id="open-1-2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>before + <b>-ing</b>.</p>
+            </div>
+            <div class="xq inline" data-answer='["learning"]'>
+              <label class="qq" for="open-1-3">Hueco 4 (learn)</label
+              ><input class="xin" id="open-1-3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>good at + <b>-ing</b>.</p>
+            </div>
+            <div class="xq inline" data-answer='["to help"]'>
+              <label class="qq" for="open-1-4">Hueco 5 (help)</label
+              ><input class="xin" id="open-1-4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>ask someone <b>to</b> + verbo.</p>
+            </div>
+            <div class="xq inline" data-answer='["to bring"]'>
+              <label class="qq" for="open-1-5">Hueco 6 (bring)</label
+              ><input class="xin" id="open-1-5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>tell someone <b>to</b> + verbo.</p>
+            </div>
+            <div class="xq inline" data-answer='["to be"]'>
+              <label class="qq" for="open-1-6">Hueco 7 (be)</label
+              ><input class="xin" id="open-1-6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>tell someone <b>to be</b> patient.</p>
+            </div>
+            <div class="xq inline" data-answer='["to come"]'>
+              <label class="qq" for="open-1-7">Hueco 8 (come)</label
+              ><input class="xin" id="open-1-7" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>invite someone <b>to</b> + verbo.</p>
+            </div>
+            <div class="xq inline" data-answer='["to translate"]'>
+              <label class="qq" for="open-1-8">Hueco 9 (translate)</label
+              ><input class="xin" id="open-1-8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+              <p class="why" hidden>need someone <b>to</b> + verbo.</p>
+            </div>
+          </section>
+          <p class="xmp src">Adaptado de <a href="https://openoregon.pressbooks.pub/esol23/" target="_blank" rel="noopener"><i>A Digital Workbook for Beginning ESOL</i></a>, de Eric Dodson, Davida Jordan y Tim Krause (Portland Community College, 2018), con licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noopener">CC BY 4.0</a>. Cambios: textos reescritos y ampliados, preguntas nuevas y explicaciones en español.</p>
+          <div class="row gradebar"><button type="button" class="btn primary" id="grade">Corregir</button></div>
+        </article>
+      </main>
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+        <span data-slot="msg"></span><button type="button" class="btn small primary" hidden></button>
+      </div>
+      <footer class="foot">
+        Texto adaptado de una fuente abierta: la referencia y la licencia están al final del ejercicio.
+      </footer>
+    </div>
+  </body>
+</html>

@@ -97,6 +97,13 @@ WRITING_TASKS.forEach(w => own(w.id, w.title, w.sub, `${w.id}.html`));
 own("sp-exam1", "Simulacro de Speaking: ropa y viajes", "Las 4 partes del examen con fotos · unos 12 minutos", "sp-exam1.html");
 SPEAKING.forEach(s => own(s.id, s.title, s.sub, `${s.id}.html`));
 PREP_TEXTS.forEach(e => own(e.id, e.title.replace("Preposiciones: t", "T"), e.sub, `${e.id}.html`));
+// Lecturas (fábulas de Esopo) e historias con huecos (adaptadas de Open Oregon): páginas propias en HTML
+[["lect-1", "Lectura 1: fábulas de Esopo", "The Town Mouse and the Country Mouse · The Fox and the Grapes"],
+ ["lect-2", "Lectura 2: fábulas de Esopo", "The Lion and the Mouse · The Shepherd Boy and the Wolf"],
+ ["lect-3", "Lectura 3: fábulas de Esopo", "The Crow and the Pitcher · The Ants and the Grasshopper"],
+ ["lect-4", "Lectura 4: fábulas de Esopo", "The Bundle of Sticks · Belling the Cat"],
+ ["hist-1", "Historias con huecos 1", "Presente simple y verbos con -ing o to"],
+ ["hist-2", "Historias con huecos 2", "Pasado, artículos y some / any"]].forEach(([id, label, sub]) => own(id, label, sub, `${id}.html`));
 test("prep-exam", "Examen de preposiciones", "20 preguntas con opciones · of, from, for, on, in, to, at, with, about, between", () => prepOpts(["prepositions"]), 20);
 test("prep-iot", "In, on, at: tiempo y lugar", "15 preguntas · las que más caen", () => prepOpts(["prep-iot"]), 15);
 test("prep-dep", "Verbo o adjetivo + preposición", "15 preguntas · afraid of, good at, depend on...", () => prepOpts(["prep-dep"]), 15);

@@ -88,3 +88,12 @@ PLAN[2].goal = "Diferenciar presente simple y continuo, hablar de comida, ropa y
 PLAN[2].tasks.push(["c","sup-sent"], ["q","sup-sent"]);
 PLAN[2].tasks.push(["q","comp-table"]);
 PLAN[5].tasks.push(["c","pv-sent"], ["q","pv-sent"]);
+
+// Tests de gramática nuevos, lecturas (fábulas de Esopo) e historias con huecos (Open Oregon)
+PLAN[1].tasks.push(["q","gr-ps-pc"], ["x","lect-1"]);
+PLAN[2].tasks.push(["x","hist-1"]);
+PLAN[3].tasks.push(["q","gr-time"], ["x","hist-2"]);
+PLAN[4].tasks.push(["x","lect-2"]);
+PLAN[5].tasks.push(["q","gr-future"]);
+PLAN[6].tasks.push(["x","lect-3"]);
+PLAN[7].tasks.push(["x","lect-4"]);
