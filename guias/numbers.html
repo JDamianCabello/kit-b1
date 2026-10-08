@@ -6,16 +6,18 @@
     <title>Números, hora y fechas · Guías · Kit B1</title>
     <meta name="description" content="Salen muchísimo en el Listening: precios, horas, fechas y teléfonos." />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c1113" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#100d0b" media="(prefers-color-scheme: dark)" />
     <link rel="manifest" href="../manifest.webmanifest" />
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="../icon-180.png" />
     <script>
-      // Tema elegido (claro u oscuro) antes de pintar la página, para que no parpadee
+      // Tema y paleta elegidos (se guardan en localStorage), antes de pintar la página para que no parpadee
       try {
-        const t = (JSON.parse(localStorage.getItem("kitb1-v1")) || {}).theme;
-        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+        const s = JSON.parse(localStorage.getItem("kitb1-v1")) || {},
+          r = document.documentElement;
+        if (s.theme === "light" || s.theme === "dark") r.dataset.theme = s.theme;
+        if (s.palette && s.palette !== "naranja") r.dataset.palette = s.palette;
       } catch (e) {}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,7 +66,7 @@
             ><svg aria-hidden="true"><use href="../img/icons.svg#acierto"></use></svg><span class="l">Acierto </span
             ><b data-stat="accuracy">0%</b></span
           >
-          <button type="button" class="themebtn" id="theme" aria-label="Cambiar tema">
+          <button type="button" class="themebtn" id="theme" popovertarget="theme-menu" aria-label="Tema y colores">
             <span class="i-auto"
               ><svg aria-hidden="true"><use href="../img/icons.svg#auto"></use></svg></span
             ><span class="i-light"
@@ -73,6 +75,57 @@
               ><svg aria-hidden="true"><use href="../img/icons.svg#luna"></use></svg
             ></span>
           </button>
+          <div class="thememenu" id="theme-menu" popover>
+            <p class="tm-title" id="tm-mode">Modo</p>
+            <div class="tm-modes" role="radiogroup" aria-labelledby="tm-mode">
+              <label><input type="radio" name="tm-mode" value="auto" /><span>Automático</span></label>
+              <label><input type="radio" name="tm-mode" value="light" /><span>Claro</span></label>
+              <label><input type="radio" name="tm-mode" value="dark" /><span>Oscuro</span></label>
+            </div>
+            <p class="tm-title" id="tm-pal">Colores</p>
+            <div class="tm-pals" role="radiogroup" aria-labelledby="tm-pal">
+              <label
+                ><input type="radio" name="tm-pal" value="naranja" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2410c; --sw2: #ffdcc7; --sw3: #7c2d12"
+                  aria-hidden="true"
+                ></span
+                ><span>Naranja</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="cobalto" /><span
+                  class="tm-sw"
+                  style="--sw1: #0057e6; --sw2: #dce8ff; --sw3: #0045b5"
+                  aria-hidden="true"
+                ></span
+                ><span>Cobalto</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="lavanda" /><span
+                  class="tm-sw"
+                  style="--sw1: #7a4fa6; --sw2: #e8dcf4; --sw3: #2b1d3a"
+                  aria-hidden="true"
+                ></span
+                ><span>Lavanda</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="bosque" /><span
+                  class="tm-sw"
+                  style="--sw1: #2d5e3a; --sw2: #d7e8cc; --sw3: #1b3a28"
+                  aria-hidden="true"
+                ></span
+                ><span>Bosque</span></label
+              >
+              <label
+                ><input type="radio" name="tm-pal" value="rosa" /><span
+                  class="tm-sw"
+                  style="--sw1: #c2257a; --sw2: #fbd9eb; --sw3: #1a1a1a"
+                  aria-hidden="true"
+                ></span
+                ><span>Rosa y carbón</span></label
+              >
+            </div>
+          </div>
         </div>
       </div>
     </header>

@@ -14,20 +14,31 @@ export function renderStats(){
 document.addEventListener("progress", renderStats);
 renderStats();
 
-// Tema: automático (el del sistema), claro u oscuro. El icono lo elige el CSS según data-theme.
-const THEMES = {auto:"automático", light:"claro", dark:"oscuro"};
+// Tema: modo (automático, claro u oscuro) y paleta de colores (naranja por defecto).
+// Se guardan en localStorage con el resto del progreso; el <head> de cada página ya los aplica antes de pintar.
+const MODES = {auto:"automático", light:"claro", dark:"oscuro"};
+const PALETTES = ["naranja", "cobalto", "lavanda", "bosque", "rosa"];
 export function applyTheme(){
-  const t = store.theme;
-  if(t === "light" || t === "dark") document.documentElement.dataset.theme = t;
-  else delete document.documentElement.dataset.theme;
+  const r = document.documentElement, mode = MODES[store.theme] ? store.theme : "auto";
+  const pal = PALETTES.includes(store.palette) ? store.palette : "naranja";
+  if(mode === "auto") delete r.dataset.theme; else r.dataset.theme = mode;
+  if(pal === "naranja") delete r.dataset.palette; else r.dataset.palette = pal;
   const b = $("#theme");
-  if(b){ const l = THEMES[t] || THEMES.auto; b.setAttribute("aria-label", `Tema: ${l}. Cambiar tema`); b.title = `Tema: ${l}`; }
+  if(b){ b.setAttribute("aria-label", `Tema y colores (modo ${MODES[mode]})`); b.title = "Tema y colores"; }
+  for(const i of $$('input[name="tm-mode"]')) i.checked = i.value === mode;
+  for(const i of $$('input[name="tm-pal"]')) i.checked = i.value === pal;
+  // Color de la barra del navegador en el móvil
+  const bg = getComputedStyle(r).getPropertyValue("--bg").trim();
+  for(const m of $$('meta[name="theme-color"]')) m.content = bg;
 }
-$("#theme")?.addEventListener("click", () => {
-  const keys = Object.keys(THEMES);
-  store.theme = keys[(keys.indexOf(store.theme) + 1) % keys.length];
-  save(); applyTheme();
-});
+for(const i of $$('input[name="tm-mode"]')) i.addEventListener("change", () => { store.theme = i.value; save(); applyTheme(); });
+for(const i of $$('input[name="tm-pal"]')) i.addEventListener("change", () => { store.palette = i.value; save(); applyTheme(); });
+// Navegadores sin popover: el botón muestra y esconde el menú
+const menu = $("#theme-menu");
+if(menu && !("popover" in HTMLElement.prototype)){
+  menu.hidden = true;
+  $("#theme")?.addEventListener("click", () => { menu.hidden = !menu.hidden; });
+}
 applyTheme();
 
 // Avisos breves abajo de la pantalla, con un botón opcional

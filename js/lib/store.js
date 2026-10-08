@@ -1,7 +1,7 @@
 /* Progreso del alumno: se guarda solo en este navegador (localStorage) */
 
 const KEY = "kitb1-v1";
-export const DEFAULTS = () => ({answered:0, correct:0, mistakes:{}, days:[], done:{}, exams:{}, plan:{start:null}, drafts:{}, sprintBest:0, cardDir:"en", theme:"auto"});
+export const DEFAULTS = () => ({answered:0, correct:0, mistakes:{}, days:[], done:{}, exams:{}, plan:{start:null}, drafts:{}, sprintBest:0, cardDir:"en", theme:"auto", palette:"naranja"});
 
 function load(){
   try {
